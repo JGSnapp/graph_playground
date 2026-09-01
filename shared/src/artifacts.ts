@@ -43,6 +43,14 @@ export interface Artifact extends Rect {
   z: number;
   rotation?: number;
   props: ArtifactProps;
+  /**
+   * Set when the overlap with a neighbour is deliberate — a stack of photos, a
+   * badge on a card. Without it the quality metric fights the user: asked for
+   * overlapping cards, the agent produced them and the board scored 11/100
+   * because every pair cost 15 penalty points. Marked artifacts are excluded
+   * from the overlap check, never from anything else.
+   */
+  allowOverlap?: boolean;
   createdAt: number;
   updatedAt: number;
 }

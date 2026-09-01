@@ -339,3 +339,41 @@ describe('бюджет пересечений', () => {
     expect(report.ok).toBe(false);
   });
 });
+
+describe('намеренное перекрытие', () => {
+  it('acceptOverlap помечает блок, и метрика перестаёт считать это дефектом', async () => {
+    const env = makeEnv();
+    try {
+      const board = env.ctx.boards.create();
+      const registry = new ToolRegistry();
+      const ctx = toolContext(env, board.id);
+
+      await registry.get('artifact_create')!.run({ type: 'note', x: 0, y: 0 }, ctx);
+      const refused = await registry
+        .get('artifact_create')!
+        .run({ type: 'note', x: 60, y: 40 }, ctx);
+      expect((refused.data as { refused?: boolean }).refused).toBe(true);
+
+      const created = await registry
+        .get('artifact_create')!
+        .run({ type: 'note', x: 60, y: 40, acceptOverlap: true }, ctx);
+      expect(created.mutated).toBe(true);
+
+      const state = env.ctx.boards.snapshot(board.id);
+      expect(state.artifacts[1].allowOverlap).toBe(true);
+      // The blocks really do overlap, and that is no longer a defect.
+      expect(state.artifacts[0].x).toBeLessThan(state.artifacts[1].x + state.artifacts[1].width);
+      const report = checkIntersections(state.artifacts, state.arrows);
+      expect(report.counts.artifactArtifact).toBe(0);
+      expect(boardQuality(state.artifacts, state.arrows).score).toBe(100);
+    } finally {
+      await env.dispose();
+    }
+  });
+
+  it('случайное наложение по-прежнему дефект', () => {
+    const artifacts = [node('a', 0, 0), node('b', 60, 40)];
+    const report = checkIntersections(artifacts, []);
+    expect(report.counts.artifactArtifact).toBe(1);
+  });
+});

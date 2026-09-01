@@ -1,0 +1,862 @@
+{
+  "exp": "E04",
+  "task": "tree-org",
+  "probes": "иерархия, ветви должны держаться у своих корней",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-01T19:10:36.758Z",
+  "ms": 282649,
+  "aborted": false,
+  "screenshotsServed": 5,
+  "iterations": 21,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 12,
+      "arrows": 11,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 8,
+      "totalLength": 6690,
+      "detour": 1
+    },
+    "breakdown": []
+  },
+  "observations": {
+    "artifacts": 12,
+    "arrows": 11,
+    "width": 2820,
+    "height": 1576,
+    "aspect": 1.79,
+    "density": 0.06,
+    "edgeLengthMedian": 533,
+    "edgeLengthMax": 1476,
+    "edgeLengthSpread": 2.77,
+    "separation": 2.05,
+    "textOverflow": 0,
+    "alignedShare": 0.71,
+    "columnLanes": 9,
+    "rowLanes": 4,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 6690,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: **ра…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"purple\",\"text\":\"CEO\\nГенеральный директор\\nСтратегия компании, общее руководство, ключевые решения\"},\"type\":\"note\",\"width\":240,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_6ha8yb30os\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":240,\"height\":100,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"CEO\\nГенеральный директор\\nСтратегия компании, общее руководство, ключевые решения\",\"color\":\"purple\"},\"createdAt\":1788289602917,\"updatedAt\":1788289602917}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"blue\",\"text\":\"CTO\\nТехнический директор\\nАрхитектура, технологии, инженерная культура\"},\"type\":\"note\",\"width\":240,\"x\":0,\"y\":240}",
+      "resultSummary": "{\"id\":\"art_5ndw5k4fog\",\"type\":\"note\",\"x\":0,\"y\":240,\"width\":240,\"height\":100,\"z\":2,\"rotation\":0,\"props\":{\"text\":\"CTO\\nТехнический директор\\nАрхитектура, технологии, инженерная культура\",\"color\":\"blue\"},\"createdAt\":1788289602918,\"updatedAt\":1788289602918}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"green\",\"text\":\"CPO\\nДиректор по продукту\\nВидение продукта, Roadmap, OKR\"},\"type\":\"note\",\"width\":240,\"x\":320,\"y\":240}",
+      "resultSummary": "{\"id\":\"art_rwei0faw3f\",\"type\":\"note\",\"x\":320,\"y\":240,\"width\":240,\"height\":100,\"z\":3,\"rotation\":0,\"props\":{\"text\":\"CPO\\nДиректор по продукту\\nВидение продукта, Roadmap, OKR\",\"color\":\"green\"},\"createdAt\":1788289602918,\"updatedAt\":1788289602918}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"pink\",\"text\":\"CFO\\nФинансовый директор\\nБюджет, финансовая отчётность, казначейство\"},\"type\":\"note\",\"width\":240,\"x\":640,\"y\":240}",
+      "resultSummary": "{\"id\":\"art_6mqasgyble\",\"type\":\"note\",\"x\":640,\"y\":240,\"width\":240,\"height\":100,\"z\":4,\"rotation\":0,\"props\":{\"text\":\"CFO\\nФинансовый директор\\nБюджет, финансовая отчётность, казначейство\",\"color\":\"pink\"},\"createdAt\":1788289602918,\"updatedAt\":1788289602918}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"blue\",\"text\":\"Backend-команда\\nСерверная разработка, API, бизнес-логика\"},\"type\":\"note\",\"width\":240,\"x\":0,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_cn2jxw1qqd\",\"type\":\"note\",\"x\":0,\"y\":480,\"width\":240,\"height\":100,\"z\":5,\"rotation\":0,\"props\":{\"text\":\"Backend-команда\\nСерверная разработка, API, бизнес-логика\",\"color\":\"blue\"},\"createdAt\":1788289635384,\"updatedAt\":1788289635384}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"blue\",\"text\":\"Frontend-команда\\nКлиентская разработка, UI/UX реализация, Web/Mobile\"},\"type\":\"note\",\"width\":240,\"x\":320,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_msjgw454d5\",\"type\":\"note\",\"x\":320,\"y\":480,\"width\":240,\"height\":100,\"z\":6,\"rotation\":0,\"props\":{\"text\":\"Frontend-команда\\nКлиентская разработка, UI/UX реализация, Web/Mobile\",\"color\":\"blue\"},\"createdAt\":1788289635384,\"updatedAt\":1788289635384}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"blue\",\"text\":\"SRE\\nНадёжность, инфраструктура, CI/CD, мониторинг\"},\"type\":\"note\",\"width\":240,\"x\":640,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_8yr99qvgyx\",\"type\":\"note\",\"x\":640,\"y\":480,\"width\":240,\"height\":100,\"z\":7,\"rotation\":0,\"props\":{\"text\":\"SRE\\nНадёжность, инфраструктура, CI/CD, мониторинг\",\"color\":\"blue\"},\"createdAt\":1788289635384,\"updatedAt\":1788289635384}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"green\",\"text\":\"Дизайн\\nUX-исследования, интерфейсы, дизайн-система\"},\"type\":\"note\",\"width\":240,\"x\":960,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_h9o8ek068z\",\"type\":\"note\",\"x\":960,\"y\":480,\"width\":240,\"height\":100,\"z\":8,\"rotation\":0,\"props\":{\"text\":\"Дизайн\\nUX-исследования, интерфейсы, дизайн-система\",\"color\":\"green\"},\"createdAt\":1788289635384,\"updatedAt\":1788289635384}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"green\",\"text\":\"Продуктовая аналитика\\nМетрики, A/B-тесты, data-driven решения\"},\"type\":\"note\",\"width\":240,\"x\":1280,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_jejwdi27tb\",\"type\":\"note\",\"x\":1280,\"y\":480,\"width\":240,\"height\":100,\"z\":9,\"rotation\":0,\"props\":{\"text\":\"Продуктовая аналитика\\nМетрики, A/B-тесты, data-driven решения\",\"color\":\"green\"},\"createdAt\":1788289635385,\"updatedAt\":1788289635385}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"pink\",\"text\":\"Бухгалтерия\\nУчёт, налоги, зарплата, первичная документация\"},\"type\":\"note\",\"width\":240,\"x\":1600,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_vul4vk78gf\",\"type\":\"note\",\"x\":1600,\"y\":480,\"width\":240,\"height\":100,\"z\":10,\"rotation\":0,\"props\":{\"text\":\"Бухгалтерия\\nУчёт, налоги, зарплата, первичная документация\",\"color\":\"pink\"},\"createdAt\":1788289635385,\"updatedAt\":1788289635385}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"blue\",\"text\":\"Платформа\\nБазовая инфраструктура, микросервисы, общие сервисы\"},\"type\":\"note\",\"width\":240,\"x\":0,\"y\":720}",
+      "resultSummary": "{\"id\":\"art_5g1ppyhol4\",\"type\":\"note\",\"x\":0,\"y\":720,\"width\":240,\"height\":100,\"z\":11,\"rotation\":0,\"props\":{\"text\":\"Платформа\\nБазовая инфраструктура, микросервисы, общие сервисы\",\"color\":\"blue\"},\"createdAt\":1788289652496,\"updatedAt\":1788289652496}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":100,\"props\":{\"color\":\"blue\",\"text\":\"Биллинг\\nПлатёжные системы, тарификация, подписки\"},\"type\":\"note\",\"width\":240,\"x\":320,\"y\":720}",
+      "resultSummary": "{\"id\":\"art_ibd334qf9q\",\"type\":\"note\",\"x\":320,\"y\":720,\"width\":240,\"height\":100,\"z\":12,\"rotation\":0,\"props\":{\"text\":\"Биллинг\\nПлатёжные системы, тарификация, подписки\",\"color\":\"blue\"},\"createdAt\":1788289652496,\"updatedAt\":1788289652496}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_6ha8yb30os\",\"toId\":\"art_5ndw5k4fog\"}",
+      "resultSummary": "{\"id\":\"arr_xfsf0d3ksn\",\"from\":{\"artifactId\":\"art_6ha8yb30os\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_5ndw5k4fog\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788289669660,\"updatedAt\":1788289669660}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_6ha8yb30os\",\"toId\":\"art_rwei0faw3f\"}",
+      "resultSummary": "{\"id\":\"arr_o555mlnjhn\",\"from\":{\"artifactId\":\"art_6ha8yb30os\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_rwei0faw3f\",\"side\":\"top\"},\"bends\":[{\"x\":120,\"y\":172},{\"x\":440,\"y\":168}],\"style\":{},\"createdAt\":1788289669661,\"updatedAt\":1788289669661,\"adjustments\":[\"Стрелка подходила к стороне плашмя (24°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_arrange_graph переложат её но…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_6ha8yb30os\",\"toId\":\"art_6mqasgyble\"}",
+      "resultSummary": "{\"id\":\"arr_526a41b15a\",\"from\":{\"artifactId\":\"art_6ha8yb30os\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_6mqasgyble\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788289669662,\"updatedAt\":1788289669662}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_5ndw5k4fog\",\"toId\":\"art_cn2jxw1qqd\"}",
+      "resultSummary": "{\"id\":\"arr_1xelf4uhy3\",\"from\":{\"artifactId\":\"art_5ndw5k4fog\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_cn2jxw1qqd\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788289669664,\"updatedAt\":1788289669664}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_5ndw5k4fog\",\"toId\":\"art_msjgw454d5\"}",
+      "resultSummary": "{\"id\":\"arr_jid27myqgw\",\"from\":{\"artifactId\":\"art_5ndw5k4fog\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_msjgw454d5\",\"side\":\"top\"},\"bends\":[{\"x\":120,\"y\":412},{\"x\":440,\"y\":408}],\"style\":{},\"createdAt\":1788289669667,\"updatedAt\":1788289669667,\"adjustments\":[\"Стрелка подходила к стороне плашмя (24°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_arrange_graph переложат её но…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_5ndw5k4fog\",\"toId\":\"art_8yr99qvgyx\"}",
+      "resultSummary": "{\"id\":\"arr_dpnkf5nhdx\",\"from\":{\"artifactId\":\"art_5ndw5k4fog\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_8yr99qvgyx\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788289669670,\"updatedAt\":1788289669670}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_rwei0faw3f\",\"toId\":\"art_h9o8ek068z\"}",
+      "resultSummary": "{\"id\":\"arr_q8pwzupyzw\",\"from\":{\"artifactId\":\"art_rwei0faw3f\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_h9o8ek068z\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788289669672,\"updatedAt\":1788289669672}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_rwei0faw3f\",\"toId\":\"art_jejwdi27tb\"}",
+      "resultSummary": "{\"id\":\"arr_zx6pcf23r5\",\"from\":{\"artifactId\":\"art_rwei0faw3f\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_jejwdi27tb\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788289669677,\"updatedAt\":1788289669677}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_6mqasgyble\",\"toId\":\"art_vul4vk78gf\"}",
+      "resultSummary": "{\"id\":\"arr_za17uouci2\",\"from\":{\"artifactId\":\"art_6mqasgyble\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_vul4vk78gf\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788289669681,\"updatedAt\":1788289669681}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_cn2jxw1qqd\",\"toId\":\"art_5g1ppyhol4\"}",
+      "resultSummary": "{\"id\":\"arr_8tnb2vagjj\",\"from\":{\"artifactId\":\"art_cn2jxw1qqd\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_5g1ppyhol4\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788289669685,\"updatedAt\":1788289669685}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_cn2jxw1qqd\",\"toId\":\"art_ibd334qf9q\"}",
+      "resultSummary": "{\"id\":\"arr_vicf3y964g\",\"from\":{\"artifactId\":\"art_cn2jxw1qqd\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_ibd334qf9q\",\"side\":\"top\"},\"bends\":[{\"x\":120,\"y\":652},{\"x\":440,\"y\":648}],\"style\":{},\"createdAt\":1788289669690,\"updatedAt\":1788289669690,\"adjustments\":[\"Стрелка подходила к стороне плашмя (24°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_arrange_graph переложат её но…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"auto\",\"groups\":[{\"id\":\"tech\",\"nodeIds\":[\"art_5ndw5k4fog\",\"art_cn2jxw1qqd\",\"art_msjgw454d5\",\"art_8yr99qvgyx\",\"art_5g1ppyhol4\",\"art_ibd334qf9q\"]},{\"id\":\"product\",\"nodeIds\":[\"art_rwei0faw3f\",\"art_h9o8ek068z\",\"art_jejwdi27tb\"]},{\"id\":\"finance\",\"nodeIds\":[\"art_6mqasgyble\",\"art_vul4vk78gf\"]}],\"nodeSpacing\":80,\"layerSpacing\":220}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1,\"layers\":4,\"layerSizes\":[1,3,6,2],\"crossings\":0,\"crossingsBefore\":0,\"reversedEdges\":0,\"moved\":12,\"bounds\":{\"x\":0,\"y\":0,\"width\":2160,\"height\":1060},\"qualityBefore\":{\"score\":21,\"cost\":94,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":72,\"cost\":9.6,\"grade\":\"хорошо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":28,\"cost\":64,\"grade\":\"пло…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":2,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":0,\"quality\":{\"score\":72,\"cost\":9.6,\"grade\":\"хорошо\",\"previousCost\":9.6,\"improvedBy\":0},\"metrics\":{\"artifacts\":12,\"arrows\":11,\"edgeNodeHits\":0,\"crossings\":2,\"shallo…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 1330,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":2400,\"height\":1300},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 971,
+      "args": "{\"height\":1300,\"width\":2400,\"x\":-120,\"y\":-120}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":2400,\"height\":1300},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"svg\",\"height\":1300,\"width\":2400,\"x\":-120,\"y\":-120}",
+      "resultSummary": "{\"format\":\"svg\",\"region\":{\"x\":-120,\"y\":-120,\"width\":2400,\"height\":1300},\"schema\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"1024\\\" height=\\\"555\\\" viewBox=\\\"-120 -120 2400 1300\\\">\\n<rect x=\\\"-120\\\" y=\\\"-120\\\" width=\\\"2400\\\" height=\\\"1300\\\" fill=\\\"#101216\\\"/>\\n<polyline points=\\\"800,50 872,50 872,370 1528,370 1600,370\\\" fill=\\\"none\\\" stroke=\\\"#7c8aa5\\\" stroke-width=\\\"2\\\"/><polygon points=\\\"1…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"groups\":[{\"id\":\"tech\",\"nodeIds\":[\"art_5ndw5k4fog\",\"art_cn2jxw1qqd\",\"art_msjgw454d5\",\"art_8yr99qvgyx\",\"art_5g1ppyhol4\",\"art_ibd334qf9q\"]},{\"id\":\"product\",\"nodeIds\":[\"art_rwei0faw3f\",\"art_h9o8ek068z\",\"art_jejwdi27tb\"]},{\"id\":\"finance\",\"nodeIds\":[\"art_6mqasgyble\",\"art_vul4vk78gf\"]}],\"nodeSpacing\":80,\"layerSpacing\":220}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":4,\"layerSizes\":[1,3,6,2],\"crossings\":0,\"crossingsBefore\":0,\"reversedEdges\":0,\"moved\":12,\"bounds\":{\"x\":0,\"y\":0,\"width\":1620,\"height\":1170},\"qualityBefore\":{\"score\":72,\"cost\":9.6,\"grade\":\"хорошо\"},\"qualityAfter\":{\"score\":28,\"cost\":64,\"grade\":\"плохо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":28,\"cost\":64,\"grade\":\"пло…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"TB\",\"groups\":[{\"id\":\"tech\",\"nodeIds\":[\"art_5ndw5k4fog\",\"art_cn2jxw1qqd\",\"art_msjgw454d5\",\"art_8yr99qvgyx\",\"art_5g1ppyhol4\",\"art_ibd334qf9q\"]},{\"id\":\"product\",\"nodeIds\":[\"art_rwei0faw3f\",\"art_h9o8ek068z\",\"art_jejwdi27tb\"]},{\"id\":\"finance\",\"nodeIds\":[\"art_6mqasgyble\",\"art_vul4vk78gf\"]}],\"layerSpacing\":280,\"nodeSpacing\":120}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1.4,\"layers\":4,\"layerSizes\":[1,3,6,2],\"crossings\":0,\"crossingsBefore\":0,\"reversedEdges\":0,\"moved\":12,\"bounds\":{\"x\":0,\"y\":0,\"width\":2820,\"height\":1576},\"qualityBefore\":{\"score\":28,\"cost\":64,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":76,\"cost\":8,\"grade\":\"хорошо\"},\"candidates\":[{\"direction\":\"TB\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":51,\"cost\":24.4,\"grade\":\"т…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":2,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":0,\"quality\":{\"score\":76,\"cost\":8,\"grade\":\"хорошо\",\"previousCost\":8,\"improvedBy\":0},\"metrics\":{\"artifacts\":12,\"arrows\":11,\"edgeNodeHits\":0,\"crossings\":2,\"shallowCro…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 478,
+      "args": "{\"height\":1700,\"width\":3000,\"x\":-120,\"y\":-120}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":3000,\"height\":1700},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 378,
+      "args": "{\"height\":1700,\"width\":3000,\"x\":-120,\"y\":-120}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":3000,\"height\":1700},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"svg\",\"height\":1700,\"width\":3000,\"x\":-120,\"y\":-120}",
+      "resultSummary": "{\"format\":\"svg\",\"region\":{\"x\":-120,\"y\":-120,\"width\":3000,\"height\":1700},\"schema\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"1024\\\" height=\\\"580\\\" viewBox=\\\"-120 -120 3000 1700\\\">\\n<rect x=\\\"-120\\\" y=\\\"-120\\\" width=\\\"3000\\\" height=\\\"1700\\\" fill=\\\"#101216\\\"/>\\n<polyline points=\\\"1020,50 1092,50 1092,542 2100,542 2172,542\\\" fill=\\\"none\\\" stroke=\\\"#7c8aa5\\\" stroke-width=\\\"2\\\"/><polygon points=…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"arrowIds\":[\"arr_xfsf0d3ksn\",\"arr_1xelf4uhy3\"]}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_xfsf0d3ksn\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_1xelf4uhy3\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1}],\"skipped\":[],\"variantsTried\":2,\"crowded\":[],\"hooks\":[],\"warnings\":[],\"qualityBefore\":{\"score\":76,\"cost\":8},\"qualityAfter\":{\"score\":76,\"cost\":8,\"grade\":\"хорошо\"},\"improvedBy\":0,\"counts\":{…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":2,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":0,\"quality\":{\"score\":76,\"cost\":8,\"grade\":\"хорошо\",\"previousCost\":8,\"improvedBy\":0},\"metrics\":{\"artifacts\":12,\"arrows\":11,\"edgeNodeHits\":0,\"crossings\":2,\"shallowCro…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_xfsf0d3ksn\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_xfsf0d3ksn\",\"from\":{\"artifactId\":\"art_6ha8yb30os\",\"side\":\"bottom\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_5ndw5k4fog\",\"side\":\"top\",\"offset\":0.5},\"bends\":[{\"x\":900,\"y\":172},{\"x\":1092,\"y\":50},{\"x\":1092,\"y\":542},{\"x\":2292,\"y\":420}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788289669660,\"updatedAt\":1788289787759,\"adjustments\":[\"Стрелка подходила к стороне плашмя (2°, нужно от 30°): добав…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_xfsf0d3ksn\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_o555mlnjhn\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_526a41b15a\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_1xelf4uhy3\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":0,\"quality\":{\"score\":100,\"cost\":0,\"grade\":\"отлично\",\"previousCost\":0,\"improvedBy\":0},\"metrics\":{\"artifacts\":12,\"arrows\":11,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCr…"
+    },
+    {
+      "name": "board_quality",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"score\":100,\"cost\":0,\"grade\":\"отлично\",\"previousCost\":0,\"improvedBy\":0,\"metrics\":{\"artifacts\":12,\"arrows\":11,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCrossings\":0,\"mergedArrows\":0,\"clearanceHits\":0,\"overlaps\":0,\"tightPairs\":0,\"labelConflicts\":0,\"bends\":8,\"totalLength\":6690,\"detour\":1},\"breakdown\":[],\"hints\":[]}"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 999,
+      "args": "{\"height\":1700,\"width\":3000,\"x\":-120,\"y\":-120}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":3000,\"height\":1700},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    }
+  ],
+  "toolHistogram": {
+    "skill_get": 1,
+    "artifact_create": 12,
+    "arrow_create": 11,
+    "board_arrange_graph": 3,
+    "board_check_intersections": 4,
+    "board_screenshot": 5,
+    "board_get_schema": 2,
+    "board_route_arrows": 2,
+    "arrow_update": 1,
+    "board_quality": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 431414,
+    "completionTokens": 5660,
+    "totalTokens": 437074,
+    "calls": 21,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 369664
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nПользователь хочет оргструктуру — это граф (связная структура, смысл в связях). Выберу скилл graph-layout.\n\nОтлично, скилл прочитан. Теперь опишу граф и приступлю к созданию.\n\n**Граф:**\n- Узлы: CEO, CTO, CPO, CFO, Backend-команда, Frontend-команда, SRE, Дизайн, Продуктовая аналитика, Бухгалтерия, Платформа, Биллинг\n- Рёбра: CEO→CTO, CEO→CPO, CEO→CFO, CTO→Backend, CTO→Frontend, CTO→SRE, CPO→Дизайн, CPO→Продуктовая аналитика, CFO→Бухгалтерия, Backend→Платформа, Backend→Биллинг\n- Группы: Технический блок (CTO, Backend, Frontend, SRE, Платформа, Биллинг), Продуктовый блок (CPO, Дизайн, Продуктовая аналитика), Финансовый блок (CFO, Бухгалтерия)\n\nНачну с создания узлов с описаниями.\n\nТеперь создаю узлы второго уровня — команды, подчинённые CTO, CPO, CFO.\n\nТеперь создаю узлы третьего уровня — подкоманды Backend-команды.\n\n\n\nВсе 12 узлов созданы. Теперь создаю все стрелки. Сначала связи от CEO к топ-менеджерам, затем от CTO, CPO, CFO к их командам, и от Backend к подкомандам.\n\n\n\n\n\nВсе 11 стрелок созданы. Некоторые стрелки получили временные изгибы — это нормально, раскладка их переложит. Теперь вызываю board_arrange_graph с группами.\n\nГруппы:\n- **Технический блок** (blue): CTO, Backend, Frontend, SRE, Платформа, Биллинг\n- **Продуктовый блок** (green): CPO, Дизайн, Продуктовая аналитика\n- **Финансовый блок** (pink): CFO, Бухгалтерия\n- CEO — корень, отдельно\n\n\n\nОтлично! Раскладка выбрала направление сверху-вниз (TB), 4 слоя, 0 пересечений, оценка поднялась с 21 до 72/100. Давай проверим качество и посмотрим, как это выглядит.\n\nВижу, что раскладка разложила всё сверху вниз, но группы немного перемешались. У меня есть 2 пересечения стрелок. Давай попробую улучшить — задам направление LR (слева направо) с большим spacing, чтобы группы встали компактнее.\n\nНа самом деле, давай посмотрю на схему внимательнее. Раскладка TB дала 4 слоя:\n- Слой 1: CEO\n- Слой 2: CTO, CPO, CFO\n- Слой 3: Backend, Frontend, SRE, Дизайн, Продуктовая аналитика, Бухгалтерия\n- Слой 4: Платформа, Биллинг\n\nГруппы сработали, но CTO оказался далеко от своей команды. Попробую direction=LR — это может дать более компактную структуру.\n\nLR дал оценку 28 — хуже. Вернусь к TB, которая дала 72. Это была лучшая раскладка.\n\nДавай верну TB и попробую увеличить spacing, чтобы убрать пересечения.\n\n\n\n\n\nОценка 76/100 — отлично! Давай проверим пересечения.\n\n\n\n\n\nОтлично! Схема выглядит хорошо. Осталось 2 пересечения стрелок (одно и то же — стрелка CEO→CTO пересекает стрелку CTO→Backend). Это типичная ситуация для оргструктуры — стрелки от CEO к CTO и от CTO к Backend идут по одной вертикали. \n\nДавай попробую переложить стрелки через роутер, чтобы убрать это пересечение.\n\n\n\n\n\nПересечение остаётся, потому что CEO и CTO стоят на одной вертикали (x=780 и x=2172), а стрелка CEO→CTO идёт горизонтально через всю схему, пересекая вертикальную стрелку CTO→Backend. Это структурная особенность оргсхемы — CEO над CTO, и стрелка от CEO идёт к CTO, а от CTO вниз к Backend. Пересечение неизбежно при такой топологии.\n\nДавай попробую поменять стороны стрелок вручную, чтобы развести их.\n\n\n\nОтлично! После перекладки всех стрелок получили **score 100, cost 0 — отлично!** Давай проверим финальный результат.\n\n\n\n\n\nВсё отлично! Вот итог:\n\n---\n\n## Оргструктура продуктовой компании — готова ✅\n\n**Что построено:** 12 узлов, 11 стрелок — полная иерархия от CEO до подкоманд.\n\n### Структура (сверху вниз, 4 слоя):\n\n| Слой | Узлы |\n|------|------|\n| **1. CEO** | Генеральный директор (фиолетовый) |\n| **2. Топ-менеджмент** | CTO (синий), CPO (зелёный), CFO (розовый) |\n| **3. Команды** | Backend, Frontend, SRE, Дизайн, Продуктовая аналитика, Бухгалтерия |\n| **4. Подкоманды** | Платформа, Биллинг |\n\n### Цветовая кодировка:\n- 🟣 **CEO** — корень\n- 🔵 **Технический блок** — CTO → Backend, Frontend, SRE → Платформа, Биллинг\n- 🟢 **Продуктовый блок** — CPO → Дизайн, Продуктовая аналитика\n- 🩷 **Финансовый блок** — CFO → Бухгалтерия\n\n### Качество раскладки:\n- **Оценка: 100/100 (отлично)** — идеально\n- **Пересечений стрелок: 0**\n- **Наложений: 0**\n- **Конфликтов подписей: 0**\n- Направление: **сверху вниз (TB)**, группы подсистем держатся компактно",
+  "boardId": "brd_xv82tdfii8",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_6ha8yb30os",
+        "type": "note",
+        "x": 780,
+        "y": 0,
+        "width": 240,
+        "height": 100,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "CEO\nГенеральный директор\nСтратегия компании, общее руководство, ключевые решения",
+          "color": "purple"
+        },
+        "createdAt": 1788289602917,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_5ndw5k4fog",
+        "type": "note",
+        "x": 2172,
+        "y": 492,
+        "width": 240,
+        "height": 100,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "CTO\nТехнический директор\nАрхитектура, технологии, инженерная культура",
+          "color": "blue"
+        },
+        "createdAt": 1788289602918,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_rwei0faw3f",
+        "type": "note",
+        "x": 780,
+        "y": 492,
+        "width": 240,
+        "height": 100,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "CPO\nДиректор по продукту\nВидение продукта, Roadmap, OKR",
+          "color": "green"
+        },
+        "createdAt": 1788289602918,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_6mqasgyble",
+        "type": "note",
+        "x": 0,
+        "y": 492,
+        "width": 240,
+        "height": 100,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "CFO\nФинансовый директор\nБюджет, финансовая отчётность, казначейство",
+          "color": "pink"
+        },
+        "createdAt": 1788289602918,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_cn2jxw1qqd",
+        "type": "note",
+        "x": 1764,
+        "y": 984,
+        "width": 240,
+        "height": 100,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "Backend-команда\nСерверная разработка, API, бизнес-логика",
+          "color": "blue"
+        },
+        "createdAt": 1788289635384,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_msjgw454d5",
+        "type": "note",
+        "x": 2172,
+        "y": 984,
+        "width": 240,
+        "height": 100,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "Frontend-команда\nКлиентская разработка, UI/UX реализация, Web/Mobile",
+          "color": "blue"
+        },
+        "createdAt": 1788289635384,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_8yr99qvgyx",
+        "type": "note",
+        "x": 2580,
+        "y": 984,
+        "width": 240,
+        "height": 100,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "SRE\nНадёжность, инфраструктура, CI/CD, мониторинг",
+          "color": "blue"
+        },
+        "createdAt": 1788289635384,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_h9o8ek068z",
+        "type": "note",
+        "x": 576,
+        "y": 984,
+        "width": 240,
+        "height": 100,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "Дизайн\nUX-исследования, интерфейсы, дизайн-система",
+          "color": "green"
+        },
+        "createdAt": 1788289635384,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_jejwdi27tb",
+        "type": "note",
+        "x": 984,
+        "y": 984,
+        "width": 240,
+        "height": 100,
+        "z": 9,
+        "rotation": 0,
+        "props": {
+          "text": "Продуктовая аналитика\nМетрики, A/B-тесты, data-driven решения",
+          "color": "green"
+        },
+        "createdAt": 1788289635385,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_vul4vk78gf",
+        "type": "note",
+        "x": 0,
+        "y": 984,
+        "width": 240,
+        "height": 100,
+        "z": 10,
+        "rotation": 0,
+        "props": {
+          "text": "Бухгалтерия\nУчёт, налоги, зарплата, первичная документация",
+          "color": "pink"
+        },
+        "createdAt": 1788289635385,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_5g1ppyhol4",
+        "type": "note",
+        "x": 1560,
+        "y": 1476,
+        "width": 240,
+        "height": 100,
+        "z": 11,
+        "rotation": 0,
+        "props": {
+          "text": "Платформа\nБазовая инфраструктура, микросервисы, общие сервисы",
+          "color": "blue"
+        },
+        "createdAt": 1788289652496,
+        "updatedAt": 1788289740600
+      },
+      {
+        "id": "art_ibd334qf9q",
+        "type": "note",
+        "x": 1968,
+        "y": 1476,
+        "width": 240,
+        "height": 100,
+        "z": 12,
+        "rotation": 0,
+        "props": {
+          "text": "Биллинг\nПлатёжные системы, тарификация, подписки",
+          "color": "blue"
+        },
+        "createdAt": 1788289652496,
+        "updatedAt": 1788289740600
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_xfsf0d3ksn",
+        "from": {
+          "artifactId": "art_6ha8yb30os",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_5ndw5k4fog",
+          "side": "left",
+          "offset": 0
+        },
+        "bends": [
+          {
+            "x": 1092,
+            "y": 50
+          },
+          {
+            "x": 1092,
+            "y": 542
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669660,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_o555mlnjhn",
+        "from": {
+          "artifactId": "art_6ha8yb30os",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_rwei0faw3f",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669661,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_526a41b15a",
+        "from": {
+          "artifactId": "art_6ha8yb30os",
+          "side": "left",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_6mqasgyble",
+          "side": "right",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 708,
+            "y": 50
+          },
+          {
+            "x": 708,
+            "y": 542
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669662,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_1xelf4uhy3",
+        "from": {
+          "artifactId": "art_5ndw5k4fog",
+          "side": "left",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_cn2jxw1qqd",
+          "side": "right",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 2100,
+            "y": 542
+          },
+          {
+            "x": 2100,
+            "y": 1034
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669664,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_jid27myqgw",
+        "from": {
+          "artifactId": "art_5ndw5k4fog",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_msjgw454d5",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669667,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_dpnkf5nhdx",
+        "from": {
+          "artifactId": "art_5ndw5k4fog",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_8yr99qvgyx",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 2484,
+            "y": 542
+          },
+          {
+            "x": 2484,
+            "y": 1034
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669670,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_q8pwzupyzw",
+        "from": {
+          "artifactId": "art_rwei0faw3f",
+          "side": "bottom",
+          "offset": 0.075
+        },
+        "to": {
+          "artifactId": "art_h9o8ek068z",
+          "side": "top",
+          "offset": 0.925
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669672,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_zx6pcf23r5",
+        "from": {
+          "artifactId": "art_rwei0faw3f",
+          "side": "bottom",
+          "offset": 0.925
+        },
+        "to": {
+          "artifactId": "art_jejwdi27tb",
+          "side": "top",
+          "offset": 0.075
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669677,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_za17uouci2",
+        "from": {
+          "artifactId": "art_6mqasgyble",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_vul4vk78gf",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669681,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_8tnb2vagjj",
+        "from": {
+          "artifactId": "art_cn2jxw1qqd",
+          "side": "bottom",
+          "offset": 0.075
+        },
+        "to": {
+          "artifactId": "art_5g1ppyhol4",
+          "side": "top",
+          "offset": 0.925
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669685,
+        "updatedAt": 1788289791907
+      },
+      {
+        "id": "arr_vicf3y964g",
+        "from": {
+          "artifactId": "art_cn2jxw1qqd",
+          "side": "bottom",
+          "offset": 0.925
+        },
+        "to": {
+          "artifactId": "art_ibd334qf9q",
+          "side": "top",
+          "offset": 0.075
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788289669690,
+        "updatedAt": 1788289791907
+      }
+    ]
+  }
+}

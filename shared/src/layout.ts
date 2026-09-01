@@ -27,7 +27,51 @@ export interface LayoutSpacing {
   group: number;
 }
 
+/**
+ * Floors, not defaults. Real spacing is derived from the size of the nodes
+ * being laid out: a fixed 220px between layers is sane for a 180px-tall note
+ * and absurd for a 60px chip, and on the bench the gaps came out four to ten
+ * times the size of the blocks themselves.
+ */
+// The layer floor is not arbitrary: a route leaves a port along a 72px stub
+// (PORT_STUB) and then needs at least MIN_EDGE=24px to turn. At exactly 96 the
+// router has no room and emits short jogs, so the floor sits above that.
+export const MIN_SPACING: LayoutSpacing = { node: 44, layer: 130, group: 120 };
+
+/** Gap as a fraction of the node extent it separates. */
+const SPACING_RATIO = { node: 0.55, layer: 1.15, group: 1.1 };
+
+/** Kept for callers that want the old absolute numbers. */
 export const DEFAULT_SPACING: LayoutSpacing = { node: 80, layer: 220, group: 170 };
+
+/**
+ * Spacing proportional to the median node, so a diagram of small chips is not
+ * blown apart by gaps sized for large cards. Anything the caller passed wins.
+ */
+const resolveSpacing = (
+  nodes: Artifact[],
+  horizontal: boolean,
+  requested: Partial<LayoutSpacing> = {},
+  scale = 1,
+): LayoutSpacing => {
+  if (nodes.length === 0) return { ...MIN_SPACING, ...requested };
+  const median = (values: number[]): number => {
+    const sorted = [...values].sort((a, b) => a - b);
+    return sorted[sorted.length >> 1];
+  };
+  const along = median(nodes.map((n) => (horizontal ? n.width : n.height)));
+  const cross = median(nodes.map((n) => (horizontal ? n.height : n.width)));
+  const derived = {
+    node: requested.node ?? Math.max(MIN_SPACING.node, cross * SPACING_RATIO.node),
+    layer: requested.layer ?? Math.max(MIN_SPACING.layer, along * SPACING_RATIO.layer),
+    group: requested.group ?? Math.max(MIN_SPACING.group, cross * SPACING_RATIO.group),
+  };
+  return {
+    node: Math.round(derived.node * scale),
+    layer: Math.round(derived.layer * scale),
+    group: Math.round(derived.group * scale),
+  };
+};
 
 export interface LayoutOptions {
   /** Artifacts to lay out. Default: everything touched by the given arrows. */
@@ -44,6 +88,8 @@ export interface LayoutOptions {
   fixedLayers?: Record<string, number>;
   /** Sweeps of the crossing-reduction heuristic. */
   sweeps?: number;
+  /** Multiplier applied to the derived spacing; `arrangeGraph` sweeps it. */
+  spacingScale?: number;
   /**
    * Keep one order of themes across every layer, so a group reads as a lane
    * down the whole drawing. Off by default: it constrains the crossing
@@ -372,7 +418,6 @@ export const layoutGraph = (
   arrows: Arrow[],
   options: LayoutOptions = {},
 ): LayoutResult => {
-  const spacing: LayoutSpacing = { ...DEFAULT_SPACING, ...(options.spacing ?? {}) };
   const direction = options.direction ?? 'LR';
   const byId = new Map(artifacts.map((a) => [a.id, a]));
 
@@ -401,6 +446,13 @@ export const layoutGraph = (
   const orphans = nodeIds.filter((id) => !touched.has(id));
   const laid = linked.length > 0 ? linked : nodeIds;
   const asideIds = linked.length > 0 ? orphans : [];
+
+  const spacing = resolveSpacing(
+    laid.map((id) => byId.get(id)!),
+    isHorizontal(direction),
+    options.spacing,
+    options.spacingScale ?? 1,
+  );
 
   const { edges, reversed } = breakCycles(laid, rawEdges);
   const layerOf = assignLayers(laid, edges, options.fixedLayers ?? {});
@@ -721,6 +773,28 @@ export interface ArrangeResult {
   qualityAfter: Pick<LayoutQuality, 'score' | 'cost' | 'grade'>;
 }
 
+/**
+ * Median gap to the nearest neighbour, measured in node sizes. This is the
+ * "distances are five times the blocks" complaint expressed as a number.
+ */
+const nearestGapRatio = (artifacts: Artifact[]): number => {
+  if (artifacts.length < 2) return 0;
+  const ratios: number[] = [];
+  for (const a of artifacts) {
+    let nearest = Infinity;
+    for (const b of artifacts) {
+      if (a.id === b.id) continue;
+      const dx = Math.max(b.x - (a.x + a.width), a.x - (b.x + b.width), 0);
+      const dy = Math.max(b.y - (a.y + a.height), a.y - (b.y + b.height), 0);
+      nearest = Math.min(nearest, Math.hypot(dx, dy));
+    }
+    if (Number.isFinite(nearest)) ratios.push(nearest / Math.max(1, Math.min(a.width, a.height)));
+  }
+  if (ratios.length === 0) return 0;
+  ratios.sort((x, y) => x - y);
+  return ratios[ratios.length >> 1];
+};
+
 const applyLayout = (artifacts: Artifact[], layout: LayoutResult, shift: Vec2): Artifact[] => {
   const at = new Map(layout.nodes.map((node) => [node.id, node]));
   return artifacts.map((artifact) => {
@@ -792,7 +866,9 @@ export const arrangeGraph = (
     !options.direction || options.direction === 'auto'
       ? ['LR', 'TB']
       : [options.direction as LayoutDirection];
-  const scales = options.spacingSteps ?? [1, 1.35];
+  // The derived spacing is a floor, not an answer: how much air a particular
+  // graph needs is decided by scoring, not by a constant.
+  const scales = options.spacingSteps ?? [1, 1.4, 1.9];
   const participating = new Set(
     options.nodeIds && options.nodeIds.length > 0 ? options.nodeIds : artifacts.map((a) => a.id),
   );
@@ -803,12 +879,11 @@ export const arrangeGraph = (
 
   for (const direction of directions) {
     for (const scale of scales) {
-      const spacing: Partial<LayoutSpacing> = {
-        node: Math.round((options.spacing?.node ?? DEFAULT_SPACING.node) * scale),
-        layer: Math.round((options.spacing?.layer ?? DEFAULT_SPACING.layer) * scale),
-        group: Math.round((options.spacing?.group ?? DEFAULT_SPACING.group) * scale),
-      };
-      const layout = layoutGraph(artifacts, arrows, { ...options, direction, spacing });
+      const layout = layoutGraph(artifacts, arrows, {
+        ...options,
+        direction,
+        spacingScale: scale,
+      });
       const shift = avoidBystanders(layout, artifacts, outsiders);
       const moved = applyLayout(artifacts, layout, shift);
 
@@ -843,13 +918,20 @@ export const arrangeGraph = (
       };
       candidates.push(candidate);
 
-      // `boardQuality` says nothing about proportions, and a layered layout can
-      // score well while reading as a strip. A small penalty breaks near-ties
-      // towards the squarer composition without ever outweighing a real defect.
+      // `boardQuality` knows nothing about proportions or emptiness, and it
+      // rewards air: more space means fewer clearance and crossing penalties,
+      // so on its own the search always picks the widest variant. Two shape
+      // terms balance that. They only break near-ties — a real defect still
+      // outweighs them.
       const span = boundsOf(moved);
       const ratio = span.height > 0 ? span.width / span.height : 1;
       const stretch = Math.max(ratio, ratio > 0 ? 1 / ratio : 1);
-      const selection = quality.cost + Math.max(0, stretch - 2.5) * 4;
+      const selection =
+        quality.cost +
+        // A composition stretched past 1:2.5 without reason reads badly.
+        Math.max(0, stretch - 2.5) * 4 +
+        // Gaps wider than about 1.5 blocks make the drawing feel scattered.
+        Math.max(0, nearestGapRatio(moved) - 1.5) * 9;
 
       if (!best || selection < best.cost) {
         best = {

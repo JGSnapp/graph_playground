@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<title>Сравнение прогонов E02 → E03</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; padding: 32px; background: #0b0d11; color: #e8e8ea;
+         font: 15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 17px; margin: 40px 0 2px; }
+  .muted { color: #8b93a7; font-size: 13px; margin: 2px 0 12px; }
+  .summary { display: flex; gap: 28px; margin: 18px 0 8px; padding: 14px 18px;
+             background: #12151c; border: 1px solid #232733; border-radius: 10px; }
+  .summary div b { display: block; font-size: 20px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .pane { background: #12151c; border: 1px solid #232733; border-radius: 10px;
+          padding: 12px; min-width: 0; }
+  .head { font-size: 13px; color: #8b93a7; margin-bottom: 2px; }
+  .head b { font-size: 18px; color: #e8e8ea; }
+  .meta { font-size: 12px; color: #6f778a; margin-bottom: 10px; }
+  img { width: 100%; height: auto; display: block; border-radius: 6px;
+        background: #0e1014; border: 1px solid #1c2029; }
+  .ok { color: #7ddc9a; } .bad { color: #e8e8ea; }
+  .up { color: #7ddc9a; font-size: 14px; } .down { color: #e8767a; font-size: 14px; }
+  .same { color: #6f778a; font-size: 14px; }
+  @media (max-width: 900px) { .pair { grid-template-columns: 1fr; } }
+</style></head>
+<body>
+<h1>Сравнение прогонов E02 → E03</h1>
+<p class="muted">Модель deepseek-v4-flash, пул из 8 задач. Клик по картинке — открыть в полном размере.</p>
+<div class="summary">
+  <div><b>65 → 69</b>средний score</div>
+  <div><b>2/8 → 5/8</b>без жёстких конфликтов</div>
+  <div><b>39 → 31</b>пересечений стрелок</div>
+</div>
+<section>
+  <h2>cards-set <span class="same">без изменений</span></h2>
+  <p class="muted">не граф: набор карточек, сетка и воздух</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E02 <b class="ok">100/100</b>
+    <span class="muted">отлично · ok</span></div>
+  <div class="meta">4 итераций · 0 пересечений · отказов 0 · пропорция 1.29</div>
+  <a href="E02/cards-set__deepseek-v4-flash.png" target="_blank"><img src="E02/cards-set__deepseek-v4-flash.png" alt="cards-set E02"></a>
+</div><div class="pane">
+  <div class="head">E03 <b class="ok">100/100</b>
+    <span class="muted">отлично · ok</span></div>
+  <div class="meta">8 итераций · 0 пересечений · отказов 0 · пропорция 1.29</div>
+  <a href="E03/cards-set__deepseek-v4-flash.png" target="_blank"><img src="E03/cards-set__deepseek-v4-flash.png" alt="cards-set E03"></a>
+</div></div>
+</section>
+<section>
+  <h2>next-to-occupied <span class="up">+1</span></h2>
+  <p class="muted">новая композиция рядом с занятой зоной, без наложений</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E02 <b class="ok">96/100</b>
+    <span class="muted">отлично · ok</span></div>
+  <div class="meta">9 итераций · 0 пересечений · отказов 0 · пропорция 0.45</div>
+  <a href="E02/next-to-occupied__deepseek-v4-flash.png" target="_blank"><img src="E02/next-to-occupied__deepseek-v4-flash.png" alt="next-to-occupied E02"></a>
+</div><div class="pane">
+  <div class="head">E03 <b class="ok">97/100</b>
+    <span class="muted">отлично · ok</span></div>
+  <div class="meta">8 итераций · 0 пересечений · отказов 0 · пропорция 0.45</div>
+  <a href="E03/next-to-occupied__deepseek-v4-flash.png" target="_blank"><img src="E03/next-to-occupied__deepseek-v4-flash.png" alt="next-to-occupied E03"></a>
+</div></div>
+</section>
+<section>
+  <h2>pipeline-cicd <span class="up">+26</span></h2>
+  <p class="muted">линейный конвейер с ветвлением, направление слева направо</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E02 <b class="bad">50/100</b>
+    <span class="muted">терпимо</span></div>
+  <div class="meta">20 итераций · 6 пересечений · отказов 0 · пропорция 0.28</div>
+  <a href="E02/pipeline-cicd__deepseek-v4-flash.png" target="_blank"><img src="E02/pipeline-cicd__deepseek-v4-flash.png" alt="pipeline-cicd E02"></a>
+</div><div class="pane">
+  <div class="head">E03 <b class="ok">76/100</b>
+    <span class="muted">хорошо · ok</span></div>
+  <div class="meta">9 итераций · 2 пересечений · отказов 0 · пропорция 0.29</div>
+  <a href="E03/pipeline-cicd__deepseek-v4-flash.png" target="_blank"><img src="E03/pipeline-cicd__deepseek-v4-flash.png" alt="pipeline-cicd E03"></a>
+</div></div>
+</section>
+<section>
+  <h2>tree-org <span class="up">+13</span></h2>
+  <p class="muted">иерархия, ветви должны держаться у своих корней</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E02 <b class="bad">61/100</b>
+    <span class="muted">терпимо</span></div>
+  <div class="meta">8 итераций · 2 пересечений · отказов 0 · пропорция 1.52</div>
+  <a href="E02/tree-org__deepseek-v4-flash.png" target="_blank"><img src="E02/tree-org__deepseek-v4-flash.png" alt="tree-org E02"></a>
+</div><div class="pane">
+  <div class="head">E03 <b class="bad">74/100</b>
+    <span class="muted">хорошо</span></div>
+  <div class="meta">40 итераций · 2 пересечений · отказов 0 · пропорция 2.47</div>
+  <a href="E03/tree-org__deepseek-v4-flash.png" target="_blank"><img src="E03/tree-org__deepseek-v4-flash.png" alt="tree-org E03"></a>
+</div></div>
+</section>
+<section>
+  <h2>wiki-anime <span class="down">-3</span></h2>
+  <p class="muted">вики по документу, чистый лист, 8-10 узлов, дерево связей</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E02 <b class="bad">74/100</b>
+    <span class="muted">хорошо</span></div>
+  <div class="meta">17 итераций · 2 пересечений · отказов 0 · пропорция 0.49</div>
+  <a href="E02/wiki-anime__deepseek-v4-flash.png" target="_blank"><img src="E02/wiki-anime__deepseek-v4-flash.png" alt="wiki-anime E02"></a>
+</div><div class="pane">
+  <div class="head">E03 <b class="ok">71/100</b>
+    <span class="muted">хорошо · ok</span></div>
+  <div class="meta">13 итераций · 2 пересечений · отказов 0 · пропорция 0.67</div>
+  <a href="E03/wiki-anime__deepseek-v4-flash.png" target="_blank"><img src="E03/wiki-anime__deepseek-v4-flash.png" alt="wiki-anime E03"></a>
+</div></div>
+</section>
+<section>
+  <h2>states-order <span class="up">+8</span></h2>
+  <p class="muted">граф с циклами и обратными связями</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E02 <b class="bad">60/100</b>
+    <span class="muted">терпимо</span></div>
+  <div class="meta">50 итераций · 3 пересечений · отказов 7 · пропорция 0.08</div>
+  <a href="E02/states-order__deepseek-v4-flash.png" target="_blank"><img src="E02/states-order__deepseek-v4-flash.png" alt="states-order E02"></a>
+</div><div class="pane">
+  <div class="head">E03 <b class="ok">68/100</b>
+    <span class="muted">терпимо · ok</span></div>
+  <div class="meta">10 итераций · 3 пересечений · отказов 0 · пропорция 0.3</div>
+  <a href="E03/states-order__deepseek-v4-flash.png" target="_blank"><img src="E03/states-order__deepseek-v4-flash.png" alt="states-order E03"></a>
+</div></div>
+</section>
+<section>
+  <h2>extend-existing <span class="down">-19</span></h2>
+  <p class="muted">дополнение готового графа новыми узлами без ломки старого</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E02 <b class="bad">58/100</b>
+    <span class="muted">терпимо</span></div>
+  <div class="meta">15 итераций · 2 пересечений · отказов 0 · пропорция 0.64</div>
+  <a href="E02/extend-existing__deepseek-v4-flash.png" target="_blank"><img src="E02/extend-existing__deepseek-v4-flash.png" alt="extend-existing E02"></a>
+</div><div class="pane">
+  <div class="head">E03 <b class="bad">39/100</b>
+    <span class="muted">плохо</span></div>
+  <div class="meta">50 итераций · 7 пересечений · отказов 3 · пропорция 3.36</div>
+  <a href="E03/extend-existing__deepseek-v4-flash.png" target="_blank"><img src="E03/extend-existing__deepseek-v4-flash.png" alt="extend-existing E03"></a>
+</div></div>
+</section>
+<section>
+  <h2>dense-arch <span class="up">+8</span></h2>
+  <p class="muted">стресс: 14 узлов, плотный граф, несколько подсистем</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E02 <b class="bad">19/100</b>
+    <span class="muted">плохо</span></div>
+  <div class="meta">15 итераций · 24 пересечений · отказов 0 · пропорция 3.02</div>
+  <a href="E02/dense-arch__deepseek-v4-flash.png" target="_blank"><img src="E02/dense-arch__deepseek-v4-flash.png" alt="dense-arch E02"></a>
+</div><div class="pane">
+  <div class="head">E03 <b class="bad">27/100</b>
+    <span class="muted">плохо</span></div>
+  <div class="meta">11 итераций · 15 пересечений · отказов 0 · пропорция 1.08</div>
+  <a href="E03/dense-arch__deepseek-v4-flash.png" target="_blank"><img src="E03/dense-arch__deepseek-v4-flash.png" alt="dense-arch E03"></a>
+</div></div>
+</section>
+</body></html>

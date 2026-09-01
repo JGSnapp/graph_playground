@@ -31,3 +31,25 @@ describe('isRetryableProviderError', () => {
     ).toBe(false);
   });
 });
+
+describe('обрывы соединения', () => {
+  it('считает повторяемыми ошибки undici при разрыве потока', () => {
+    // These killed three bench runs on their first call before being listed.
+    for (const message of [
+      'terminated',
+      'Premature close',
+      'other side closed',
+      'UND_ERR_SOCKET',
+      'read ECONNRESET',
+    ]) {
+      expect(isRetryableProviderError(new Error(message))).toBe(true);
+    }
+  });
+
+  it('по-прежнему не повторяет то, что повтором не лечится', () => {
+    expect(isRetryableProviderError(new Error('insufficient_balance'))).toBe(false);
+    const aborted = new Error('terminated');
+    aborted.name = 'AbortError';
+    expect(isRetryableProviderError(aborted)).toBe(false);
+  });
+});

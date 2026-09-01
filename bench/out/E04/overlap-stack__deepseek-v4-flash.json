@@ -1,0 +1,569 @@
+{
+  "exp": "E04",
+  "task": "overlap-stack",
+  "probes": "особое требование: намеренное перекрытие блоков",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-01T19:19:58.014Z",
+  "ms": 134045,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 9,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 11,
+    "cost": 210,
+    "grade": "плохо",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 14,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 6,
+      "arrows": 0,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 14,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 0,
+      "totalLength": 0,
+      "detour": 1
+    },
+    "breakdown": [
+      {
+        "reason": "наложение артефактов",
+        "count": 14,
+        "cost": 210
+      }
+    ]
+  },
+  "observations": {
+    "artifacts": 6,
+    "arrows": 0,
+    "width": 580,
+    "height": 400,
+    "aspect": 1.45,
+    "density": 1.45,
+    "edgeLengthMedian": 0,
+    "edgeLengthMax": 0,
+    "edgeLengthSpread": 0,
+    "separation": 0,
+    "textOverflow": 0,
+    "alignedShare": 0,
+    "columnLanes": 6,
+    "rowLanes": 6,
+    "isolatedNodes": 6
+  },
+  "drawnLength": 0,
+  "ok": false,
+  "findings": [
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_2p0uuytw6v",
+      "bId": "art_4tedyzfsnn",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 60,
+        "y": 40,
+        "width": 220,
+        "height": 160
+      },
+      "note": "Артефакты art_2p0uuytw6v и art_4tedyzfsnn пересекаются: art_4tedyzfsnn со стороны bottom/right у art_2p0uuytw6v."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_2p0uuytw6v",
+      "bId": "art_ktz20ibnwm",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 120,
+        "y": 80,
+        "width": 160,
+        "height": 120
+      },
+      "note": "Артефакты art_2p0uuytw6v и art_ktz20ibnwm пересекаются: art_ktz20ibnwm со стороны bottom/right у art_2p0uuytw6v."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_2p0uuytw6v",
+      "bId": "art_oxlixidyfr",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 180,
+        "y": 120,
+        "width": 100,
+        "height": 80
+      },
+      "note": "Артефакты art_2p0uuytw6v и art_oxlixidyfr пересекаются: art_oxlixidyfr со стороны bottom/right у art_2p0uuytw6v."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_2p0uuytw6v",
+      "bId": "art_38b86s4k8g",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 240,
+        "y": 160,
+        "width": 40,
+        "height": 40
+      },
+      "note": "Артефакты art_2p0uuytw6v и art_38b86s4k8g пересекаются: art_38b86s4k8g со стороны bottom/right у art_2p0uuytw6v."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_4tedyzfsnn",
+      "bId": "art_ktz20ibnwm",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 120,
+        "y": 80,
+        "width": 220,
+        "height": 160
+      },
+      "note": "Артефакты art_4tedyzfsnn и art_ktz20ibnwm пересекаются: art_ktz20ibnwm со стороны bottom/right у art_4tedyzfsnn."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_4tedyzfsnn",
+      "bId": "art_oxlixidyfr",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 180,
+        "y": 120,
+        "width": 160,
+        "height": 120
+      },
+      "note": "Артефакты art_4tedyzfsnn и art_oxlixidyfr пересекаются: art_oxlixidyfr со стороны bottom/right у art_4tedyzfsnn."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_4tedyzfsnn",
+      "bId": "art_38b86s4k8g",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 240,
+        "y": 160,
+        "width": 100,
+        "height": 80
+      },
+      "note": "Артефакты art_4tedyzfsnn и art_38b86s4k8g пересекаются: art_38b86s4k8g со стороны bottom/right у art_4tedyzfsnn."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_4tedyzfsnn",
+      "bId": "art_i2ur0rp1k1",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 300,
+        "y": 200,
+        "width": 40,
+        "height": 40
+      },
+      "note": "Артефакты art_4tedyzfsnn и art_i2ur0rp1k1 пересекаются: art_i2ur0rp1k1 со стороны bottom/right у art_4tedyzfsnn."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_ktz20ibnwm",
+      "bId": "art_oxlixidyfr",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 180,
+        "y": 120,
+        "width": 220,
+        "height": 160
+      },
+      "note": "Артефакты art_ktz20ibnwm и art_oxlixidyfr пересекаются: art_oxlixidyfr со стороны bottom/right у art_ktz20ibnwm."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_ktz20ibnwm",
+      "bId": "art_38b86s4k8g",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 240,
+        "y": 160,
+        "width": 160,
+        "height": 120
+      },
+      "note": "Артефакты art_ktz20ibnwm и art_38b86s4k8g пересекаются: art_38b86s4k8g со стороны bottom/right у art_ktz20ibnwm."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_ktz20ibnwm",
+      "bId": "art_i2ur0rp1k1",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 300,
+        "y": 200,
+        "width": 100,
+        "height": 80
+      },
+      "note": "Артефакты art_ktz20ibnwm и art_i2ur0rp1k1 пересекаются: art_i2ur0rp1k1 со стороны bottom/right у art_ktz20ibnwm."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_oxlixidyfr",
+      "bId": "art_38b86s4k8g",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 240,
+        "y": 160,
+        "width": 220,
+        "height": 160
+      },
+      "note": "Артефакты art_oxlixidyfr и art_38b86s4k8g пересекаются: art_38b86s4k8g со стороны bottom/right у art_oxlixidyfr."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_oxlixidyfr",
+      "bId": "art_i2ur0rp1k1",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 300,
+        "y": 200,
+        "width": 160,
+        "height": 120
+      },
+      "note": "Артефакты art_oxlixidyfr и art_i2ur0rp1k1 пересекаются: art_i2ur0rp1k1 со стороны bottom/right у art_oxlixidyfr."
+    },
+    {
+      "kind": "artifact_artifact",
+      "aId": "art_38b86s4k8g",
+      "bId": "art_i2ur0rp1k1",
+      "aType": "note",
+      "bType": "note",
+      "bRelativeToA": [
+        "bottom",
+        "right"
+      ],
+      "aRelativeToB": [
+        "top",
+        "left"
+      ],
+      "overlap": {
+        "x": 300,
+        "y": 200,
+        "width": 220,
+        "height": 160
+      },
+      "note": "Артефакты art_38b86s4k8g и art_i2ur0rp1k1 пересекаются: art_i2ur0rp1k1 со стороны bottom/right у art_38b86s4k8g."
+    }
+  ],
+  "toolCalls": [
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"artifact-set\"}",
+      "resultSummary": "{\"slug\":\"artifact-set\",\"name\":\"Раскладка набора артефактов\",\"when\":\"Нужно просто показать материал: список, подборка, карточки, заметки, картинки, куски кода. Связей нет или две-три.\",\"body\":\"# Раскладка набора артефактов\\n\\nЗадача: показать материал, а не связи. Список идей, карточки, заметки, картинки,\\nкуски кода, подборка ссылок. Стрелок нет или их две-три «для смысла».\\n\\n## Порядок действий\\…"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-400,\"y\":-300,\"width\":1600,\"height\":1000},\"artifacts\":[],\"arrows\":[],\"totalArtifacts\":0}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":0,\"y\":0,\"width\":280,\"height\":200,\"props\":{\"text\":\"📸 **Отпуск 2019**\\n\\nПоездка на море,\\nзакаты и песок.\",\"color\":\"blue\"},\"acceptOverlap\":false}",
+      "resultSummary": "{\"id\":\"art_2p0uuytw6v\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":280,\"height\":200,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"📸 **Отпуск 2019**\\n\\nПоездка на море,\\nзакаты и песок.\",\"color\":\"blue\"},\"createdAt\":1788290329103,\"updatedAt\":1788290329103}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":60,\"y\":40,\"width\":280,\"height\":200,\"props\":{\"text\":\"💍 **Свадьба**\\n\\nСамый счастливый\\nдень в жизни.\",\"color\":\"pink\"},\"acceptOverlap\":true}",
+      "resultSummary": "{\"id\":\"art_4tedyzfsnn\",\"type\":\"note\",\"x\":60,\"y\":40,\"width\":280,\"height\":200,\"z\":2,\"rotation\":0,\"props\":{\"text\":\"💍 **Свадьба**\\n\\nСамый счастливый\\nдень в жизни.\",\"color\":\"pink\"},\"createdAt\":1788290336174,\"updatedAt\":1788290336174}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"acceptOverlap\":true,\"props\":{\"text\":\"🎓 **Выпускной**\\n\\nШкола позади,\\nвпереди — универ.\",\"color\":\"yellow\"},\"width\":280,\"x\":120,\"y\":80,\"type\":\"note\",\"height\":200}",
+      "resultSummary": "{\"id\":\"art_ktz20ibnwm\",\"type\":\"note\",\"x\":120,\"y\":80,\"width\":280,\"height\":200,\"z\":3,\"rotation\":0,\"props\":{\"text\":\"🎓 **Выпускной**\\n\\nШкола позади,\\nвпереди — универ.\",\"color\":\"yellow\"},\"createdAt\":1788290343992,\"updatedAt\":1788290343992}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"acceptOverlap\":true,\"props\":{\"text\":\"🚚 **Переезд**\\n\\nНовый город,\\nновая квартира.\",\"color\":\"green\"},\"width\":280,\"x\":180,\"y\":120,\"type\":\"note\",\"height\":200}",
+      "resultSummary": "{\"id\":\"art_oxlixidyfr\",\"type\":\"note\",\"x\":180,\"y\":120,\"width\":280,\"height\":200,\"z\":4,\"rotation\":0,\"props\":{\"text\":\"🚚 **Переезд**\\n\\nНовый город,\\nновая квартира.\",\"color\":\"green\"},\"createdAt\":1788290351734,\"updatedAt\":1788290351734}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"acceptOverlap\":true,\"props\":{\"text\":\"💻 **Первый проект**\\n\\nДебют в разработке.\\nКод, кофе, бессонные ночи.\",\"color\":\"purple\"},\"width\":280,\"x\":240,\"y\":160,\"type\":\"note\",\"height\":200}",
+      "resultSummary": "{\"id\":\"art_38b86s4k8g\",\"type\":\"note\",\"x\":240,\"y\":160,\"width\":280,\"height\":200,\"z\":5,\"rotation\":0,\"props\":{\"text\":\"💻 **Первый проект**\\n\\nДебют в разработке.\\nКод, кофе, бессонные ночи.\",\"color\":\"purple\"},\"createdAt\":1788290364980,\"updatedAt\":1788290364980}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"acceptOverlap\":true,\"props\":{\"text\":\"🎄 **Новый год**\\n\\nЁлка, мандарины,\\nподарки и чудеса.\",\"color\":\"gray\"},\"width\":280,\"x\":300,\"y\":200,\"type\":\"note\",\"height\":200}",
+      "resultSummary": "{\"id\":\"art_i2ur0rp1k1\",\"type\":\"note\",\"x\":300,\"y\":200,\"width\":280,\"height\":200,\"z\":6,\"rotation\":0,\"props\":{\"text\":\"🎄 **Новый год**\\n\\nЁлка, мандарины,\\nподарки и чудеса.\",\"color\":\"gray\"},\"createdAt\":1788290371584,\"updatedAt\":1788290371584}"
+    }
+  ],
+  "toolHistogram": {
+    "skill_get": 1,
+    "board_get_region": 1,
+    "artifact_create": 6
+  },
+  "refusals": [],
+  "errors": [
+    "terminated"
+  ],
+  "usage": {
+    "promptTokens": 82117,
+    "completionTokens": 1649,
+    "totalTokens": 83766,
+    "calls": 8,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 79872
+  },
+  "termination": "provider_error",
+  "restoredCheckpoint": false,
+  "answer": "\n\nПользователь просит стопку карточек внахлёст — это набор артефактов без связей, но с осознанным перекрытием. Посмотрю скилл artifact-set.\n\nПользователь явно просит стопку внахлёст — это осознанное перекрытие. Создам 6 карточек-изображений (image) с подписями. Каждая будет перекрывать предыдущую примерно на четверть и смещена вниз.\n\nСначала проверю доску:\n\nДоска пустая. Начну с (0, 0). \n\nСделаю карточки размером 280×200 пикселей. Смещение: по x на +60px (чуть больше четверти от 280 = 70, возьму 60 для читаемости), по y на +40px. Каждая следующая перекрывает предыдущую.\n\nПодписи размещу прямо на карточках (через props.alt или как текст на изображении). Но image-артефакт не поддерживает текст напрямую. Использую тип `note` с цветом, стилизованный под фото — с заголовком и фейковым \"изображением\". Либо сделаю `shape` с заливкой и текстом. \n\nЛучше всего подойдёт `note` — он выглядит как карточка, поддерживает текст и цвет. Сделаю их серо-голубыми/пастельными, как старые фото.\n\nРазмер: 280×200. Смещение: dx=60, dy=40.\n\nПорядок (снизу вверх по стопке — сначала создаю нижние, потом верхние):\n1. \"Отпуск 2019\" — x=0, y=0\n2. \"Свадьба\" — x=60, y=40\n3. \"Выпускной\" — x=120, y=80\n4. \"Переезд\" — x=180, y=120\n5. \"Первый проект\" — x=240, y=160\n6. \"Новый год\" — x=300, y=200\n\nСоздам с acceptOverlap=true, так как перекрытие задумано.\n\nВсе 6 карточек созданы. Теперь проверю, как выглядит композиция:\n\n",
+  "boardId": "brd_18p8kp5a54",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_2p0uuytw6v",
+        "type": "note",
+        "x": 0,
+        "y": 0,
+        "width": 280,
+        "height": 200,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "📸 **Отпуск 2019**\n\nПоездка на море,\nзакаты и песок.",
+          "color": "blue"
+        },
+        "createdAt": 1788290329103,
+        "updatedAt": 1788290329103
+      },
+      {
+        "id": "art_4tedyzfsnn",
+        "type": "note",
+        "x": 60,
+        "y": 40,
+        "width": 280,
+        "height": 200,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "💍 **Свадьба**\n\nСамый счастливый\nдень в жизни.",
+          "color": "pink"
+        },
+        "createdAt": 1788290336174,
+        "updatedAt": 1788290336174
+      },
+      {
+        "id": "art_ktz20ibnwm",
+        "type": "note",
+        "x": 120,
+        "y": 80,
+        "width": 280,
+        "height": 200,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "🎓 **Выпускной**\n\nШкола позади,\nвпереди — универ.",
+          "color": "yellow"
+        },
+        "createdAt": 1788290343992,
+        "updatedAt": 1788290343992
+      },
+      {
+        "id": "art_oxlixidyfr",
+        "type": "note",
+        "x": 180,
+        "y": 120,
+        "width": 280,
+        "height": 200,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "🚚 **Переезд**\n\nНовый город,\nновая квартира.",
+          "color": "green"
+        },
+        "createdAt": 1788290351734,
+        "updatedAt": 1788290351734
+      },
+      {
+        "id": "art_38b86s4k8g",
+        "type": "note",
+        "x": 240,
+        "y": 160,
+        "width": 280,
+        "height": 200,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "💻 **Первый проект**\n\nДебют в разработке.\nКод, кофе, бессонные ночи.",
+          "color": "purple"
+        },
+        "createdAt": 1788290364980,
+        "updatedAt": 1788290364980
+      },
+      {
+        "id": "art_i2ur0rp1k1",
+        "type": "note",
+        "x": 300,
+        "y": 200,
+        "width": 280,
+        "height": 200,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "🎄 **Новый год**\n\nЁлка, мандарины,\nподарки и чудеса.",
+          "color": "gray"
+        },
+        "createdAt": 1788290371584,
+        "updatedAt": 1788290371584
+      }
+    ],
+    "arrows": []
+  }
+}

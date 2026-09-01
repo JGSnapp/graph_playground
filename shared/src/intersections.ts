@@ -738,6 +738,10 @@ export const checkIntersections = (
         const b = scopedArtifacts[j];
         if (rectsIntersect(a, b)) {
           if (!includeArtifactOverlaps) continue;
+          // A stack of photos or a badge on a card is an overlap on purpose.
+          // Reporting it as a defect would make the metric argue with what the
+          // user asked for.
+          if (a.allowOverlap || b.allowOverlap) continue;
           const overlap = overlapRect(a, b);
           if (overlap.width < 1 || overlap.height < 1) continue;
           const bRelativeToA = sidesFacingOverlap(a, b);

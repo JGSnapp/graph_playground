@@ -2,8 +2,14 @@ import { HttpError } from '../../core/errors.js';
 
 const RETRYABLE_STATUS = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
 
+/**
+ * `terminated`, `premature close` and `other side closed` are how undici
+ * reports a connection dropped mid-body. They killed three whole bench runs on
+ * their very first call before being listed here: without a retry a single
+ * network blip throws away everything the agent had done.
+ */
 const RETRYABLE_MESSAGE =
-  /mid-stream|client should retry|provider unavailable|temporar(?:y|ily)|timeout|timed out|ECONNRESET|ECONNREFUSED|ETIMEDOUT|fetch failed|socket hang up|network|overloaded|rate.?limit|503|502|504/i;
+  /mid-stream|client should retry|provider unavailable|temporar(?:y|ily)|timeout|timed out|ECONNRESET|ECONNREFUSED|ETIMEDOUT|EPIPE|fetch failed|socket hang up|terminated|premature close|other side closed|UND_ERR|network|overloaded|rate.?limit|503|502|504/i;
 
 const NON_RETRYABLE_MESSAGE =
   /insufficient_balance|exceeds available balance|payment.?required|quota exceeded/i;

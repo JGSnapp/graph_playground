@@ -23,6 +23,8 @@ export interface CreateArtifactInput {
   height?: number;
   rotation?: number;
   props?: ArtifactProps;
+  /** Marks the overlap with neighbours as deliberate. */
+  allowOverlap?: boolean;
 }
 
 export interface UpdateArtifactInput {
@@ -32,6 +34,8 @@ export interface UpdateArtifactInput {
   height?: number;
   rotation?: number;
   props?: ArtifactProps;
+  /** Marks the overlap with neighbours as deliberate. */
+  allowOverlap?: boolean;
   /** Replace props entirely instead of merging. */
   replaceProps?: boolean;
 }
@@ -83,6 +87,7 @@ export const createArtifact = (state: BoardState, input: CreateArtifactInput): A
     z: state.artifacts.reduce((max, a) => Math.max(max, a.z), 0) + 1,
     rotation: input.rotation ?? 0,
     props: { ...blueprint.props, ...(input.props ?? {}) },
+    ...(input.allowOverlap ? { allowOverlap: true } : {}),
     createdAt: now,
     updatedAt: now,
   };
@@ -132,6 +137,7 @@ export const updateArtifact = (
   if (patch.width != null) artifact.width = Math.max(MIN_SIZE, Math.round(patch.width));
   if (patch.height != null) artifact.height = Math.max(MIN_SIZE, Math.round(patch.height));
   if (patch.rotation != null) artifact.rotation = patch.rotation;
+  if (patch.allowOverlap != null) artifact.allowOverlap = patch.allowOverlap || undefined;
   if (patch.props) {
     artifact.props = patch.replaceProps ? { ...patch.props } : { ...artifact.props, ...patch.props };
   }

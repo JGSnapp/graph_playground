@@ -92,6 +92,9 @@ export const artifactCreate: ToolSpec = {
         width: args.width as number | undefined,
         height: args.height as number | undefined,
         props: (args.props as Record<string, unknown>) ?? {},
+        // Confirming an overlap records it as deliberate, so the quality metric
+        // stops calling it a defect on every later check.
+        allowOverlap: args.acceptOverlap === true,
       }),
     );
     return { data: artifact, mutated: true };
@@ -188,7 +191,11 @@ export const artifactMove: ToolSpec = {
     if (refused) return { data: { moved: false, ...refused }, mutated: false };
 
     const { artifact, arrowsReset } = ctx.boards.mutate(ctx.boardId, (state) =>
-      updateArtifact(state, args.id as string, { x: args.x as number, y: args.y as number }),
+      updateArtifact(state, args.id as string, {
+        x: args.x as number,
+        y: args.y as number,
+        allowOverlap: args.acceptOverlap === true ? true : undefined,
+      }),
     );
     return {
       data: { id: artifact.id, x: artifact.x, y: artifact.y, ...routeNotice(arrowsReset) },
