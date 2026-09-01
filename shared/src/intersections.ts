@@ -154,6 +154,8 @@ export interface IntersectionReport {
   region: Rect | null;
   /** True when no hard problem is left; soft hints may still be present. */
   ok: boolean;
+  /** Arrow crossings allowed before `ok` turns false. */
+  crossingBudget: number;
   counts: IntersectionCounts;
   findings: IntersectionFinding[];
 }
@@ -426,6 +428,17 @@ export interface CheckIntersectionsOptions {
   minMergeLength?: number;
   /** Crossings flatter than this angle (degrees) are marked shallow. Default 25. */
   shallowAngle?: number;
+  /**
+   * How many arrow-to-arrow crossings `ok` tolerates. Default: the graph's
+   * cyclomatic number, `arrows - artifacts + 1`, floored at zero.
+   *
+   * Demanding zero crossings made `ok` unreachable for six of eight bench
+   * tasks and pushed the agent into endless edit loops chasing a planar drawing
+   * that does not exist. A tree still gets a budget of zero, so a crossing on a
+   * tree is still reported as a real defect. Crossings are priced in `cost`
+   * either way — this only changes the pass/fail flag.
+   */
+  crossingBudget?: number;
 }
 
 /**
@@ -809,11 +822,16 @@ export const checkIntersections = (
     arrowShortEdge: findings.filter((f) => f.kind === 'arrow_short_edge').length,
   };
 
+  const crossingBudget =
+    options.crossingBudget ??
+    Math.max(0, scopedArrows.length - scopedArtifacts.length + 1);
+
   return {
     region,
+    crossingBudget,
     ok:
       counts.arrowArtifact === 0 &&
-      counts.arrowArrow === 0 &&
+      counts.arrowArrow <= crossingBudget &&
       counts.arrowOverlap === 0 &&
       counts.artifactArtifact === 0 &&
       counts.arrowPortAngle === 0 &&

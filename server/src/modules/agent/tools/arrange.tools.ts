@@ -156,10 +156,25 @@ export const boardArrangeGraph: ToolSpec = {
         applied: true,
         qualityAfter: { score: after.score, cost: after.cost, grade: after.grade },
         hints: after.hints,
+        // The knobs, spelled out. Run logs showed the agent answering a layout
+        // it disliked by hand-moving every node and rebuilding every arrow —
+        // five times in one run, for 56% of a whole experiment's tokens. It
+        // needs to be told that re-running the layout with other parameters is
+        // the way out.
+        tuning: {
+          подсистемы: 'groups: [{ id, nodeIds }] — узлы одной темы встанут рядом',
+          направление: 'direction: LR или TB вместо auto, если нужен конкретный поток',
+          воздух: 'nodeSpacing / layerSpacing больше, если тесно или подписям не хватает места',
+          частично: 'nodeIds — разложить только часть; lockIds — не двигать то, что уже стоит',
+        },
         verdict:
           after.counts.arrowArtifact === 0 && after.counts.artifactArtifact === 0
-            ? `Граф разложен по слоям (${report.direction}): ${report.layers} слоёв, пересечений рёбер ${report.crossings}. Оценка ${preview.qualityBefore.score} → ${after.score}/100. Дальше правь точечно, всю раскладку заново не пересобирай.`
-            : `Разложено, но конфликты остались: ${JSON.stringify(after.counts)}. Проверь board_check_intersections и правь точечно.`,
+            ? `Граф разложен по слоям (${report.direction}): ${report.layers} слоёв, пересечений рёбер ${report.crossings}. Оценка ${preview.qualityBefore.score} → ${after.score}/100. ` +
+              `Если раскладка не нравится — вызови этот же тул с другими groups / direction / spacing. ` +
+              `Двигать узлы руками и пересоздавать связи не нужно: это дороже и обычно хуже.`
+            : `Разложено, но конфликты остались: ${JSON.stringify(after.counts)}. ` +
+              `Сначала попробуй тот же тул с другими параметрами (см. tuning), и только потом точечные правки. ` +
+              `Удалять и создавать связи заново не надо — структура графа от этого не меняется.`,
       },
       mutated: true,
     };

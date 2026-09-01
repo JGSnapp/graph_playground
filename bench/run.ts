@@ -150,7 +150,9 @@ const runAgent = async (
             status: call.status,
             refused: Boolean(result && typeof result === 'object' && result.refused === true),
             ms: Date.now() - startedAt,
-            args: summarize(call.args).slice(0, 240),
+            // Full arguments: the offline experiments replay the exact
+            // parameters the model chose, and a truncated JSON cannot be parsed.
+            args: typeof call.args === 'string' ? call.args : JSON.stringify(call.args ?? {}),
             resultSummary: summarize(result),
           });
         }

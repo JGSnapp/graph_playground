@@ -44,6 +44,12 @@ export interface LayoutOptions {
   fixedLayers?: Record<string, number>;
   /** Sweeps of the crossing-reduction heuristic. */
   sweeps?: number;
+  /**
+   * Keep one order of themes across every layer, so a group reads as a lane
+   * down the whole drawing. Off by default: it constrains the crossing
+   * heuristic, and whether that trade is worth it depends on the graph.
+   */
+  groupBands?: boolean;
 }
 
 export interface LayoutNode {
@@ -191,6 +197,7 @@ const orderLayers = (
   edges: Edge[],
   groupOf: Map<string, string>,
   sweeps: number,
+  bands?: Map<string, number>,
 ): string[][] => {
   let best = layers.map((layer) => [...layer]);
   let bestScore = totalCrossings(best, edges);
@@ -233,6 +240,14 @@ const orderLayers = (
       };
       const original = new Map(current[index].map((id, i) => [id, i]));
       current[index] = [...current[index]].sort((a, b) => {
+        // Bands: one order of themes for the whole composition, so a subsystem
+        // reads as a lane down the drawing instead of a group that jumps from
+        // the top of one layer to the bottom of the next.
+        if (bands) {
+          const ba = bands.get(groupOf.get(a) ?? '') ?? Number.POSITIVE_INFINITY;
+          const bb = bands.get(groupOf.get(b) ?? '') ?? Number.POSITIVE_INFINITY;
+          if (ba !== bb) return ba - bb;
+        }
         const ka = keyOf(a);
         const kb = keyOf(b);
         // A node with no neighbours in the fixed layer keeps its place.
@@ -432,8 +447,27 @@ export const layoutGraph = (
   }
   for (const [id, layer] of dummyLayer) layers[layer].push(id);
 
+  // One band per theme, ordered by where its members naturally fall, so the
+  // constraint costs as few crossings as possible.
+  let bands: Map<string, number> | undefined;
+  if (options.groupBands && (options.groups?.length ?? 0) > 1) {
+    const seen = new Map<string, number[]>();
+    layers.forEach((layer) =>
+      layer.forEach((id, order) => {
+        const group = groupOf.get(id);
+        if (!group) return;
+        if (!seen.has(group)) seen.set(group, []);
+        seen.get(group)!.push(order);
+      }),
+    );
+    const ranked = [...seen.entries()]
+      .map(([group, orders]) => ({ group, at: median(orders) }))
+      .sort((a, b) => a.at - b.at);
+    bands = new Map(ranked.map((item, index) => [item.group, index]));
+  }
+
   const crossingsBefore = totalCrossings(layers, routedEdges);
-  const ordered = orderLayers(layers, routedEdges, groupOf, options.sweeps ?? 8);
+  const ordered = orderLayers(layers, routedEdges, groupOf, options.sweeps ?? 8, bands);
   const crossings = totalCrossings(ordered, routedEdges);
 
   const horizontal = isHorizontal(direction);

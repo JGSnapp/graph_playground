@@ -137,7 +137,9 @@ export const boardCheckIntersections: ToolSpec = {
     const improvedBy = previous == null ? null : Math.round((previous - quality.cost) * 10) / 10;
 
     const verdict = report.ok
-      ? 'Жёстких конфликтов нет. Если оценка устраивает — заканчивай и опиши результат.'
+      ? report.counts.arrowArrow > 0
+        ? `Жёстких конфликтов нет. Осталось ${report.counts.arrowArrow} пересечений стрелок при допустимых ${report.crossingBudget} — для графа такой плотности это нормально, планарной укладки у него нет. Заканчивай и опиши результат.`
+        : 'Жёстких конфликтов нет. Если оценка устраивает — заканчивай и опиши результат.'
       : improvedBy == null
         ? 'Есть конфликты. Если узлы тесно или накладываются — сначала раздвинь их: в тесной раскладке роутер откажется. Потом стороны присоединения, потом один раз board_route_arrows.'
         : improvedBy > 0.5
@@ -149,6 +151,7 @@ export const boardCheckIntersections: ToolSpec = {
         region,
         ok: report.ok,
         counts: report.counts,
+        crossingBudget: report.crossingBudget,
         quality: {
           score: quality.score,
           cost: quality.cost,

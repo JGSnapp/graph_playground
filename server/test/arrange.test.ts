@@ -1,4 +1,11 @@
-import { arrangeGraph, boardQuality, layoutGraph, type Arrow, type Artifact } from '@teca/shared';
+import {
+  arrangeGraph,
+  boardQuality,
+  checkIntersections,
+  layoutGraph,
+  type Arrow,
+  type Artifact,
+} from '@teca/shared';
 import { describe, expect, it } from 'vitest';
 import { ToolRegistry } from '../src/modules/agent/tools/index.js';
 import { createArrow, createArtifact } from '../src/modules/boards/operations.js';
@@ -299,5 +306,36 @@ describe('пользователь главнее автоматики', () => {
     } finally {
       await env.dispose();
     }
+  });
+});
+
+describe('бюджет пересечений', () => {
+  const chain = (count: number) => {
+    const artifacts = Array.from({ length: count }, (_, i) => node(`n${i}`, i * 400, 0));
+    const arrows = Array.from({ length: count - 1 }, (_, i) => edge(`e${i}`, `n${i}`, `n${i + 1}`));
+    return { artifacts, arrows };
+  };
+
+  it('дерево получает нулевой бюджет — пересечение на нём остаётся дефектом', () => {
+    const { artifacts, arrows } = chain(4);
+    const report = checkIntersections(artifacts, arrows);
+    expect(report.crossingBudget).toBe(0);
+  });
+
+  it('плотный граф получает бюджет по цикломатическому числу', () => {
+    const { artifacts, arrows } = chain(4);
+    // Три обратных ребра превращают цепочку в плотный граф.
+    arrows.push(edge('x1', 'n3', 'n0'), edge('x2', 'n3', 'n1'), edge('x3', 'n2', 'n0'));
+    const report = checkIntersections(artifacts, arrows);
+    expect(report.crossingBudget).toBe(arrows.length - artifacts.length + 1);
+    expect(report.crossingBudget).toBeGreaterThan(0);
+  });
+
+  it('бюджет не делает ok слепым к настоящим дефектам', () => {
+    const artifacts = [node('a', 0, 0), node('b', 40, 40)];
+    const arrows = [edge('e1', 'a', 'b')];
+    const report = checkIntersections(artifacts, arrows);
+    expect(report.counts.artifactArtifact).toBeGreaterThan(0);
+    expect(report.ok).toBe(false);
   });
 });
