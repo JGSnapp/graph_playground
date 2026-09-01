@@ -1,0 +1,28 @@
+{
+  "name": "teca",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Платформа для разработки и тестирования гипотез по движку расстановки артефактов на основе LLM",
+  "workspaces": [
+    "shared",
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,web -c cyan,magenta \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "npm run dev -w @teca/server",
+    "dev:web": "npm run dev -w @teca/web",
+    "build": "npm run build -w @teca/web",
+    "start": "npm run start -w @teca/server",
+    "test": "npm run test -w @teca/server && npm run test -w @teca/web",
+    "typecheck": "tsc -p shared && tsc -p server && tsc -p web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

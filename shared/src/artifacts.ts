@@ -1,0 +1,87 @@
+export interface Vec2 {
+  x: number;
+  y: number;
+}
+
+export interface Rect {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+/**
+ * Artifact kinds are open by design: the renderer registry on the client and the
+ * schema registry on the server are both keyed by this string, so a new kind is
+ * added by registering it in one place on each side.
+ */
+export type ArtifactType =
+  | 'note'
+  | 'text'
+  | 'shape'
+  | 'image'
+  | 'website'
+  | 'console'
+  | 'code';
+
+export const ARTIFACT_TYPES: ArtifactType[] = [
+  'note',
+  'text',
+  'shape',
+  'image',
+  'website',
+  'console',
+  'code',
+];
+
+export type ArtifactProps = Record<string, unknown>;
+
+export interface Artifact extends Rect {
+  id: string;
+  type: ArtifactType;
+  /** Stacking order inside the board. */
+  z: number;
+  rotation?: number;
+  props: ArtifactProps;
+  createdAt: number;
+  updatedAt: number;
+}
+
+export type AnchorSide = 'top' | 'right' | 'bottom' | 'left' | 'auto';
+
+export const ANCHOR_SIDES: AnchorSide[] = ['top', 'right', 'bottom', 'left', 'auto'];
+
+export interface ArrowEndpoint {
+  artifactId: string;
+  side: AnchorSide;
+  /**
+   * Position of the port along the chosen side, 0..1 (0.5 is the middle).
+   * Undefined means the port is distributed automatically among every arrow
+   * that shares this side, so parallel connections never merge into one line.
+   */
+  offset?: number;
+}
+
+export interface ArrowStyle {
+  color?: string;
+  dashed?: boolean;
+  width?: number;
+  /** Arrow head at the source end as well. */
+  bidirectional?: boolean;
+}
+
+export type ArrowRouting = 'straight' | 'orthogonal';
+
+export interface Arrow {
+  id: string;
+  from: ArrowEndpoint;
+  to: ArrowEndpoint;
+  /** User/agent controlled bend points in world coordinates. */
+  bends: Vec2[];
+  /** How the polyline between the ports is drawn. Defaults to orthogonal. */
+  routing?: ArrowRouting;
+  label?: string;
+  style: ArrowStyle;
+  createdAt: number;
+  updatedAt: number;
+}

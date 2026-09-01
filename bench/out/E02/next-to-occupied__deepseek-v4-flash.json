@@ -1,0 +1,622 @@
+{
+  "exp": "E02",
+  "task": "next-to-occupied",
+  "probes": "новая композиция рядом с занятой зоной, без наложений",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-01T16:52:59.102Z",
+  "ms": 70043,
+  "aborted": false,
+  "screenshotsServed": 1,
+  "iterations": 9,
+  "seededArtifacts": 6,
+  "seededArrows": 0,
+  "quality": {
+    "score": 96,
+    "cost": 1.1,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 13,
+      "arrows": 7,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 2,
+      "totalLength": 2680,
+      "detour": 1.03
+    },
+    "breakdown": [
+      {
+        "reason": "стрелки идут в обход",
+        "count": 3,
+        "cost": 1.145888594164457
+      }
+    ]
+  },
+  "observations": {
+    "artifacts": 13,
+    "arrows": 7,
+    "width": 1060,
+    "height": 2342,
+    "aspect": 0.45,
+    "density": 0.12,
+    "edgeLengthMedian": 377,
+    "edgeLengthMax": 754,
+    "edgeLengthSpread": 2,
+    "separation": 2.98,
+    "textOverflow": 7,
+    "alignedShare": 0.77,
+    "columnLanes": 4,
+    "rowLanes": 8,
+    "isolatedNodes": 6
+  },
+  "drawnLength": 2680,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: **ра…"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":980,\"height\":560},\"artifacts\":[{\"id\":\"art_xpemc9rrn2\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Спринт 12\\n\\nЗакрытые задачи команды.\",\"color\":\"purple\"},\"createdAt\":1788281508961,\"updatedAt\":1788281508961},{\"id\":\"art_llhfxnmaf3\",\"type\":\"note\",\"x\":260,\"y\":0,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{\"text…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":80,\"props\":{\"color\":\"pink\",\"text\":\"## 🚨 Алерт\\n\\nСистемное оповещение\\nоб инциденте.\"},\"type\":\"note\",\"width\":200,\"x\":800,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_ltf8mo00sf\",\"type\":\"note\",\"x\":800,\"y\":0,\"width\":200,\"height\":80,\"z\":7,\"rotation\":0,\"props\":{\"text\":\"## 🚨 Алерт\\n\\nСистемное оповещение\\nоб инциденте.\",\"color\":\"pink\"},\"createdAt\":1788281532191,\"updatedAt\":1788281532191}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":80,\"props\":{\"color\":\"blue\",\"text\":\"## 👤 Дежурный\\n\\nПриём и первичная\\nоценка инцидента.\"},\"type\":\"note\",\"width\":200,\"x\":800,\"y\":120}",
+      "resultSummary": "{\"id\":\"art_pqp8u9qlmd\",\"type\":\"note\",\"x\":800,\"y\":120,\"width\":200,\"height\":80,\"z\":8,\"rotation\":0,\"props\":{\"text\":\"## 👤 Дежурный\\n\\nПриём и первичная\\nоценка инцидента.\",\"color\":\"blue\"},\"createdAt\":1788281532191,\"updatedAt\":1788281532191}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":80,\"props\":{\"color\":\"blue\",\"text\":\"## 🔍 Диагностика\\n\\nПоиск первопричины\\nи оценка влияния.\"},\"type\":\"note\",\"width\":200,\"x\":800,\"y\":240}",
+      "resultSummary": "{\"id\":\"art_mppo52nh2a\",\"type\":\"note\",\"x\":800,\"y\":240,\"width\":200,\"height\":80,\"z\":9,\"rotation\":0,\"props\":{\"text\":\"## 🔍 Диагностика\\n\\nПоиск первопричины\\nи оценка влияния.\",\"color\":\"blue\"},\"createdAt\":1788281532192,\"updatedAt\":1788281532192}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":80,\"props\":{\"color\":\"green\",\"text\":\"## 🛠 Митигация\\n\\nУстранение последствий\\nи восстановление сервиса.\"},\"type\":\"note\",\"width\":200,\"x\":800,\"y\":360}",
+      "resultSummary": "{\"id\":\"art_f3rw8tlk5f\",\"type\":\"note\",\"x\":800,\"y\":360,\"width\":200,\"height\":80,\"z\":10,\"rotation\":0,\"props\":{\"text\":\"## 🛠 Митигация\\n\\nУстранение последствий\\nи восстановление сервиса.\",\"color\":\"green\"},\"createdAt\":1788281532192,\"updatedAt\":1788281532192}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":80,\"props\":{\"color\":\"gray\",\"text\":\"## 📝 Постмортем\\n\\nАнализ причин и\\nдокументирование урока.\"},\"type\":\"note\",\"width\":200,\"x\":800,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_38nv2x7a8p\",\"type\":\"note\",\"x\":800,\"y\":480,\"width\":200,\"height\":80,\"z\":11,\"rotation\":0,\"props\":{\"text\":\"## 📝 Постмортем\\n\\nАнализ причин и\\nдокументирование урока.\",\"color\":\"gray\"},\"createdAt\":1788281532192,\"updatedAt\":1788281532192}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":80,\"props\":{\"color\":\"yellow\",\"text\":\"## 📋 Задача в бэклог\\n\\nФормирование задачи\\nдля команды разработки.\"},\"type\":\"note\",\"width\":200,\"x\":800,\"y\":600}",
+      "resultSummary": "{\"id\":\"art_s5a43jafd7\",\"type\":\"note\",\"x\":800,\"y\":600,\"width\":200,\"height\":80,\"z\":12,\"rotation\":0,\"props\":{\"text\":\"## 📋 Задача в бэклог\\n\\nФормирование задачи\\nдля команды разработки.\",\"color\":\"yellow\"},\"createdAt\":1788281532192,\"updatedAt\":1788281532192}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":80,\"props\":{\"color\":\"purple\",\"text\":\"## ⬆️ Эскалация\\n\\nПередача инцидента\\nна вышестоящий уровень.\"},\"type\":\"note\",\"width\":200,\"x\":1060,\"y\":240}",
+      "resultSummary": "{\"id\":\"art_yqy153210f\",\"type\":\"note\",\"x\":1060,\"y\":240,\"width\":200,\"height\":80,\"z\":13,\"rotation\":0,\"props\":{\"text\":\"## ⬆️ Эскалация\\n\\nПередача инцидента\\nна вышестоящий уровень.\",\"color\":\"purple\"},\"createdAt\":1788281532192,\"updatedAt\":1788281532192}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_ltf8mo00sf\",\"toId\":\"art_pqp8u9qlmd\"}",
+      "resultSummary": "{\"id\":\"arr_dq5qkxg4v6\",\"from\":{\"artifactId\":\"art_ltf8mo00sf\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_pqp8u9qlmd\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788281541834,\"updatedAt\":1788281541834}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_pqp8u9qlmd\",\"toId\":\"art_mppo52nh2a\"}",
+      "resultSummary": "{\"id\":\"arr_d4qr05e4s0\",\"from\":{\"artifactId\":\"art_pqp8u9qlmd\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_mppo52nh2a\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788281541835,\"updatedAt\":1788281541835}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_mppo52nh2a\",\"toId\":\"art_f3rw8tlk5f\"}",
+      "resultSummary": "{\"id\":\"arr_88wddcpjg7\",\"from\":{\"artifactId\":\"art_mppo52nh2a\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_f3rw8tlk5f\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788281541836,\"updatedAt\":1788281541836}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "error",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_f3rw8tlk5f\",\"toId\":\"art_38nv2x8a8p\"}",
+      "resultSummary": ""
+    },
+    {
+      "name": "arrow_create",
+      "status": "error",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_38nv2x8a8p\",\"toId\":\"art_s5a43jafd7\"}",
+      "resultSummary": ""
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_mppo52nh2a\",\"toId\":\"art_yqy153210f\"}",
+      "resultSummary": "{\"id\":\"arr_ud23utmtyb\",\"from\":{\"artifactId\":\"art_mppo52nh2a\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_yqy153210f\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788281541841,\"updatedAt\":1788281541841}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_yqy153210f\",\"toId\":\"art_f3rw8tlk5f\"}",
+      "resultSummary": "{\"id\":\"arr_axs38st6px\",\"from\":{\"artifactId\":\"art_yqy153210f\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_f3rw8tlk5f\",\"side\":\"top\"},\"bends\":[{\"x\":1160,\"y\":392},{\"x\":900,\"y\":328}],\"style\":{},\"createdAt\":1788281541844,\"updatedAt\":1788281541844,\"adjustments\":[\"Стрелка подходила к стороне плашмя (9°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_arrange_graph переложат её но…"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":1500,\"height\":920},\"artifacts\":[{\"id\":\"art_xpemc9rrn2\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Спринт 12\\n\\nЗакрытые задачи команды.\",\"color\":\"purple\"},\"createdAt\":1788281508961,\"updatedAt\":1788281508961},{\"id\":\"art_llhfxnmaf3\",\"type\":\"note\",\"x\":260,\"y\":0,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{\"tex…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_f3rw8tlk5f\",\"toId\":\"art_38nv2x7a8p\"}",
+      "resultSummary": "{\"id\":\"arr_557lapch9x\",\"from\":{\"artifactId\":\"art_f3rw8tlk5f\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_38nv2x7a8p\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788281551541,\"updatedAt\":1788281551541}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_38nv2x7a8p\",\"toId\":\"art_s5a43jafd7\"}",
+      "resultSummary": "{\"id\":\"arr_co2sgvfnq2\",\"from\":{\"artifactId\":\"art_38nv2x7a8p\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_s5a43jafd7\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788281551544,\"updatedAt\":1788281551544}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"auto\",\"lockIds\":[\"art_xpemc9rrn2\",\"art_llhfxnmaf3\",\"art_ktgrpy9j5x\",\"art_7ocfp9g7t4\",\"art_qkzv35phe0\",\"art_cmr597dw85\"],\"nodeIds\":[\"art_ltf8mo00sf\",\"art_pqp8u9qlmd\",\"art_mppo52nh2a\",\"art_f3rw8tlk5f\",\"art_38nv2x7a8p\",\"art_s5a43",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1.35,\"layers\":7,\"layerSizes\":[1,1,1,1,1,1,1],\"crossings\":0,\"crossingsBefore\":0,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":800,\"y\":0,\"width\":200,\"height\":2342},\"qualityBefore\":{\"score\":42,\"cost\":34.6,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":96,\"cost\":1.1,\"grade\":\"отлично\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":91,\"cost\":2.4…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"x\":780,\"y\":-20,\"width\":500,\"height\":2400}",
+      "resultSummary": "{\"region\":{\"x\":780,\"y\":-20,\"width\":500,\"height\":2400},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"quality\":{\"score\":96,\"cost\":1.1,\"grade\":\"отлично\",\"previousCost\":1.1,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"edgeNodeHits\":0,\"c…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 2622,
+      "args": "{\"x\":780,\"y\":-20,\"width\":500,\"height\":2400}",
+      "resultSummary": "{\"region\":{\"x\":780,\"y\":-20,\"width\":500,\"height\":2400},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    }
+  ],
+  "toolHistogram": {
+    "skill_get": 1,
+    "board_get_region": 2,
+    "artifact_create": 7,
+    "arrow_create": 9,
+    "board_arrange_graph": 1,
+    "board_check_intersections": 1,
+    "board_screenshot": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 130095,
+    "completionTokens": 2847,
+    "totalTokens": 132942,
+    "calls": 9,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 120576
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nСначала прочитаю скилл для построения графа, затем посмотрю текущее состояние доски.\n\nОтлично. Вижу 6 существующих карточек в зоне x=0..740, y=0..320. Буду строить схему правее, чтобы не перекрывать их.\n\n**План графа:**\n- Узлы: Алерт, Дежурный, Диагностика, Митигация, Постмортем, Задача в бэклог, Эскалация\n- Основной поток: Алерт → Дежурный → Диагностика → Митигация → Постмортем → Задача в бэклог\n- Дополнительно: Диагностика → Эскалация → Митигация\n\nНачну с создания узлов справа от существующей зоны (x=800+).\n\nВсе узлы созданы. Теперь создаю все стрелки — основной поток и ответвление на Эскалацию.\n\nСтрелки от Постмортема не создались — опечатался в id. Давайте уточню правильный id.\n\nВижу правильные id. Создаю недостающие стрелки: Митигация → Постмортем и Постмортем → Задача в бэклог.\n\nВсе 7 стрелок созданы. Теперь запускаю board_arrange_graph для новой схемы. Узлы существующей доски (первые 6) не трогаем — передам их в lockIds, а раскладывать буду только новые 7 узлов.\n\n\n\nОтлично! Раскладка выбрала направление сверху-вниз (TB), 7 слоёв, 0 пересечений, оценка 96/100. Проверю качество и пересечения.\n\n\n\nВсё идеально. Давайте посмотрим скриншот результата.\n\nВот что получилось. Давай коротко подведу итог.\n\n---\n\n## Результат\n\n**Схема процесса обработки инцидента** построена справа от существующих карточек, не задевая их.\n\n### Структура (7 узлов, 7 стрелок)\n\n```\n🚨 Алерт\n   ↓\n👤 Дежурный\n   ↓\n🔍 Диагностика ──→ ⬆️ Эскалация\n   ↓                    ↓\n🛠 Митигация ←──────────┘\n   ↓\n📝 Постмортем\n   ↓\n📋 Задача в бэклог\n```\n\n### Параметры раскладки\n- **Направление**: сверху вниз (TB) — выбрано автоматически как лучшее\n- **Слоёв**: 7 (каждый узел на своём слое)\n- **Пересечений стрелок**: **0**\n- **Оценка качества**: **96/100** (было 42, стало 96) — отлично\n- **Конфликтов**: нет (ok=true)\n\n### Что сделано\n1. Созданы 7 заметок-узлов с иконками и описаниями\n2. Проведены 7 стрелок: основной поток + ответвление на Эскалацию и обратно в Митигацию\n3. Запущена автоматическая раскладка графа — все узлы выстроились в аккуратную вертикальную цепочку\n4. Существующие 6 карточек слева не тронуты",
+  "boardId": "brd_rvrv9k48tl",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_xpemc9rrn2",
+        "type": "note",
+        "x": 0,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "## Спринт 12\n\nЗакрытые задачи команды.",
+          "color": "purple"
+        },
+        "createdAt": 1788281508961,
+        "updatedAt": 1788281508961
+      },
+      {
+        "id": "art_llhfxnmaf3",
+        "type": "note",
+        "x": 260,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "## Ретро\n\nЧто пошло не так.",
+          "color": "purple"
+        },
+        "createdAt": 1788281508973,
+        "updatedAt": 1788281508973
+      },
+      {
+        "id": "art_ktgrpy9j5x",
+        "type": "note",
+        "x": 520,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "## План\n\nЧто берём в спринт 13.",
+          "color": "purple"
+        },
+        "createdAt": 1788281508990,
+        "updatedAt": 1788281508990
+      },
+      {
+        "id": "art_7ocfp9g7t4",
+        "type": "note",
+        "x": 0,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "## Метрики\n\nLead time, throughput.",
+          "color": "gray"
+        },
+        "createdAt": 1788281509005,
+        "updatedAt": 1788281509005
+      },
+      {
+        "id": "art_qkzv35phe0",
+        "type": "note",
+        "x": 260,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "## Инциденты\n\nДва P2 за спринт.",
+          "color": "pink"
+        },
+        "createdAt": 1788281509021,
+        "updatedAt": 1788281509021
+      },
+      {
+        "id": "art_cmr597dw85",
+        "type": "note",
+        "x": 520,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "## Долг\n\nТехдолг по биллингу.",
+          "color": "gray"
+        },
+        "createdAt": 1788281509036,
+        "updatedAt": 1788281509036
+      },
+      {
+        "id": "art_ltf8mo00sf",
+        "type": "note",
+        "x": 860,
+        "y": 0,
+        "width": 200,
+        "height": 80,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "## 🚨 Алерт\n\nСистемное оповещение\nоб инциденте.",
+          "color": "pink"
+        },
+        "createdAt": 1788281532191,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "art_pqp8u9qlmd",
+        "type": "note",
+        "x": 860,
+        "y": 377,
+        "width": 200,
+        "height": 80,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "## 👤 Дежурный\n\nПриём и первичная\nоценка инцидента.",
+          "color": "blue"
+        },
+        "createdAt": 1788281532191,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "art_mppo52nh2a",
+        "type": "note",
+        "x": 860,
+        "y": 754,
+        "width": 200,
+        "height": 80,
+        "z": 9,
+        "rotation": 0,
+        "props": {
+          "text": "## 🔍 Диагностика\n\nПоиск первопричины\nи оценка влияния.",
+          "color": "blue"
+        },
+        "createdAt": 1788281532192,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "art_f3rw8tlk5f",
+        "type": "note",
+        "x": 860,
+        "y": 1508,
+        "width": 200,
+        "height": 80,
+        "z": 10,
+        "rotation": 0,
+        "props": {
+          "text": "## 🛠 Митигация\n\nУстранение последствий\nи восстановление сервиса.",
+          "color": "green"
+        },
+        "createdAt": 1788281532192,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "art_38nv2x7a8p",
+        "type": "note",
+        "x": 860,
+        "y": 1885,
+        "width": 200,
+        "height": 80,
+        "z": 11,
+        "rotation": 0,
+        "props": {
+          "text": "## 📝 Постмортем\n\nАнализ причин и\nдокументирование урока.",
+          "color": "gray"
+        },
+        "createdAt": 1788281532192,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "art_s5a43jafd7",
+        "type": "note",
+        "x": 860,
+        "y": 2262,
+        "width": 200,
+        "height": 80,
+        "z": 12,
+        "rotation": 0,
+        "props": {
+          "text": "## 📋 Задача в бэклог\n\nФормирование задачи\nдля команды разработки.",
+          "color": "yellow"
+        },
+        "createdAt": 1788281532192,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "art_yqy153210f",
+        "type": "note",
+        "x": 860,
+        "y": 1131,
+        "width": 200,
+        "height": 80,
+        "z": 13,
+        "rotation": 0,
+        "props": {
+          "text": "## ⬆️ Эскалация\n\nПередача инцидента\nна вышестоящий уровень.",
+          "color": "purple"
+        },
+        "createdAt": 1788281532192,
+        "updatedAt": 1788281559828
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_dq5qkxg4v6",
+        "from": {
+          "artifactId": "art_ltf8mo00sf",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_pqp8u9qlmd",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788281541834,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "arr_d4qr05e4s0",
+        "from": {
+          "artifactId": "art_pqp8u9qlmd",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_mppo52nh2a",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788281541835,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "arr_88wddcpjg7",
+        "from": {
+          "artifactId": "art_mppo52nh2a",
+          "side": "left",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_f3rw8tlk5f",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 788,
+            "y": 794
+          },
+          {
+            "x": 788,
+            "y": 1548
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788281541836,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "arr_ud23utmtyb",
+        "from": {
+          "artifactId": "art_mppo52nh2a",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_yqy153210f",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788281541841,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "arr_axs38st6px",
+        "from": {
+          "artifactId": "art_yqy153210f",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_f3rw8tlk5f",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788281541844,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "arr_557lapch9x",
+        "from": {
+          "artifactId": "art_f3rw8tlk5f",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_38nv2x7a8p",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788281551541,
+        "updatedAt": 1788281559828
+      },
+      {
+        "id": "arr_co2sgvfnq2",
+        "from": {
+          "artifactId": "art_38nv2x7a8p",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_s5a43jafd7",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788281551544,
+        "updatedAt": 1788281559828
+      }
+    ]
+  }
+}

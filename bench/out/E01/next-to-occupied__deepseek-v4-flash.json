@@ -1,0 +1,176 @@
+{
+  "exp": "E01",
+  "task": "next-to-occupied",
+  "probes": "новая композиция рядом с занятой зоной, без наложений",
+  "model": "deepseek-v4-flash",
+  "at": "2026-08-31T23:04:35.903Z",
+  "ms": 127,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 1,
+  "seededArtifacts": 6,
+  "seededArrows": 0,
+  "quality": {
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 6,
+      "arrows": 0,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 0,
+      "totalLength": 0,
+      "detour": 1
+    },
+    "breakdown": []
+  },
+  "observations": {
+    "artifacts": 6,
+    "arrows": 0,
+    "width": 740,
+    "height": 320,
+    "aspect": 2.31,
+    "density": 0.78,
+    "edgeLengthMedian": 0,
+    "edgeLengthMax": 0,
+    "edgeLengthSpread": 0,
+    "neighbourFidelity": 1,
+    "alignedShare": 1,
+    "columnLanes": 3,
+    "rowLanes": 2,
+    "isolatedNodes": 6
+  },
+  "drawnLength": 0,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [],
+  "toolHistogram": {},
+  "refusals": [],
+  "errors": [
+    "LLM request failed (429): {\"error\":{\"type\":\"insufficient_balance\",\"message\":\"Estimated request cost 0.224442 exceeds available balance -30.90554.\",\"request_id\":\"cf266d33-e27b-b1c1-2cab-cc2120063edb\",\"code\":\"estimated_cost_exceeds_balance\"}}\n"
+  ],
+  "termination": "provider_error",
+  "restoredCheckpoint": false,
+  "answer": "",
+  "boardId": "brd_7ikyj0t3e5",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_djhl5ylvzs",
+        "type": "note",
+        "x": 0,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "## Спринт 12\n\nЗакрытые задачи команды.",
+          "color": "purple"
+        },
+        "createdAt": 1788217474686,
+        "updatedAt": 1788217474686
+      },
+      {
+        "id": "art_ujrqs9zlde",
+        "type": "note",
+        "x": 260,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "## Ретро\n\nЧто пошло не так.",
+          "color": "purple"
+        },
+        "createdAt": 1788217475170,
+        "updatedAt": 1788217475170
+      },
+      {
+        "id": "art_zsd28u6vjs",
+        "type": "note",
+        "x": 520,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "## План\n\nЧто берём в спринт 13.",
+          "color": "purple"
+        },
+        "createdAt": 1788217475175,
+        "updatedAt": 1788217475175
+      },
+      {
+        "id": "art_t5xjrl01nu",
+        "type": "note",
+        "x": 0,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "## Метрики\n\nLead time, throughput.",
+          "color": "gray"
+        },
+        "createdAt": 1788217475528,
+        "updatedAt": 1788217475528
+      },
+      {
+        "id": "art_oo103p467e",
+        "type": "note",
+        "x": 260,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "## Инциденты\n\nДва P2 за спринт.",
+          "color": "pink"
+        },
+        "createdAt": 1788217475533,
+        "updatedAt": 1788217475533
+      },
+      {
+        "id": "art_xk4cec9u9f",
+        "type": "note",
+        "x": 520,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "## Долг\n\nТехдолг по биллингу.",
+          "color": "gray"
+        },
+        "createdAt": 1788217475755,
+        "updatedAt": 1788217475755
+      }
+    ],
+    "arrows": []
+  }
+}

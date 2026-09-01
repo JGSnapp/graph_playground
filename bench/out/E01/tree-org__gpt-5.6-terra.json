@@ -1,0 +1,79 @@
+{
+  "exp": "E01",
+  "task": "tree-org",
+  "probes": "иерархия, ветви должны держаться у своих корней",
+  "model": "gpt-5.6-terra",
+  "at": "2026-08-31T23:04:31.975Z",
+  "ms": 359,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 1,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 0,
+      "arrows": 0,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 0,
+      "totalLength": 0,
+      "detour": 1
+    },
+    "breakdown": []
+  },
+  "observations": {
+    "artifacts": 0,
+    "arrows": 0,
+    "width": 0,
+    "height": 0,
+    "aspect": 0,
+    "density": 0,
+    "edgeLengthMedian": 0,
+    "edgeLengthMax": 0,
+    "edgeLengthSpread": 0,
+    "neighbourFidelity": 1,
+    "alignedShare": 0,
+    "columnLanes": 0,
+    "rowLanes": 0,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 0,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [],
+  "toolHistogram": {},
+  "refusals": [],
+  "errors": [
+    "LLM request failed (429): {\"error\":{\"type\":\"insufficient_balance\",\"message\":\"Estimated request cost 11.5248 exceeds available balance -15.119141.\",\"request_id\":\"451824fe-f61b-0001-fcfb-963094031f82\",\"code\":\"estimated_cost_exceeds_balance\"}}\n"
+  ],
+  "termination": "provider_error",
+  "restoredCheckpoint": false,
+  "answer": "",
+  "boardId": "brd_bj632ip4fp",
+  "state": {
+    "artifacts": [],
+    "arrows": []
+  }
+}

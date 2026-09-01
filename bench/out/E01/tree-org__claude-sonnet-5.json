@@ -1,0 +1,894 @@
+{
+  "exp": "E01",
+  "task": "tree-org",
+  "probes": "иерархия, ветви должны держаться у своих корней",
+  "model": "claude-sonnet-5",
+  "at": "2026-08-31T23:04:32.189Z",
+  "ms": 95486,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 5,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 23,
+    "cost": 81.5,
+    "grade": "плохо",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 2,
+      "arrowOverlap": 2,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 14
+    },
+    "metrics": {
+      "artifacts": 12,
+      "arrows": 11,
+      "edgeNodeHits": 0,
+      "crossings": 2,
+      "shallowCrossings": 0,
+      "mergedArrows": 2,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 8,
+      "totalLength": 3396,
+      "detour": 1.02
+    },
+    "breakdown": [
+      {
+        "reason": "стрелки слились в одну линию",
+        "count": 2,
+        "cost": 16
+      },
+      {
+        "reason": "пересечения стрелок",
+        "count": 2,
+        "cost": 8
+      },
+      {
+        "reason": "стрелки идут в обход",
+        "count": 2,
+        "cost": 1.5272727272727251
+      },
+      {
+        "reason": "слишком короткое ребро",
+        "count": 14,
+        "cost": 56
+      }
+    ]
+  },
+  "observations": {
+    "artifacts": 12,
+    "arrows": 11,
+    "width": 1960,
+    "height": 700,
+    "aspect": 2.8,
+    "density": 0.17,
+    "edgeLengthMedian": 244,
+    "edgeLengthMax": 709,
+    "edgeLengthSpread": 2.9,
+    "neighbourFidelity": 0.92,
+    "alignedShare": 0.54,
+    "columnLanes": 10,
+    "rowLanes": 4,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 3396,
+  "ok": false,
+  "findings": [
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_e564mpvj5o",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_e564mpvj5o: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_8pqtxox2dh",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_8pqtxox2dh: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_8pqtxox2dh",
+      "length": 14,
+      "required": 24,
+      "note": "Стрелка arr_8pqtxox2dh: ребро 14px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_ht2lhhodst",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_ht2lhhodst: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_ad4ytv7y17",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_ad4ytv7y17: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_q5tkixqh17",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_q5tkixqh17: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_3y7c3iuqvm",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_3y7c3iuqvm: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_cvcpcmbnqt",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_cvcpcmbnqt: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_suu7po3qht",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_suu7po3qht: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_0uoag5szi9",
+      "length": 4,
+      "required": 24,
+      "note": "Стрелка arr_0uoag5szi9: ребро 4px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_0uoag5szi9",
+      "length": 4,
+      "required": 24,
+      "note": "Стрелка arr_0uoag5szi9: ребро 4px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_uhpapepv1s",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_uhpapepv1s: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_veh05f7tdw",
+      "length": 4,
+      "required": 24,
+      "note": "Стрелка arr_veh05f7tdw: ребро 4px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_veh05f7tdw",
+      "length": 4,
+      "required": 24,
+      "note": "Стрелка arr_veh05f7tdw: ребро 4px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_arrow",
+      "arrowAId": "arr_e564mpvj5o",
+      "arrowBId": "arr_0uoag5szi9",
+      "point": {
+        "x": 1400,
+        "y": 190
+      },
+      "angle": 90,
+      "shallow": false,
+      "note": "Стрелки arr_e564mpvj5o и arr_0uoag5szi9 пересекаются в (1400, 190) под углом 90°."
+    },
+    {
+      "kind": "arrow_overlap",
+      "arrowAId": "arr_e564mpvj5o",
+      "arrowBId": "arr_0uoag5szi9",
+      "length": 50,
+      "from": {
+        "x": 1350,
+        "y": 186
+      },
+      "to": {
+        "x": 1400,
+        "y": 186
+      },
+      "note": "Стрелки arr_e564mpvj5o и arr_0uoag5szi9 сливаются в одну линию на 50px (от (1350, 186) до (1400, 186)) — разведи их."
+    },
+    {
+      "kind": "arrow_arrow",
+      "arrowAId": "arr_8pqtxox2dh",
+      "arrowBId": "arr_veh05f7tdw",
+      "point": {
+        "x": 646,
+        "y": 390
+      },
+      "angle": 90,
+      "shallow": false,
+      "note": "Стрелки arr_8pqtxox2dh и arr_veh05f7tdw пересекаются в (646, 390) под углом 90°."
+    },
+    {
+      "kind": "arrow_overlap",
+      "arrowAId": "arr_8pqtxox2dh",
+      "arrowBId": "arr_veh05f7tdw",
+      "length": 24,
+      "from": {
+        "x": 670,
+        "y": 386
+      },
+      "to": {
+        "x": 646,
+        "y": 386
+      },
+      "note": "Стрелки arr_8pqtxox2dh и arr_veh05f7tdw сливаются в одну линию на 24px (от (670, 386) до (646, 386)) — разведи их."
+    }
+  ],
+  "toolCalls": [
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: снач…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":1200,\"y\":40,\"width\":200,\"height\":100,\"props\":{\"text\":\"CEO\\nОбщее руководство компанией, стратегия и связь с советом директоров\",\"color\":\"purple\"}}",
+      "resultSummary": "{\"id\":\"art_0x0lboo5ht\",\"type\":\"note\",\"x\":1200,\"y\":40,\"width\":200,\"height\":100,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"CEO\\nОбщее руководство компанией, стратегия и связь с советом директоров\",\"color\":\"purple\"},\"createdAt\":1788217445384,\"updatedAt\":1788217445384}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":520,\"y\":240,\"width\":200,\"height\":100,\"props\":{\"text\":\"CTO\\nТехнологическая стратегия, разработка продукта и IT-инфраструктура\",\"color\":\"blue\"}}",
+      "resultSummary": "{\"id\":\"art_gf7lvksy0i\",\"type\":\"note\",\"x\":520,\"y\":240,\"width\":200,\"height\":100,\"z\":2,\"rotation\":0,\"props\":{\"text\":\"CTO\\nТехнологическая стратегия, разработка продукта и IT-инфраструктура\",\"color\":\"blue\"},\"createdAt\":1788217445385,\"updatedAt\":1788217445385}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":1300,\"y\":240,\"width\":200,\"height\":100,\"props\":{\"text\":\"CPO\\nПродуктовая стратегия, дизайн и аналитика пользовательского опыта\",\"color\":\"green\"}}",
+      "resultSummary": "{\"id\":\"art_7oppq9vqxw\",\"type\":\"note\",\"x\":1300,\"y\":240,\"width\":200,\"height\":100,\"z\":3,\"rotation\":0,\"props\":{\"text\":\"CPO\\nПродуктовая стратегия, дизайн и аналитика пользовательского опыта\",\"color\":\"green\"},\"createdAt\":1788217445385,\"updatedAt\":1788217445385}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":1800,\"y\":240,\"width\":200,\"height\":100,\"props\":{\"text\":\"CFO\\nФинансовое управление, бюджет и отчётность\",\"color\":\"yellow\"}}",
+      "resultSummary": "{\"id\":\"art_ipaxyox4ou\",\"type\":\"note\",\"x\":1800,\"y\":240,\"width\":200,\"height\":100,\"z\":4,\"rotation\":0,\"props\":{\"text\":\"CFO\\nФинансовое управление, бюджет и отчётность\",\"color\":\"yellow\"},\"createdAt\":1788217445385,\"updatedAt\":1788217445385}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":180,\"y\":440,\"width\":200,\"height\":100,\"props\":{\"text\":\"Backend-команда\\nСерверная логика, API и интеграции\",\"color\":\"blue\"}}",
+      "resultSummary": "{\"id\":\"art_uuimqy66gz\",\"type\":\"note\",\"x\":180,\"y\":440,\"width\":200,\"height\":100,\"z\":5,\"rotation\":0,\"props\":{\"text\":\"Backend-команда\\nСерверная логика, API и интеграции\",\"color\":\"blue\"},\"createdAt\":1788217445385,\"updatedAt\":1788217445385}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":560,\"y\":440,\"width\":200,\"height\":100,\"props\":{\"text\":\"Frontend-команда\\nПользовательские интерфейсы и клиентские приложения\",\"color\":\"blue\"}}",
+      "resultSummary": "{\"id\":\"art_le6t5phfuj\",\"type\":\"note\",\"x\":560,\"y\":440,\"width\":200,\"height\":100,\"z\":6,\"rotation\":0,\"props\":{\"text\":\"Frontend-команда\\nПользовательские интерфейсы и клиентские приложения\",\"color\":\"blue\"},\"createdAt\":1788217445386,\"updatedAt\":1788217445386}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":820,\"y\":440,\"width\":200,\"height\":100,\"props\":{\"text\":\"SRE\\nНадёжность, мониторинг и эксплуатация систем\",\"color\":\"blue\"}}",
+      "resultSummary": "{\"id\":\"art_2xri8ohecv\",\"type\":\"note\",\"x\":820,\"y\":440,\"width\":200,\"height\":100,\"z\":7,\"rotation\":0,\"props\":{\"text\":\"SRE\\nНадёжность, мониторинг и эксплуатация систем\",\"color\":\"blue\"},\"createdAt\":1788217445386,\"updatedAt\":1788217445386}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":1180,\"y\":440,\"width\":200,\"height\":100,\"props\":{\"text\":\"Дизайн\\nUX/UI дизайн продукта и дизайн-система\",\"color\":\"green\"}}",
+      "resultSummary": "{\"id\":\"art_qldoq7fi2h\",\"type\":\"note\",\"x\":1180,\"y\":440,\"width\":200,\"height\":100,\"z\":8,\"rotation\":0,\"props\":{\"text\":\"Дизайн\\nUX/UI дизайн продукта и дизайн-система\",\"color\":\"green\"},\"createdAt\":1788217445386,\"updatedAt\":1788217445386}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":1440,\"y\":440,\"width\":200,\"height\":100,\"props\":{\"text\":\"Продуктовая аналитика\\nМетрики, A/B-тесты и данные для решений\",\"color\":\"green\"}}",
+      "resultSummary": "{\"id\":\"art_afo5xejiai\",\"type\":\"note\",\"x\":1440,\"y\":440,\"width\":200,\"height\":100,\"z\":9,\"rotation\":0,\"props\":{\"text\":\"Продуктовая аналитика\\nМетрики, A/B-тесты и данные для решений\",\"color\":\"green\"},\"createdAt\":1788217445386,\"updatedAt\":1788217445386}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":1800,\"y\":440,\"width\":200,\"height\":100,\"props\":{\"text\":\"Бухгалтерия\\nУчёт, налоги и финансовая отчётность\",\"color\":\"yellow\"}}",
+      "resultSummary": "{\"id\":\"art_ijkcg39vzs\",\"type\":\"note\",\"x\":1800,\"y\":440,\"width\":200,\"height\":100,\"z\":10,\"rotation\":0,\"props\":{\"text\":\"Бухгалтерия\\nУчёт, налоги и финансовая отчётность\",\"color\":\"yellow\"},\"createdAt\":1788217445387,\"updatedAt\":1788217445387}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":40,\"y\":640,\"width\":200,\"height\":100,\"props\":{\"text\":\"Платформа\\nОбщая инфраструктура и внутренние сервисы\",\"color\":\"blue\"}}",
+      "resultSummary": "{\"id\":\"art_kakuqygc0u\",\"type\":\"note\",\"x\":40,\"y\":640,\"width\":200,\"height\":100,\"z\":11,\"rotation\":0,\"props\":{\"text\":\"Платформа\\nОбщая инфраструктура и внутренние сервисы\",\"color\":\"blue\"},\"createdAt\":1788217445387,\"updatedAt\":1788217445387}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"type\":\"note\",\"x\":300,\"y\":640,\"width\":200,\"height\":100,\"props\":{\"text\":\"Биллинг\\nПлатежи, подписки и расчёты с клиентами\",\"color\":\"blue\"}}",
+      "resultSummary": "{\"id\":\"art_kld2945txp\",\"type\":\"note\",\"x\":300,\"y\":640,\"width\":200,\"height\":100,\"z\":12,\"rotation\":0,\"props\":{\"text\":\"Биллинг\\nПлатежи, подписки и расчёты с клиентами\",\"color\":\"blue\"},\"createdAt\":1788217445387,\"updatedAt\":1788217445387}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "refused",
+      "refused": true,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_0x0lboo5ht\",\"toId\":\"art_gf7lvksy0i\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"created\":false,\"refused\":true,\"reason\":\"Стрелка крепится плашмя: выход из bottom (8°) и вход в top (8°). Нужен угол от 30° к стороне. Добавь точку изгиба в bends у этого порта и вызови тул снова. Без изгиба действие отменено.\",\"fromAngle\":8,\"toAngle\":8,\"fromSide\":\"bottom\",\"toSide\":\"top\",\"required\":30}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_0x0lboo5ht\",\"toId\":\"art_7oppq9vqxw\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_e564mpvj5o\",\"from\":{\"artifactId\":\"art_0x0lboo5ht\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_7oppq9vqxw\",\"side\":\"top\"},\"bends\":[],\"style\":{},\"createdAt\":1788217458046,\"updatedAt\":1788217458046}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "refused",
+      "refused": true,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_0x0lboo5ht\",\"toId\":\"art_ipaxyox4ou\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"created\":false,\"refused\":true,\"reason\":\"Стрелка крепится плашмя: выход из bottom (9°) и вход в top (9°). Нужен угол от 30° к стороне. Добавь точку изгиба в bends у этого порта и вызови тул снова. Без изгиба действие отменено.\",\"fromAngle\":9,\"toAngle\":9,\"fromSide\":\"bottom\",\"toSide\":\"top\",\"required\":30}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "refused",
+      "refused": true,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_gf7lvksy0i\",\"toId\":\"art_uuimqy66gz\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"created\":false,\"refused\":true,\"reason\":\"Стрелка крепится плашмя: выход из bottom (16°) и вход в top (16°). Нужен угол от 30° к стороне. Добавь точку изгиба в bends у этого порта и вызови тул снова. Без изгиба действие отменено.\",\"fromAngle\":16,\"toAngle\":16,\"fromSide\":\"bottom\",\"toSide\":\"top\",\"required\":30}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_gf7lvksy0i\",\"toId\":\"art_le6t5phfuj\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_8pqtxox2dh\",\"from\":{\"artifactId\":\"art_gf7lvksy0i\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_le6t5phfuj\",\"side\":\"top\"},\"bends\":[],\"style\":{},\"createdAt\":1788217458051,\"updatedAt\":1788217458051}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "refused",
+      "refused": true,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_gf7lvksy0i\",\"toId\":\"art_2xri8ohecv\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"created\":false,\"refused\":true,\"reason\":\"Стрелка крепится плашмя: выход из bottom (18°) и вход в top (18°). Нужен угол от 30° к стороне. Добавь точку изгиба в bends у этого порта и вызови тул снова. Без изгиба действие отменено.\",\"fromAngle\":18,\"toAngle\":18,\"fromSide\":\"bottom\",\"toSide\":\"top\",\"required\":30}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_7oppq9vqxw\",\"toId\":\"art_qldoq7fi2h\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_ht2lhhodst\",\"from\":{\"artifactId\":\"art_7oppq9vqxw\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_qldoq7fi2h\",\"side\":\"top\"},\"bends\":[],\"style\":{},\"createdAt\":1788217458056,\"updatedAt\":1788217458056}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_7oppq9vqxw\",\"toId\":\"art_afo5xejiai\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_ad4ytv7y17\",\"from\":{\"artifactId\":\"art_7oppq9vqxw\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_afo5xejiai\",\"side\":\"top\"},\"bends\":[],\"style\":{},\"createdAt\":1788217458059,\"updatedAt\":1788217458059}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_ipaxyox4ou\",\"toId\":\"art_ijkcg39vzs\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_q5tkixqh17\",\"from\":{\"artifactId\":\"art_ipaxyox4ou\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_ijkcg39vzs\",\"side\":\"top\"},\"bends\":[],\"style\":{},\"createdAt\":1788217458063,\"updatedAt\":1788217458063}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_uuimqy66gz\",\"toId\":\"art_kakuqygc0u\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_3y7c3iuqvm\",\"from\":{\"artifactId\":\"art_uuimqy66gz\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_kakuqygc0u\",\"side\":\"top\"},\"bends\":[],\"style\":{},\"createdAt\":1788217458069,\"updatedAt\":1788217458069}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_uuimqy66gz\",\"toId\":\"art_kld2945txp\",\"fromSide\":\"bottom\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_cvcpcmbnqt\",\"from\":{\"artifactId\":\"art_uuimqy66gz\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_kld2945txp\",\"side\":\"top\"},\"bends\":[],\"style\":{},\"createdAt\":1788217458074,\"updatedAt\":1788217458074}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_0x0lboo5ht\",\"fromSide\":\"bottom\",\"toId\":\"art_gf7lvksy0i\",\"toSide\":\"top\",\"bends\":[{\"x\":1300,\"y\":190},{\"x\":620,\"y\":190}]}",
+      "resultSummary": "{\"id\":\"arr_suu7po3qht\",\"from\":{\"artifactId\":\"art_0x0lboo5ht\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_gf7lvksy0i\",\"side\":\"top\"},\"bends\":[{\"x\":1300,\"y\":190},{\"x\":620,\"y\":190}],\"style\":{},\"createdAt\":1788217471615,\"updatedAt\":1788217471615}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_0x0lboo5ht\",\"fromSide\":\"bottom\",\"toId\":\"art_ipaxyox4ou\",\"toSide\":\"top\",\"bends\":[{\"x\":1300,\"y\":190},{\"x\":1900,\"y\":190}]}",
+      "resultSummary": "{\"id\":\"arr_0uoag5szi9\",\"from\":{\"artifactId\":\"art_0x0lboo5ht\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_ipaxyox4ou\",\"side\":\"top\"},\"bends\":[{\"x\":1300,\"y\":190},{\"x\":1900,\"y\":190}],\"style\":{},\"createdAt\":1788217471620,\"updatedAt\":1788217471620}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_gf7lvksy0i\",\"fromSide\":\"bottom\",\"toId\":\"art_uuimqy66gz\",\"toSide\":\"top\",\"bends\":[{\"x\":620,\"y\":390},{\"x\":280,\"y\":390}]}",
+      "resultSummary": "{\"id\":\"arr_uhpapepv1s\",\"from\":{\"artifactId\":\"art_gf7lvksy0i\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_uuimqy66gz\",\"side\":\"top\"},\"bends\":[{\"x\":620,\"y\":390},{\"x\":280,\"y\":390}],\"style\":{},\"createdAt\":1788217471626,\"updatedAt\":1788217471626}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_gf7lvksy0i\",\"fromSide\":\"bottom\",\"toId\":\"art_2xri8ohecv\",\"toSide\":\"top\",\"bends\":[{\"x\":620,\"y\":390},{\"x\":920,\"y\":390}]}",
+      "resultSummary": "{\"id\":\"arr_veh05f7tdw\",\"from\":{\"artifactId\":\"art_gf7lvksy0i\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_2xri8ohecv\",\"side\":\"top\"},\"bends\":[{\"x\":620,\"y\":390},{\"x\":920,\"y\":390}],\"style\":{},\"createdAt\":1788217471633,\"updatedAt\":1788217471633}"
+    }
+  ],
+  "toolHistogram": {
+    "skill_get": 1,
+    "artifact_create": 12,
+    "arrow_create": 15
+  },
+  "refusals": [
+    {
+      "name": "arrow_create",
+      "why": "{\"created\":false,\"refused\":true,\"reason\":\"Стрелка крепится плашмя: выход из bottom (8°) и вход в top (8°). Нужен угол от 30° к стороне. Добавь точку изгиба в bends у этого порта и вызови тул снова. Без изгиба действие отменено.\",\"fromAngle\":8,\"toAngle\":8,\"fromSide\":\"bottom\",\"toSide\":\"top\",\"required\":30}"
+    },
+    {
+      "name": "arrow_create",
+      "why": "{\"created\":false,\"refused\":true,\"reason\":\"Стрелка крепится плашмя: выход из bottom (9°) и вход в top (9°). Нужен угол от 30° к стороне. Добавь точку изгиба в bends у этого порта и вызови тул снова. Без изгиба действие отменено.\",\"fromAngle\":9,\"toAngle\":9,\"fromSide\":\"bottom\",\"toSide\":\"top\",\"required\":30}"
+    },
+    {
+      "name": "arrow_create",
+      "why": "{\"created\":false,\"refused\":true,\"reason\":\"Стрелка крепится плашмя: выход из bottom (16°) и вход в top (16°). Нужен угол от 30° к стороне. Добавь точку изгиба в bends у этого порта и вызови тул снова. Без изгиба действие отменено.\",\"fromAngle\":16,\"toAngle\":16,\"fromSide\":\"bottom\",\"toSide\":\"top\",\"required\":30}"
+    },
+    {
+      "name": "arrow_create",
+      "why": "{\"created\":false,\"refused\":true,\"reason\":\"Стрелка крепится плашмя: выход из bottom (18°) и вход в top (18°). Нужен угол от 30° к стороне. Добавь точку изгиба в bends у этого порта и вызови тул снова. Без изгиба действие отменено.\",\"fromAngle\":18,\"toAngle\":18,\"fromSide\":\"bottom\",\"toSide\":\"top\",\"required\":30}"
+    }
+  ],
+  "errors": [
+    "LLM request failed (429): {\"error\":{\"type\":\"insufficient_balance\",\"message\":\"Estimated request cost 11.0264 exceeds available balance -15.119141.\",\"request_id\":\"53a2dd35-92f7-ee75-f2ef-e029abaccf4f\",\"code\":\"estimated_cost_exceeds_balance\"}}\n"
+  ],
+  "termination": "provider_error",
+  "restoredCheckpoint": false,
+  "answer": "Спроектирую оргструктуру как дерево сверху вниз: CEO в корне, три ветви (CTO/CPO/CFO) как отдельные смысловые группы, листья ближе к своим родителям. Начну с расстановки узлов.Все узлы созданы без наложений. Теперь соединю их стрелками с явными сторонами (сверху вниз для дерева).",
+  "boardId": "brd_ysatpln96n",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_0x0lboo5ht",
+        "type": "note",
+        "x": 1200,
+        "y": 40,
+        "width": 200,
+        "height": 100,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "CEO\nОбщее руководство компанией, стратегия и связь с советом директоров",
+          "color": "purple"
+        },
+        "createdAt": 1788217445384,
+        "updatedAt": 1788217445384
+      },
+      {
+        "id": "art_gf7lvksy0i",
+        "type": "note",
+        "x": 520,
+        "y": 240,
+        "width": 200,
+        "height": 100,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "CTO\nТехнологическая стратегия, разработка продукта и IT-инфраструктура",
+          "color": "blue"
+        },
+        "createdAt": 1788217445385,
+        "updatedAt": 1788217445385
+      },
+      {
+        "id": "art_7oppq9vqxw",
+        "type": "note",
+        "x": 1300,
+        "y": 240,
+        "width": 200,
+        "height": 100,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "CPO\nПродуктовая стратегия, дизайн и аналитика пользовательского опыта",
+          "color": "green"
+        },
+        "createdAt": 1788217445385,
+        "updatedAt": 1788217445385
+      },
+      {
+        "id": "art_ipaxyox4ou",
+        "type": "note",
+        "x": 1800,
+        "y": 240,
+        "width": 200,
+        "height": 100,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "CFO\nФинансовое управление, бюджет и отчётность",
+          "color": "yellow"
+        },
+        "createdAt": 1788217445385,
+        "updatedAt": 1788217445385
+      },
+      {
+        "id": "art_uuimqy66gz",
+        "type": "note",
+        "x": 180,
+        "y": 440,
+        "width": 200,
+        "height": 100,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "Backend-команда\nСерверная логика, API и интеграции",
+          "color": "blue"
+        },
+        "createdAt": 1788217445385,
+        "updatedAt": 1788217445385
+      },
+      {
+        "id": "art_le6t5phfuj",
+        "type": "note",
+        "x": 560,
+        "y": 440,
+        "width": 200,
+        "height": 100,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "Frontend-команда\nПользовательские интерфейсы и клиентские приложения",
+          "color": "blue"
+        },
+        "createdAt": 1788217445386,
+        "updatedAt": 1788217445386
+      },
+      {
+        "id": "art_2xri8ohecv",
+        "type": "note",
+        "x": 820,
+        "y": 440,
+        "width": 200,
+        "height": 100,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "SRE\nНадёжность, мониторинг и эксплуатация систем",
+          "color": "blue"
+        },
+        "createdAt": 1788217445386,
+        "updatedAt": 1788217445386
+      },
+      {
+        "id": "art_qldoq7fi2h",
+        "type": "note",
+        "x": 1180,
+        "y": 440,
+        "width": 200,
+        "height": 100,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "Дизайн\nUX/UI дизайн продукта и дизайн-система",
+          "color": "green"
+        },
+        "createdAt": 1788217445386,
+        "updatedAt": 1788217445386
+      },
+      {
+        "id": "art_afo5xejiai",
+        "type": "note",
+        "x": 1440,
+        "y": 440,
+        "width": 200,
+        "height": 100,
+        "z": 9,
+        "rotation": 0,
+        "props": {
+          "text": "Продуктовая аналитика\nМетрики, A/B-тесты и данные для решений",
+          "color": "green"
+        },
+        "createdAt": 1788217445386,
+        "updatedAt": 1788217445386
+      },
+      {
+        "id": "art_ijkcg39vzs",
+        "type": "note",
+        "x": 1800,
+        "y": 440,
+        "width": 200,
+        "height": 100,
+        "z": 10,
+        "rotation": 0,
+        "props": {
+          "text": "Бухгалтерия\nУчёт, налоги и финансовая отчётность",
+          "color": "yellow"
+        },
+        "createdAt": 1788217445387,
+        "updatedAt": 1788217445387
+      },
+      {
+        "id": "art_kakuqygc0u",
+        "type": "note",
+        "x": 40,
+        "y": 640,
+        "width": 200,
+        "height": 100,
+        "z": 11,
+        "rotation": 0,
+        "props": {
+          "text": "Платформа\nОбщая инфраструктура и внутренние сервисы",
+          "color": "blue"
+        },
+        "createdAt": 1788217445387,
+        "updatedAt": 1788217445387
+      },
+      {
+        "id": "art_kld2945txp",
+        "type": "note",
+        "x": 300,
+        "y": 640,
+        "width": 200,
+        "height": 100,
+        "z": 12,
+        "rotation": 0,
+        "props": {
+          "text": "Биллинг\nПлатежи, подписки и расчёты с клиентами",
+          "color": "blue"
+        },
+        "createdAt": 1788217445387,
+        "updatedAt": 1788217445387
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_e564mpvj5o",
+        "from": {
+          "artifactId": "art_0x0lboo5ht",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_7oppq9vqxw",
+          "side": "top"
+        },
+        "bends": [],
+        "style": {},
+        "createdAt": 1788217458046,
+        "updatedAt": 1788217458046
+      },
+      {
+        "id": "arr_8pqtxox2dh",
+        "from": {
+          "artifactId": "art_gf7lvksy0i",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_le6t5phfuj",
+          "side": "top"
+        },
+        "bends": [],
+        "style": {},
+        "createdAt": 1788217458051,
+        "updatedAt": 1788217458051
+      },
+      {
+        "id": "arr_ht2lhhodst",
+        "from": {
+          "artifactId": "art_7oppq9vqxw",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_qldoq7fi2h",
+          "side": "top"
+        },
+        "bends": [],
+        "style": {},
+        "createdAt": 1788217458056,
+        "updatedAt": 1788217458056
+      },
+      {
+        "id": "arr_ad4ytv7y17",
+        "from": {
+          "artifactId": "art_7oppq9vqxw",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_afo5xejiai",
+          "side": "top"
+        },
+        "bends": [],
+        "style": {},
+        "createdAt": 1788217458059,
+        "updatedAt": 1788217458059
+      },
+      {
+        "id": "arr_q5tkixqh17",
+        "from": {
+          "artifactId": "art_ipaxyox4ou",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_ijkcg39vzs",
+          "side": "top"
+        },
+        "bends": [],
+        "style": {},
+        "createdAt": 1788217458063,
+        "updatedAt": 1788217458063
+      },
+      {
+        "id": "arr_3y7c3iuqvm",
+        "from": {
+          "artifactId": "art_uuimqy66gz",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_kakuqygc0u",
+          "side": "top"
+        },
+        "bends": [],
+        "style": {},
+        "createdAt": 1788217458069,
+        "updatedAt": 1788217458069
+      },
+      {
+        "id": "arr_cvcpcmbnqt",
+        "from": {
+          "artifactId": "art_uuimqy66gz",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_kld2945txp",
+          "side": "top"
+        },
+        "bends": [],
+        "style": {},
+        "createdAt": 1788217458074,
+        "updatedAt": 1788217458074
+      },
+      {
+        "id": "arr_suu7po3qht",
+        "from": {
+          "artifactId": "art_0x0lboo5ht",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_gf7lvksy0i",
+          "side": "top"
+        },
+        "bends": [
+          {
+            "x": 1300,
+            "y": 190
+          },
+          {
+            "x": 620,
+            "y": 190
+          }
+        ],
+        "style": {},
+        "createdAt": 1788217471615,
+        "updatedAt": 1788217471615
+      },
+      {
+        "id": "arr_0uoag5szi9",
+        "from": {
+          "artifactId": "art_0x0lboo5ht",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_ipaxyox4ou",
+          "side": "top"
+        },
+        "bends": [
+          {
+            "x": 1300,
+            "y": 190
+          },
+          {
+            "x": 1900,
+            "y": 190
+          }
+        ],
+        "style": {},
+        "createdAt": 1788217471620,
+        "updatedAt": 1788217471620
+      },
+      {
+        "id": "arr_uhpapepv1s",
+        "from": {
+          "artifactId": "art_gf7lvksy0i",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_uuimqy66gz",
+          "side": "top"
+        },
+        "bends": [
+          {
+            "x": 620,
+            "y": 390
+          },
+          {
+            "x": 280,
+            "y": 390
+          }
+        ],
+        "style": {},
+        "createdAt": 1788217471626,
+        "updatedAt": 1788217471626
+      },
+      {
+        "id": "arr_veh05f7tdw",
+        "from": {
+          "artifactId": "art_gf7lvksy0i",
+          "side": "bottom"
+        },
+        "to": {
+          "artifactId": "art_2xri8ohecv",
+          "side": "top"
+        },
+        "bends": [
+          {
+            "x": 620,
+            "y": 390
+          },
+          {
+            "x": 920,
+            "y": 390
+          }
+        ],
+        "style": {},
+        "createdAt": 1788217471633,
+        "updatedAt": 1788217471633
+      }
+    ]
+  }
+}

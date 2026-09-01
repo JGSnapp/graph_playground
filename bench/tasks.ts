@@ -1,0 +1,156 @@
+/**
+ * Fixed task pool. Changing a task invalidates comparison with earlier runs, so
+ * add new ids instead of editing old ones.
+ */
+export interface SeedArtifact {
+  ref: string;
+  type: string;
+  x: number;
+  y: number;
+  width?: number;
+  height?: number;
+  props?: Record<string, unknown>;
+}
+
+export interface SeedArrow {
+  fromRef: string;
+  toRef: string;
+  fromSide?: string;
+  toSide?: string;
+  label?: string;
+}
+
+export interface BenchTask {
+  id: string;
+  /** What this task probes. Kept short — it goes into the report table. */
+  probes: string;
+  /** true when the expected output is a connected graph, not a set of cards. */
+  graph: boolean;
+  prompt: string;
+  seed?: { artifacts: SeedArtifact[]; arrows?: SeedArrow[] };
+}
+
+const note = (ref: string, x: number, y: number, text: string, color = 'blue'): SeedArtifact => ({
+  ref,
+  type: 'note',
+  x,
+  y,
+  width: 220,
+  height: 140,
+  props: { text, color },
+});
+
+export const TASKS: BenchTask[] = [
+  {
+    id: 'wiki-anime',
+    probes: 'вики по документу, чистый лист, 8-10 узлов, дерево связей',
+    graph: true,
+    prompt: `Построй на доске вики-схему по аниме «Тетрадь смерти».
+Нужны узлы: Тетрадь смерти (артефакт), Лайт Ягами, L, Рюк, Миса Амане, Ниа, Ягами Сойтиро, Японская полиция.
+Связи: Тетрадь смерти -> Лайт (нашёл), Рюк -> Тетрадь (уронил), Рюк -> Лайт (наблюдает),
+Лайт -> L (противостояние), L -> Японская полиция (работает с), Ягами Сойтиро -> Японская полиция (состоит),
+Ягами Сойтиро -> Лайт (отец), Миса -> Лайт (влюблена), Ниа -> Лайт (расследует после L), L -> Ниа (преемник).
+В каждом узле — заметка с кратким описанием.`,
+  },
+  {
+    id: 'pipeline-cicd',
+    probes: 'линейный конвейер с ветвлением, направление слева направо',
+    graph: true,
+    prompt: `Нарисуй схему CI/CD пайплайна.
+Шаги: Push в репозиторий -> Линтер -> Юнит-тесты -> Сборка образа -> Интеграционные тесты -> Деплой в staging -> Ручной аппрув -> Деплой в prod.
+Дополнительно: от Линтера и от Юнит-тестов при ошибке идёт связь в узел «Уведомление в Slack»,
+а от «Деплой в prod» идёт связь в «Мониторинг», из «Мониторинг» — откат обратно в «Деплой в staging».
+Подпиши стрелки условиями (ok / fail).`,
+  },
+  {
+    id: 'tree-org',
+    probes: 'иерархия, ветви должны держаться у своих корней',
+    graph: true,
+    prompt: `Построй оргструктуру продуктовой компании.
+CEO -> CTO, CPO, CFO.
+CTO -> Backend-команда, Frontend-команда, SRE.
+CPO -> Дизайн, Продуктовая аналитика.
+CFO -> Бухгалтерия.
+Backend-команда -> Платформа, Биллинг.
+В каждом узле — короткое описание зоны ответственности.`,
+  },
+  {
+    id: 'states-order',
+    probes: 'граф с циклами и обратными связями',
+    graph: true,
+    prompt: `Нарисуй диаграмму состояний заказа в интернет-магазине.
+Состояния: Создан, Ожидает оплаты, Оплачен, Собирается, Передан в доставку, Доставлен, Отменён, Возврат.
+Переходы: Создан -> Ожидает оплаты; Ожидает оплаты -> Оплачен (оплата прошла);
+Ожидает оплаты -> Отменён (таймаут); Оплачен -> Собирается; Собирается -> Передан в доставку;
+Передан в доставку -> Доставлен; Доставлен -> Возврат (клиент вернул); Возврат -> Отменён;
+Оплачен -> Отменён (отмена клиентом); Собирается -> Отменён (нет товара).
+Подпиши переходы.`,
+  },
+  {
+    id: 'cards-set',
+    probes: 'не граф: набор карточек, сетка и воздух',
+    graph: false,
+    prompt: `Разложи на доске 9 карточек-заметок с жанрами аниме: сёнэн, сёдзё, сэйнэн, дзёсэй, меха,
+исекай, спокон, психологический триллер, повседневность. В каждой карточке — название жанра
+и две-три строки описания с примером тайтла. Никаких связей между ними не нужно.`,
+  },
+  {
+    id: 'extend-existing',
+    probes: 'дополнение готового графа новыми узлами без ломки старого',
+    graph: true,
+    seed: {
+      artifacts: [
+        note('api', 0, 0, '## API Gateway\n\nВходная точка, маршрутизация и rate limit.', 'blue'),
+        note('auth', 400, -180, '## Auth Service\n\nВыдаёт и проверяет JWT.', 'green'),
+        note('orders', 400, 0, '## Orders Service\n\nСоздание и статусы заказов.', 'green'),
+        note('db', 800, 0, '## PostgreSQL\n\nОсновное хранилище заказов.', 'gray'),
+      ],
+      arrows: [
+        { fromRef: 'api', toRef: 'auth', fromSide: 'right', toSide: 'left' },
+        { fromRef: 'api', toRef: 'orders', fromSide: 'right', toSide: 'left' },
+        { fromRef: 'orders', toRef: 'db', fromSide: 'right', toSide: 'left' },
+      ],
+    },
+    prompt: `На доске уже есть схема сервиса. Дополни её: добавь «Payments Service» (вызывается из Orders),
+«Redis» (кэш для Auth и для Orders), «Kafka» (Orders публикует события, Payments их читает)
+и «Notification Service» (читает из Kafka и шлёт письма). Существующие блоки и связи не ломай.`,
+  },
+  {
+    id: 'next-to-occupied',
+    probes: 'новая композиция рядом с занятой зоной, без наложений',
+    graph: true,
+    seed: {
+      artifacts: [
+        note('n1', 0, 0, '## Спринт 12\n\nЗакрытые задачи команды.', 'purple'),
+        note('n2', 260, 0, '## Ретро\n\nЧто пошло не так.', 'purple'),
+        note('n3', 520, 0, '## План\n\nЧто берём в спринт 13.', 'purple'),
+        note('n4', 0, 180, '## Метрики\n\nLead time, throughput.', 'gray'),
+        note('n5', 260, 180, '## Инциденты\n\nДва P2 за спринт.', 'pink'),
+        note('n6', 520, 180, '## Долг\n\nТехдолг по биллингу.', 'gray'),
+      ],
+    },
+    prompt: `Рядом с уже занятой зоной построй отдельную схему процесса обработки инцидента:
+Алерт -> Дежурный -> Диагностика -> Митигация -> Постмортем -> Задача в бэклог.
+От Диагностики отдельная связь в «Эскалация», от Эскалации — в Митигацию.
+Существующие карточки не трогай и не перекрывай.`,
+  },
+  {
+    id: 'dense-arch',
+    probes: 'стресс: 14 узлов, плотный граф, несколько подсистем',
+    graph: true,
+    prompt: `Построй схему архитектуры стримингового сервиса.
+Узлы: Клиент (веб), Клиент (мобильный), CDN, API Gateway, Auth, Каталог, Рекомендации,
+Плеер-бэкенд, Транскодер, Хранилище видео, Метрики, Биллинг, Postgres, Kafka.
+Связи: оба клиента -> CDN и -> API Gateway; API Gateway -> Auth, Каталог, Плеер-бэкенд, Биллинг;
+Каталог -> Postgres; Биллинг -> Postgres; Auth -> Postgres; Плеер-бэкенд -> Хранилище видео;
+Транскодер -> Хранилище видео; Хранилище видео -> CDN; Плеер-бэкенд -> Kafka; Kafka -> Метрики;
+Kafka -> Рекомендации; Рекомендации -> Каталог.
+Сгруппируй по подсистемам так, чтобы схему было легко читать.`,
+  },
+];
+
+export const taskById = (id: string): BenchTask => {
+  const task = TASKS.find((item) => item.id === id);
+  if (!task) throw new Error(`Unknown task ${id}. Known: ${TASKS.map((t) => t.id).join(', ')}`);
+  return task;
+};
