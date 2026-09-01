@@ -1,0 +1,931 @@
+{
+  "exp": "E07",
+  "task": "fix-broken",
+  "repeat": 2,
+  "probes": "починка готовой плохой схемы, а не постройка с нуля",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-01T23:46:57.993Z",
+  "ms": 531069,
+  "aborted": false,
+  "screenshotsServed": 14,
+  "iterations": 50,
+  "seededArtifacts": 7,
+  "seededArrows": 8,
+  "quality": {
+    "score": 95,
+    "cost": 1.4,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 7,
+      "arrows": 8,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 4,
+      "totalLength": 5042,
+      "detour": 1.03
+    },
+    "breakdown": [
+      {
+        "reason": "стрелки идут в обход",
+        "count": 3,
+        "cost": 1.3872618533818368
+      }
+    ]
+  },
+  "observations": {
+    "artifacts": 7,
+    "arrows": 8,
+    "width": 2820,
+    "height": 560,
+    "aspect": 5.04,
+    "density": 0.14,
+    "edgeLengthMedian": 532,
+    "edgeLengthMax": 1078,
+    "edgeLengthSpread": 2.03,
+    "separation": 2.23,
+    "textOverflow": 0,
+    "alignedShare": 0.43,
+    "columnLanes": 6,
+    "rowLanes": 4,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 5042,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-120,\"width\":1360,\"height\":740},\"schema\":\"region: x=-120 y=-120 w=1360 h=740 (1 char ≈ 20x25 px)\\n\\n\\n\\n\\n\\n      +----------+                                 +----------+\\n      |n:yyd6    |                                 |n:wma2    |\\n      |          |                             ····|          |\\n  ····|··········|····                         ····|····…"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":1360,\"height\":740},\"artifacts\":[{\"id\":\"art_yyd6vb91cg\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Приём заявки\\n\\nКлиент оставляет заявку на сайте.\",\"color\":\"blue\"},\"createdAt\":1788305886758,\"updatedAt\":1788305886758},{\"id\":\"art_rjw127968g\",\"type\":\"note\",\"x\":0,\"y\":160,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0,\"pr…"
+    },
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: **ра…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"auto\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"]}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1.4,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":609,\"height\":1965},\"qualityBefore\":{\"score\":8,\"cost\":300.6,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":57,\"cost\":18.5,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":58,\"cost\":18,\"gra…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":80,\"layerSpacing\":220}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":2420,\"height\":360},\"qualityBefore\":{\"score\":57,\"cost\":18.5,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":60,\"cost\":16.8,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":60,\"cost\":16.8,\"g…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 212,
+      "args": "{\"height\":500,\"width\":2500,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":2500,\"height\":500},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":120,\"layerSpacing\":280}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":2720,\"height\":400},\"qualityBefore\":{\"score\":60,\"cost\":16.8,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":58,\"cost\":18,\"grade…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":160,\"layerSpacing\":350}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":3070,\"height\":440},\"qualityBefore\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":58,\"cost\":18,\"grade\":…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 236,
+      "args": "{\"height\":600,\"width\":3200,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3200,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":600,\"width\":3200,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3200,\"height\":600},\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":4,\"arrowOverlap\":0,\"arrowClearance\":1,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\",\"previousCost\":18,\"improvedBy\":0},\"metrics\":{\"artifacts\":7,\"arrows\":8,\"edgeN…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"groups\":[{\"id\":\"main-flow\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wma2nr8zn1\",\"art_d13b34qdau\"]},{\"id\":\"review\",\"nodeIds\":[\"art_wr5lb4pmz8\"]},{\"id\":\"reject\",\"nodeIds\":[\"art_tn2tmwbk7w\"]}],\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":100,\"layerSpacing\":300}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":2820,\"height\":434},\"qualityBefore\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":49,\"cost\":26.4,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":49,\"cost\":26.4,\"gra…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"TB\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":100,\"layerSpacing\":250}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":540,\"height\":2090},\"qualityBefore\":{\"score\":49,\"cost\":26.4,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":58,\"cost\":18.4,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"TB\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":58,\"cost\":18.4,\"g…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 216,
+      "args": "{\"height\":2200,\"width\":700,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":700,\"height\":2200},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":140,\"layerSpacing\":320}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":2920,\"height\":420},\"qualityBefore\":{\"score\":58,\"cost\":18.4,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":60,\"cost\":16.6,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":60,\"cost\":16.6,\"g…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"groups\":[{\"id\":\"start\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\"]},{\"id\":\"decisions\",\"nodeIds\":[\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_wr5lb4pmz8\"]},{\"id\":\"end\",\"nodeIds\":[\"art_d13b34qdau\"]}],\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":120,\"layerSpacing\":300}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":2820,\"height\":400},\"qualityBefore\":{\"score\":60,\"cost\":16.6,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":58,\"cost\":18,\"grade…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 280,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3000,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"clearance\":12,\"margin\":30,\"turnPenalty\":80}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_kgx64vwess\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v684ityj0b\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_g119yz6z3y\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_sr6my1w55e\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3000,\"height\":600},\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":4,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":60,\"cost\":16.7,\"grade\":\"терпимо\",\"previousCost\":16.7,\"improvedBy\":0},\"metrics\":{\"artifacts\":7,\"arrows\":8,\"e…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 223,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3000,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":200,\"layerSpacing\":400}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":3320,\"height\":480},\"qualityBefore\":{\"score\":60,\"cost\":16.7,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":64,\"cost\":14,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":64,\"cost\":14,\"grade…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"clearance\":16,\"margin\":36,\"turnPenalty\":60}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_kgx64vwess\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v684ityj0b\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_g119yz6z3y\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_sr6my1w55e\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":600,\"width\":3500,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3500,\"height\":600},\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":1,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":2},\"crossingBudget\":2,\"quality\":{\"score\":66,\"cost\":12.6,\"grade\":\"терпимо\",\"previousCost\":12.6,\"improvedBy\":0},\"metrics\":{\"artifacts\":7,\"arrows\":8,\"e…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 219,
+      "args": "{\"height\":600,\"width\":3500,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3500,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_sr6my1w55e\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_sr6my1w55e\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"top\",\"offset\":0.5},\"bends\":[],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886856,\"updatedAt\":1788306131280,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_96rnrmnq55\",\"toSide\":\"bottom\"}",
+      "resultSummary": "{\"id\":\"arr_96rnrmnq55\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":2152,\"y\":354},{\"x\":2152,\"y\":70},{\"x\":2590,\"y\":212}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886871,\"updatedAt\":1788306131281,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (9°, нужно от 30°): доба…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"arrowIds\":[\"arr_sr6my1w55e\",\"arr_96rnrmnq55\",\"arr_5ilczgapp3\",\"arr_o61tr5yko9\",\"arr_g119yz6z3y\"],\"clearance\":16,\"margin\":36}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_g119yz6z3y\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_sr6my1w55e\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_96rnrmnq55\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_o61tr5yko9\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 240,
+      "args": "{\"height\":600,\"width\":3500,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3500,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_sr6my1w55e\",\"toSide\":\"right\"}",
+      "resultSummary": "{\"id\":\"arr_sr6my1w55e\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"right\",\"offset\":0.12},\"bends\":[{\"x\":1350,\"y\":212},{\"x\":2590,\"y\":212},{\"x\":2772,\"y\":17}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886856,\"updatedAt\":1788306159722,\"autoPorts\":true,\"adjustments\":[\"Вход на art_wma2nr8zn1: сторона right уже занята концом стр…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_96rnrmnq55\",\"toSide\":\"bottom\"}",
+      "resultSummary": "{\"id\":\"arr_96rnrmnq55\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":2152,\"y\":354},{\"x\":2152,\"y\":70},{\"x\":2590,\"y\":212}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886871,\"updatedAt\":1788306159724,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (9°, нужно от 30°): доба…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"auto\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":120,\"layerSpacing\":300}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":560,\"height\":2340},\"qualityBefore\":{\"score\":37,\"cost\":42.5,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":58,\"cost\":18.4,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":58,\"cost\":18,\"grade…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 313,
+      "args": "{\"height\":2500,\"width\":700,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":700,\"height\":2500},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":160,\"layerSpacing\":350}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":3070,\"height\":440},\"qualityBefore\":{\"score\":58,\"cost\":18.4,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":60,\"cost\":16.5,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":60,\"cost\":16.5,\"g…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"clearance\":16,\"margin\":36,\"turnPenalty\":60}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_kgx64vwess\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v684ityj0b\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_g119yz6z3y\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_sr6my1w55e\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 245,
+      "args": "{\"height\":600,\"width\":3200,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3200,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_g119yz6z3y\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_g119yz6z3y\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"bottom\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"top\",\"offset\":0.5},\"bends\":[{\"x\":1250,\"y\":456},{\"x\":1820,\"y\":172}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886840,\"updatedAt\":1788306216886,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (14°, нужно от 30°): добавлен перпендикулярн…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"top\",\"id\":\"arr_sr6my1w55e\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_sr6my1w55e\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"top\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"top\",\"offset\":0.5},\"bends\":[{\"x\":1250,\"y\":172},{\"x\":1432,\"y\":314},{\"x\":1432,\"y\":70},{\"x\":2390,\"y\":-72}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886856,\"updatedAt\":1788306216887,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (4°, нужно…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_5ilczgapp3\",\"toSide\":\"left\"}",
+      "resultSummary": "{\"id\":\"arr_5ilczgapp3\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"right\",\"offset\":0.8714285714285714},\"to\":{\"artifactId\":\"art_tn2tmwbk7w\",\"side\":\"left\",\"offset\":0.4714285714285714},\"bends\":[{\"x\":1432,\"y\":414},{\"x\":2208,\"y\":414}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886888,\"updatedAt\":1788306216888,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_96rnrmnq55\",\"toSide\":\"bottom\"}",
+      "resultSummary": "{\"id\":\"arr_96rnrmnq55\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"bottom\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":1820,\"y\":456},{\"x\":2208,\"y\":314},{\"x\":2208,\"y\":70},{\"x\":2390,\"y\":212}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886871,\"updatedAt\":1788306216890,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (10°…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_o61tr5yko9\",\"toSide\":\"left\"}",
+      "resultSummary": "{\"id\":\"arr_o61tr5yko9\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"right\",\"offset\":0.7},\"to\":{\"artifactId\":\"art_tn2tmwbk7w\",\"side\":\"left\",\"offset\":0.3},\"bends\":[],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886873,\"updatedAt\":1788306216891,\"autoPorts\":true}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"clearance\":16,\"margin\":36,\"turnPenalty\":60}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_kgx64vwess\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v684ityj0b\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_g119yz6z3y\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_sr6my1w55e\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 223,
+      "args": "{\"height\":600,\"width\":3200,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3200,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"auto\",\"id\":\"arr_g119yz6z3y\",\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_g119yz6z3y\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"auto\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"auto\",\"offset\":0.5},\"bends\":[],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886840,\"updatedAt\":1788306259130,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"auto\",\"id\":\"arr_sr6my1w55e\",\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_sr6my1w55e\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"auto\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"auto\",\"offset\":0.5},\"bends\":[],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886856,\"updatedAt\":1788306259131,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"auto\",\"id\":\"arr_5ilczgapp3\",\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_5ilczgapp3\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"auto\",\"offset\":0.8714285714285714},\"to\":{\"artifactId\":\"art_tn2tmwbk7w\",\"side\":\"auto\",\"offset\":0.4714285714285714},\"bends\":[],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886888,\"updatedAt\":1788306259132,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"auto\",\"id\":\"arr_96rnrmnq55\",\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_96rnrmnq55\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"auto\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"auto\",\"offset\":0.5},\"bends\":[],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886871,\"updatedAt\":1788306259133,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"auto\",\"id\":\"arr_o61tr5yko9\",\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_o61tr5yko9\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"auto\",\"offset\":0.7},\"to\":{\"artifactId\":\"art_tn2tmwbk7w\",\"side\":\"auto\",\"offset\":0.3},\"bends\":[],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886873,\"updatedAt\":1788306259134,\"autoPorts\":true}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"direction\":\"LR\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":140,\"layerSpacing\":320}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":2920,\"height\":420},\"qualityBefore\":{\"score\":31,\"cost\":56,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":58,\"cost\":18,\"grade\":\"т…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3000,\"height\":600},\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":4,\"arrowOverlap\":0,\"arrowClearance\":1,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\",\"previousCost\":18,\"improvedBy\":0},\"metrics\":{\"artifacts\":7,\"arrows\":8,\"edgeN…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 227,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3000,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"TB\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":100,\"layerSpacing\":220}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":540,\"height\":1940},\"qualityBefore\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":57,\"cost\":18.5,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"TB\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":57,\"cost\":18.5,\"gra…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":2000,\"width\":700,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":700,\"height\":2000},\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":4,\"arrowOverlap\":0,\"arrowClearance\":1,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":57,\"cost\":18.5,\"grade\":\"терпимо\",\"previousCost\":18.5,\"improvedBy\":0},\"metrics\":{\"artifacts\":7,\"arrows\":8,\"e…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"groups\":[{\"id\":\"scoring-group\",\"nodeIds\":[\"art_maf3gckmfs\",\"art_wr5lb4pmz8\"]}],\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":120,\"layerSpacing\":300}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":2820,\"height\":400},\"qualityBefore\":{\"score\":57,\"cost\":18.5,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":60,\"cost\":16.6,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":60,\"cost\":16.6,\"g…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 228,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3000,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":3060,\"height\":640},\"artifacts\":[{\"id\":\"art_yyd6vb91cg\",\"type\":\"note\",\"x\":0,\"y\":204,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Приём заявки\\n\\nКлиент оставляет заявку на сайте.\",\"color\":\"blue\"},\"createdAt\":1788305886758,\"updatedAt\":1788306304894},{\"id\":\"art_rjw127968g\",\"type\":\"note\",\"x\":520,\"y\":204,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"top\",\"id\":\"arr_sr6my1w55e\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_sr6my1w55e\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"top\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"top\",\"offset\":0.5},\"bends\":[{\"x\":1150,\"y\":132},{\"x\":1332,\"y\":274},{\"x\":1332,\"y\":70},{\"x\":2190,\"y\":-72}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886856,\"updatedAt\":1788306341947,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (5°, нужно…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_96rnrmnq55\",\"toSide\":\"bottom\"}",
+      "resultSummary": "{\"id\":\"arr_96rnrmnq55\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"bottom\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":1670,\"y\":416},{\"x\":2008,\"y\":274},{\"x\":2008,\"y\":70},{\"x\":2190,\"y\":212}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886871,\"updatedAt\":1788306341948,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (12°…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"clearance\":16,\"margin\":36,\"turnPenalty\":60}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_kgx64vwess\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v684ityj0b\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_g119yz6z3y\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_sr6my1w55e\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 226,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":0,\"width\":3000,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_wma2nr8zn1\",\"x\":2080,\"y\":-80}",
+      "resultSummary": "{\"id\":\"art_wma2nr8zn1\",\"x\":2080,\"y\":-80,\"arrowsReset\":3,\"note\":\"Изгибы 3 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_tn2tmwbk7w\",\"x\":2080,\"y\":340}",
+      "resultSummary": "{\"id\":\"art_tn2tmwbk7w\",\"x\":2080,\"y\":340,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"top\",\"id\":\"arr_sr6my1w55e\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_sr6my1w55e\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"top\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"top\",\"offset\":0.5},\"bends\":[{\"x\":1150,\"y\":132},{\"x\":2190,\"y\":-152}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886856,\"updatedAt\":1788306381311,\"adjustments\":[\"Стрелка подходила к стороне плашмя (15°, нужно от 30°): добавлен перпендикулярный изгиб. board_rou…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_5ilczgapp3\",\"toSide\":\"bottom\"}",
+      "resultSummary": "{\"id\":\"arr_5ilczgapp3\",\"from\":{\"artifactId\":\"art_maf3gckmfs\",\"side\":\"bottom\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_tn2tmwbk7w\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":1150,\"y\":416},{\"x\":2190,\"y\":552}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886888,\"updatedAt\":1788306381313,\"adjustments\":[\"Стрелка подходила к стороне плашмя (7°, нужно от 30°): добавлен перпендикулярный изгиб. board…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"top\",\"id\":\"arr_96rnrmnq55\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_96rnrmnq55\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"top\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_wma2nr8zn1\",\"side\":\"top\",\"offset\":0.5},\"bends\":[{\"x\":1670,\"y\":132},{\"x\":2190,\"y\":-152}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886871,\"updatedAt\":1788306381314,\"adjustments\":[\"Стрелка подходила к стороне плашмя (29°, нужно от 30°): добавлен перпендикулярный изгиб. board_rou…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_o61tr5yko9\",\"toSide\":\"bottom\"}",
+      "resultSummary": "{\"id\":\"arr_o61tr5yko9\",\"from\":{\"artifactId\":\"art_wr5lb4pmz8\",\"side\":\"bottom\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_tn2tmwbk7w\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":1670,\"y\":416},{\"x\":2190,\"y\":552}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788305886873,\"updatedAt\":1788306381316,\"adjustments\":[\"Стрелка подходила к стороне плашмя (15°, нужно от 30°): добавлен перпендикулярный изгиб. boar…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"clearance\":16,\"margin\":36,\"turnPenalty\":60}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_kgx64vwess\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v684ityj0b\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_g119yz6z3y\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_sr6my1w55e\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeIds\":[\"art_yyd6vb91cg\",\"art_rjw127968g\",\"art_maf3gckmfs\",\"art_wr5lb4pmz8\",\"art_wma2nr8zn1\",\"art_tn2tmwbk7w\",\"art_d13b34qdau\"],\"nodeSpacing\":140,\"layerSpacing\":320}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":-80,\"width\":2920,\"height\":420},\"qualityBefore\":{\"score\":39,\"cost\":38.5,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":58,\"cost\":18,\"grade…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":-80}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":-80,\"width\":3000,\"height\":600},\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":4,\"arrowOverlap\":0,\"arrowClearance\":1,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":58,\"cost\":18,\"grade\":\"терпимо\",\"previousCost\":18,\"improvedBy\":0},\"metrics\":{\"artifacts\":7,\"arrows\":8,\"edg…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 251,
+      "args": "{\"height\":600,\"width\":3000,\"x\":0,\"y\":-80}",
+      "resultSummary": "{\"region\":{\"x\":0,\"y\":-80,\"width\":3000,\"height\":600},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_wr5lb4pmz8\",\"x\":1560,\"y\":280}",
+      "resultSummary": "{\"id\":\"art_wr5lb4pmz8\",\"x\":1560,\"y\":280,\"arrowsReset\":3,\"note\":\"Изгибы 3 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    }
+  ],
+  "toolHistogram": {
+    "board_get_schema": 1,
+    "board_get_region": 2,
+    "skill_get": 1,
+    "board_arrange_graph": 15,
+    "board_screenshot": 14,
+    "board_check_intersections": 6,
+    "board_route_arrows": 7,
+    "arrow_update": 20,
+    "artifact_move": 3
+  },
+  "refusals": [],
+  "errors": [
+    "Достигнут лимит 50 итераций. Выполнение остановлено; восстановлен лучший полный снимок доски (итерация 46, качество 95/100, 7 блоков, 8 связей)."
+  ],
+  "usage": {
+    "promptTokens": 1389481,
+    "completionTokens": 11207,
+    "totalTokens": 1400688,
+    "calls": 50,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 1289984
+  },
+  "termination": "iteration_limit",
+  "restoredCheckpoint": true,
+  "answer": "\n\nДавайте сначала посмотрим, что сейчас на доске, и разберёмся с ситуацией.\n\nВижу проблему: блоки слева наложены друг на друга (особенно \"Скоринг\" и \"Ручная проверка\"), а стрелки идут пучком. Это классический граф — процесс обработки заявки. Нужно прочитать скилл для графов.\n\nОтлично. У меня есть 7 узлов и 8 стрелок. Сейчас блоки налезают друг на друга. По скиллу: я не буду ничего удалять и создавать заново — просто разложу существующие узлы через `board_arrange_graph`.\n\nДавайте разберёмся с логикой схемы:\n\n**Узлы (процесс обработки заявки):**\n1. **Приём заявки** → Проверка данных\n2. **Проверка данных** → Скоринг\n3. **Скоринг** → Ручная проверка, Одобрено, Отказ\n4. **Ручная проверка** → Одобрено, Отказ\n5. **Одобрено** → Выдача\n6. **Отказ** (конечный)\n7. **Выдача** (конечный)\n\nЭто типичный пайплайн с ветвлением. Основной поток: Приём → Проверка → Скоринг → ветвление на Одобрено/Отказ/Ручная проверка.\n\nПопробую разложить через `board_arrange_graph`:\n\nУже лучше: 0 пересечений, оценка поднялась с 8 до 57. Но раскладка выбрала TB (сверху вниз), и получилось очень вытянуто — 6 слоёв, высота 1965px. Посмотрю, как это выглядит, и попробую LR (слева направо) — для процесса обработки заявки это естественнее.\n\nСудя по кандидатам, LR со spacingScale=1.9 даёт 93/100 — отлично! Давайте попробуем LR с увеличенным воздухом:\n\nХм, LR дал 60, а не 93, как в кандидатах. Видимо, потому что я не передал spacingScale=1.9. Давайте попробуем с увеличенным масштабом и посмотрим на результат:\n\n\n\nВижу, что раскладка LR получилась, но блоки стоят очень плотно друг к другу, и стрелки местами идут впритык. Давайте попробуем с увеличенным spacingScale, как в кандидате, который давал 93 балла:\n\nИнтересно — кандидат spacingScale=1.9 даёт 98 баллов! Давайте попробуем именно с этим параметром. В туле нет прямого параметра spacingScale, но nodeSpacing и layerSpacing влияют на него. Попробую передать большие значения:\n\n\n\nВижу, что кандидаты показывают 98 баллов при spacingScale=1.4, но применяется spacingScale=1. Похоже, тул сам выбирает масштаб. Давайте посмотрим на текущее состояние и проверим пересечения:\n\n\n\nТеперь вижу картину. Раскладка LR получилась, но есть 4 пересечения стрелок. Проблема в том, что из \"Скоринга\" идут стрелки в 3 направления, и они пересекаются. Давайте попробуем разложить с группами — \"Ручная проверка\" логически связана со \"Скорингом\" как подветка. И попробуем увеличить воздух:\n\n\n\n\n\nС группами стало хуже. Давайте вернёмся к предыдущей раскладке LR без групп, но попробуем другой подход — разложим в TB (сверху вниз), это тоже естественно для процесса:\n\n\n\n\n\nTB даёт 58, как и LR. Давайте посмотрим на скриншот TB и сравним:\n\n\n\n\n\n\n\nTB получился очень вытянутым. Давайте вернёмся к LR — для процесса обработки заявки это естественнее (читается слева направо). Попробую ещё раз LR с увеличенным воздухом, чтобы стрелки не пересекались:\n\n\n\n\n\n60 баллов. Кандидаты показывают, что при spacingScale=1.9 можно получить 85 баллов. Проблема в том, что тул применяет spacingScale=1 независимо от моих параметров. Давайте попробуем другой подход — разложу вручную, задав конкретные группы, чтобы \"Ручная проверка\" и \"Скоринг\" были рядом, а \"Одобрено\" и \"Отказ\" — на одном уровне:\n\n\n\n\n\nДавайте посмотрим на текущее состояние и попробуем ещё раз LR с максимальным воздухом, который даёт кандидат с 85 баллами:\n\n\n\n\n\n\n\n\n\nХорошо, вижу текущее состояние. Проблема в том, что из \"Скоринга\" (третий блок) идут стрелки в трёх направлениях, и они пересекаются со стрелками из \"Ручной проверки\". Давайте попробуем переложить стрелки через роутер, чтобы он их развёл:\n\n\n\n\n\nРоутер добавил изгибы, но пересечения стрелок остались (4). Давайте проверим:\n\n\n\n\n\n4 пересечения. Давайте посмотрим на скриншот, чтобы понять геометрию:\n\n\n\n\n\n\n\n\n\nВижу проблему. Стрелки из \"Скоринга\" (третий блок) идут в трёх направлениях: в \"Ручную проверку\" (вниз), в \"Одобрено\" (вправо-вверх) и в \"Отказ\" (вправо-вниз). Они пересекаются со стрелками из \"Ручной проверки\".\n\nДавайте попробуем другой подход — разложу граф заново, но с явным указанием сторон для стрелок, чтобы развести потоки. Но по скиллу так делать не рекомендуется. Вместо этого попробую ещё раз `board_arrange_graph` с большим `nodeSpacing` и `layerSpacing`, чтобы дать роутеру больше места для манёвра:\n\n\n\n\n\n\n\n\n\n\n\n64 балла, кандидаты показывают 85 при spacingScale=1.4 и 1.9. Давайте попробуем переложить стрелки после этой расстановки:\n\n\n\n\n\n\n\n\n\n\n\nУже лучше! Осталось 1 пересечение и 2 коротких ребра. Давайте проверим:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nОсталось 1 пересечение и 2 коротких ребра у стрелки `arr_sr6my1w55e` (Скоринг → Одобрено). Давайте посмотрим на скриншот:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВижу, что стрелка из \"Скоринга\" в \"Одобрено\" (arr_sr6my1w55e) делает два изгиба и пересекается со стрелкой из \"Ручной проверки\" в \"Одобрено\" (arr_96rnrmnq55). Проблема в том, что обе стрелки идут в один и тот же блок \"Одобрено\" с разных сторон.\n\nДавайте попробуем починить это, задав конкретные стороны для проблемных стрелок. Стрелка из \"Скоринга\" в \"Одобрено\" и из \"Ручной проверки\" в \"Одобрено\" — пусть одна входит сверху, другая снизу:\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь переложим стрелки через роутер, чтобы он проложил их с учётом новых сторон:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВсё ещё 1 пересечение. Давайте посмотрим на скриншот и попробуем другой подход — пусть стрелка из \"Скоринга\" в \"Одобрено\" идёт через верх, а из \"Ручной проверки\" — напрямую:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВижу, что стрелка из \"Скоринга\" в \"Одобрено\" (arr_sr6my1w55e) идёт вверх, а из \"Ручной проверки\" в \"Одобрено\" (arr_96rnrmnq55) — тоже вверх, и они пересекаются. Давайте попробуем поменять стороны: пусть \"Скоринг → Одобрено\" входит справа, а \"Ручная проверка → Одобрено\" — снизу:\n\n\n\n\n\n\n\n\n\n\n\n\n\nПравая сторона \"Одобрено\" уже занята стрелкой в \"Выдачу\". Давайте вернёмся к исходным настройкам и попробуем другой подход — разложу граф заново с direction=auto, чтобы он сам выбрал лучшее направление:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAuto выбрал TB. Давайте посмотрим на скриншот:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTB получился очень вытянутым. Давайте вернёмся к LR — для процесса обработки заявки слева направо читается гораздо естественнее. Попробую ещё раз LR с большим воздухом и затем роутер:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nХорошо. Давайте теперь переложим стрелки через роутер и посмотрим, что получится:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4 пересечения. Давайте посмотрим на скриншот:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВижу проблему. Стрелки из \"Скоринга\" (третий блок) идут в трёх направлениях, и они пересекаются. Давайте попробуем задать конкретные стороны для проблемных стрелок, чтобы развести потоки:\n\n1. **Скоринг → Ручная проверка** (arr_g119yz6z3y) — пусть идёт снизу\n2. **Скоринг → Одобрено** (arr_sr6my1w55e) — пусть идёт сверху (огибая)\n3. **Скоринг → Отказ** (arr_5ilczgapp3) — пусть идёт по центру (прямо)\n\nА из \"Ручной проверки\":\n4. **Ручная проверка → Одобрено** (arr_96rnrmnq55) — снизу\n5. **Ручная проверка → Отказ** (arr_o61tr5yko9) — прямо\n\n\n\n\n\n\n\n\n\n\n\nТеперь переложим все стрелки через роутер, чтобы он проложил их с учётом новых сторон:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВсё ещё 4 пересечения. Давайте посмотрим на скриншот:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВижу, что стрелки всё ещё пересекаются. Проблема в том, что \"Скоринг\" и \"Ручная проверка\" стоят на разных слоях, и стрелки из них перекрещиваются. Давайте попробуем вернуться к автоматической раскладке, но сбросив все ручные настройки сторон — пусть раскладка сама выберет оптимальные стороны:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь все стрелки на auto. Давайте разложим граф заново:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nДавайте посмотрим на результат и проверим пересечения:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВижу проблему. У нас 6 слоёв, и \"Скоринг\" (слой 3) соединён с \"Ручной проверкой\" (слой 4), \"Одобрено\" (слой 5) и \"Отказ\" (слой 5). А \"Ручная проверка\" (слой 4) тоже соединена с \"Одобрено\" и \"Отказом\" (слой 5). Это создаёт пересечения.\n\nПроблема в том, что раскладка размещает \"Ручную проверку\" между \"Скорингом\" и \"Одобрено/Отказом\", и стрелки из \"Скоринга\" в \"Одобрено/Отказ\" проходят через/над \"Ручной проверкой\".\n\nДавайте попробуем другой подход — разложим граф с direction=TB (сверху вниз). При TB \"Ручная проверка\" встанет под \"Скорингом\", а \"Одобрено\" и \"Отказ\" — правее, и стрелки не будут пересекаться:\n\n\n\n\n\n\n\n\n\n\n\n\n\nДавайте проверим пересечения при TB:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВ TB тоже 4 пересечения. Проблема фундаментальная: у нас граф, где из одного узла (Скоринг) идут стрелки в три разных узла на разных слоях, и эти стрелки неизбежно пересекаются со стрелками из дочернего узла (Ручная проверка).\n\nДавайте попробуем решить это через группы — объединим \"Скоринг\" и \"Ручную проверку\" в одну группу, чтобы они стояли рядом:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nДавайте посмотрим на результат:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nХорошо, вижу. \"Скоринг\" и \"Ручная проверка\" стоят рядом (в одной группе), но стрелки всё равно пересекаются. Давайте попробуем задать конкретные стороны для стрелок, чтобы развести потоки:\n\n1. **Скоринг → Ручная проверка** — пусть идёт напрямую (снизу вверх или сверху вниз)\n2. **Скоринг → Одобрено** — пусть идёт сверху\n3. **Скоринг → Отказ** — пусть идёт снизу\n4. **Ручная проверка → Одобрено** — пусть идёт сверху\n5. **Ручная проверка → Отказ** — пусть идёт снизу\n\nТаким образом, стрелки из \"Скоринга\" в \"Одобрено\" и из \"Ручной проверки\" в \"Одобрено\" будут на разных уровнях.\n\nДавайте сначала посмотрим на текущие координаты:\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь я вижу точные координаты. Сейчас блоки стоят в ряд:\n- Приём (0,204) → Проверка (520,204) → Скоринг (1040,204) → Ручная проверка (1560,204)\n- Одобрено (2080,0) и Отказ (2080,260) — на одном уровне x\n- Выдача (2600,0)\n\nПроблема: стрелки из \"Скоринга\" в \"Одобрено\" и из \"Ручной проверки\" в \"Одобрено\" идут вверх и пересекаются. Давайте попробуем задать стороны так, чтобы развести потоки:\n\n- **Скоринг → Одобрено**: пусть идёт через верх (top Скоринга → top Одобрено)\n- **Ручная проверка → Одобрено**: пусть идёт через низ (bottom Ручной проверки → bottom Одобрено)\n- **Скоринг → Отказ**: пусть идёт напрямую (right → left)\n- **Ручная проверка → Отказ**: пусть идёт напрямую (right → left)\n- **Скоринг → Ручная проверка**: напрямую (right → left)\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь переложим все стрелки через роутер:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВсё ещё 4 пересечения. Давайте посмотрим на скриншот:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВижу, что стрелка из \"Скоринга\" в \"Одобрено\" (через верх) и из \"Ручной проверки\" в \"Одобрено\" (через низ) всё равно пересекаются, потому что они обе идут к \"Одобрено\" и встречаются на подходе.\n\nДавайте попробуем другой подход — расположим \"Одобрено\" и \"Отказ\" не на одном уровне, а \"Одобрено\" выше, а \"Отказ\" ниже, и пустим стрелки по разным маршрутам. Для этого зададим конкретные стороны:\n\n- **Скоринг → Одобрено**: right → top (вход сверху)\n- **Скоринг → Отказ**: right → bottom (вход снизу)\n- **Ручная проверка → Одобрено**: right → top (вход сверху, но другим портом)\n- **Ручная проверка → Отказ**: right → bottom (вход снизу, другим портом)\n\nНо для этого нужно, чтобы \"Одобрено\" и \"Отказ\" были на разных y. Сейчас они на y=0 и y=260. Давайте сдвинем \"Одобрено\" выше, а \"Отказ\" ниже, чтобы создать больше вертикального пространства:\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь зададим стороны для стрелок:\n\n- **Скоринг → Одобрено**: top → top (через верх)\n- **Скоринг → Отказ**: bottom → bottom (через низ)\n- **Ручная проверка → Одобрено**: top → top (через верх, но другим путём)\n- **Ручная проверка → Отказ**: bottom → bottom (через низ)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь переложим все стрелки через роутер:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nСтало хуже — 7 пересечений. Давайте вернёмся к исходной раскладке LR без ручных правок сторон. Сброшу всё и попробую ещё раз:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nДавайте посмотрим на результат и проверим пересечения:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nХорошо, вижу. У нас 4 пересечения, и они все связаны с тем, что из \"Скоринга\" и \"Ручной проверки\" идут стрелки в одни и те же узлы (\"Одобрено\" и \"Отказ\"). \n\nДавайте попробуем решить проблему иначе — сдвинем \"Ручную проверку\" ниже, чтобы стрелки из \"Скоринга\" в \"Одобрено\" проходили над ней, а стрелки из \"Ручной проверки\" — под ней. Для этого я вручную сдвину \"Ручную проверку\" ниже:\n\n\n\n\n\n\n\n\n\n\n\n",
+  "boardId": "brd_b3xgw37gp7",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_yyd6vb91cg",
+        "type": "note",
+        "x": 0,
+        "y": 204,
+        "width": 220,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "## Приём заявки\n\nКлиент оставляет заявку на сайте.",
+          "color": "blue"
+        },
+        "createdAt": 1788305886758,
+        "updatedAt": 1788306304894
+      },
+      {
+        "id": "art_rjw127968g",
+        "type": "note",
+        "x": 520,
+        "y": 204,
+        "width": 220,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "## Проверка данных\n\nАвтоматическая валидация полей.",
+          "color": "blue"
+        },
+        "createdAt": 1788305886776,
+        "updatedAt": 1788306304894
+      },
+      {
+        "id": "art_maf3gckmfs",
+        "type": "note",
+        "x": 1040,
+        "y": 204,
+        "width": 220,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "## Скоринг\n\nОценка риска по модели.",
+          "color": "blue"
+        },
+        "createdAt": 1788305886781,
+        "updatedAt": 1788306304894
+      },
+      {
+        "id": "art_wr5lb4pmz8",
+        "type": "note",
+        "x": 1560,
+        "y": 204,
+        "width": 220,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "## Ручная проверка\n\nАналитик смотрит спорные случаи.",
+          "color": "pink"
+        },
+        "createdAt": 1788305886793,
+        "updatedAt": 1788306304894
+      },
+      {
+        "id": "art_wma2nr8zn1",
+        "type": "note",
+        "x": 2080,
+        "y": -80,
+        "width": 220,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "## Одобрено\n\nЗаявка уходит в выдачу.",
+          "color": "green"
+        },
+        "createdAt": 1788305886795,
+        "updatedAt": 1788306367620
+      },
+      {
+        "id": "art_tn2tmwbk7w",
+        "type": "note",
+        "x": 2080,
+        "y": 340,
+        "width": 220,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "## Отказ\n\nКлиент получает уведомление.",
+          "color": "gray"
+        },
+        "createdAt": 1788305886809,
+        "updatedAt": 1788306367621
+      },
+      {
+        "id": "art_d13b34qdau",
+        "type": "note",
+        "x": 2600,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "## Выдача\n\nПеревод средств клиенту.",
+          "color": "green"
+        },
+        "createdAt": 1788305886811,
+        "updatedAt": 1788306304894
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_kgx64vwess",
+        "from": {
+          "artifactId": "art_yyd6vb91cg",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_rjw127968g",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788305886813,
+        "updatedAt": 1788306346644,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_v684ityj0b",
+        "from": {
+          "artifactId": "art_rjw127968g",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_maf3gckmfs",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788305886824,
+        "updatedAt": 1788306346644,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_g119yz6z3y",
+        "from": {
+          "artifactId": "art_maf3gckmfs",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_wr5lb4pmz8",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788305886840,
+        "updatedAt": 1788306346644,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_sr6my1w55e",
+        "from": {
+          "artifactId": "art_maf3gckmfs",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_wma2nr8zn1",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1150,
+            "y": 132
+          },
+          {
+            "x": 2190,
+            "y": -152
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788305886856,
+        "updatedAt": 1788306381311
+      },
+      {
+        "id": "arr_96rnrmnq55",
+        "from": {
+          "artifactId": "art_wr5lb4pmz8",
+          "side": "right"
+        },
+        "to": {
+          "artifactId": "art_wma2nr8zn1",
+          "side": "left"
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788305886871,
+        "updatedAt": 1788306367620
+      },
+      {
+        "id": "arr_o61tr5yko9",
+        "from": {
+          "artifactId": "art_wr5lb4pmz8",
+          "side": "right"
+        },
+        "to": {
+          "artifactId": "art_tn2tmwbk7w",
+          "side": "left"
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788305886873,
+        "updatedAt": 1788306367621
+      },
+      {
+        "id": "arr_5ilczgapp3",
+        "from": {
+          "artifactId": "art_maf3gckmfs",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_tn2tmwbk7w",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1150,
+            "y": 416
+          },
+          {
+            "x": 2190,
+            "y": 552
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788305886888,
+        "updatedAt": 1788306381313
+      },
+      {
+        "id": "arr_lx2jrack6v",
+        "from": {
+          "artifactId": "art_wma2nr8zn1",
+          "side": "right"
+        },
+        "to": {
+          "artifactId": "art_d13b34qdau",
+          "side": "left"
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788305886903,
+        "updatedAt": 1788306367620
+      }
+    ]
+  }
+}

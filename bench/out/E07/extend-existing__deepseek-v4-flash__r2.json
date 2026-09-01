@@ -1,0 +1,1438 @@
+{
+  "exp": "E07",
+  "task": "extend-existing",
+  "repeat": 2,
+  "probes": "дополнение готового графа новыми узлами без ломки старого",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-01T23:57:08.166Z",
+  "ms": 609738,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 50,
+  "seededArtifacts": 4,
+  "seededArrows": 3,
+  "quality": {
+    "score": 53,
+    "cost": 22.2,
+    "grade": "терпимо",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 4,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 1
+    },
+    "metrics": {
+      "artifacts": 8,
+      "arrows": 9,
+      "edgeNodeHits": 0,
+      "crossings": 4,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 8,
+      "totalLength": 8785,
+      "detour": 1.04
+    },
+    "breakdown": [
+      {
+        "reason": "пересечения стрелок",
+        "count": 4,
+        "cost": 16
+      },
+      {
+        "reason": "стрелки идут в обход",
+        "count": 4,
+        "cost": 2.1678855365629697
+      },
+      {
+        "reason": "слишком короткое ребро",
+        "count": 1,
+        "cost": 4
+      }
+    ]
+  },
+  "observations": {
+    "artifacts": 8,
+    "arrows": 9,
+    "width": 2549,
+    "height": 635,
+    "aspect": 4.01,
+    "density": 0.15,
+    "edgeLengthMedian": 696,
+    "edgeLengthMax": 2236,
+    "edgeLengthSpread": 3.21,
+    "separation": 1.17,
+    "textOverflow": 0,
+    "alignedShare": 0.31,
+    "columnLanes": 7,
+    "rowLanes": 5,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 8785,
+  "ok": false,
+  "findings": [
+    {
+      "kind": "arrow_short_edge",
+      "arrowId": "arr_ellz7hzdnj",
+      "length": 8,
+      "required": 24,
+      "note": "Стрелка arr_ellz7hzdnj: ребро 8px короче минимума 24px (между сгибами или концами)."
+    },
+    {
+      "kind": "arrow_arrow",
+      "arrowAId": "arr_h57368r7ar",
+      "arrowBId": "arr_ahlzpu6cbi",
+      "point": {
+        "x": 477,
+        "y": -267
+      },
+      "angle": 90,
+      "shallow": false,
+      "note": "Стрелки arr_h57368r7ar и arr_ahlzpu6cbi пересекаются в (477, -267) под углом 90°."
+    },
+    {
+      "kind": "arrow_arrow",
+      "arrowAId": "arr_zw09osdbqu",
+      "arrowBId": "arr_ahlzpu6cbi",
+      "point": {
+        "x": 477,
+        "y": -290
+      },
+      "angle": 90,
+      "shallow": false,
+      "note": "Стрелки arr_zw09osdbqu и arr_ahlzpu6cbi пересекаются в (477, -290) под углом 90°."
+    },
+    {
+      "kind": "arrow_arrow",
+      "arrowAId": "arr_ibjzpfiq32",
+      "arrowBId": "arr_nh6j5us7it",
+      "point": {
+        "x": 1432,
+        "y": 40
+      },
+      "angle": 90,
+      "shallow": false,
+      "note": "Стрелки arr_ibjzpfiq32 и arr_nh6j5us7it пересекаются в (1432, 40) под углом 90°."
+    },
+    {
+      "kind": "arrow_arrow",
+      "arrowAId": "arr_ibjzpfiq32",
+      "arrowBId": "arr_nh6j5us7it",
+      "point": {
+        "x": 1432,
+        "y": 40
+      },
+      "angle": 90,
+      "shallow": false,
+      "note": "Стрелки arr_ibjzpfiq32 и arr_nh6j5us7it пересекаются в (1432, 40) под углом 90°."
+    }
+  ],
+  "toolCalls": [
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-300,\"width\":1260,\"height\":560},\"artifacts\":[{\"id\":\"art_wndirj0j49\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## API Gateway\\n\\nВходная точка, маршрутизация и rate limit.\",\"color\":\"blue\"},\"createdAt\":1788306418301,\"updatedAt\":1788306418301},{\"id\":\"art_6m2mpx4k12\",\"type\":\"note\",\"x\":400,\"y\":-180,\"width\":220,\"height\":140,\"z\":2,\"rota…"
+    },
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: **ра…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":800,\"y\":-180,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Payments Service\\n\\nОбработка платежей,\\nвызывается из Orders.\",\"color\":\"green\"}}",
+      "resultSummary": "{\"id\":\"art_08r2g6ey2a\",\"type\":\"note\",\"x\":800,\"y\":-180,\"width\":220,\"height\":140,\"z\":5,\"rotation\":0,\"props\":{\"text\":\"## Payments Service\\n\\nОбработка платежей,\\nвызывается из Orders.\",\"color\":\"green\"},\"createdAt\":1788306447542,\"updatedAt\":1788306447542}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":0,\"y\":-300,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\",\"color\":\"pink\"}}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"type\":\"note\",\"x\":0,\"y\":-300,\"width\":220,\"height\":140,\"z\":6,\"rotation\":0,\"props\":{\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\",\"color\":\"pink\"},\"createdAt\":1788306447543,\"updatedAt\":1788306447543}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":800,\"y\":-360,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Kafka\\n\\nОчередь событий.\\nOrders → публикует,\\nPayments → читает.\",\"color\":\"purple\"}}",
+      "resultSummary": "{\"id\":\"art_u2qoyvc6fe\",\"type\":\"note\",\"x\":800,\"y\":-360,\"width\":220,\"height\":140,\"z\":7,\"rotation\":0,\"props\":{\"text\":\"## Kafka\\n\\nОчередь событий.\\nOrders → публикует,\\nPayments → читает.\",\"color\":\"purple\"},\"createdAt\":1788306447544,\"updatedAt\":1788306447544}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":800,\"y\":180,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Notification Service\\n\\nЧитает из Kafka,\\nшлёт письма.\",\"color\":\"green\"}}",
+      "resultSummary": "{\"id\":\"art_pydm0upj50\",\"type\":\"note\",\"x\":800,\"y\":180,\"width\":220,\"height\":140,\"z\":8,\"rotation\":0,\"props\":{\"text\":\"## Notification Service\\n\\nЧитает из Kafka,\\nшлёт письма.\",\"color\":\"green\"},\"createdAt\":1788306447545,\"updatedAt\":1788306447545}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_0wvmige1io\",\"toId\":\"art_08r2g6ey2a\",\"label\":\"вызов платежа\"}",
+      "resultSummary": "{\"id\":\"arr_h57368r7ar\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"auto\"},\"bends\":[],\"label\":\"вызов платежа\",\"style\":{},\"createdAt\":1788306463274,\"updatedAt\":1788306463274}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_swnpwxv0lp\",\"toId\":\"art_6m2mpx4k12\",\"label\":\"кэш сессий\"}",
+      "resultSummary": "{\"id\":\"arr_zw09osdbqu\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_6m2mpx4k12\",\"side\":\"auto\"},\"bends\":[],\"label\":\"кэш сессий\",\"style\":{},\"createdAt\":1788306463275,\"updatedAt\":1788306463275}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_swnpwxv0lp\",\"toId\":\"art_0wvmige1io\",\"label\":\"кэш заказов\"}",
+      "resultSummary": "{\"id\":\"arr_ahlzpu6cbi\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"top\"},\"bends\":[{\"x\":110,\"y\":-88},{\"x\":510,\"y\":-32}],\"label\":\"кэш заказов\",\"style\":{},\"createdAt\":1788306463278,\"updatedAt\":1788306463278,\"adjustments\":[\"Стрелка подходила к стороне плашмя (22°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_arrange…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_0wvmige1io\",\"toId\":\"art_u2qoyvc6fe\",\"label\":\"публикует события\"}",
+      "resultSummary": "{\"id\":\"arr_sc1473cbdp\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"top\",\"offset\":0.12},\"to\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"bottom\"},\"bends\":[{\"x\":426,\"y\":-32},{\"x\":910,\"y\":-188}],\"label\":\"публикует события\",\"style\":{},\"createdAt\":1788306463280,\"updatedAt\":1788306463280,\"adjustments\":[\"Выход на art_0wvmige1io: сторона top уже занята концом стрелки arr_ahlzpu6cbi, порт сдвинут на offset=0.…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_u2qoyvc6fe\",\"toId\":\"art_08r2g6ey2a\",\"label\":\"читает события\"}",
+      "resultSummary": "{\"id\":\"arr_ibjzpfiq32\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"bottom\",\"offset\":0.12},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"top\"},\"bends\":[{\"x\":826,\"y\":-188},{\"x\":910,\"y\":-212}],\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463282,\"updatedAt\":1788306463282,\"adjustments\":[\"Выход на art_u2qoyvc6fe: сторона bottom уже занята концом стрелки arr_sc1473cbdp, порт сдвинут на offset=0…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_u2qoyvc6fe\",\"toId\":\"art_pydm0upj50\",\"label\":\"читает события\"}",
+      "resultSummary": "{\"id\":\"arr_nh6j5us7it\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"bottom\",\"offset\":0.12},\"to\":{\"artifactId\":\"art_pydm0upj50\",\"side\":\"top\"},\"bends\":[],\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463285,\"updatedAt\":1788306463285,\"adjustments\":[\"Выход на art_u2qoyvc6fe: сторона bottom уже занята концом стрелки arr_sc1473cbdp, порт сдвинут на offset=0.12.\"]}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"lockIds\":[\"art_wndirj0j49\",\"art_6m2mpx4k12\",\"art_0wvmige1io\",\"art_6v10y395s6\"],\"direction\":\"auto\",\"nodeSpacing\":80,\"layerSpacing\":220}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1.9,\"layers\":4,\"layerSizes\":[2,2,3,2],\"crossings\":1,\"crossingsBefore\":2,\"reversedEdges\":0,\"moved\":8,\"bounds\":{\"x\":-465,\"y\":0,\"width\":1336,\"height\":1814},\"qualityBefore\":{\"score\":20,\"cost\":102.8,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":51,\"cost\":24.5,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":1,\"quality\":{\"score\":32,\"cost\":53.4,\"…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-585,\"y\":-120,\"width\":1576,\"height\":2054},\"schema\":\"region: x=-585 y=-120 w=1576 h=2054 (1 char ≈ 23x68 px)\\n\\n\\n                         +---------+     +---------+\\n                      ···|n:wndi   |···  |n:swnp   |\\n                      ·  +---------+  ·  +---------+\\n                      ·               ·       · ·\\n                      ·               ·   …"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_wndirj0j49\",\"x\":0,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_wndirj0j49\",\"x\":0,\"y\":0}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6m2mpx4k12\",\"x\":400,\"y\":-180}",
+      "resultSummary": "{\"id\":\"art_6m2mpx4k12\",\"x\":400,\"y\":-180,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "refused",
+      "refused": true,
+      "ms": 0,
+      "args": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0}",
+      "resultSummary": "{\"moved\":false,\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_swnpwxv0lp («Redis»). Если так и задумано — вызови тул снова с acceptOverlap=true (наложение останется на твоей ответственности). Иначе выбери другие x, y.\",\"overlapping\":[{\"id\":\"art_swnpwxv0lp\",\"caption\":\"Redis\",\"x\":372,\"y\":0}]}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6v10y395s6\",\"x\":800,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_6v10y395s6\",\"x\":800,\"y\":0,\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-300,\"width\":1260,\"height\":2234},\"artifacts\":[{\"id\":\"art_wndirj0j49\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## API Gateway\\n\\nВходная точка, маршрутизация и rate limit.\",\"color\":\"blue\"},\"createdAt\":1788306418301,\"updatedAt\":1788306492451},{\"id\":\"art_6m2mpx4k12\",\"type\":\"note\",\"x\":400,\"y\":-180,\"width\":220,\"height\":140,\"z\":2,\"rot…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0,\"acceptOverlap\":true}",
+      "resultSummary": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0,\"arrowsReset\":4,\"note\":\"Изгибы 4 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swnpwxv0lp\",\"x\":400,\"y\":-360}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"x\":400,\"y\":-360}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_08r2g6ey2a\",\"x\":800,\"y\":-180}",
+      "resultSummary": "{\"id\":\"art_08r2g6ey2a\",\"x\":800,\"y\":-180,\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":180}",
+      "resultSummary": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":180,\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":360}",
+      "resultSummary": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":360}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-360}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-360}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swnpwxv0lp\",\"x\":400,\"y\":-360,\"acceptOverlap\":true}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"x\":400,\"y\":-360}"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-480,\"width\":1260,\"height\":1100},\"artifacts\":[{\"id\":\"art_wndirj0j49\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## API Gateway\\n\\nВходная точка, маршрутизация и rate limit.\",\"color\":\"blue\"},\"createdAt\":1788306418301,\"updatedAt\":1788306492451},{\"id\":\"art_6m2mpx4k12\",\"type\":\"note\",\"x\":400,\"y\":-180,\"width\":220,\"height\":140,\"z\":2,\"rot…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vjlju1ze33\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vb28q08snd\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-480,\"width\":1260,\"height\":1100},\"schema\":\"region: x=-120 y=-480 w=1260 h=1100 (1 char ≈ 19x37 px)\\n\\n\\n\\n                            +-----------+\\n                            |n:swnp     |\\n                        ····|           |\\n                        ·   |           |\\n                        ·   +-----------+\\n                        ·   +---------…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_h57368r7ar\",\"fromSide\":\"right\",\"toSide\":\"left\",\"label\":\"вызов платежа\"}",
+      "resultSummary": "{\"id\":\"arr_h57368r7ar\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"left\",\"offset\":0.5},\"bends\":[{\"x\":692,\"y\":70},{\"x\":692,\"y\":-110}],\"routing\":\"orthogonal\",\"label\":\"вызов платежа\",\"style\":{},\"createdAt\":1788306463274,\"updatedAt\":1788306558455,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ahlzpu6cbi\",\"fromSide\":\"bottom\",\"toSide\":\"top\",\"label\":\"кэш заказов\"}",
+      "resultSummary": "{\"id\":\"arr_ahlzpu6cbi\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"bottom\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"top\",\"offset\":0.12},\"bends\":[{\"x\":510,\"y\":-188},{\"x\":328,\"y\":-290},{\"x\":328,\"y\":17},{\"x\":426,\"y\":-32}],\"routing\":\"orthogonal\",\"label\":\"кэш заказов\",\"style\":{},\"createdAt\":1788306463278,\"updatedAt\":1788306558458,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к с…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ibjzpfiq32\",\"fromSide\":\"right\",\"toSide\":\"bottom\",\"label\":\"читает события\"}",
+      "resultSummary": "{\"id\":\"arr_ibjzpfiq32\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":728,\"y\":250},{\"x\":728,\"y\":-110},{\"x\":910,\"y\":-8}],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463282,\"updatedAt\":1788306558460,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"arrowIds\":[\"arr_h57368r7ar\",\"arr_ahlzpu6cbi\",\"arr_ibjzpfiq32\"]}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_ahlzpu6cbi\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_ibjzpfiq32\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1}],\"skipped\":[],\"variantsTried\":3,\"crowded\":[],\"hooks\":[],\"warnings\":[],\"qualityBefore\":…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-480,\"width\":1260,\"height\":1100},\"schema\":\"region: x=-120 y=-480 w=1260 h=1100 (1 char ≈ 19x37 px)\\n\\n\\n\\n                            +-----------+\\n                            |n:swnp     |\\n                            |           |····\\n                            |           |   ·\\n                            +-----------+   ·\\n                          …"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_h57368r7ar\",\"fromSide\":\"auto\",\"toSide\":\"auto\",\"fromOffset\":-1,\"toOffset\":-1}",
+      "resultSummary": "{\"id\":\"arr_h57368r7ar\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"auto\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"вызов платежа\",\"style\":{},\"createdAt\":1788306463274,\"updatedAt\":1788306585477,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ahlzpu6cbi\",\"fromSide\":\"auto\",\"toSide\":\"auto\",\"fromOffset\":-1,\"toOffset\":-1}",
+      "resultSummary": "{\"id\":\"arr_ahlzpu6cbi\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"right\",\"offset\":0.12},\"bends\":[{\"x\":692,\"y\":-290},{\"x\":692,\"y\":17}],\"routing\":\"orthogonal\",\"label\":\"кэш заказов\",\"style\":{},\"createdAt\":1788306463278,\"updatedAt\":1788306585480,\"autoPorts\":true,\"adjustments\":[\"Вход на art_0wvmige1io: сторона right уже занята концом с…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ibjzpfiq32\",\"fromSide\":\"auto\",\"toSide\":\"auto\",\"fromOffset\":-1,\"toOffset\":-1}",
+      "resultSummary": "{\"id\":\"arr_ibjzpfiq32\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"auto\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463282,\"updatedAt\":1788306585483,\"autoPorts\":true}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vjlju1ze33\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vb28q08snd\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-360}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-360,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6m2mpx4k12\",\"x\":100,\"y\":-180}",
+      "resultSummary": "{\"id\":\"art_6m2mpx4k12\",\"x\":100,\"y\":-180,\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6v10y395s6\",\"x\":800,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_6v10y395s6\",\"x\":800,\"y\":0}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_08r2g6ey2a\",\"x\":800,\"y\":-180}",
+      "resultSummary": "{\"id\":\"art_08r2g6ey2a\",\"x\":800,\"y\":-180}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":180}",
+      "resultSummary": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":180}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":360}",
+      "resultSummary": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":360}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_h57368r7ar\",\"fromSide\":\"right\",\"toSide\":\"left\",\"label\":\"вызов платежа\"}",
+      "resultSummary": "{\"id\":\"arr_h57368r7ar\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"right\",\"offset\":0.12},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"left\",\"offset\":0.5},\"bends\":[{\"x\":728,\"y\":70},{\"x\":728,\"y\":-110}],\"routing\":\"orthogonal\",\"label\":\"вызов платежа\",\"style\":{},\"createdAt\":1788306463274,\"updatedAt\":1788306644629,\"autoPorts\":true,\"adjustments\":[\"Выход на art_0wvmige1io: сторона right уже занята концом…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ahlzpu6cbi\",\"fromSide\":\"right\",\"toSide\":\"top\",\"label\":\"кэш заказов\"}",
+      "resultSummary": "{\"id\":\"arr_ahlzpu6cbi\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"right\"},\"to\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"кэш заказов\",\"style\":{},\"createdAt\":1788306463278,\"updatedAt\":1788306644631}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ibjzpfiq32\",\"fromSide\":\"right\",\"toSide\":\"bottom\",\"label\":\"читает события\"}",
+      "resultSummary": "{\"id\":\"arr_ibjzpfiq32\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":710,\"y\":250},{\"x\":710,\"y\":-110},{\"x\":910,\"y\":-8}],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463282,\"updatedAt\":1788306644632,\"autoPorts\":true,\"adjustments\":[\"Стрелка подходила к стороне плашмя (…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vjlju1ze33\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vb28q08snd\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-480,\"width\":1260,\"height\":1100},\"schema\":\"region: x=-120 y=-480 w=1260 h=1100 (1 char ≈ 19x37 px)\\n\\n\\n\\n            +-----------+\\n            |n:swnp     |\\n            |           |····\\n            |           |   ·\\n            +-----------+   ·\\n            +-----------+   ·                     +-----------+\\n            |n:6m2m     |   ·            …"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"auto\",\"lockIds\":[\"art_wndirj0j49\",\"art_6m2mpx4k12\",\"art_0wvmige1io\",\"art_6v10y395s6\"],\"nodeIds\":[\"art_swnpwxv0lp\",\"art_08r2g6ey2a\",\"art_u2qoyvc6fe\",\"art_pydm0upj50\"],\"nodeSpacing\":100,\"layerSpacing\":240}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1.9,\"layers\":2,\"layerSizes\":[1,2],\"crossings\":0,\"crossingsBefore\":0,\"reversedEdges\":0,\"moved\":4,\"bounds\":{\"x\":100,\"y\":-360,\"width\":1409,\"height\":635},\"qualityBefore\":{\"score\":32,\"cost\":52,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":51,\"cost\":24.2,\"grade\":\"терпимо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":46,\"cost\":29,\"grade\":\"…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-480,\"width\":2789,\"height\":875},\"schema\":\"region: x=-120 y=-480 w=2789 h=875 (1 char ≈ 41x29 px)\\n\\n\\n               ················································\\n               ·                                              ·\\n               ·                                            +----+\\n               ·                                           …"
+    },
+    {
+      "name": "board_clean_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"cleaned\":[{\"arrowId\":\"arr_h57368r7ar\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_zw09osdbqu\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_ahlzpu6cbi\",\"before\":3,\"after\":2,\"changed\":true},{\"arrowId\":\"arr_sc1473cbdp\",\"before\":2,\"after\":2,\"changed\":false},{\"arrowId\":\"arr_ibjzpfiq32\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_nh6j5us7it\",\"before\":2,\"after\":1,\"changed\":tru…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":4,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":1},\"crossingBudget\":2,\"quality\":{\"score\":53,\"cost\":22.2,\"grade\":\"терпимо\",\"previousCost\":22.2,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":4,\"shall…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"groups\":[{\"id\":\"auth-group\",\"nodeIds\":[\"art_6m2mpx4k12\",\"art_swnpwxv0lp\"]},{\"id\":\"orders-group\",\"nodeIds\":[\"art_0wvmige1io\",\"art_6v10y395s6\",\"art_08r2g6ey2a\"]},{\"id\":\"events-group\",\"nodeIds\":[\"art_u2qoyvc6fe\",\"art_pydm0upj50\"]}],\"lockIds\":[\"art_wndirj0j49\"],\"nodeSpacing\":80,\"layerSpacing\":200,\"originX\":0,\"originY\":-200}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1.9,\"layers\":4,\"layerSizes\":[2,2,3,2],\"crossings\":1,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":8,\"bounds\":{\"x\":0,\"y\":-541,\"width\":2020,\"height\":1222},\"qualityBefore\":{\"score\":53,\"cost\":22.2,\"grade\":\"терпимо\"},\"qualityAfter\":{\"score\":34,\"cost\":48.1,\"grade\":\"плохо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":1,\"quality\":{\"score\":20,\"cost\":98,\"gra…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_wndirj0j49\",\"x\":0,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_wndirj0j49\",\"x\":0,\"y\":0}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6m2mpx4k12\",\"x\":100,\"y\":-180}",
+      "resultSummary": "{\"id\":\"art_6m2mpx4k12\",\"x\":100,\"y\":-180,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0,\"arrowsReset\":5,\"note\":\"Изгибы 5 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6v10y395s6\",\"x\":800,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_6v10y395s6\",\"x\":800,\"y\":0}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-360}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-360}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_08r2g6ey2a\",\"x\":800,\"y\":-180}",
+      "resultSummary": "{\"id\":\"art_08r2g6ey2a\",\"x\":800,\"y\":-180,\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":180}",
+      "resultSummary": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":180,\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":360}",
+      "resultSummary": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":360}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ellz7hzdnj\",\"fromSide\":\"right\",\"toSide\":\"left\"}",
+      "resultSummary": "{\"id\":\"arr_ellz7hzdnj\",\"from\":{\"artifactId\":\"art_wndirj0j49\",\"side\":\"right\"},\"to\":{\"artifactId\":\"art_6m2mpx4k12\",\"side\":\"left\"},\"bends\":[],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788306418363,\"updatedAt\":1788306755580}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_h57368r7ar\",\"fromSide\":\"right\",\"toSide\":\"left\",\"label\":\"вызов платежа\"}",
+      "resultSummary": "{\"id\":\"arr_h57368r7ar\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"right\"},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"left\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"вызов платежа\",\"style\":{},\"createdAt\":1788306463274,\"updatedAt\":1788306755583}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_zw09osdbqu\",\"fromSide\":\"bottom\",\"toSide\":\"top\",\"label\":\"кэш сессий\"}",
+      "resultSummary": "{\"id\":\"arr_zw09osdbqu\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_6m2mpx4k12\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"кэш сессий\",\"style\":{},\"createdAt\":1788306463275,\"updatedAt\":1788306755585}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ahlzpu6cbi\",\"fromSide\":\"right\",\"toSide\":\"top\",\"label\":\"кэш заказов\"}",
+      "resultSummary": "{\"id\":\"arr_ahlzpu6cbi\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"right\"},\"to\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"кэш заказов\",\"style\":{},\"createdAt\":1788306463278,\"updatedAt\":1788306755588}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_sc1473cbdp\",\"fromSide\":\"bottom\",\"toSide\":\"top\",\"label\":\"публикует события\"}",
+      "resultSummary": "{\"id\":\"arr_sc1473cbdp\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"публикует события\",\"style\":{},\"createdAt\":1788306463280,\"updatedAt\":1788306755591}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_ibjzpfiq32\",\"fromSide\":\"right\",\"toSide\":\"bottom\",\"label\":\"читает события\"}",
+      "resultSummary": "{\"id\":\"arr_ibjzpfiq32\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"right\"},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"bottom\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463282,\"updatedAt\":1788306755594}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_nh6j5us7it\",\"fromSide\":\"bottom\",\"toSide\":\"top\",\"label\":\"читает события\"}",
+      "resultSummary": "{\"id\":\"arr_nh6j5us7it\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_pydm0upj50\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463285,\"updatedAt\":1788306755596}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vjlju1ze33\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vb28q08snd\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-480,\"width\":1260,\"height\":1100},\"schema\":\"region: x=-120 y=-480 w=1260 h=1100 (1 char ≈ 19x37 px)\\n\\n\\n\\n            +-----------+\\n            |n:swnp     |\\n            |           |····\\n            |           |   ·\\n            +-----------+   ·\\n            +-----------+   ·                     +-----------+\\n            |n:6m2m     |   ·            …"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6m2mpx4k12\",\"x\":300,\"y\":-180}",
+      "resultSummary": "{\"id\":\"art_6m2mpx4k12\",\"x\":300,\"y\":-180,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_0wvmige1io\",\"x\":300,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_0wvmige1io\",\"x\":300,\"y\":0,\"arrowsReset\":5,\"note\":\"Изгибы 5 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swnpwxv0lp\",\"x\":300,\"y\":-360}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"x\":300,\"y\":-360}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_u2qoyvc6fe\",\"x\":300,\"y\":180}",
+      "resultSummary": "{\"id\":\"art_u2qoyvc6fe\",\"x\":300,\"y\":180,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"id\":\"art_pydm0upj50\",\"x\":300,\"y\":360}",
+      "resultSummary": "{\"id\":\"art_pydm0upj50\",\"x\":300,\"y\":360}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_ellz7hzdnj\",\"toSide\":\"left\"}",
+      "resultSummary": "{\"id\":\"arr_ellz7hzdnj\",\"from\":{\"artifactId\":\"art_wndirj0j49\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_6m2mpx4k12\",\"side\":\"left\",\"offset\":0.5},\"bends\":[{\"x\":292,\"y\":70},{\"x\":228,\"y\":-110}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788306418363,\"updatedAt\":1788306837844,\"adjustments\":[\"Стрелка подходила к стороне плашмя (24°, нужно от 30°): добавлен перпендикулярный изгиб. board_rou…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_h57368r7ar\",\"label\":\"вызов платежа\",\"toSide\":\"left\"}",
+      "resultSummary": "{\"id\":\"arr_h57368r7ar\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"right\"},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"left\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"вызов платежа\",\"style\":{},\"createdAt\":1788306463274,\"updatedAt\":1788306837846}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_zw09osdbqu\",\"label\":\"кэш сессий\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_zw09osdbqu\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_6m2mpx4k12\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"кэш сессий\",\"style\":{},\"createdAt\":1788306463275,\"updatedAt\":1788306837848}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_ahlzpu6cbi\",\"label\":\"кэш заказов\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_ahlzpu6cbi\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"кэш заказов\",\"style\":{},\"createdAt\":1788306463278,\"updatedAt\":1788306837849}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_sc1473cbdp\",\"label\":\"публикует события\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_sc1473cbdp\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"публикует события\",\"style\":{},\"createdAt\":1788306463280,\"updatedAt\":1788306837852}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"right\",\"id\":\"arr_ibjzpfiq32\",\"label\":\"читает события\",\"toSide\":\"bottom\"}",
+      "resultSummary": "{\"id\":\"arr_ibjzpfiq32\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"right\"},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"bottom\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463282,\"updatedAt\":1788306837854}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromSide\":\"bottom\",\"id\":\"arr_nh6j5us7it\",\"label\":\"читает события\",\"toSide\":\"top\"}",
+      "resultSummary": "{\"id\":\"arr_nh6j5us7it\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_pydm0upj50\",\"side\":\"top\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463285,\"updatedAt\":1788306837856}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vjlju1ze33\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vb28q08snd\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6m2mpx4k12\",\"x\":100,\"y\":-180}",
+      "resultSummary": "{\"id\":\"art_6m2mpx4k12\",\"x\":100,\"y\":-180,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_0wvmige1io\",\"x\":400,\"y\":0,\"arrowsReset\":5,\"note\":\"Изгибы 5 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-360}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-360}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":180}",
+      "resultSummary": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":180,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":360}",
+      "resultSummary": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":360}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"fromOffset\":-1,\"fromSide\":\"auto\",\"id\":\"arr_ellz7hzdnj\",\"toOffset\":-1,\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_ellz7hzdnj\",\"from\":{\"artifactId\":\"art_wndirj0j49\",\"side\":\"top\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_6m2mpx4k12\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":110,\"y\":-32},{\"x\":210,\"y\":-8}],\"routing\":\"orthogonal\",\"style\":{},\"createdAt\":1788306418363,\"updatedAt\":1788306930959,\"adjustments\":[\"Стрелка подходила к стороне плашмя (22°, нужно от 30°): добавлен перпендикулярный изгиб. board_rout…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromOffset\":-1,\"fromSide\":\"auto\",\"id\":\"arr_h57368r7ar\",\"toOffset\":-1,\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_h57368r7ar\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"auto\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"вызов платежа\",\"style\":{},\"createdAt\":1788306463274,\"updatedAt\":1788306930961}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromOffset\":-1,\"fromSide\":\"auto\",\"id\":\"arr_zw09osdbqu\",\"toOffset\":-1,\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_zw09osdbqu\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_6m2mpx4k12\",\"side\":\"auto\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"кэш сессий\",\"style\":{},\"createdAt\":1788306463275,\"updatedAt\":1788306930963}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromOffset\":-1,\"fromSide\":\"auto\",\"id\":\"arr_ahlzpu6cbi\",\"toOffset\":-1,\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_ahlzpu6cbi\",\"from\":{\"artifactId\":\"art_swnpwxv0lp\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"auto\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"кэш заказов\",\"style\":{},\"createdAt\":1788306463278,\"updatedAt\":1788306930965}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromOffset\":-1,\"fromSide\":\"auto\",\"id\":\"arr_sc1473cbdp\",\"toOffset\":-1,\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_sc1473cbdp\",\"from\":{\"artifactId\":\"art_0wvmige1io\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"auto\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"публикует события\",\"style\":{},\"createdAt\":1788306463280,\"updatedAt\":1788306930967}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromOffset\":-1,\"fromSide\":\"auto\",\"id\":\"arr_ibjzpfiq32\",\"toOffset\":-1,\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_ibjzpfiq32\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"top\",\"offset\":0.12},\"to\":{\"artifactId\":\"art_08r2g6ey2a\",\"side\":\"bottom\",\"offset\":0.5},\"bends\":[{\"x\":426,\"y\":148},{\"x\":910,\"y\":-8}],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463282,\"updatedAt\":1788306930969,\"adjustments\":[\"Выход на art_u2qoyvc6fe: сторона top уже занята концом стрелки arr_sc1473…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromOffset\":-1,\"fromSide\":\"auto\",\"id\":\"arr_nh6j5us7it\",\"toOffset\":-1,\"toSide\":\"auto\"}",
+      "resultSummary": "{\"id\":\"arr_nh6j5us7it\",\"from\":{\"artifactId\":\"art_u2qoyvc6fe\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_pydm0upj50\",\"side\":\"auto\"},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"читает события\",\"style\":{},\"createdAt\":1788306463285,\"updatedAt\":1788306930971}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vjlju1ze33\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vb28q08snd\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-480,\"width\":1260,\"height\":1100},\"schema\":\"region: x=-120 y=-480 w=1260 h=1100 (1 char ≈ 19x37 px)\\n\\n\\n\\n            +-----------+\\n            |n:swnp     |\\n            |           |\\n            |           |\\n            +-----------+\\n            +-----------+··········               +-----------+\\n            |n:6m2m     |         ·               |n:…"
+    },
+    {
+      "name": "board_clean_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"cleaned\":[{\"arrowId\":\"arr_h57368r7ar\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_ahlzpu6cbi\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_ibjzpfiq32\",\"before\":2,\"after\":1,\"changed\":true}],\"skipped\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_vjlju1ze33\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_vb28q08snd\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_zw09osdbqu\",\"reaso…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":7,\"arrowOverlap\":0,\"arrowClearance\":1,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":4,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":4},\"crossingBudget\":2,\"quality\":{\"score\":30,\"cost\":58,\"grade\":\"плохо\",\"previousCost\":58,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":7,\"shallowCros…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-400}",
+      "resultSummary": "{\"id\":\"art_swnpwxv0lp\",\"x\":100,\"y\":-400,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6m2mpx4k12\",\"x\":100,\"y\":-220}",
+      "resultSummary": "{\"id\":\"art_6m2mpx4k12\",\"x\":100,\"y\":-220,\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":220}",
+      "resultSummary": "{\"id\":\"art_u2qoyvc6fe\",\"x\":400,\"y\":220,\"arrowsReset\":3,\"note\":\"Изгибы 3 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":440}",
+      "resultSummary": "{\"id\":\"art_pydm0upj50\",\"x\":400,\"y\":440}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vjlju1ze33\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vb28q08snd\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-520,\"width\":1260,\"height\":1220},\"schema\":\"region: x=-120 y=-520 w=1260 h=1220 (1 char ≈ 19x41 px)\\n\\n\\n\\n            +-----------+\\n            |n:swnp     |\\n            |           |\\n            +-----------+\\n            +-----------+··········\\n            |n:6m2m     |         ·               +-----------+\\n            |           |         ·        …"
+    },
+    {
+      "name": "board_clean_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"cleaned\":[{\"arrowId\":\"arr_h57368r7ar\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_ahlzpu6cbi\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_ibjzpfiq32\",\"before\":2,\"after\":1,\"changed\":true}],\"skipped\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_vjlju1ze33\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_vb28q08snd\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_zw09osdbqu\",\"reaso…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":7,\"arrowOverlap\":0,\"arrowClearance\":1,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":2,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":4},\"crossingBudget\":2,\"quality\":{\"score\":32,\"cost\":52,\"grade\":\"плохо\",\"previousCost\":52,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":7,\"shallowCros…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_08r2g6ey2a\",\"x\":800,\"y\":220}",
+      "resultSummary": "{\"id\":\"art_08r2g6ey2a\",\"x\":800,\"y\":220,\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vjlju1ze33\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_vb28q08snd\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_h57368r7ar\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-520,\"width\":1260,\"height\":1220},\"schema\":\"region: x=-120 y=-520 w=1260 h=1220 (1 char ≈ 19x41 px)\\n\\n\\n\\n            +-----------+\\n            |n:swnp     |\\n            |           |\\n            +-----------+\\n            +-----------+··········\\n            |n:6m2m     |         ·\\n            |           |         ·\\n            |           |         …"
+    },
+    {
+      "name": "board_clean_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"cleaned\":[{\"arrowId\":\"arr_h57368r7ar\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_ahlzpu6cbi\",\"before\":2,\"after\":1,\"changed\":true}],\"skipped\":[{\"arrowId\":\"arr_ellz7hzdnj\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_vjlju1ze33\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_vb28q08snd\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_zw09osdbqu\",\"reason\":\"no bends\"},{\"arrowId\":\"arr_sc1473cbdp\",\"reason\":\"no bends\"},{…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":false,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":4,\"arrowOverlap\":0,\"arrowClearance\":1,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":2,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":4},\"crossingBudget\":2,\"quality\":{\"score\":38,\"cost\":40,\"grade\":\"плохо\",\"previousCost\":40,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":4,\"shallowCros…"
+    }
+  ],
+  "toolHistogram": {
+    "board_get_region": 3,
+    "skill_get": 1,
+    "artifact_create": 4,
+    "arrow_create": 6,
+    "board_arrange_graph": 3,
+    "board_get_schema": 9,
+    "artifact_move": 41,
+    "board_route_arrows": 9,
+    "arrow_update": 30,
+    "board_clean_arrows": 4,
+    "board_check_intersections": 4
+  },
+  "refusals": [
+    {
+      "name": "artifact_move",
+      "why": "{\"moved\":false,\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_swnpwxv0lp («Redis»). Если так и задумано — вызови тул снова с acceptOverlap=true (наложение останется на твоей ответственности). Иначе выбери другие x, y.\",\"overlapping\":[{\"id\":\"art_swnpwxv0lp\",\"caption\":\"Redis\",\"x\":372,\"y\":0}]}"
+    }
+  ],
+  "errors": [
+    "Достигнут лимит 50 итераций. Выполнение остановлено; восстановлен лучший полный снимок доски (итерация 25, качество 53/100, 8 блоков, 9 связей)."
+  ],
+  "usage": {
+    "promptTokens": 1706175,
+    "completionTokens": 12786,
+    "totalTokens": 1718961,
+    "calls": 50,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 1617152
+  },
+  "termination": "iteration_limit",
+  "restoredCheckpoint": true,
+  "answer": "\n\nДавайте сначала посмотрим на текущее состояние доски и выберем подходящий скилл.\n\nОтлично! Вижу текущую схему:\n\n- **API Gateway** (0,0) → **Auth Service** (400,-180) и **Orders Service** (400,0)\n- **Orders Service** → **PostgreSQL** (800,0)\n\nНужно добавить 4 новых узла. По скиллу graph-layout: создаю узлы, потом стрелки, затем раскладка. Существующие блоки не трогаю — передам их в lockIds.\n\nДавайте создадим новые узлы. Расставлю их временно в свободной зоне справа и снизу.\n\nУзлы созданы. Теперь создаю все стрелки:\n\n1. **Orders → Payments** (вызывается из Orders)\n2. **Redis → Auth** (кэш для Auth)\n3. **Redis → Orders** (кэш для Orders)\n4. **Orders → Kafka** (публикует события)\n5. **Kafka → Payments** (Payments читает)\n6. **Kafka → Notification Service** (читает из Kafka)\n\nВсе стрелки созданы. Теперь вызываю `board_arrange_graph`. Существующие блоки (API Gateway, Auth, Orders, PostgreSQL) передаю в lockIds, чтобы они остались на своих местах. Новые узлы и все стрелки раскладка разложит оптимально.\n\nРаскладка выбрала направление **сверху вниз (TB)**. Давайте посмотрим, как теперь выглядит доска.\n\nХм, раскладка сдвинула **API Gateway** и **Auth Service** — хотя я передал их в lockIds. Давайте проверим: API Gateway на (0,0) — вроде на месте, а Auth уехал в (-465,558). lockIds, видимо, не сработал как ожидалось. \n\nПроблема в том, что раскладка разнесла всё по слоям TB, и старые блоки тоже сдвинулись. Давайте вернём всё как было и попробуем иначе — зафиксируем старые блоки и разложим только новые.\n\nСначала верну старые блоки на их исходные позиции, а новые пока оставлю.\n\nRedis наехал на место Orders. Давайте посмотрим, где сейчас все блоки, и расставим их аккуратно.\n\n\n\nВижу ситуацию. Раскладка сдвинула Orders Service в (465,558), а Redis оказался на (372,0) — прямо где был Orders. Давайте аккуратно всё расставим вручную, сохраняя исходную схему и добавляя новые блоки логично.\n\nИсходная схема (восстанавливаю):\n- API Gateway @ (0,0)\n- Auth Service @ (400,-180)\n- Orders Service @ (400,0)\n- PostgreSQL @ (800,0)\n\nНовые блоки размещу так, чтобы поток читался:\n- Redis — над Auth и Orders (общий кэш)\n- Payments — справа от Orders\n- Kafka — под Orders (Orders публикует → Kafka)\n- Notification — под Kafka\n\nДавайте расставим всё аккуратно.\n\n\n\nОтлично! Теперь Redis наехал на Auth. Давайте поправлю Redis — поставлю его левее, между API Gateway и Auth/Orders.\n\n\n\nТеперь Redis на (100,-360) — это над API Gateway, что логично: он кэш для Auth и Orders, а API Gateway — входная точка. Но Redis ближе к API Gateway, чем к Auth/Orders. Поставлю его прямо над Auth и Orders.\n\n\n\n\n\nRedis теперь над Auth. Auth на (400,-180), Redis на (400,-360) — 40px зазора между ними, отлично. Теперь давайте проверим, что всё на своих местах, и проложим стрелки.\n\n\n\nОтлично! Все блоки на своих местах. Теперь нужно проложить стрелки через роутер. У меня есть все стрелки, но изгибы сбросились после перемещений. Вызову `board_route_arrows` для всех стрелок.\n\n\n\n\n\nЕсть пересечения стрелок (12) и конфликты подписей (5). Давайте посмотрим на схему и поправим.\n\n\n\n\n\nВижу несколько проблем:\n1. Стрелка **Redis → Orders** (кэш заказов) идёт в обход слева — некрасиво\n2. Стрелка **Orders → Payments** (вызов платежа) идёт вверх и влево — странно\n3. Стрелка **Kafka → Payments** (читает события) тоже идёт вверх\n\nДавайте поправим стороны присоединения, чтобы линии шли логично:\n\n- **Orders → Payments**: Orders справа, Payments слева (по горизонтали, как Orders→PostgreSQL)\n- **Redis → Orders**: Redis снизу → Orders сверху (вертикально, как Redis→Auth)\n- **Kafka → Payments**: Kafka справа → Payments снизу (через правую сторону)\n- **API Gateway → Auth**: уже нормально\n\nДавайте обновим стрелки.\n\n\n\n\n\nРучная настройка сторон дала кривые маршруты. Давайте лучше переложим все стрелки через роутер с фиксированными сторонами.\n\n\n\n\n\nДавайте посмотрим, как сейчас выглядит схема.\n\n\n\n\n\nТеперь вижу картину. Проблемы:\n1. **Redis → Orders** (кэш заказов) — идёт справа, а надо бы напрямую сверху вниз\n2. **Orders → Payments** (вызов платежа) — идёт вверх и влево, хотя Payments справа\n3. **Kafka → Payments** (читает события) — идёт вверх\n\nДавайте попробуем другой подход: сброшу стрелки на auto и переложу все сразу.\n\n\n\n\n\nТеперь переложу все стрелки заново.\n\n\n\n\n\nКачество не улучшилось. Проблема в том, что у нас слишком плотная композиция: Redis, Auth, Orders, Kafka, Notification — все стоят по центру в колонку. Давайте раздвинем их, чтобы стрелкам было где развернуться.\n\nПлан: \n- Redis оставлю над Auth, но Auth и Orders раздвину по горизонтали\n- Payments поставлю справа от Orders (как PostgreSQL)\n- Kafka под Orders\n- Notification под Kafka\n\nДавайте переставим блоки аккуратно.\n\n\n\n\n\nТеперь схема:\n- **Redis** (100,-360) — кэш, над Auth\n- **Auth** (100,-180) — слева вверху\n- **API Gateway** (0,0) — слева\n- **Orders** (400,0) — центр\n- **PostgreSQL** (800,0) — справа от Orders\n- **Payments** (800,-180) — справа от Auth\n- **Kafka** (400,180) — под Orders\n- **Notification** (400,360) — под Kafka\n\nТеперь обновлю стрелки с правильными сторонами и проложу маршруты.\n\nСтрелки:\n1. API Gateway → Auth: уже есть, auto\n2. API Gateway → Orders: уже есть, auto\n3. Orders → PostgreSQL: уже есть, auto\n4. **Orders → Payments**: Orders справа → Payments слева\n5. **Redis → Auth**: Redis снизу → Auth сверху\n6. **Redis → Orders**: Redis справа → Orders сверху (или Redis снизу → Orders сверху, но Redis далеко)\n7. **Orders → Kafka**: Orders снизу → Kafka сверху\n8. **Kafka → Payments**: Kafka справа → Payments снизу\n9. **Kafka → Notification**: Kafka снизу → Notification сверху\n\nДавайте зададим стороны явно для проблемных стрелок.\n\n\n\n\n\nТеперь переложу все стрелки через роутер.\n\n\n\n\n\n\n\nУлучшилось: score 32, cost 52. Осталось 6 пересечений стрелок и 4 конфликта подписей. Давайте посмотрим на схему.\n\n\n\n\n\n\n\nВижу, что роутер сам выбрал API Gateway→Auth через top→bottom (изгиб вверх), хотя логичнее right→left. И Redis→Orders идёт крюком через правую сторону Redis.\n\nДавайте попробуем ещё раз с board_arrange_graph, но теперь передадим nodeIds только для новых узлов, а старые залочим. Это должно дать лучший результат.\n\n\n\n\n\n\n\n\n\nОтлично! Раскладка выбрала **слева направо (LR)**, 0 пересечений, оценка 51/100 (терпимо). Давайте посмотрим, как теперь выглядит схема, и почистим изгибы.\n\n\n\n\n\n\n\n\n\n\n\nХм, раскладка разнесла новые узлы далеко вправо. Redis уехал в (2329,-360), Payments в (1816,-195), Kafka в (1140,-30). Это далеко от исходной схемы. Давайте почистим изгибы и посмотрим на качество.\n\n\n\n\n\n\n\n\n\n\n\n\n\nОценка 53/100. 4 пересечения. Давайте попробуем улучшить — разложу все узлы заново, но с groups, чтобы сгруппировать подсистемы.\n\nГруппы:\n- **API Gateway** — сам по себе (вход)\n- **Auth + Redis** — аутентификация и кэш\n- **Orders + PostgreSQL + Payments** — заказы и платежи\n- **Kafka + Notification** — события и уведомления\n\nНо сначала давайте вернём всё поближе — раскладка разбросала новые узлы слишком далеко. Попробую другой подход: задам origin рядом с существующей схемой.\n\n\n\n\n\n\n\n\n\n\n\nСтало хуже (34 вместо 53). Раскладка сдвинула и старые блоки. Давайте вернёмся к предыдущему состоянию, которое было лучше (53/100). \n\nВерну старые блоки на исходные, а новые оставлю как были до раскладки.\n\n\n\n\n\n\n\n\n\n\n\n\n\nОтлично, вернул всё на исходные позиции. Теперь давайте зададим правильные стороны для стрелок вручную и проложим маршруты.\n\nСхема сейчас:\n```\nRedis (100,-360)\nAuth (100,-180)\nAPI Gateway (0,0) — Orders (400,0) — PostgreSQL (800,0)\n                            Payments (800,-180)\n                            Kafka (400,180)\n                            Notification (400,360)\n```\n\nСтороны:\n1. API Gateway → Auth: right → left (но Auth левее... API Gateway на 0, Auth на 100) — лучше top→bottom или right→left\n2. API Gateway → Orders: right → left ✓\n3. Orders → PostgreSQL: right → left ✓\n4. **Orders → Payments**: right → left (Orders на 400, Payments на 800) ✓\n5. **Redis → Auth**: bottom → top (Redis на 100,-360, Auth на 100,-180) ✓\n6. **Redis → Orders**: bottom → top (Redis справа от Orders? Redis на 100, Orders на 400) — лучше right → top\n7. **Orders → Kafka**: bottom → top (Orders на 400,0, Kafka на 400,180) ✓\n8. **Kafka → Payments**: right → bottom (Kafka на 400,180, Payments на 800,-180)\n9. **Kafka → Notification**: bottom → top (Kafka на 400,180, Notification на 400,360) ✓\n\nДавайте зададим стороны.\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь проложу все стрелки.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВижу, что роутер проигнорировал мои указания сторон для API Gateway→Auth (поставил top→bottom вместо right→left). Это потому что API Gateway (0,0) и Auth (100,-180) — Auth выше и правее, роутер считает top→bottom оптимальнее.\n\nДавайте попробуем другой подход: раздвину блоки пошире, чтобы стрелки не пересекались. Проблема в том, что Redis (100,-360) → Orders (400,0) идёт через Auth. \n\nПлан: поставлю Redis прямо над Orders (400,-360), а Auth оставлю слева (100,-180). Тогда:\n- Redis→Auth: right→left (горизонтально)\n- Redis→Orders: bottom→top (вертикально)\n\nИли ещё проще: поставлю Redis между API Gateway и Auth/Orders.\n\nДавайте попробуем такую расстановку:\n\n```\nAuth (100,-180)          Payments (800,-180)\nRedis (100,-360)         \nAPI Gateway (0,0) — Orders (400,0) — PostgreSQL (800,0)\n                         Kafka (400,180)\n                         Notification (400,360)\n```\n\nПроблема: Redis→Orders идёт через Auth. Давайте сделаем Redis над Orders, а Auth слева.\n\nНовая расстановка:\n```\nAPI Gateway (0,0) — Auth (300,-180)    Payments (800,-180)\n                  — Orders (300,0)  —  PostgreSQL (800,0)\n                    Redis (300,-360)\n                    Kafka (300,180)\n                    Notification (300,360)\n```\n\nТогда:\n- API Gateway→Auth: right→left\n- API Gateway→Orders: right→left  \n- Auth←Redis: bottom→top (вертикально)\n- Orders←Redis: bottom→top (вертикально)\n- Orders→PostgreSQL: right→left\n- Orders→Payments: right→left\n- Orders→Kafka: bottom→top\n- Kafka→Payments: right→bottom\n- Kafka→Notification: bottom→top\n\nДавайте попробуем.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь обновлю стороны стрелок и проложу маршруты.\n\nСтороны:\n1. API Gateway→Auth: right→left\n2. API Gateway→Orders: right→left\n3. Orders→PostgreSQL: right→left\n4. Orders→Payments: right→left\n5. Redis→Auth: bottom→top\n6. Redis→Orders: bottom→top\n7. Orders→Kafka: bottom→top\n8. Kafka→Payments: right→bottom\n9. Kafka→Notification: bottom→top\n\n\n\nТеперь проложу все стрелки.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nСтало хуже. Проблема в том, что API Gateway→Auth идёт через Orders (правее). Давайте вернём Auth на 100,-180, а Redis на 100,-360. Тогда:\n\n- API Gateway (0,0) → Auth (100,-180): right→left, но Auth левее... нет, Auth на 100, API на 0 — Auth правее. Так right→left работает.\n- API Gateway (0,0) → Orders (300,0): right→left\n- Redis (100,-360) → Auth (100,-180): bottom→top (вертикально)\n- Redis (100,-360) → Orders (300,0): right→top\n\nДавайте вернёмся к предыдущей расстановке, которая дала 32/100, и просто почистим изгибы.\n\n\n\n\n\n\n\n\n\n\n\n\n\nВернул. Теперь давайте сброшу все стрелки на auto и проложу заново.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь схема выглядит довольно прилично! Давайте почистим изгибы и проверим качество.\n\n\n\n\n\n\n\n\n\n\n\nВижу основные проблемы:\n1. **Короткие рёбра** (8px) между блоками, стоящими вплотную — нужно раздвинуть\n2. **Пересечения** в правой части (Orders→PostgreSQL пересекается с Orders→Payments и Kafka→Payments)\n3. **Подписи** накладываются на блоки\n\nДавайте раздвинем блоки по вертикали, чтобы дать больше места стрелкам и подписям. Увеличу расстояние между слоями.\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь:\n- Redis (100,-400) — Auth (100,-220) — расстояние 40px (было 0)\n- Orders (400,0) — Kafka (400,220) — расстояние 80px (было 40)\n- Kafka (400,220) — Notification (400,440) — расстояние 80px (было 40)\n\nПроложу стрелки.\n\n\n\n\n\n\n\n\n\n\n\n\n\nХорошо! Теперь схема выглядит аккуратно. Давайте почистим изгибы и сделаем финальную проверку.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nОстались пересечения в правой части (Orders→PostgreSQL, Orders→Payments, Kafka→Payments). Это потому что все три стрелки идут в правую сторону. Давайте попробуем разнести Payments и PostgreSQL по вертикали — Payments выше, PostgreSQL ниже.\n\nСейчас:\n- Payments (800,-180)\n- PostgreSQL (800,0)\n\nДавайте Payments поднимем выше, а PostgreSQL оставим. Или наоборот — Payments опустим, а PostgreSQL поднимем. Но Payments вызывается из Orders, а PostgreSQL — хранилище Orders. Логичнее, чтобы PostgreSQL был на одном уровне с Orders.\n\nПопробую Payments сделать справа внизу, а не вверху.\n\n\n\n\n\n\n\n\n\n\n\n\n\nТеперь Payments (800,220) — справа от Kafka (400,220). Это логично: Kafka читает события → Payments их обрабатывает. Но Orders→Payments теперь идёт сверху вниз. Давайте проложим.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nУлучшилось! 38/100, 4 пересечения (было 7). Давайте посмотрим.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nОтлично! Теперь схема выглядит гораздо лучше:\n\n- **Kafka→Payments** — прямая горизонтальная линия (right→left) без изгибов!\n- **Orders→Payments** — идёт вниз и вправо с одним изгибом\n- **Orders→PostgreSQL** — прямая горизонтальная линия\n\nОстались пересечения в правой части, но это неизбежно для такой плотной схемы. Давайте почистим изгибы и сделаем финальную проверку.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "boardId": "brd_5jqit5wuxa",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_wndirj0j49",
+        "type": "note",
+        "x": 0,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "## API Gateway\n\nВходная точка, маршрутизация и rate limit.",
+          "color": "blue"
+        },
+        "createdAt": 1788306418301,
+        "updatedAt": 1788306492451
+      },
+      {
+        "id": "art_6m2mpx4k12",
+        "type": "note",
+        "x": 100,
+        "y": -180,
+        "width": 220,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "## Auth Service\n\nВыдаёт и проверяет JWT.",
+          "color": "green"
+        },
+        "createdAt": 1788306418316,
+        "updatedAt": 1788306620258
+      },
+      {
+        "id": "art_0wvmige1io",
+        "type": "note",
+        "x": 400,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "## Orders Service\n\nСоздание и статусы заказов.",
+          "color": "green"
+        },
+        "createdAt": 1788306418332,
+        "updatedAt": 1788306620260,
+        "allowOverlap": true
+      },
+      {
+        "id": "art_6v10y395s6",
+        "type": "note",
+        "x": 800,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "## PostgreSQL\n\nОсновное хранилище заказов.",
+          "color": "gray"
+        },
+        "createdAt": 1788306418347,
+        "updatedAt": 1788306620263
+      },
+      {
+        "id": "art_08r2g6ey2a",
+        "type": "note",
+        "x": 1816,
+        "y": -195,
+        "width": 220,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "## Payments Service\n\nОбработка платежей,\nвызывается из Orders.",
+          "color": "green"
+        },
+        "createdAt": 1788306447542,
+        "updatedAt": 1788306669915
+      },
+      {
+        "id": "art_swnpwxv0lp",
+        "type": "note",
+        "x": 2329,
+        "y": -360,
+        "width": 220,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "## Redis\n\nКэш для Auth и Orders.",
+          "color": "pink"
+        },
+        "createdAt": 1788306447543,
+        "updatedAt": 1788306669915,
+        "allowOverlap": true
+      },
+      {
+        "id": "art_u2qoyvc6fe",
+        "type": "note",
+        "x": 1140,
+        "y": -30,
+        "width": 220,
+        "height": 140,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "## Kafka\n\nОчередь событий.\nOrders → публикует,\nPayments → читает.",
+          "color": "purple"
+        },
+        "createdAt": 1788306447544,
+        "updatedAt": 1788306669915
+      },
+      {
+        "id": "art_pydm0upj50",
+        "type": "note",
+        "x": 1816,
+        "y": 135,
+        "width": 220,
+        "height": 140,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "## Notification Service\n\nЧитает из Kafka,\nшлёт письма.",
+          "color": "green"
+        },
+        "createdAt": 1788306447545,
+        "updatedAt": 1788306669915
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_ellz7hzdnj",
+        "from": {
+          "artifactId": "art_wndirj0j49",
+          "side": "top",
+          "offset": 0.7272727272727273
+        },
+        "to": {
+          "artifactId": "art_6m2mpx4k12",
+          "side": "bottom",
+          "offset": 0.2727272727272727
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788306418363,
+        "updatedAt": 1788306669915,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_vjlju1ze33",
+        "from": {
+          "artifactId": "art_wndirj0j49",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_0wvmige1io",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788306418365,
+        "updatedAt": 1788306669915,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_vb28q08snd",
+        "from": {
+          "artifactId": "art_0wvmige1io",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_6v10y395s6",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788306418378,
+        "updatedAt": 1788306669915,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_h57368r7ar",
+        "from": {
+          "artifactId": "art_0wvmige1io",
+          "side": "top",
+          "offset": 0.12
+        },
+        "to": {
+          "artifactId": "art_08r2g6ey2a",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 426,
+            "y": -267
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "вызов платежа",
+        "style": {},
+        "createdAt": 1788306463274,
+        "updatedAt": 1788306683082,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_zw09osdbqu",
+        "from": {
+          "artifactId": "art_swnpwxv0lp",
+          "side": "left",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_6m2mpx4k12",
+          "side": "right",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 392,
+            "y": -290
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "кэш сессий",
+        "style": {},
+        "createdAt": 1788306463275,
+        "updatedAt": 1788306683082,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_ahlzpu6cbi",
+        "from": {
+          "artifactId": "art_swnpwxv0lp",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_0wvmige1io",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 477,
+            "y": -432
+          },
+          {
+            "x": 477,
+            "y": -72
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "кэш заказов",
+        "style": {},
+        "createdAt": 1788306463278,
+        "updatedAt": 1788306683082,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_sc1473cbdp",
+        "from": {
+          "artifactId": "art_0wvmige1io",
+          "side": "right",
+          "offset": 0.22142857142857142
+        },
+        "to": {
+          "artifactId": "art_u2qoyvc6fe",
+          "side": "left",
+          "offset": 0.4357142857142857
+        },
+        "bends": [
+          {
+            "x": 692,
+            "y": -17
+          },
+          {
+            "x": 1068,
+            "y": -17
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "публикует события",
+        "style": {},
+        "createdAt": 1788306463280,
+        "updatedAt": 1788306669915,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_ibjzpfiq32",
+        "from": {
+          "artifactId": "art_u2qoyvc6fe",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_08r2g6ey2a",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1432,
+            "y": -125
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "читает события",
+        "style": {},
+        "createdAt": 1788306463282,
+        "updatedAt": 1788306683082,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_nh6j5us7it",
+        "from": {
+          "artifactId": "art_u2qoyvc6fe",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_pydm0upj50",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1432,
+            "y": 205
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "читает события",
+        "style": {},
+        "createdAt": 1788306463285,
+        "updatedAt": 1788306683082,
+        "autoPorts": true
+      }
+    ]
+  }
+}

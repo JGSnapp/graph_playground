@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<title>Сравнение прогонов E06 → E07</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; padding: 32px; background: #0b0d11; color: #e8e8ea;
+         font: 15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 17px; margin: 40px 0 2px; }
+  .muted { color: #8b93a7; font-size: 13px; margin: 2px 0 12px; }
+  .summary { display: flex; gap: 28px; margin: 18px 0 8px; padding: 14px 18px;
+             background: #12151c; border: 1px solid #232733; border-radius: 10px; }
+  .summary div b { display: block; font-size: 20px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .pane { background: #12151c; border: 1px solid #232733; border-radius: 10px;
+          padding: 12px; min-width: 0; }
+  .head { font-size: 13px; color: #8b93a7; margin-bottom: 2px; }
+  .head b { font-size: 18px; color: #e8e8ea; }
+  .meta { font-size: 12px; color: #6f778a; margin-bottom: 10px; }
+  img { width: 100%; height: auto; display: block; border-radius: 6px;
+        background: #0e1014; border: 1px solid #1c2029; }
+  .ok { color: #7ddc9a; } .bad { color: #e8e8ea; }
+  .up { color: #7ddc9a; font-size: 14px; } .down { color: #e8767a; font-size: 14px; }
+  .same { color: #6f778a; font-size: 14px; }
+  @media (max-width: 900px) { .pair { grid-template-columns: 1fr; } }
+</style></head>
+<body>
+<h1>Сравнение прогонов E06 → E07</h1>
+<p class="muted">Модель deepseek-v4-flash, пул из 12 задач. Клик по картинке — открыть в полном размере.</p>
+<div class="summary">
+  <div><b>61 → 57</b>средний score</div>
+  <div><b>5/12 → 2/6</b>без жёстких конфликтов</div>
+  <div><b>48 → 35</b>пересечений стрелок</div>
+</div>
+<section>
+  <h2>fix-broken <span class="up">+21</span></h2>
+  <p class="muted">починка готовой плохой схемы, а не постройка с нуля</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="ok">64/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">32 итераций · 2 пересечений · отказов 1 · без конфликтов 100%</div>
+  <a href="E06/fix-broken__deepseek-v4-flash.png" target="_blank"><img src="E06/fix-broken__deepseek-v4-flash.png" alt="fix-broken E06"></a>
+</div><div class="pane">
+  <div class="head">E07 <b class="ok">85/100</b>
+    <span class="muted">медиана ±22 по 3 прогонам</span></div>
+  <div class="meta">19 итераций · 1 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E07/fix-broken__deepseek-v4-flash__r2.png" target="_blank"><img src="E07/fix-broken__deepseek-v4-flash__r2.png" alt="fix-broken E07"></a>
+</div></div>
+</section>
+<section>
+  <h2>states-order <span class="up">+7</span></h2>
+  <p class="muted">граф с циклами и обратными связями</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="bad">61/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">9 итераций · 3 пересечений · отказов 0 · без конфликтов 0%</div>
+  <a href="E06/states-order__deepseek-v4-flash.png" target="_blank"><img src="E06/states-order__deepseek-v4-flash.png" alt="states-order E06"></a>
+</div><div class="pane">
+  <div class="head">E07 <b class="bad">68/100</b>
+    <span class="muted">медиана ±17 по 3 прогонам</span></div>
+  <div class="meta">14 итераций · 3 пересечений · отказов 0 · без конфликтов 67%</div>
+  <a href="E07/states-order__deepseek-v4-flash__r1.png" target="_blank"><img src="E07/states-order__deepseek-v4-flash__r1.png" alt="states-order E07"></a>
+</div></div>
+</section>
+<section>
+  <h2>tree-org <span class="up">+13</span></h2>
+  <p class="muted">иерархия, ветви должны держаться у своих корней</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="bad">47/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">50 итераций · 0 пересечений · отказов 0 · без конфликтов 0%</div>
+  <a href="E06/tree-org__deepseek-v4-flash.png" target="_blank"><img src="E06/tree-org__deepseek-v4-flash.png" alt="tree-org E06"></a>
+</div><div class="pane">
+  <div class="head">E07 <b class="bad">60/100</b>
+    <span class="muted">медиана ±48 по 3 прогонам</span></div>
+  <div class="meta">31 итераций · 2 пересечений · отказов 0 · без конфликтов 0%</div>
+  <a href="E07/tree-org__deepseek-v4-flash.png" target="_blank"><img src="E07/tree-org__deepseek-v4-flash.png" alt="tree-org E07"></a>
+</div></div>
+</section>
+<section>
+  <h2>wiki-anime <span class="up">+16</span></h2>
+  <p class="muted">вики по документу, чистый лист, 8-10 узлов, дерево связей</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="bad">39/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">13 итераций · 8 пересечений · отказов 0 · без конфликтов 0%</div>
+  <a href="E06/wiki-anime__deepseek-v4-flash.png" target="_blank"><img src="E06/wiki-anime__deepseek-v4-flash.png" alt="wiki-anime E06"></a>
+</div><div class="pane">
+  <div class="head">E07 <b class="bad">55/100</b>
+    <span class="muted">медиана ±18 по 3 прогонам</span></div>
+  <div class="meta">33 итераций · 4 пересечений · отказов 0 · без конфликтов 0%</div>
+  <a href="E07/wiki-anime__deepseek-v4-flash__r2.png" target="_blank"><img src="E07/wiki-anime__deepseek-v4-flash__r2.png" alt="wiki-anime E07"></a>
+</div></div>
+</section>
+<section>
+  <h2>extend-existing <span class="down">-10</span></h2>
+  <p class="muted">дополнение готового графа новыми узлами без ломки старого</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="bad">63/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">16 итераций · 3 пересечений · отказов 0 · без конфликтов 0%</div>
+  <a href="E06/extend-existing__deepseek-v4-flash.png" target="_blank"><img src="E06/extend-existing__deepseek-v4-flash.png" alt="extend-existing E06"></a>
+</div><div class="pane">
+  <div class="head">E07 <b class="bad">53/100</b>
+    <span class="muted">медиана ±3 по 3 прогонам</span></div>
+  <div class="meta">24 итераций · 5 пересечений · отказов 1 · без конфликтов 0%</div>
+  <a href="E07/extend-existing__deepseek-v4-flash__r1.png" target="_blank"><img src="E07/extend-existing__deepseek-v4-flash__r1.png" alt="extend-existing E07"></a>
+</div></div>
+</section>
+<section>
+  <h2>dense-arch <span class="down">-2</span></h2>
+  <p class="muted">стресс: 14 узлов, плотный граф, несколько подсистем</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="bad">24/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">13 итераций · 17 пересечений · отказов 0 · без конфликтов 0%</div>
+  <a href="E06/dense-arch__deepseek-v4-flash.png" target="_blank"><img src="E06/dense-arch__deepseek-v4-flash.png" alt="dense-arch E06"></a>
+</div><div class="pane">
+  <div class="head">E07 <b class="bad">22/100</b>
+    <span class="muted">медиана ±8 по 3 прогонам</span></div>
+  <div class="meta">13 итераций · 20 пересечений · отказов 0 · без конфликтов 0%</div>
+  <a href="E07/dense-arch__deepseek-v4-flash.png" target="_blank"><img src="E07/dense-arch__deepseek-v4-flash.png" alt="dense-arch E07"></a>
+</div></div>
+</section>
+<section>
+  <h2>cards-set </h2>
+  <p class="muted">не граф: набор карточек, сетка и воздух</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="ok">100/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">13 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E06/cards-set__deepseek-v4-flash.png" target="_blank"><img src="E06/cards-set__deepseek-v4-flash.png" alt="cards-set E06"></a>
+</div><div class="pane"><div class="head">E07</div><p class="muted">нет данных</p></div></div>
+</section>
+<section>
+  <h2>next-to-occupied </h2>
+  <p class="muted">новая композиция рядом с занятой зоной, без наложений</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="ok">98/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">13 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E06/next-to-occupied__deepseek-v4-flash.png" target="_blank"><img src="E06/next-to-occupied__deepseek-v4-flash.png" alt="next-to-occupied E06"></a>
+</div><div class="pane"><div class="head">E07</div><p class="muted">нет данных</p></div></div>
+</section>
+<section>
+  <h2>overlap-stack </h2>
+  <p class="muted">особое требование внутри схемы: часть блоков намеренно внахлёст</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="bad">22/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">38 итераций · 6 пересечений · отказов 2 · без конфликтов 0%</div>
+  <a href="E06/overlap-stack__deepseek-v4-flash.png" target="_blank"><img src="E06/overlap-stack__deepseek-v4-flash.png" alt="overlap-stack E06"></a>
+</div><div class="pane"><div class="head">E07</div><p class="muted">нет данных</p></div></div>
+</section>
+<section>
+  <h2>pipeline-cicd </h2>
+  <p class="muted">линейный конвейер с ветвлением, направление слева направо</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="ok">100/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">6 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E06/pipeline-cicd__deepseek-v4-flash.png" target="_blank"><img src="E06/pipeline-cicd__deepseek-v4-flash.png" alt="pipeline-cicd E06"></a>
+</div><div class="pane"><div class="head">E07</div><p class="muted">нет данных</p></div></div>
+</section>
+<section>
+  <h2>tight-row </h2>
+  <p class="muted">особое требование внутри настоящей схемы: часть узлов плотным рядом</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="bad">17/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">8 итераций · 9 пересечений · отказов 1 · без конфликтов 0%</div>
+  <a href="E06/tight-row__deepseek-v4-flash.png" target="_blank"><img src="E06/tight-row__deepseek-v4-flash.png" alt="tight-row E06"></a>
+</div><div class="pane"><div class="head">E07</div><p class="muted">нет данных</p></div></div>
+</section>
+<section>
+  <h2>wide-timeline </h2>
+  <p class="muted">композиция, которой идейно положено быть широкой и низкой</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E06 <b class="ok">100/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">8 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E06/wide-timeline__deepseek-v4-flash.png" target="_blank"><img src="E06/wide-timeline__deepseek-v4-flash.png" alt="wide-timeline E06"></a>
+</div><div class="pane"><div class="head">E07</div><p class="muted">нет данных</p></div></div>
+</section>
+</body></html>
