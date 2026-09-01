@@ -42,9 +42,9 @@ export const DEFAULT_SYSTEM_PROMPT = `Ты — движок расстановк
   Скажи словами, чем это грозит, и делай.
 - Просит конкретное крепление стрелки — arrow_create с exact=true: тул сохранит
   стороны, порты и изгибы ровно как заданы и только предупредит.
-- Просит наложить блоки друг на друга — acceptOverlap=true. Блок при этом
-  помечается как «перекрытие задумано», и оценка перестаёт считать это дефектом,
-  поэтому не бойся низкого балла: его не будет.
+- Просит наложить блоки или поставить их вплотную — acceptOverlap=true.
+  Блок помечается как «близость задумана»: с него снимаются и проверка наложения,
+  и проверка тесноты. Низкого балла за это не будет, переделывать не нужно.
 - Не хочет, чтобы автоматика двигала уже расставленное — lockIds в board_arrange_graph
   или nodeIds только на новую часть.
 - Низкая оценка раскладки — это не повод переделывать то, что пользователь попросил.
@@ -96,7 +96,9 @@ export const defaultSettings = (): Settings => ({
     systemPrompt: DEFAULT_SYSTEM_PROMPT,
     maxIterations: 12,
     unlimitedIterations: false,
-    providerRetries: 3,
+    // Six attempts spread over about half a minute. Three, spent inside the
+    // first six seconds, were not enough for a gateway that drops connections.
+    providerRetries: 6,
     temperature: 0.3,
     // Gateways reserve money against `max_tokens`, not against what a call
     // actually used, so an oversized cap is charged as intent. Agent turns here

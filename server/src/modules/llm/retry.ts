@@ -30,9 +30,12 @@ export const isRetryableProviderError = (error: unknown): boolean => {
 };
 
 export const retryDelayMs = (attempt: number): number => {
-  // attempt is 1-based after the first failure: 400ms, 800ms, 1600ms…
-  const base = Math.min(4_000, 400 * 2 ** (attempt - 1));
-  const jitter = Math.floor(Math.random() * 200);
+  // attempt is 1-based after the first failure: 500ms, 1s, 2s, 4s, 8s, 15s.
+  // The old ceiling of 4s spent all its retries inside the first six seconds,
+  // so a gateway that was down for ten lost the whole run: three bench runs
+  // died this way with the connection error already listed as retryable.
+  const base = Math.min(15_000, 500 * 2 ** (attempt - 1));
+  const jitter = Math.floor(Math.random() * 300);
   return base + jitter;
 };
 

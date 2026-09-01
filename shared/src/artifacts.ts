@@ -48,7 +48,8 @@ export interface Artifact extends Rect {
    * badge on a card. Without it the quality metric fights the user: asked for
    * overlapping cards, the agent produced them and the board scored 11/100
    * because every pair cost 15 penalty points. Marked artifacts are excluded
-   * from the overlap check, never from anything else.
+   * from the overlap and the crowding checks — proximity is the whole point —
+   * and from nothing else.
    */
   allowOverlap?: boolean;
   createdAt: number;

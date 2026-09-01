@@ -1,0 +1,87 @@
+{
+  "exp": "E05",
+  "task": "dense-arch",
+  "probes": "стресс: 14 узлов, плотный граф, несколько подсистем",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-01T19:44:25.258Z",
+  "ms": 44420,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 1,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 0,
+      "arrows": 0,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 0,
+      "totalLength": 0,
+      "detour": 1
+    },
+    "breakdown": []
+  },
+  "observations": {
+    "artifacts": 0,
+    "arrows": 0,
+    "width": 0,
+    "height": 0,
+    "aspect": 0,
+    "density": 0,
+    "edgeLengthMedian": 0,
+    "edgeLengthMax": 0,
+    "edgeLengthSpread": 0,
+    "separation": 0,
+    "textOverflow": 0,
+    "alignedShare": 0,
+    "columnLanes": 0,
+    "rowLanes": 0,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 0,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [],
+  "toolHistogram": {},
+  "refusals": [],
+  "errors": [
+    "fetch failed"
+  ],
+  "usage": {
+    "promptTokens": 0,
+    "completionTokens": 0,
+    "totalTokens": 0,
+    "calls": 0,
+    "callsWithoutUsage": 0
+  },
+  "termination": "provider_error",
+  "restoredCheckpoint": false,
+  "answer": "",
+  "boardId": "brd_7wtdb9x56c",
+  "state": {
+    "artifacts": [],
+    "arrows": []
+  }
+}

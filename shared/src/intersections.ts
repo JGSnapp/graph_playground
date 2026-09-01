@@ -761,6 +761,10 @@ export const checkIntersections = (
         }
 
         if (!includeClearance) continue;
+        // Deliberate crowding covers proximity too: a stack of photos was left
+        // with the whole penalty as "blocks stand too close" once the overlap
+        // itself stopped counting.
+        if (a.allowOverlap || b.allowOverlap) continue;
         const gap = gapBetween(a, b);
         if (gap && gap.gap < minArtifactGap) {
           findings.push({

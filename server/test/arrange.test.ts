@@ -376,4 +376,21 @@ describe('намеренное перекрытие', () => {
     const report = checkIntersections(artifacts, []);
     expect(report.counts.artifactArtifact).toBe(1);
   });
+
+  it('у намеренно близких блоков не считается и теснота', () => {
+    // A stack of photos was left with the whole penalty as "too close" once
+    // the overlap itself stopped counting.
+    const stack = [node('a', 0, 0), node('b', 60, 40), node('c', 120, 80)].map((a) => ({
+      ...a,
+      allowOverlap: true,
+    }));
+    const report = checkIntersections(stack, []);
+    expect(report.counts.artifactArtifact).toBe(0);
+    expect(report.counts.tightSpacing).toBe(0);
+    expect(boardQuality(stack, []).score).toBe(100);
+
+    // Two ordinary blocks standing 10px apart are still reported.
+    const crowded = [node('x', 0, 0), node('y', 210, 0)];
+    expect(checkIntersections(crowded, []).counts.tightSpacing).toBe(1);
+  });
 });
