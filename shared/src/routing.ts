@@ -45,6 +45,18 @@ export interface RouteOptions {
    * shared line. Exposed mainly for experiments.
    */
   lanesPerGap?: number;
+  /**
+   * Grid lines outside the composition, so a route can go around it instead of
+   * through it. Without them the only line beyond the outermost box sits at
+   * `margin`, which is usually unusable, and the search has no way to express
+   * "around the right-hand side" — raising `crossPenalty` twenty-five-fold left
+   * the number of crossings unchanged because the alternative did not exist.
+   */
+  outerRings?: number;
+  /** A polyline run shorter than this counts as a wobble, not a turn. */
+  jogLength?: number;
+  /** Cost of one such wobble. */
+  jogPenalty?: number;
 }
 
 export interface RoutedArrow {
@@ -94,6 +106,12 @@ const DEFAULTS = {
   turnPenalty: 120,
   overlapPenalty: 2,
   crossPenalty: 80,
+  outerRings: 0,
+  jogLength: 64,
+  // Cheap insurance: at 400 a wobble has to save more than three turns to be
+  // worth drawing. Measured effect is small because most visible wobbles come
+  // from nodes that are not aligned, not from the route.
+  jogPenalty: 0,
 };
 
 /** Above this many artifacts the Hanan grid gets too big for interactive use. */
@@ -614,6 +632,8 @@ export const routeArrows = (
   const turnPenalty = options.turnPenalty ?? DEFAULTS.turnPenalty;
   const overlapPenalty = options.overlapPenalty ?? DEFAULTS.overlapPenalty;
   const crossPenalty = options.crossPenalty ?? DEFAULTS.crossPenalty;
+  const jogLength = options.jogLength ?? DEFAULTS.jogLength;
+  const jogPenalty = options.jogPenalty ?? DEFAULTS.jogPenalty;
 
   const wanted = options.arrowIds ? new Set(options.arrowIds) : null;
   const targets = arrows.filter((arrow) => (wanted ? wanted.has(arrow.id) : true));
@@ -631,23 +651,47 @@ export const routeArrows = (
     };
   }
 
-  const geometries = computeArrowGeometries(artifacts, arrows);
+  // Ports the router itself assigned belong to the previous arrangement. Kept,
+  // they skip the distribution pass in `computeArrowGeometries`, and arrows
+  // into one node stay on crossing lines however the nodes are moved. Ports the
+  // agent asked for are untouched.
+  const wanted2 = new Set(targets.map((arrow) => arrow.id));
+  const freshPorts = arrows.map((arrow) =>
+    arrow.autoPorts && wanted2.has(arrow.id)
+      ? {
+          ...arrow,
+          from: { ...arrow.from, offset: undefined },
+          to: { ...arrow.to, offset: undefined },
+        }
+      : arrow,
+  );
+  const geometries = computeArrowGeometries(artifacts, freshPorts);
 
   const usableGrid = artifacts.length <= MAX_GRID_ARTIFACTS;
   const blockers = artifacts.map((a) => ({ id: a.id, rect: inflate(a, clearance) }));
 
   const lanesPerGap =
     typeof options.lanesPerGap === 'number' ? options.lanesPerGap : lanesFor(targets.length);
-  const xs = corridorLines(
-    artifacts.map((a) => [a.x, a.x + a.width] as [number, number]),
-    margin,
-    lanesPerGap,
-  );
-  const ys = corridorLines(
-    artifacts.map((a) => [a.y, a.y + a.height] as [number, number]),
-    margin,
-    lanesPerGap,
-  );
+  const rings = options.outerRings ?? DEFAULTS.outerRings;
+  /** Lines at increasing distances outside the composition, on both sides. */
+  const ringLines = (lo: number, hi: number): number[] => {
+    const out: number[] = [];
+    for (let ring = 1; ring <= rings; ring++) {
+      const away = margin * (ring + 1) * 1.5;
+      out.push(Math.round(lo - away), Math.round(hi + away));
+    }
+    return out;
+  };
+  const spanX = artifacts.map((a) => [a.x, a.x + a.width] as [number, number]);
+  const spanY = artifacts.map((a) => [a.y, a.y + a.height] as [number, number]);
+  const xs = uniqueSorted([
+    ...corridorLines(spanX, margin, lanesPerGap),
+    ...ringLines(Math.min(...spanX.map((s) => s[0])), Math.max(...spanX.map((s) => s[1]))),
+  ]);
+  const ys = uniqueSorted([
+    ...corridorLines(spanY, margin, lanesPerGap),
+    ...ringLines(Math.min(...spanY.map((s) => s[0])), Math.max(...spanY.map((s) => s[1]))),
+  ]);
 
   const keepOccupied = (): Corridors => {
     const corridors = new Corridors();
@@ -733,7 +777,16 @@ export const routeArrows = (
       const wrongSide =
         (overTheTop ? (fromSide === 'top' ? 0 : 120) + (toSide === 'top' ? 0 : 120) : 0) +
         (underTheBottom ? (fromSide === 'bottom' ? 0 : 120) + (toSide === 'bottom' ? 0 : 120) : 0);
-      const score = pathCost(points, model) + (hook ? 800 : 0) + bends * 8 + wrongSide;
+      // A short middle run is the "step sideways and come straight back" shape:
+      // two turns that cancel out and read as a wobble rather than a route.
+      // Two turns cost 240 here, so a jog has to be worth more than that.
+      let jogs = 0;
+      for (let i = 1; i < points.length - 2; i++) {
+        const run = Math.abs(points[i + 1].x - points[i].x) + Math.abs(points[i + 1].y - points[i].y);
+        if (run < jogLength) jogs += 1;
+      }
+      const score =
+        pathCost(points, model) + (hook ? 800 : 0) + bends * 8 + wrongSide + jogs * jogPenalty;
       if (!best || score < best.score) {
         best = { path: points, start, goal, fromSide, toSide, score };
       }

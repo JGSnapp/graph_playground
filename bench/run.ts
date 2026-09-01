@@ -33,6 +33,13 @@ const TIMEOUT_MS = Number(argOf('timeout', '1800000'));
 /** Ceiling is enforced by `concurrencyFor`; this is only what was asked for. */
 const CONCURRENCY = Number(argOf('concurrency', '1'));
 const MAX_TOKENS = Number(argOf('maxTokens', '4096'));
+/**
+ * Repeats per task. One run per task is not a measurement: the same graph came
+ * back with one crossing and with eight on two consecutive runs, purely because
+ * the model chose a slightly different node size. Twice I read that noise as
+ * the effect of a change.
+ */
+const REPEATS = Math.max(1, Number(argOf('repeat', '1')));
 
 /** Token totals reported by the provider, collected across the experiment. */
 const spent: MessageUsage[] = [];
@@ -194,10 +201,10 @@ const seedBoard = async (boardId: string, task: BenchTask): Promise<void> => {
   }
 };
 
-const runOne = async (exp: string, task: BenchTask, model: string): Promise<void> => {
+const runOne = async (exp: string, task: BenchTask, model: string, repeat = 0): Promise<void> => {
   const dir = path.join(OUT, exp);
   fs.mkdirSync(dir, { recursive: true });
-  const stem = `${task.id}__${model}`;
+  const stem = repeat === 0 ? `${task.id}__${model}` : `${task.id}__${model}__r${repeat}`;
 
   const board: Board = await api('POST', '/boards', { title: `${exp}/${task.id}/${model}`, model });
   await seedBoard(board.id, task);
@@ -230,6 +237,7 @@ const runOne = async (exp: string, task: BenchTask, model: string): Promise<void
   const result = {
     exp,
     task: task.id,
+    repeat,
     probes: task.probes,
     model,
     at: new Date().toISOString(),
@@ -275,7 +283,7 @@ const runOne = async (exp: string, task: BenchTask, model: string): Promise<void
   }
 
   console.log(
-    `${task.id.padEnd(18)} ${model.padEnd(18)} score ${String(quality.score).padStart(3)}/100 ` +
+    `${(repeat === 0 ? task.id : `${task.id}#${repeat + 1}`).padEnd(18)} ${model.padEnd(18)} score ${String(quality.score).padStart(3)}/100 ` +
       `(${quality.grade}) cost ${quality.cost} | ${state.artifacts.length} узлов, ${state.arrows.length} связей | ` +
       `${result.iterations ?? '?'} итер, ${result.refusals.length} отказов | ${Math.round(agent.ms / 1000)}s` +
       `${result.usage ? ` | ${result.usage.promptTokens}+${result.usage.completionTokens} ток` : ''}` +
@@ -308,7 +316,7 @@ const main = async () => {
   // interesting number, a board takes a dozen of them.
   const verdict = checkExperimentBudget({
     models,
-    runs: models.length * tasks.length,
+    runs: models.length * tasks.length * REPEATS,
     maxTokens: MAX_TOKENS,
     budgetRun: Number(argOf('budget-run', '25')),
     budgetExperiment: Number(argOf('budget-exp', '400')),
@@ -325,7 +333,7 @@ const main = async () => {
   const { value: concurrency, note } = concurrencyFor(models, CONCURRENCY);
   if (note) console.log(`  ${note}`);
   console.log(
-    `  ${models.length} модель(ей) × ${tasks.length} задач(и) = ${models.length * tasks.length} прогонов, ` +
+    `  ${models.length} модель(ей) × ${tasks.length} задач(и) × ${REPEATS} повтор(а) = ${models.length * tasks.length * REPEATS} прогонов, ` +
       `параллельно ${concurrency}, maxTokens ${MAX_TOKENS}\n`,
   );
 
@@ -333,17 +341,21 @@ const main = async () => {
   // request, so the bench pins it on the server before the first run.
   await api('PATCH', '/settings', { agent: { maxTokens: MAX_TOKENS } });
 
-  const jobs: Array<{ task: BenchTask; model: string }> = [];
-  for (const model of models) for (const task of tasks) jobs.push({ task, model });
+  const jobs: Array<{ task: BenchTask; model: string; repeat: number }> = [];
+  for (const model of models) {
+    for (const task of tasks) {
+      for (let repeat = 0; repeat < REPEATS; repeat++) jobs.push({ task, model, repeat });
+    }
+  }
 
   let cursor = 0;
   const worker = async () => {
     for (;;) {
       const index = cursor++;
       if (index >= jobs.length) return;
-      const { task, model } = jobs[index];
+      const { task, model, repeat } = jobs[index];
       try {
-        await runOne(exp, task, model);
+        await runOne(exp, task, model, repeat);
       } catch (error) {
         console.error(`✖ ${task.id} @ ${model}: ${error instanceof Error ? error.message : error}`);
       }

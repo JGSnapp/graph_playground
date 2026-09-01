@@ -104,16 +104,25 @@ export interface UpdateArtifactResult {
 /**
  * Auto-routed bends are absolute world coordinates built for one particular
  * arrangement, so moving or resizing a node turns them into garbage that would
- * render as a detour across the board. Bends placed by hand are left alone:
- * the router owns its routes, everyone else owns theirs.
+ * render as a detour across the board. Ports chosen by the router go with them:
+ * a pinned port skips the distribution pass, so a stale one keeps two arrows
+ * entering the same node on crossing lines forever. Bends and ports placed by
+ * hand are left alone — the router owns its routes, everyone else owns theirs.
  */
 const dropRoutedBends = (state: BoardState, artifactId: string): number => {
   let reset = 0;
   for (const arrow of state.arrows) {
     const touches =
       arrow.from.artifactId === artifactId || arrow.to.artifactId === artifactId;
-    if (!touches || arrow.routing !== 'orthogonal' || arrow.bends.length === 0) continue;
-    arrow.bends = [];
+    if (!touches) continue;
+    const hadRoute = arrow.routing === 'orthogonal' && arrow.bends.length > 0;
+    if (!hadRoute && !arrow.autoPorts) continue;
+    if (hadRoute) arrow.bends = [];
+    if (arrow.autoPorts) {
+      arrow.from.offset = undefined;
+      arrow.to.offset = undefined;
+      arrow.autoPorts = undefined;
+    }
     arrow.updatedAt = Date.now();
     reset++;
   }
@@ -248,6 +257,7 @@ export const applyRoute = (state: BoardState, id: string, route: RouteApplicatio
   arrow.to.side = route.toSide;
   arrow.from.offset = normalizeOffset(route.fromOffset);
   arrow.to.offset = normalizeOffset(route.toOffset);
+  arrow.autoPorts = true;
   arrow.routing = 'orthogonal';
   arrow.updatedAt = Date.now();
   return arrow;

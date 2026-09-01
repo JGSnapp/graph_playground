@@ -1,50 +1,19 @@
 /**
  * Builds a local HTML page comparing two experiments side by side, so results
- * can actually be looked at rather than only measured.
+ * can actually be looked at rather than only measured. Repeats of one task are
+ * folded into a median; the picture shown is the best run of that task.
  *
- *   tsx bench/report-html.ts E02 E03
+ *   tsx bench/report-html.ts E05 E07
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { load, type Aggregate } from './compare.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(here, 'out');
 
-interface Row {
-  task: string;
-  probes: string;
-  score: number;
-  ok: boolean;
-  grade: string;
-  iterations: number;
-  refusals: number;
-  crossings: number;
-  aspect: number;
-  png: string;
-}
-
-const load = (exp: string): Map<string, Row> => {
-  const dir = path.join(OUT, exp);
-  const rows = new Map<string, Row>();
-  if (!fs.existsSync(dir)) return rows;
-  for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
-    const r = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
-    rows.set(r.task, {
-      task: r.task,
-      probes: r.probes ?? '',
-      score: r.quality.score,
-      ok: r.ok,
-      grade: r.quality.grade,
-      iterations: r.iterations ?? 0,
-      refusals: (r.refusals ?? []).length,
-      crossings: r.quality.counts.arrowArrow,
-      aspect: r.observations.aspect,
-      png: `${exp}/${file.replace('.json', '.png')}`,
-    });
-  }
-  return rows;
-};
+type Row = Aggregate;
 
 const [a, b] = [process.argv[2] ?? 'E02', process.argv[3] ?? 'E03'];
 const left = load(a);
@@ -64,11 +33,12 @@ const delta = (from?: number, to?: number): string => {
 
 const card = (exp: string, row?: Row): string => {
   if (!row) return `<div class="pane"><div class="head">${exp}</div><p class="muted">нет данных</p></div>`;
+  const spread = row.runs > 1 ? ` ±${row.spread} по ${row.runs} прогонам` : '';
   return `<div class="pane">
-  <div class="head">${exp} <b class="${row.ok ? 'ok' : 'bad'}">${row.score}/100</b>
-    <span class="muted">${row.grade}${row.ok ? ' · ok' : ''}</span></div>
-  <div class="meta">${row.iterations} итераций · ${row.crossings} пересечений · отказов ${row.refusals} · пропорция ${row.aspect}</div>
-  <a href="${row.png}" target="_blank"><img src="${row.png}" alt="${row.task} ${exp}"></a>
+  <div class="head">${exp} <b class="${row.okShare === 1 ? 'ok' : 'bad'}">${row.score}/100</b>
+    <span class="muted">медиана${spread}</span></div>
+  <div class="meta">${row.iterations} итераций · ${row.crossings} пересечений · отказов ${row.refusals} · без конфликтов ${Math.round(row.okShare * 100)}%</div>
+  <a href="${row.bestPng}" target="_blank"><img src="${row.bestPng}" alt="${row.task} ${exp}"></a>
 </div>`;
 };
 
@@ -89,7 +59,7 @@ const stats = (rows: Row[]) =>
     ? { score: 0, ok: 0, crossings: 0 }
     : {
         score: Math.round(rows.reduce((s, x) => s + x.score, 0) / rows.length),
-        ok: rows.filter((x) => x.ok).length,
+        ok: Math.round(rows.reduce((s, x) => s + x.okShare, 0)),
         crossings: rows.reduce((s, x) => s + x.crossings, 0),
       };
 const sl = stats([...left.values()]);

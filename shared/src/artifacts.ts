@@ -89,6 +89,14 @@ export interface Arrow {
   bends: Vec2[];
   /** How the polyline between the ports is drawn. Defaults to orthogonal. */
   routing?: ArrowRouting;
+  /**
+   * True when the attachment points were chosen by the router rather than
+   * asked for. Such ports belong to one particular arrangement: after a node
+   * moves they are stale, and because a pinned port skips the distribution
+   * pass, arrows into the same node kept crossing right next to it — most of
+   * the crossings left on the bench boards were of exactly this kind.
+   */
+  autoPorts?: boolean;
   label?: string;
   style: ArrowStyle;
   createdAt: number;

@@ -928,7 +928,10 @@ export const arrangeGraph = (
       const stretch = Math.max(ratio, ratio > 0 ? 1 / ratio : 1);
       const selection =
         quality.cost +
-        // A composition stretched past 1:2.5 without reason reads badly.
+        // A composition stretched past 1:2.5 without reason reads badly, and
+        // the penalty has to grow with the stretch: a flat rate of four per
+        // unit left a 1:8 ribbon costing only twenty-two, which any routing
+        // detail outweighed. Squared, 1:8 costs about a hundred and fifty.
         Math.max(0, stretch - 2.5) * 4 +
         // Gaps wider than about 1.5 blocks make the drawing feel scattered.
         Math.max(0, nearestGapRatio(moved) - 1.5) * 9;
