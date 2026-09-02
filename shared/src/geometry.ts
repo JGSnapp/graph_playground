@@ -2,6 +2,9 @@ import type { AnchorSide, Arrow, Artifact, Rect, Vec2 } from './artifacts.js';
 
 export type FixedSide = Exclude<AnchorSide, 'auto'>;
 
+/** Clockwise from the top, so iteration order reads the way a person points. */
+export const FIXED_SIDES: FixedSide[] = ['top', 'right', 'bottom', 'left'];
+
 /**
  * Shortest legal run between two vertices (port, bend or stub).
  * Anything shorter reads as a nick, not an edge.

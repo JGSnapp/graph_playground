@@ -13,6 +13,7 @@
  */
 import type { Arrow, Artifact, Rect, Vec2 } from './artifacts.js';
 import { boundsOf, rectsIntersect, type FixedSide } from './geometry.js';
+import { searchPorts } from './ports.js';
 import { boardQuality, type LayoutQuality } from './quality.js';
 import { routeArrows, tooTightToRoute } from './routing.js';
 
@@ -745,6 +746,8 @@ export interface ArrangeOptions extends Omit<LayoutOptions, 'direction'> {
   direction?: LayoutDirection | 'auto';
   /** Spacing multipliers to try. Wider layouts route better but read worse. */
   spacingSteps?: number[];
+  /** Set false to skip the port-attachment search after routing. */
+  searchPorts?: boolean;
   /**
    * Pin multi-layer edges to the lanes the layout reserved instead of letting
    * the router find them. Off until it is shown to help: the first attempt made
@@ -851,6 +854,9 @@ const applyRouted = (arrows: Arrow[], routed: ReturnType<typeof routeArrows>['ro
       ...arrow,
       bends: match.bends,
       routing: 'orthogonal' as const,
+      // Marks the attachment as the router's, so the port search may move it
+      // and a later node move knows to release it.
+      autoPorts: true,
       from: { ...arrow.from, side: match.fromSide, offset: match.fromOffset },
       to: { ...arrow.to, side: match.toSide, offset: match.toOffset },
     };
@@ -906,6 +912,16 @@ export const arrangeGraph = (
         if (!outcome.refused) {
           nextArrows = applyRouted(laned.arrows, outcome.routed);
           routed = true;
+          // Which side and which point of a node an arrow takes is decided once
+          // per arrow and never revisited, and two thirds of the crossings left
+          // on the bench boards were between arrows meeting at one node. Trying
+          // other attachment orders removes about a quarter of them.
+          if (options.searchPorts !== false) {
+            const searched = searchPorts(moved, nextArrows, {
+              lockedArrowIds: nextArrows.filter((a) => !a.autoPorts).map((a) => a.id),
+            });
+            if (searched.costAfter < searched.costBefore) nextArrows = searched.arrows;
+          }
         }
       }
       const quality = boardQuality(moved, nextArrows);

@@ -5,6 +5,7 @@ export * from './routing.js';
 export * from './quality.js';
 export * from './placement.js';
 export * from './layout.js';
+export * from './ports.js';
 export * from './boards.js';
 export * from './chat.js';
 export * from './settings.js';

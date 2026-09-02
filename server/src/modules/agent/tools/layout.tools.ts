@@ -1,4 +1,4 @@
-import { boardQuality, cleanArrowRoutes, routeArrows, tooTightToRoute } from '@teca/shared';
+import { boardQuality, cleanArrowRoutes, routeArrows, searchPorts, tooTightToRoute } from '@teca/shared';
 import { applyRoute } from '../../boards/operations.js';
 import { int, num, objectSchema, str, type ToolSpec } from './types.js';
 
@@ -57,7 +57,25 @@ export const boardRouteArrows: ToolSpec = {
         crossPenalty: typeof args.crossPenalty === 'number' ? args.crossPenalty : undefined,
       });
       for (const routed of result.routed) applyRoute(state, routed.arrowId, routed);
-      return result;
+
+      // Which side and which point of a node an arrow takes is decided once per
+      // arrow. Trying other attachment orders for the arrows that meet at one
+      // node removes about a third of the crossings the search leaves behind.
+      const searched = searchPorts(state.artifacts, state.arrows, {
+        lockedArrowIds: state.arrows.filter((arrow) => !arrow.autoPorts).map((arrow) => arrow.id),
+      });
+      if (searched.costAfter < searched.costBefore) {
+        for (const arrow of searched.arrows) {
+          const target = state.arrows.find((item) => item.id === arrow.id);
+          if (!target) continue;
+          target.bends = arrow.bends;
+          target.from = arrow.from;
+          target.to = arrow.to;
+          target.autoPorts = true;
+          target.updatedAt = Date.now();
+        }
+      }
+      return { ...result, portSwaps: searched.swaps };
     });
 
     const after = ctx.boards.read(ctx.boardId, (state) =>
@@ -95,6 +113,7 @@ export const boardRouteArrows: ToolSpec = {
         })),
         skipped: outcome.skipped,
         variantsTried: outcome.variantsTried,
+        portSwaps: outcome.portSwaps ?? 0,
         crowded: outcome.crowded ?? [],
         hooks: hooks.map((r) => r.arrowId),
         warnings,
