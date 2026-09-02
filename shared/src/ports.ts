@@ -38,6 +38,12 @@ export interface PortSearchOptions {
   passes?: number;
   /** Arrows whose ports the caller pinned deliberately; never touched. */
   lockedArrowIds?: string[];
+  /**
+   * Draws the given arrows for the current attachment. Defaults to our own
+   * router; a caller can plug in another one — the search cares only that the
+   * polyline matches the ports it just set.
+   */
+  relay?: (artifacts: Artifact[], arrows: Arrow[], arrowIds: string[]) => Arrow[] | null;
 }
 
 export interface PortSearchResult {
@@ -133,7 +139,7 @@ const withSwappedPorts = (arrows: Arrow[], a: End, b: End): Arrow[] =>
     return arrow;
   });
 
-const relay = (artifacts: Artifact[], arrows: Arrow[], arrowIds: string[]): Arrow[] | null => {
+const defaultRelay = (artifacts: Artifact[], arrows: Arrow[], arrowIds: string[]): Arrow[] | null => {
   if (!tooTightToRoute(artifacts, arrows, arrowIds).ready) return null;
   const outcome = routeArrows(artifacts, arrows, { arrowIds });
   if (outcome.refused) return null;
@@ -163,6 +169,7 @@ export const searchPorts = (
   const maxTried = options.maxTried ?? 400;
   const passes = options.passes ?? 2;
   const locked = new Set(options.lockedArrowIds ?? []);
+  const relay = options.relay ?? defaultRelay;
 
   const costBefore = boardQuality(artifacts, arrows).cost;
   let current = arrows;

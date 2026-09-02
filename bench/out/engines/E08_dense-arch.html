@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><title>Движки раскладки: E08/dense-arch</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; padding:32px; background:#0b0d11; color:#e8e8ea;
+         font:15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  h1 { font-size:22px; margin:0 0 6px; } h2 { font-size:16px; margin:32px 0 2px; }
+  h2 b { color:#7ddc9a; } .muted { color:#8b93a7; font-size:13px; margin:2px 0 10px; }
+  img { width:100%; height:auto; border-radius:8px; background:#0e1014; border:1px solid #1c2029; }
+</style></head><body>
+<h1>Один и тот же граф разными движками — E08/dense-arch</h1>
+<p class="muted">Узлы расставляет каждый движок сам, стрелки прокладывает один и тот же роутер,
+оценивает одна и та же метрика. Разница — только в расстановке.</p>
+<section>
+  <h2>наша раскладка + перебор портов <b>31/100</b></h2>
+  <p class="muted">штраф 56 · пересечений 14 · наложений 0</p>
+  <a href="E08_dense-arch-0.png" target="_blank"><img src="E08_dense-arch-0.png" alt="наша раскладка + перебор портов"></a>
+</section>
+<section>
+  <h2>ELK layered <b>23/100</b></h2>
+  <p class="muted">штраф 84.3 · пересечений 7 · наложений 0</p>
+  <a href="E08_dense-arch-1.png" target="_blank"><img src="E08_dense-arch-1.png" alt="ELK layered"></a>
+</section>
+<section>
+  <h2>ELK layered + наш перебор портов <b>27/100</b></h2>
+  <p class="muted">штраф 66.3 · пересечений 5 · наложений 0</p>
+  <a href="E08_dense-arch-2.png" target="_blank"><img src="E08_dense-arch-2.png" alt="ELK layered + наш перебор портов"></a>
+</section>
+<section>
+  <h2>dagre <b>14/100</b></h2>
+  <p class="muted">штраф 157.7 · пересечений 13 · наложений 0</p>
+  <a href="E08_dense-arch-3.png" target="_blank"><img src="E08_dense-arch-3.png" alt="dagre"></a>
+</section>
+<section>
+  <h2>dagre + наш перебор портов <b>18/100</b></h2>
+  <p class="muted">штраф 112.6 · пересечений 10 · наложений 0</p>
+  <a href="E08_dense-arch-4.png" target="_blank"><img src="E08_dense-arch-4.png" alt="dagre + наш перебор портов"></a>
+</section>
+</body></html>

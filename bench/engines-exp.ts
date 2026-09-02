@@ -23,6 +23,17 @@ interface Placed {
   ms: number;
 }
 
+/** Same rule our layout uses: spacing scaled to the median node. */
+const spacingFor = (artifacts: Artifact[], horizontal: boolean) => {
+  const pick = (values: number[]) => [...values].sort((a, b) => a - b)[values.length >> 1];
+  const along = pick(artifacts.map((a) => (horizontal ? a.width : a.height)));
+  const cross = pick(artifacts.map((a) => (horizontal ? a.height : a.width)));
+  return {
+    node: Math.round(Math.max(44, cross * 0.55)),
+    layer: Math.round(Math.max(130, along * 1.15)),
+  };
+};
+
 const edgesOf = (arrows: Arrow[], ids: Set<string>) =>
   arrows
     .filter((a) => ids.has(a.from.artifactId) && ids.has(a.to.artifactId))
@@ -31,7 +42,8 @@ const edgesOf = (arrows: Arrow[], ids: Set<string>) =>
 const byDagre = (artifacts: Artifact[], arrows: Arrow[], horizontal: boolean): Placed => {
   const started = Date.now();
   const g = new dagre.graphlib.Graph();
-  g.setGraph({ rankdir: horizontal ? 'LR' : 'TB', nodesep: 80, ranksep: 160, marginx: 0, marginy: 0 });
+  const gap = spacingFor(artifacts, horizontal);
+  g.setGraph({ rankdir: horizontal ? 'LR' : 'TB', nodesep: gap.node, ranksep: gap.layer, marginx: 0, marginy: 0 });
   g.setDefaultEdgeLabel(() => ({}));
   for (const a of artifacts) g.setNode(a.id, { width: a.width, height: a.height });
   const ids = new Set(artifacts.map((a) => a.id));
@@ -54,8 +66,8 @@ const byElk = async (artifacts: Artifact[], arrows: Arrow[], horizontal: boolean
     layoutOptions: {
       'elk.algorithm': 'layered',
       'elk.direction': horizontal ? 'RIGHT' : 'DOWN',
-      'elk.spacing.nodeNode': '80',
-      'elk.layered.spacing.nodeNodeBetweenLayers': '160',
+      'elk.spacing.nodeNode': String(spacingFor(artifacts, horizontal).node),
+      'elk.layered.spacing.nodeNodeBetweenLayers': String(spacingFor(artifacts, horizontal).layer),
       'elk.edgeRouting': 'ORTHOGONAL',
     },
     children: artifacts.map((a) => ({ id: a.id, width: a.width, height: a.height })),

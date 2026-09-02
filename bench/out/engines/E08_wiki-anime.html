@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><title>Движки раскладки: E08/wiki-anime</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; padding:32px; background:#0b0d11; color:#e8e8ea;
+         font:15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  h1 { font-size:22px; margin:0 0 6px; } h2 { font-size:16px; margin:32px 0 2px; }
+  h2 b { color:#7ddc9a; } .muted { color:#8b93a7; font-size:13px; margin:2px 0 10px; }
+  img { width:100%; height:auto; border-radius:8px; background:#0e1014; border:1px solid #1c2029; }
+</style></head><body>
+<h1>Один и тот же граф разными движками — E08/wiki-anime</h1>
+<p class="muted">Узлы расставляет каждый движок сам, стрелки прокладывает один и тот же роутер,
+оценивает одна и та же метрика. Разница — только в расстановке.</p>
+<section>
+  <h2>наша раскладка + перебор портов <b>68/100</b></h2>
+  <p class="muted">штраф 11.5 · пересечений 2 · наложений 0</p>
+  <a href="E08_wiki-anime-0.png" target="_blank"><img src="E08_wiki-anime-0.png" alt="наша раскладка + перебор портов"></a>
+</section>
+<section>
+  <h2>ELK layered <b>33/100</b></h2>
+  <p class="muted">штраф 51.5 · пересечений 2 · наложений 0</p>
+  <a href="E08_wiki-anime-1.png" target="_blank"><img src="E08_wiki-anime-1.png" alt="ELK layered"></a>
+</section>
+<section>
+  <h2>ELK layered + наш перебор портов <b>56/100</b></h2>
+  <p class="muted">штраф 19.5 · пересечений 1 · наложений 0</p>
+  <a href="E08_wiki-anime-2.png" target="_blank"><img src="E08_wiki-anime-2.png" alt="ELK layered + наш перебор портов"></a>
+</section>
+<section>
+  <h2>dagre <b>39/100</b></h2>
+  <p class="muted">штраф 39.3 · пересечений 3 · наложений 0</p>
+  <a href="E08_wiki-anime-3.png" target="_blank"><img src="E08_wiki-anime-3.png" alt="dagre"></a>
+</section>
+<section>
+  <h2>dagre + наш перебор портов <b>44/100</b></h2>
+  <p class="muted">штраф 31.3 · пересечений 3 · наложений 0</p>
+  <a href="E08_wiki-anime-4.png" target="_blank"><img src="E08_wiki-anime-4.png" alt="dagre + наш перебор портов"></a>
+</section>
+</body></html>
