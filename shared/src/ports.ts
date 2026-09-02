@@ -26,8 +26,14 @@ interface End {
 }
 
 export interface PortSearchOptions {
-  /** Give up after this many accepted swaps. Keeps the search bounded. */
+  /** Give up after this many accepted moves of any kind. */
   maxSwaps?: number;
+  /**
+   * Work budget: candidates evaluated before the search stops, accepted or
+   * not. Each candidate costs one short routing call, so without this a dense
+   * board with three move types per end takes minutes.
+   */
+  maxTried?: number;
   /** Sweeps over every node before stopping. */
   passes?: number;
   /** Arrows whose ports the caller pinned deliberately; never touched. */
@@ -40,6 +46,8 @@ export interface PortSearchResult {
   swaps: number;
   /** Accepted moves of one end to another side of its node. */
   moves: number;
+  /** Accepted nudges of one end along the side it already sits on. */
+  nudges: number;
   costBefore: number;
   costAfter: number;
   /** Swaps that were tried and rejected, for the report. */
@@ -69,6 +77,21 @@ const endsAt = (arrows: Arrow[], artifactId: string, locked: Set<string>): End[]
   }
   return out;
 };
+
+/** Candidate points along a side, from the middle outwards. */
+const OFFSETS = [0.5, 0.28, 0.72, 0.14, 0.86];
+
+/** Slides one end along the side it already sits on. */
+const withNudgedOffset = (arrows: Arrow[], end: End, offset: number): Arrow[] =>
+  arrows.map((arrow) => {
+    if (arrow.id !== end.arrowId) return arrow;
+    const patched = { ...arrow, bends: [] };
+    const endpoint = end.end === 'from' ? { ...patched.from } : { ...patched.to };
+    endpoint.offset = offset;
+    if (end.end === 'from') patched.from = endpoint;
+    else patched.to = endpoint;
+    return patched;
+  });
 
 /** Moves one end to another side, letting the distribution pick the point. */
 const withMovedSide = (arrows: Arrow[], end: End, side: FixedSide): Arrow[] =>
@@ -137,6 +160,7 @@ export const searchPorts = (
   options: PortSearchOptions = {},
 ): PortSearchResult => {
   const maxSwaps = options.maxSwaps ?? 24;
+  const maxTried = options.maxTried ?? 400;
   const passes = options.passes ?? 2;
   const locked = new Set(options.lockedArrowIds ?? []);
 
@@ -145,21 +169,45 @@ export const searchPorts = (
   let currentCost = costBefore;
   let swaps = 0;
   let moves = 0;
+  let nudges = 0;
   let tried = 0;
 
-  for (let pass = 0; pass < passes && swaps + moves < maxSwaps; pass++) {
+  for (let pass = 0; pass < passes && swaps + moves + nudges < maxSwaps && tried < maxTried; pass++) {
     let improvedThisPass = false;
 
     for (const artifact of artifacts) {
-      if (swaps + moves >= maxSwaps) break;
+      if (swaps + moves + nudges >= maxSwaps || tried >= maxTried) break;
       const ends = endsAt(current, artifact.id, locked);
       if (ends.length === 0) continue;
+
+      // Third move type: slide one end along the side it is already on. A swap
+      // needs a partner and a side move changes the direction the line leaves
+      // in; sliding is the smallest correction there is, and it is the one that
+      // straightens a line that had to bend around its own neighbour.
+      for (const end of ends) {
+        if (swaps + moves + nudges >= maxSwaps || tried >= maxTried) break;
+        for (const offset of OFFSETS) {
+          if (Math.abs(offset - end.offset) < 0.02) continue;
+          tried += 1;
+          const nudged = withNudgedOffset(current, end, offset);
+          const relaid = relay(artifacts, nudged, [end.arrowId]);
+          if (!relaid) continue;
+          const cost = boardQuality(artifacts, relaid).cost;
+          if (cost < currentCost - 1e-6) {
+            current = relaid;
+            currentCost = cost;
+            nudges += 1;
+            improvedThisPass = true;
+            break;
+          }
+        }
+      }
 
       // Second move type: send one end to another side of the same node. A
       // swap can only reshuffle the sides already in use, so a node whose
       // arrows all arrive on one side has nothing to trade.
       for (const end of ends) {
-        if (swaps + moves >= maxSwaps) break;
+        if (swaps + moves + nudges >= maxSwaps || tried >= maxTried) break;
         for (const side of FIXED_SIDES) {
           if (side === end.side) continue;
           tried += 1;
@@ -177,7 +225,7 @@ export const searchPorts = (
         }
       }
 
-      for (let i = 0; i < ends.length && swaps + moves < maxSwaps; i++) {
+      for (let i = 0; i < ends.length && swaps + moves + nudges < maxSwaps && tried < maxTried; i++) {
         for (let j = i + 1; j < ends.length; j++) {
           const a = ends[i];
           const b = ends[j];
@@ -206,5 +254,5 @@ export const searchPorts = (
     if (!improvedThisPass) break;
   }
 
-  return { arrows: current, swaps, moves, tried, costBefore, costAfter: currentCost };
+  return { arrows: current, swaps, moves, nudges, tried, costBefore, costAfter: currentCost };
 };
