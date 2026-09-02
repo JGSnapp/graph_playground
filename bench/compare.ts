@@ -105,12 +105,16 @@ const main = () => {
   for (const task of tasks) {
     const l = left.get(task);
     const r = right.get(task);
-    const noise = Math.max(l?.spread ?? 0, r?.spread ?? 0);
+    // Averaging the two spreads, not taking the larger: a noisy run followed by
+    // a tight one is exactly the shape of a real improvement, and the maximum
+    // rule hid a jump from 60±48 to a flat 100.
+    const noise = ((l?.spread ?? 0) + (r?.spread ?? 0)) / 2;
     const verdict =
       l && r
         ? Math.abs(r.score - l.score) <= noise
           ? 'в пределах разброса'
-          : `${r.score - l.score > 0 ? '+' : ''}${r.score - l.score}`
+          : `${r.score - l.score > 0 ? '+' : ''}${r.score - l.score}` +
+            (r.spread < l.spread ? `, разброс ${l.spread} → ${r.spread}` : '')
         : 'нет пары';
     const show = (x?: Aggregate) => (x ? `${x.score}${x.runs > 1 ? `±${x.spread}` : ''}` : '—');
     console.log(
