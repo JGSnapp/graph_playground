@@ -1,5 +1,6 @@
 import type { Arrow, Artifact } from '@teca/shared';
 import {
+  CORNER_RADIUS,
   MIN_EDGE,
   MIN_MIXED_PORT,
   MIN_PORT_ANGLE_DEG,
@@ -13,6 +14,7 @@ import {
   findMixedPortConflict,
   inspectRawPortAngles,
   boundsOf,
+  arrowPathData,
   computeArrowGeometries,
   rectsIntersect,
   resolveSide,
@@ -665,5 +667,76 @@ describe('layout helpers', () => {
       height: 300,
     });
     expect(boundsOf([])).toEqual({ x: 0, y: 0, width: 0, height: 0 });
+  });
+});
+
+describe('arrowPathData', () => {
+  const corner = [
+    { x: 0, y: 0 },
+    { x: 100, y: 0 },
+    { x: 100, y: 100 },
+  ];
+
+  it('leaves an orthogonal route as straight segments', () => {
+    expect(arrowPathData(corner, 'orthogonal')).toBe('M 0 0 L 100 0 L 100 100');
+  });
+
+  it('rounds a corner without moving the ends', () => {
+    const d = arrowPathData(corner, 'curved');
+    // The route is the same route: it starts and finishes at the same ports,
+    // and only the corner between them is drawn round.
+    expect(d.startsWith('M 0 0')).toBe(true);
+    expect(d.endsWith('L 100 100')).toBe(true);
+    expect(d).toContain(`Q 100 0`);
+    expect(d).toContain(`L ${100 - CORNER_RADIUS} 0`);
+  });
+
+  it('shrinks the radius rather than overrunning a short segment', () => {
+    // Ten pixels of run cannot carry a sixteen pixel radius; half the segment
+    // is the most it may take, so the arc still ends inside its own leg.
+    const d = arrowPathData(
+      [
+        { x: 0, y: 0 },
+        { x: 10, y: 0 },
+        { x: 10, y: 10 },
+      ],
+      'curved',
+    );
+    expect(d).toBe('M 0 0 L 5 0 Q 10 0 10 5 L 10 10');
+  });
+
+  it('does not bend a point that lies on a straight run', () => {
+    const d = arrowPathData(
+      [
+        { x: 0, y: 0 },
+        { x: 50, y: 0 },
+        { x: 100, y: 0 },
+      ],
+      'curved',
+    );
+    expect(d).toBe('M 0 0 L 100 0');
+  });
+
+  it('is the same polyline whichever way it is drawn', () => {
+    // Curving is a drawing mode, not a route: everything that measures the
+    // board reads these points, and they must not move.
+    const artifacts = [box('a', 0, 0), box('b', 500, 300)];
+    const arrows: Arrow[] = [
+      {
+        id: 'r1',
+        from: { artifactId: 'a', side: 'right', offset: 0.5 },
+        to: { artifactId: 'b', side: 'left', offset: 0.5 },
+        bends: [{ x: 300, y: 70 }],
+        style: {},
+        createdAt: 0,
+        updatedAt: 0,
+      },
+    ];
+    const sharp = computeArrowGeometries(artifacts, arrows).get('r1')!.points;
+    const curved = computeArrowGeometries(
+      artifacts,
+      arrows.map((a) => ({ ...a, routing: 'curved' as const })),
+    ).get('r1')!.points;
+    expect(curved).toEqual(sharp);
   });
 });

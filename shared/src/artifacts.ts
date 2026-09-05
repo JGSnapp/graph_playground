@@ -79,7 +79,19 @@ export interface ArrowStyle {
   bidirectional?: boolean;
 }
 
-export type ArrowRouting = 'straight' | 'orthogonal';
+/**
+ * How the arrow is drawn between its ports.
+ *
+ * `orthogonal` and `curved` share one route: the same ports, the same stored
+ * bends, the same polyline. They differ only in how the corners are drawn, so a
+ * board can be switched between them without re-routing anything, and every
+ * measurement — crossings, turns, clearances — keeps its meaning.
+ */
+export type ArrowRouting = 'straight' | 'orthogonal' | 'curved';
+
+/** True when the polyline was computed by the router rather than drawn by hand. */
+export const isRouted = (routing: ArrowRouting | undefined): boolean =>
+  routing === 'orthogonal' || routing === 'curved';
 
 export interface Arrow {
   id: string;

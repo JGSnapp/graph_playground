@@ -1,5 +1,11 @@
 import type { Arrow, ArrowGeometry, Artifact, Vec2 } from '@teca/shared';
-import { LABEL_GAP, arrowHeadVertices, computeArrowGeometries, labelAnchor } from '@teca/shared';
+import {
+  LABEL_GAP,
+  arrowHeadVertices,
+  arrowPathData,
+  computeArrowGeometries,
+  labelAnchor,
+} from '@teca/shared';
 import { useMemo } from 'react';
 
 interface Props {
@@ -45,7 +51,7 @@ export const ArrowLayer = ({
     <svg className="arrow-layer" style={{ position: 'absolute', left: 0, top: 0, width: 1, height: 1, overflow: 'visible' }}>
       {geometries.map(({ arrow, geometry }) => {
         const points = geometry.points;
-        const d = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+        const d = arrowPathData(points, arrow.routing);
         const selected = arrow.id === selectedId;
         const color = selected ? '#7aa2ff' : (arrow.style.color ?? '#8b93a7');
         const label = arrow.label;

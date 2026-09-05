@@ -1,4 +1,4 @@
-import type { AnchorSide, Arrow, Artifact, Rect, Vec2 } from './artifacts.js';
+import type { AnchorSide, Arrow, ArrowRouting, Artifact, Rect, Vec2 } from './artifacts.js';
 
 export type FixedSide = Exclude<AnchorSide, 'auto'>;
 
@@ -172,6 +172,57 @@ export const ensureHeadOnBends = (
     next.push(stubTo);
   }
   return next;
+};
+
+/**
+ * How far a curved corner is allowed to round off. Never more than half the
+ * shorter of the two segments it joins, so the arc cannot eat into a
+ * neighbouring run — on a tight route the corners simply stay sharp.
+ */
+export const CORNER_RADIUS = 16;
+
+/**
+ * The SVG path for one arrow.
+ *
+ * The polyline is the route; this only decides how it is drawn. Both renderers
+ * — the board in the browser and the bench that makes the screenshots — build
+ * their path here, so a curve added for one is a curve in the other, and the
+ * quality metric keeps measuring the same geometry either way.
+ */
+export const arrowPathData = (points: Vec2[], routing?: ArrowRouting): string => {
+  if (points.length === 0) return '';
+  const sharp = () => points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  if (routing !== 'curved' || points.length < 3) return sharp();
+
+  const out: string[] = [`M ${points[0].x} ${points[0].y}`];
+  for (let i = 1; i < points.length - 1; i++) {
+    const before = points[i - 1];
+    const corner = points[i];
+    const after = points[i + 1];
+    const inLen = Math.hypot(corner.x - before.x, corner.y - before.y);
+    const outLen = Math.hypot(after.x - corner.x, after.y - corner.y);
+    if (inLen < 1 || outLen < 1) continue;
+
+    const inX = (corner.x - before.x) / inLen;
+    const inY = (corner.y - before.y) / inLen;
+    const outX = (after.x - corner.x) / outLen;
+    const outY = (after.y - corner.y) / outLen;
+    // Straight through: nothing to round.
+    if (Math.abs(inX - outX) < 1e-6 && Math.abs(inY - outY) < 1e-6) continue;
+
+    const r = Math.min(CORNER_RADIUS, inLen / 2, outLen / 2);
+    const startX = corner.x - inX * r;
+    const startY = corner.y - inY * r;
+    const endX = corner.x + outX * r;
+    const endY = corner.y + outY * r;
+    out.push(`L ${Math.round(startX)} ${Math.round(startY)}`);
+    // The corner itself is the control point, so the arc leaves and arrives
+    // along the original segments and the arrowhead still points true.
+    out.push(`Q ${corner.x} ${corner.y} ${Math.round(endX)} ${Math.round(endY)}`);
+  }
+  const last = points[points.length - 1];
+  out.push(`L ${last.x} ${last.y}`);
+  return out.join(' ');
 };
 
 export const clampOffset = (offset: number): number => Math.min(1, Math.max(0, offset));

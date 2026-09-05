@@ -7,6 +7,7 @@
 import { Resvg } from '@resvg/resvg-js';
 import {
   arrowHeadVertices,
+  arrowPathData,
   boundsOf,
   computeArrowGeometries,
   labelAnchor,
@@ -181,7 +182,7 @@ const artifactSvg = (a: Artifact): string => {
 
 const arrowSvg = (arrow: Arrow, points: { x: number; y: number }[], toPoint: { x: number; y: number }, toSide: 'top' | 'right' | 'bottom' | 'left'): string => {
   const color = arrow.style.color ?? '#8b93a7';
-  const d = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  const d = arrowPathData(points, arrow.routing);
   const head = arrowHeadVertices(toPoint, toSide, 10);
   const dash = arrow.style.dashed ? ' stroke-dasharray="6 5"' : '';
   const anchor = labelAnchor(points);

@@ -10,7 +10,7 @@ import type {
   Rect,
   Vec2,
 } from '@teca/shared';
-import { rectsIntersect } from '@teca/shared';
+import { isRouted, rectsIntersect } from '@teca/shared';
 import { badRequest, notFound } from '../../core/errors.js';
 import { newId } from '../../core/ids.js';
 import { blueprintFor } from './artifact.defaults.js';
@@ -115,7 +115,7 @@ const dropRoutedBends = (state: BoardState, artifactId: string): number => {
     const touches =
       arrow.from.artifactId === artifactId || arrow.to.artifactId === artifactId;
     if (!touches) continue;
-    const hadRoute = arrow.routing === 'orthogonal' && arrow.bends.length > 0;
+    const hadRoute = isRouted(arrow.routing) && arrow.bends.length > 0;
     if (!hadRoute && !arrow.autoPorts) continue;
     if (hadRoute) arrow.bends = [];
     if (arrow.autoPorts) {
@@ -227,7 +227,7 @@ export const updateArrow = (state: BoardState, id: string, patch: UpdateArrowInp
   if (patch.style) arrow.style = { ...arrow.style, ...patch.style };
   if (patch.bends) {
     arrow.bends = patch.bends.map((b) => ({ x: Math.round(b.x), y: Math.round(b.y) }));
-  } else if (portsMoved && arrow.routing === 'orthogonal' && arrow.bends.length > 0) {
+  } else if (portsMoved && isRouted(arrow.routing) && arrow.bends.length > 0) {
     // Ports moved, stored bends are now in the wrong place and would draw as whiskers.
     arrow.bends = [];
   }
@@ -258,7 +258,9 @@ export const applyRoute = (state: BoardState, id: string, route: RouteApplicatio
   arrow.from.offset = normalizeOffset(route.fromOffset);
   arrow.to.offset = normalizeOffset(route.toOffset);
   arrow.autoPorts = true;
-  arrow.routing = 'orthogonal';
+  // Curved is the same route drawn round, so re-routing must not straighten the
+  // corners of an arrow somebody asked to be curved.
+  if (arrow.routing !== 'curved') arrow.routing = 'orthogonal';
   arrow.updatedAt = Date.now();
   return arrow;
 };

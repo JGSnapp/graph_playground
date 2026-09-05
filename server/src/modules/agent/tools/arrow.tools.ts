@@ -12,6 +12,7 @@ import {
   intendedPortOf,
   type AnchorSide,
   type Arrow,
+  type ArrowRouting,
   type Artifact,
   type Vec2,
 } from '@teca/shared';
@@ -240,6 +241,11 @@ const pointSchema = {
   additionalProperties: false,
 };
 
+const routingSchema = enumOf(
+  ['orthogonal', 'curved', 'straight'],
+  'Как рисовать линию: orthogonal — прямые углы (по умолчанию), curved — те же углы, но скруглённые, straight — отрезок напрямую. На маршрут не влияет, только на рисунок.',
+);
+
 const styleSchema = {
   type: 'object',
   description: 'Оформление стрелки',
@@ -278,6 +284,7 @@ export const arrowCreate: ToolSpec = {
       toOffset: offsetSchema('приёмника'),
       bends: { type: 'array', description: 'Точки изгиба по порядку', items: pointSchema },
       label: str('Подпись на стрелке'),
+      routing: routingSchema,
       style: styleSchema,
       exact: exactSchema,
     },
@@ -340,6 +347,7 @@ export const arrowCreate: ToolSpec = {
         toOffset: repair?.toOffset ?? toOffset,
         bends: repair?.bends ?? bends,
         label: args.label as string | undefined,
+        routing: args.routing as ArrowRouting | undefined,
         style: args.style as Record<string, never> | undefined,
       }),
     );
@@ -373,6 +381,7 @@ export const arrowUpdate: ToolSpec = {
       fromOffset: offsetSchema('источника'),
       toOffset: offsetSchema('приёмника'),
       label: str('Подпись на стрелке'),
+      routing: routingSchema,
       style: styleSchema,
       bends: { type: 'array', description: 'Полная замена списка изгибов', items: pointSchema },
       exact: exactSchema,
@@ -450,6 +459,7 @@ export const arrowUpdate: ToolSpec = {
         fromOffset: adjusted ? repair!.fromOffset : fromOffset,
         toOffset: adjusted ? repair!.toOffset : toOffset,
         label: args.label as string | undefined,
+        routing: args.routing as ArrowRouting | undefined,
         style: args.style as Record<string, never> | undefined,
         bends: adjusted ? repair!.bends : bends,
       }),
