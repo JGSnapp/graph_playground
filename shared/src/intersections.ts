@@ -11,6 +11,27 @@ import {
 
 export type BoxSide = 'top' | 'right' | 'bottom' | 'left';
 
+/**
+ * The same polyline with vertices that sit on a straight run removed. Two
+ * segments continuing in one direction are one edge to the eye, however many
+ * points carry them.
+ */
+const straightRuns = (points: Vec2[]): Vec2[] => {
+  if (points.length < 3) return points;
+  const out: Vec2[] = [points[0]];
+  for (let i = 1; i < points.length - 1; i++) {
+    const prev = out[out.length - 1];
+    const next = points[i + 1];
+    const here = points[i];
+    const straightX = Math.abs(prev.x - here.x) < 0.5 && Math.abs(here.x - next.x) < 0.5;
+    const straightY = Math.abs(prev.y - here.y) < 0.5 && Math.abs(here.y - next.y) < 0.5;
+    if (straightX || straightY) continue;
+    out.push(here);
+  }
+  out.push(points[points.length - 1]);
+  return out;
+};
+
 export interface SegmentHit {
   point: Vec2;
   /** Distance along the whole polyline, for ordering. */
@@ -520,9 +541,17 @@ export const checkIntersections = (
     // The first and last runs are renderer-managed port stubs and may be
     // shorter than MIN_EDGE in an otherwise valid route. Only inner segments
     // represent actual bend spacing that the user/router can improve.
-    for (let i = 2; i < geometry.points.length - 1; i++) {
-      const a = geometry.points[i - 1];
-      const b = geometry.points[i];
+    //
+    // Collinear points are merged first, because the renderer puts a vertex at
+    // the end of each port stub whether or not the line turns there. On a
+    // straight arrow between boxes 160px apart the stubs take 72px each and
+    // leave 16px between them — which was reported as a 16px edge on a line
+    // that has no bends at all. Five such arrows on one timeline board cost 20
+    // penalty points and dropped it from 100 to 56.
+    const run = straightRuns(geometry.points);
+    for (let i = 2; i < run.length - 1; i++) {
+      const a = run[i - 1];
+      const b = run[i];
       const length = Math.abs(b.x - a.x) + Math.abs(b.y - a.y);
       if (length >= MIN_EDGE - 0.5 || length < 0.5) continue;
       findings.push({
@@ -672,6 +701,17 @@ export const checkIntersections = (
 
         let merged: (Overlap & { reported: boolean }) | null = null;
 
+        // One crossing, one finding.
+        //
+        // The loops below test every segment of A against every segment of B,
+        // and a polyline often carries a redundant vertex on a straight run —
+        // `1600,604 1600,676 1600,714 1600,786` is one line through three
+        // segments. When the crossing falls on such a vertex both neighbouring
+        // segments report it, and the pair was counted twice: one board showed
+        // six crossings where five were distinct, and every penalty built on
+        // that count was inflated with it.
+        const seen = new Set<string>();
+
         for (let sa = 0; sa < ptsA.length - 1; sa++) {
           for (let sb = 0; sb < ptsB.length - 1; sb++) {
             if (includeArrowOverlaps) {
@@ -702,6 +742,9 @@ export const checkIntersections = (
             const atEndA = (sa === 0 && hit.t < 0.02) || (sa === ptsA.length - 2 && hit.t > 0.98);
             const atEndB = (sb === 0 && hit.u < 0.02) || (sb === ptsB.length - 2 && hit.u > 0.98);
             if (atEndA && atEndB) continue;
+            const spot = `${Math.round(hit.point.x)}:${Math.round(hit.point.y)}`;
+            if (seen.has(spot)) continue;
+            seen.add(spot);
             const angle = segmentAngle(ptsA[sa], ptsA[sa + 1], ptsB[sb], ptsB[sb + 1]);
             const shallow = angle < shallowAngle;
             findings.push({

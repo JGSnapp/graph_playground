@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<title>Сравнение прогонов E09 → E12</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; padding: 32px; background: #0b0d11; color: #e8e8ea;
+         font: 15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 17px; margin: 40px 0 2px; }
+  .muted { color: #8b93a7; font-size: 13px; margin: 2px 0 12px; }
+  .summary { display: flex; gap: 28px; margin: 18px 0 8px; padding: 14px 18px;
+             background: #12151c; border: 1px solid #232733; border-radius: 10px; }
+  .summary div b { display: block; font-size: 20px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .pane { background: #12151c; border: 1px solid #232733; border-radius: 10px;
+          padding: 12px; min-width: 0; }
+  .head { font-size: 13px; color: #8b93a7; margin-bottom: 2px; }
+  .head b { font-size: 18px; color: #e8e8ea; }
+  .meta { font-size: 12px; color: #6f778a; margin-bottom: 10px; }
+  img { width: 100%; height: auto; display: block; border-radius: 6px;
+        background: #0e1014; border: 1px solid #1c2029; }
+  .ok { color: #7ddc9a; } .bad { color: #e8e8ea; }
+  .up { color: #7ddc9a; font-size: 14px; } .down { color: #e8767a; font-size: 14px; }
+  .same { color: #6f778a; font-size: 14px; }
+  @media (max-width: 900px) { .pair { grid-template-columns: 1fr; } }
+</style></head>
+<body>
+<h1>Сравнение прогонов E09 → E12</h1>
+<p class="muted">Модель deepseek-v4-flash, пул из 8 задач. Клик по картинке — открыть в полном размере.</p>
+<div class="summary">
+  <div><b>88 → 91</b>средний score</div>
+  <div><b>8/8 → 8/8</b>без жёстких конфликтов</div>
+  <div><b>4 → 3</b>пересечений стрелок</div>
+</div>
+<section>
+  <h2>tree-org <span class="same">без изменений</span></h2>
+  <p class="muted">иерархия, ветви должны держаться у своих корней</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E09 <b class="ok">100/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">13 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E09/tree-org__deepseek-v4-flash.png" target="_blank"><img src="E09/tree-org__deepseek-v4-flash.png" alt="tree-org E09"></a>
+</div><div class="pane">
+  <div class="head">E12 <b class="ok">100/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">7 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E12/tree-org__deepseek-v4-flash.png" target="_blank"><img src="E12/tree-org__deepseek-v4-flash.png" alt="tree-org E12"></a>
+</div></div>
+</section>
+<section>
+  <h2>wide-timeline <span class="same">без изменений</span></h2>
+  <p class="muted">композиция, которой идейно положено быть широкой и низкой</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E09 <b class="ok">100/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">8 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E09/wide-timeline__deepseek-v4-flash.png" target="_blank"><img src="E09/wide-timeline__deepseek-v4-flash.png" alt="wide-timeline E09"></a>
+</div><div class="pane">
+  <div class="head">E12 <b class="ok">100/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">13 итераций · 0 пересечений · отказов 5 · без конфликтов 100%</div>
+  <a href="E12/wide-timeline__deepseek-v4-flash.png" target="_blank"><img src="E12/wide-timeline__deepseek-v4-flash.png" alt="wide-timeline E12"></a>
+</div></div>
+</section>
+<section>
+  <h2>fix-broken <span class="same">без изменений</span></h2>
+  <p class="muted">починка готовой плохой схемы, а не постройка с нуля</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E09 <b class="ok">96/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">7 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E09/fix-broken__deepseek-v4-flash.png" target="_blank"><img src="E09/fix-broken__deepseek-v4-flash.png" alt="fix-broken E09"></a>
+</div><div class="pane">
+  <div class="head">E12 <b class="ok">96/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">6 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E12/fix-broken__deepseek-v4-flash.png" target="_blank"><img src="E12/fix-broken__deepseek-v4-flash.png" alt="fix-broken E12"></a>
+</div></div>
+</section>
+<section>
+  <h2>states-order <span class="up">+1</span></h2>
+  <p class="muted">граф с циклами и обратными связями</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E09 <b class="ok">94/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">7 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E09/states-order__deepseek-v4-flash.png" target="_blank"><img src="E09/states-order__deepseek-v4-flash.png" alt="states-order E09"></a>
+</div><div class="pane">
+  <div class="head">E12 <b class="ok">95/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">9 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E12/states-order__deepseek-v4-flash.png" target="_blank"><img src="E12/states-order__deepseek-v4-flash.png" alt="states-order E12"></a>
+</div></div>
+</section>
+<section>
+  <h2>wiki-anime <span class="up">+1</span></h2>
+  <p class="muted">вики по документу, чистый лист, 8-10 узлов, дерево связей</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E09 <b class="ok">94/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">8 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E09/wiki-anime__deepseek-v4-flash.png" target="_blank"><img src="E09/wiki-anime__deepseek-v4-flash.png" alt="wiki-anime E09"></a>
+</div><div class="pane">
+  <div class="head">E12 <b class="ok">95/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">7 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E12/wiki-anime__deepseek-v4-flash.png" target="_blank"><img src="E12/wiki-anime__deepseek-v4-flash.png" alt="wiki-anime E12"></a>
+</div></div>
+</section>
+<section>
+  <h2>tight-row <span class="up">+6</span></h2>
+  <p class="muted">особое требование внутри настоящей схемы: часть узлов плотным рядом</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E09 <b class="ok">85/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">19 итераций · 0 пересечений · отказов 6 · без конфликтов 100%</div>
+  <a href="E09/tight-row__deepseek-v4-flash.png" target="_blank"><img src="E09/tight-row__deepseek-v4-flash.png" alt="tight-row E09"></a>
+</div><div class="pane">
+  <div class="head">E12 <b class="ok">91/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">24 итераций · 0 пересечений · отказов 2 · без конфликтов 100%</div>
+  <a href="E12/tight-row__deepseek-v4-flash.png" target="_blank"><img src="E12/tight-row__deepseek-v4-flash.png" alt="tight-row E12"></a>
+</div></div>
+</section>
+<section>
+  <h2>extend-existing <span class="up">+7</span></h2>
+  <p class="muted">дополнение готового графа новыми узлами без ломки старого</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E09 <b class="ok">83/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">8 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E09/extend-existing__deepseek-v4-flash.png" target="_blank"><img src="E09/extend-existing__deepseek-v4-flash.png" alt="extend-existing E09"></a>
+</div><div class="pane">
+  <div class="head">E12 <b class="ok">90/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">7 итераций · 0 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E12/extend-existing__deepseek-v4-flash.png" target="_blank"><img src="E12/extend-existing__deepseek-v4-flash.png" alt="extend-existing E12"></a>
+</div></div>
+</section>
+<section>
+  <h2>dense-arch <span class="up">+9</span></h2>
+  <p class="muted">стресс: 14 узлов, плотный граф, несколько подсистем</p>
+  <div class="pair"><div class="pane">
+  <div class="head">E09 <b class="ok">53/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">9 итераций · 4 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E09/dense-arch__deepseek-v4-flash.png" target="_blank"><img src="E09/dense-arch__deepseek-v4-flash.png" alt="dense-arch E09"></a>
+</div><div class="pane">
+  <div class="head">E12 <b class="ok">62/100</b>
+    <span class="muted">медиана</span></div>
+  <div class="meta">16 итераций · 3 пересечений · отказов 0 · без конфликтов 100%</div>
+  <a href="E12/dense-arch__deepseek-v4-flash.png" target="_blank"><img src="E12/dense-arch__deepseek-v4-flash.png" alt="dense-arch E12"></a>
+</div></div>
+</section>
+</body></html>

@@ -1,0 +1,492 @@
+{
+  "exp": "V2",
+  "task": "wide-timeline",
+  "repeat": 0,
+  "probes": "композиция, которой идейно положено быть широкой и низкой",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-05T10:03:13.425Z",
+  "ms": 102966,
+  "aborted": false,
+  "screenshotsServed": 1,
+  "iterations": 8,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 6,
+      "arrows": 5,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 0,
+      "drawnTurns": 0,
+      "cornerPorts": 0,
+      "totalLength": 1400,
+      "detour": 1
+    },
+    "breakdown": []
+  },
+  "completeness": {
+    "isolatedNodes": 0,
+    "isolatedIds": [],
+    "missingGraph": false,
+    "brokenGraph": false,
+    "counts": true
+  },
+  "observations": {
+    "artifacts": 6,
+    "arrows": 5,
+    "width": 2600,
+    "height": 140,
+    "aspect": 18.57,
+    "density": 0.46,
+    "edgeLengthMedian": 480,
+    "edgeLengthMax": 480,
+    "edgeLengthSpread": 1,
+    "separation": 3,
+    "textOverflow": 0,
+    "alignedShare": 0.5,
+    "columnLanes": 6,
+    "rowLanes": 1,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 1400,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "skill_list",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"skills\":[{\"slug\":\"artifact-set\",\"name\":\"Раскладка набора артефактов\",\"when\":\"Нужно просто показать материал: список, подборка, карточки, заметки, картинки, куски кода. Связей нет или две-три.\"},{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\"}]}"
+    },
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: **ра…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":140,\"props\":{\"backgroundColor\":\"#E8F5E9\",\"borderColor\":\"#2E7D32\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2015\\nОснование\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#1B5E20\"}}",
+      "resultSummary": "{\"id\":\"art_yu5onouq6b\",\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#1f2430\",\"stroke\":\"#5b6478\",\"label\":\"\",\"backgroundColor\":\"#E8F5E9\",\"borderColor\":\"#2E7D32\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2015\\nОснование\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#1B5E20\"},\"createdAt\":1788602548157,\"updatedAt\":178860254815…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"shape\",\"x\":320,\"y\":0,\"width\":200,\"height\":140,\"props\":{\"backgroundColor\":\"#E3F2FD\",\"borderColor\":\"#1565C0\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2017\\nПервый клиент\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#0D47A1\"}}",
+      "resultSummary": "{\"id\":\"art_m76ifs2gcp\",\"type\":\"shape\",\"x\":320,\"y\":0,\"width\":200,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#1f2430\",\"stroke\":\"#5b6478\",\"label\":\"\",\"backgroundColor\":\"#E3F2FD\",\"borderColor\":\"#1565C0\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2017\\nПервый клиент\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#0D47A1\"},\"createdAt\":1788602548157,\"updatedAt\":178860…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"shape\",\"x\":640,\"y\":0,\"width\":200,\"height\":140,\"props\":{\"backgroundColor\":\"#FFF3E0\",\"borderColor\":\"#E65100\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2019\\nРаунд А\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#BF360C\"}}",
+      "resultSummary": "{\"id\":\"art_ncq3q8eff7\",\"type\":\"shape\",\"x\":640,\"y\":0,\"width\":200,\"height\":140,\"z\":3,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#1f2430\",\"stroke\":\"#5b6478\",\"label\":\"\",\"backgroundColor\":\"#FFF3E0\",\"borderColor\":\"#E65100\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2019\\nРаунд А\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#BF360C\"},\"createdAt\":1788602548157,\"updatedAt\":178860254815…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"shape\",\"x\":960,\"y\":0,\"width\":200,\"height\":140,\"props\":{\"backgroundColor\":\"#F3E5F5\",\"borderColor\":\"#6A1B9A\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2021\\nВыход на\\nзарубежный рынок\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#4A148C\"}}",
+      "resultSummary": "{\"id\":\"art_5eu8a2iw6y\",\"type\":\"shape\",\"x\":960,\"y\":0,\"width\":200,\"height\":140,\"z\":4,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#1f2430\",\"stroke\":\"#5b6478\",\"label\":\"\",\"backgroundColor\":\"#F3E5F5\",\"borderColor\":\"#6A1B9A\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2021\\nВыход на\\nзарубежный рынок\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#4A148C\"},\"createdAt\":1788602548158,\"upda…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"shape\",\"x\":1280,\"y\":0,\"width\":200,\"height\":140,\"props\":{\"backgroundColor\":\"#E0F7FA\",\"borderColor\":\"#00695C\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2023\\nСто сотрудников\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#004D40\"}}",
+      "resultSummary": "{\"id\":\"art_zlak2do8x2\",\"type\":\"shape\",\"x\":1280,\"y\":0,\"width\":200,\"height\":140,\"z\":5,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#1f2430\",\"stroke\":\"#5b6478\",\"label\":\"\",\"backgroundColor\":\"#E0F7FA\",\"borderColor\":\"#00695C\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2023\\nСто сотрудников\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#004D40\"},\"createdAt\":1788602548158,\"updatedAt\":178…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"shape\",\"x\":1600,\"y\":0,\"width\":200,\"height\":140,\"props\":{\"backgroundColor\":\"#FFF8E1\",\"borderColor\":\"#F57F17\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2025\\nСвоя платформа\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#F57F17\"}}",
+      "resultSummary": "{\"id\":\"art_5ildahnw6p\",\"type\":\"shape\",\"x\":1600,\"y\":0,\"width\":200,\"height\":140,\"z\":6,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#1f2430\",\"stroke\":\"#5b6478\",\"label\":\"\",\"backgroundColor\":\"#FFF8E1\",\"borderColor\":\"#F57F17\",\"borderWidth\":2,\"borderRadius\":12,\"text\":\"2025\\nСвоя платформа\",\"fontSize\":18,\"fontWeight\":\"bold\",\"textAlign\":\"center\",\"color\":\"#F57F17\"},\"createdAt\":1788602548158,\"updatedAt\":1788…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_yu5onouq6b\",\"toId\":\"art_m76ifs2gcp\"}",
+      "resultSummary": "{\"id\":\"arr_mef1oog1r8\",\"from\":{\"artifactId\":\"art_yu5onouq6b\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_m76ifs2gcp\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788602559421,\"updatedAt\":1788602559421}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_m76ifs2gcp\",\"toId\":\"art_ncq3q8eff7\"}",
+      "resultSummary": "{\"id\":\"arr_nu3p7aaain\",\"from\":{\"artifactId\":\"art_m76ifs2gcp\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_ncq3q8eff7\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788602559421,\"updatedAt\":1788602559421}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_ncq3q8eff7\",\"toId\":\"art_5eu8a2iw6y\"}",
+      "resultSummary": "{\"id\":\"arr_fy84tfq4qw\",\"from\":{\"artifactId\":\"art_ncq3q8eff7\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_5eu8a2iw6y\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788602559422,\"updatedAt\":1788602559422}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_5eu8a2iw6y\",\"toId\":\"art_zlak2do8x2\"}",
+      "resultSummary": "{\"id\":\"arr_t5pcmho5qd\",\"from\":{\"artifactId\":\"art_5eu8a2iw6y\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_zlak2do8x2\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788602559422,\"updatedAt\":1788602559422}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_zlak2do8x2\",\"toId\":\"art_5ildahnw6p\"}",
+      "resultSummary": "{\"id\":\"arr_tgbk225ffx\",\"from\":{\"artifactId\":\"art_zlak2do8x2\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_5ildahnw6p\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1788602559423,\"updatedAt\":1788602559423}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"nodeIds\":[\"art_yu5onouq6b\",\"art_m76ifs2gcp\",\"art_ncq3q8eff7\",\"art_5eu8a2iw6y\",\"art_zlak2do8x2\",\"art_5ildahnw6p\"],\"direction\":\"LR\",\"layerSpacing\":280,\"nodeSpacing\":80}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,1,1,1],\"crossings\":0,\"crossingsBefore\":0,\"reversedEdges\":0,\"moved\":6,\"bounds\":{\"x\":0,\"y\":0,\"width\":2600,\"height\":140},\"qualityBefore\":{\"score\":100,\"cost\":0,\"grade\":\"отлично\"},\"qualityAfter\":{\"score\":100,\"cost\":0,\"grade\":\"отлично\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":100,\"cost\":0,\"grade\":…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 1196,
+      "args": "{\"x\":-50,\"y\":-50,\"width\":2700,\"height\":250}",
+      "resultSummary": "{\"region\":{\"x\":-50,\"y\":-50,\"width\":2700,\"height\":250},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"x\":-50,\"y\":-50,\"width\":2700,\"height\":250}",
+      "resultSummary": "{\"region\":{\"x\":-50,\"y\":-50,\"width\":2700,\"height\":250},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":0,\"quality\":{\"score\":100,\"cost\":0,\"grade\":\"отлично\",\"previousCost\":0,\"improvedBy\":0},\"metrics\":{\"artifacts\":6,\"arrows\":5,\"edg…"
+    }
+  ],
+  "toolHistogram": {
+    "skill_list": 1,
+    "skill_get": 1,
+    "artifact_create": 6,
+    "arrow_create": 5,
+    "board_arrange_graph": 1,
+    "board_screenshot": 1,
+    "board_check_intersections": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 90919,
+    "completionTokens": 2616,
+    "totalTokens": 93535,
+    "calls": 8,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 66816
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nПользователь просит ленту времени (timeline) — это не граф со сложными связями, а набор артефактов, выстроенных в ряд. Но связи есть (последовательные стрелки). По сути — линейный граф. Посмотрю скиллы.\n\nЗдесь 6 узлов, соединённых последовательно — это граф (связная структура, смысл в связях). Прочитаю скилл graph-layout.\n\nОтлично. Пользователь просит **горизонтальную ленту времени** — узлы строго слева направо, последовательно соединены. Это граф с направлением LR (слева направо). Поскольку пользователь явно просит горизонтальное расположение, я задам direction: \"LR\".\n\nСоздам 6 узлов-событий. Каждый будет содержать год (крупно) и описание события. Размещу их временно сеткой.\n\nНачну:\n\nВсе 6 узлов созданы. Теперь создаю стрелки — последовательно от 2015 к 2017, к 2019, к 2021, к 2023, к 2025. Без указания сторон (auto).\n\n\n\nВсе узлы и стрелки созданы. Теперь запускаю board_arrange_graph с direction: \"LR\" (слева направо — как просит пользователь) и увеличенным layerSpacing, чтобы лента была просторной.\n\n\n\n\n\nОтлично! Раскладка идеальная: 0 пересечений, оценка 100/100. Давайте посмотрим, как это выглядит визуально.\n\nВсё безупречно. Вот что получилось:\n\n---\n\n## Лента времени компании — результат\n\n**Структура:** 6 узлов-событий, соединённых последовательно 5 стрелками. Горизонтальная лента времени слева направо.\n\n| Год | Событие | Цвет |\n|-----|---------|------|\n| **2015** | Основание | 🟢 зелёный |\n| **2017** | Первый клиент | 🔵 синий |\n| **2019** | Раунд А | 🟠 оранжевый |\n| **2021** | Выход на зарубежный рынок | 🟣 фиолетовый |\n| **2023** | Сто сотрудников | 🟢 бирюзовый |\n| **2025** | Своя платформа | 🟡 золотой |\n\n**Расположение:** строго слева направо (direction: LR), каждый узел — скруглённый прямоугольник 200×140px с контрастной рамкой. Между узлами ~280px воздуха, чтобы лента читалась просторно.\n\n**Качество раскладки:**\n- Пересечений стрелок: **0**\n- Наложений: **0**\n- Оценка: **100/100 — отлично** 🏆\n- Все стрелки прямые, без единого изгиба\n\nЛента готова и полностью соответствует запросу: узлы идут строго слева направо, под каждым годом описание события, вытянутость по горизонтали уместна.",
+  "boardId": "brd_cgtgzr55vx",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_yu5onouq6b",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 200,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#1f2430",
+          "stroke": "#5b6478",
+          "label": "",
+          "backgroundColor": "#E8F5E9",
+          "borderColor": "#2E7D32",
+          "borderWidth": 2,
+          "borderRadius": 12,
+          "text": "2015\nОснование",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "color": "#1B5E20"
+        },
+        "createdAt": 1788602548157,
+        "updatedAt": 1788602548157
+      },
+      {
+        "id": "art_m76ifs2gcp",
+        "type": "shape",
+        "x": 480,
+        "y": 0,
+        "width": 200,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#1f2430",
+          "stroke": "#5b6478",
+          "label": "",
+          "backgroundColor": "#E3F2FD",
+          "borderColor": "#1565C0",
+          "borderWidth": 2,
+          "borderRadius": 12,
+          "text": "2017\nПервый клиент",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "color": "#0D47A1"
+        },
+        "createdAt": 1788602548157,
+        "updatedAt": 1788602566775
+      },
+      {
+        "id": "art_ncq3q8eff7",
+        "type": "shape",
+        "x": 960,
+        "y": 0,
+        "width": 200,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#1f2430",
+          "stroke": "#5b6478",
+          "label": "",
+          "backgroundColor": "#FFF3E0",
+          "borderColor": "#E65100",
+          "borderWidth": 2,
+          "borderRadius": 12,
+          "text": "2019\nРаунд А",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "color": "#BF360C"
+        },
+        "createdAt": 1788602548157,
+        "updatedAt": 1788602566775
+      },
+      {
+        "id": "art_5eu8a2iw6y",
+        "type": "shape",
+        "x": 1440,
+        "y": 0,
+        "width": 200,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#1f2430",
+          "stroke": "#5b6478",
+          "label": "",
+          "backgroundColor": "#F3E5F5",
+          "borderColor": "#6A1B9A",
+          "borderWidth": 2,
+          "borderRadius": 12,
+          "text": "2021\nВыход на\nзарубежный рынок",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "color": "#4A148C"
+        },
+        "createdAt": 1788602548158,
+        "updatedAt": 1788602566775
+      },
+      {
+        "id": "art_zlak2do8x2",
+        "type": "shape",
+        "x": 1920,
+        "y": 0,
+        "width": 200,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#1f2430",
+          "stroke": "#5b6478",
+          "label": "",
+          "backgroundColor": "#E0F7FA",
+          "borderColor": "#00695C",
+          "borderWidth": 2,
+          "borderRadius": 12,
+          "text": "2023\nСто сотрудников",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "color": "#004D40"
+        },
+        "createdAt": 1788602548158,
+        "updatedAt": 1788602566775
+      },
+      {
+        "id": "art_5ildahnw6p",
+        "type": "shape",
+        "x": 2400,
+        "y": 0,
+        "width": 200,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#1f2430",
+          "stroke": "#5b6478",
+          "label": "",
+          "backgroundColor": "#FFF8E1",
+          "borderColor": "#F57F17",
+          "borderWidth": 2,
+          "borderRadius": 12,
+          "text": "2025\nСвоя платформа",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "color": "#F57F17"
+        },
+        "createdAt": 1788602548158,
+        "updatedAt": 1788602566775
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_mef1oog1r8",
+        "from": {
+          "artifactId": "art_yu5onouq6b",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_m76ifs2gcp",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788602559421,
+        "updatedAt": 1788602566775,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_nu3p7aaain",
+        "from": {
+          "artifactId": "art_m76ifs2gcp",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_ncq3q8eff7",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788602559421,
+        "updatedAt": 1788602566775,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_fy84tfq4qw",
+        "from": {
+          "artifactId": "art_ncq3q8eff7",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_5eu8a2iw6y",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788602559422,
+        "updatedAt": 1788602566775,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_t5pcmho5qd",
+        "from": {
+          "artifactId": "art_5eu8a2iw6y",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_zlak2do8x2",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788602559422,
+        "updatedAt": 1788602566775,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_tgbk225ffx",
+        "from": {
+          "artifactId": "art_zlak2do8x2",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_5ildahnw6p",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788602559423,
+        "updatedAt": 1788602566775,
+        "autoPorts": true
+      }
+    ]
+  }
+}

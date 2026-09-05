@@ -19,8 +19,46 @@ const typeCatalog = ARTIFACT_TYPES.map(
   (type) => `${type} — ${ARTIFACT_BLUEPRINTS[type].propsHint}`,
 ).join('; ');
 
-const overlapRefuse = (hits: Artifact[], acceptOverlap: boolean) => {
+/**
+ * The closest spot that clears every neighbour, along whichever axis moves the
+ * block least.
+ *
+ * A refusal that only says "no" makes the agent guess, and guessing costs a
+ * whole iteration each time: asked to pack blocks into a tight row it was
+ * refused three times running and spent a third of the run's tokens on that one
+ * board. Naming the nearest free position turns three round trips into one.
+ */
+const nearestFree = (rect: Rect, hits: Artifact[]): { x: number; y: number } => {
+  const gap = 24;
+  let { x, y } = rect;
+  // Nudge out of each obstacle in turn, the short way; later obstacles may
+  // reintroduce an overlap, so the sweep repeats until it settles.
+  for (let pass = 0; pass < hits.length + 1; pass++) {
+    let moved = false;
+    for (const hit of hits) {
+      const clash =
+        x < hit.x + hit.width && hit.x < x + rect.width &&
+        y < hit.y + hit.height && hit.y < y + rect.height;
+      if (!clash) continue;
+      const right = hit.x + hit.width + gap - x;
+      const left = x - (hit.x - rect.width - gap);
+      const down = hit.y + hit.height + gap - y;
+      const up = y - (hit.y - rect.height - gap);
+      const best = Math.min(right, left, down, up);
+      if (best === right) x = hit.x + hit.width + gap;
+      else if (best === left) x = hit.x - rect.width - gap;
+      else if (best === down) y = hit.y + hit.height + gap;
+      else y = hit.y - rect.height - gap;
+      moved = true;
+    }
+    if (!moved) break;
+  }
+  return { x: Math.round(x), y: Math.round(y) };
+};
+
+const overlapRefuse = (hits: Artifact[], acceptOverlap: boolean, rect?: Rect) => {
   if (hits.length === 0 || acceptOverlap) return null;
+  const free = rect ? nearestFree(rect, hits) : null;
   const names = hits
     .map((item) => {
       const caption = artifactCaption(item);
@@ -32,7 +70,9 @@ const overlapRefuse = (hits: Artifact[], acceptOverlap: boolean) => {
     needsConfirmation: true,
     reason:
       `Блок наложится на ${names}. Если так и задумано — вызови тул снова с acceptOverlap=true ` +
-      `(наложение останется на твоей ответственности). Иначе выбери другие x, y.`,
+      `(наложение останется на твоей ответственности).` +
+      (free ? ` Ближайшее свободное место: x=${free.x}, y=${free.y}.` : ' Иначе выбери другие x, y.'),
+    freeSpot: free,
     overlapping: hits.map((item) => ({
       id: item.id,
       caption: artifactCaption(item),
@@ -80,7 +120,7 @@ export const artifactCreate: ToolSpec = {
       height: (args.height as number | undefined) ?? blueprint.height,
     };
     const refused = ctx.boards.read(ctx.boardId, (state) =>
-      overlapRefuse(overlappingNeighbors(rect, state.artifacts), args.acceptOverlap === true),
+      overlapRefuse(overlappingNeighbors(rect, state.artifacts), args.acceptOverlap === true, rect),
     );
     if (refused) return { data: { created: false, ...refused }, mutated: false };
 
@@ -137,6 +177,7 @@ export const artifactUpdate: ToolSpec = {
         return overlapRefuse(
           overlappingNeighbors(rect, state.artifacts, current.id),
           args.acceptOverlap === true,
+          rect,
         );
       });
       if (refused) return { data: { updated: false, ...refused }, mutated: false };
@@ -168,37 +209,94 @@ const routeNotice = (arrowsReset: number) =>
 export const artifactMove: ToolSpec = {
   name: 'artifact_move',
   description:
-    'Перемещает артефакт в новую точку. Если новое место накрывает другой блок, тул не двигает и просит либо другие координаты, либо acceptOverlap=true — только если наложение задумано.',
+    'Перемещает артефакты. Один блок — id/x/y, несколько сразу — moves (так дешевле: ряд из восьми блоков это один вызов, а не восемь). Если место накрывает другой блок, тул его не двигает и называет ближайшую свободную точку; наложение делается через acceptOverlap=true. Остальные блоки из moves при этом всё равно переезжают.',
   parameters: objectSchema(
     {
-      id: str('Идентификатор артефакта'),
+      id: str('Идентификатор артефакта (для одного блока)'),
       x: num('Новая координата левого края'),
       y: num('Новая координата верхнего края'),
-      acceptOverlap: bool('true — сдвинуть даже при наложении, на свою ответственность'),
+      moves: {
+        type: 'array',
+        description: 'Несколько перемещений за раз',
+        items: objectSchema({ id: str('id'), x: num('x'), y: num('y') }, ['id', 'x', 'y']),
+      },
+      acceptOverlap: bool('true — двигать даже при наложении, на свою ответственность'),
     },
-    ['id', 'x', 'y'],
+    [],
   ),
   run: (args, ctx) => {
-    const refused = ctx.boards.read(ctx.boardId, (state) => {
-      const current = state.artifacts.find((item) => item.id === args.id);
-      if (!current) return null;
-      const rect = proposedRect(current, { x: args.x as number, y: args.y as number });
-      return overlapRefuse(
-        overlappingNeighbors(rect, state.artifacts, current.id),
-        args.acceptOverlap === true,
-      );
-    });
-    if (refused) return { data: { moved: false, ...refused }, mutated: false };
+    // One call, many moves.
+    //
+    // Building a row meant ten `artifact_move` calls, and every call is a whole
+    // model iteration with the system prompt, the tool schemas and the growing
+    // history resent behind it. The moves themselves are trivial; what they
+    // cost is the round trips.
+    const list = Array.isArray(args.moves)
+      ? (args.moves as Array<{ id: string; x: number; y: number }>)
+      : args.id != null
+        ? [{ id: args.id as string, x: args.x as number, y: args.y as number }]
+        : [];
+    if (list.length === 0) {
+      return {
+        data: { moved: false, refused: true, reason: 'Нужен либо id с x,y, либо непустой moves.' },
+        mutated: false,
+      };
+    }
 
-    const { artifact, arrowsReset } = ctx.boards.mutate(ctx.boardId, (state) =>
-      updateArtifact(state, args.id as string, {
-        x: args.x as number,
-        y: args.y as number,
-        allowOverlap: args.acceptOverlap === true ? true : undefined,
-      }),
-    );
+    const accept = args.acceptOverlap === true;
+    const moved: Array<{ id: string; x: number; y: number }> = [];
+    const blocked: Array<Record<string, unknown>> = [];
+    let arrowsReset = 0;
+
+    for (const step of list) {
+      const refused = ctx.boards.read(ctx.boardId, (state) => {
+        const current = state.artifacts.find((item) => item.id === step.id);
+        // An id that does not exist stays an error, as it has always been —
+        // the model should hear that it named something wrong, not that the
+        // block would not fit. In a batch it is recorded and the rest proceed.
+        if (!current) return null;
+        const rect = proposedRect(current, { x: step.x, y: step.y });
+        return overlapRefuse(overlappingNeighbors(rect, state.artifacts, current.id), accept, rect);
+      });
+      if (refused) {
+        // The rest still move: a single clash used to cost another round trip
+        // for every block that was fine.
+        blocked.push({ id: step.id, ...refused });
+        continue;
+      }
+      const apply = () =>
+        ctx.boards.mutate(ctx.boardId, (state) =>
+          updateArtifact(state, step.id, {
+            x: step.x,
+            y: step.y,
+            allowOverlap: accept ? true : undefined,
+          }),
+        );
+      let result: ReturnType<typeof apply>;
+      if (list.length === 1) {
+        result = apply();
+      } else {
+        try {
+          result = apply();
+        } catch (error) {
+          blocked.push({ id: step.id, refused: true, reason: String((error as Error).message) });
+          continue;
+        }
+      }
+      arrowsReset += result.arrowsReset;
+      moved.push({ id: result.artifact.id, x: result.artifact.x, y: result.artifact.y });
+    }
+
+    if (moved.length === 0) {
+      return { data: { moved: false, ...(blocked[0] ?? {}), blocked }, mutated: false };
+    }
     return {
-      data: { id: artifact.id, x: artifact.x, y: artifact.y, ...routeNotice(arrowsReset) },
+      data: {
+        moved: moved.length,
+        artifacts: moved,
+        ...(blocked.length ? { blocked } : {}),
+        ...routeNotice(arrowsReset),
+      },
       mutated: true,
     };
   },

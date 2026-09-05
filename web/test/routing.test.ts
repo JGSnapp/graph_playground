@@ -9,6 +9,8 @@ import {
   collectIntendedPorts,
   inspectRawPortAngles,
   routeArrows,
+  searchPorts,
+  tooTightToRoute,
 } from '@teca/shared';
 import { describe, expect, it } from 'vitest';
 
@@ -211,6 +213,33 @@ describe('orthogonal auto router', () => {
     expect(result.routed.map((r) => r.arrowId)).toEqual(['r2']);
   });
 
+  it('routes a deliberately tight row instead of demanding it be spread out', () => {
+    // Eight blocks with a 12px gap, which is the shape a user asks for when
+    // they want a row packed tight. The sides facing along the row are buried
+    // in the neighbours, but the tops and bottoms are open, and the router can
+    // use them — so the gate must not refuse.
+    //
+    // This also covers the code path itself. A missing import left the gate
+    // throwing a ReferenceError on every blocked port, which no test noticed
+    // because none of them reached the branch: the whole suite passed while the
+    // routing tool crashed on every live board that was even slightly crowded.
+    const artifacts = Array.from({ length: 8 }, (_, i) => box(`n${i}`, i * 232, 0, 220, 140));
+    const arrows = [
+      arrow('a', 'n0', 'n3'),
+      arrow('b', 'n1', 'n5'),
+      arrow('c', 'n2', 'n7'),
+      arrow('d', 'n4', 'n6'),
+    ];
+
+    const gate = tooTightToRoute(artifacts, arrows);
+    expect(gate.ready).toBe(true);
+    expect(gate.crowded).toEqual([]);
+
+    const result = routeArrows(artifacts, arrows);
+    expect(result.refused).not.toBe(true);
+    expect(result.routed).toHaveLength(arrows.length);
+  });
+
   it('refuses to invent a corridor when nodes overlap', () => {
     const artifacts = [box('a', 0, 0), box('b', 40, 20)];
     const arrows = [arrow('r1', 'a', 'b')];
@@ -254,7 +283,13 @@ describe('orthogonal auto router', () => {
     expect(result.routed[0]?.detourRatio).toBeGreaterThanOrEqual(1.8);
   });
 
-  it('aligns facing ports onto one lane instead of leaving a 10px jog', () => {
+  it('keeps the ports it was given instead of sliding them onto one lane', () => {
+    // This used to assert the opposite: the router moved both offsets until the
+    // line was straight. That freedom is what made the port search pointless —
+    // the search would choose a port and the router would quietly replace it,
+    // so not one requested offset in 77 survived a re-route. A port somebody
+    // asked for is now an instruction. Straightening is the port search's job,
+    // and the test below checks it does it.
     const artifacts = [box('a', 0, 0, 220, 140), box('b', 350, 20, 220, 160)];
     const arrows = [
       {
@@ -265,11 +300,23 @@ describe('orthogonal auto router', () => {
     ];
     const result = routeArrows(artifacts, arrows);
     expect(result.refused).not.toBe(true);
-    expect(result.routed[0]?.bends).toEqual([]);
     expect(result.routed[0]?.fromSide).toBe('right');
     expect(result.routed[0]?.toSide).toBe('left');
-    const routed = apply(arrows, result.routed);
-    const ys = computeArrowGeometries(artifacts, routed)
+    expect(result.routed[0]?.fromOffset).toBeCloseTo(0.2, 2);
+    expect(result.routed[0]?.toOffset).toBeCloseTo(0.8, 2);
+  });
+
+  it('lets the port search straighten what the router now leaves alone', () => {
+    const artifacts = [box('a', 0, 0, 220, 140), box('b', 350, 20, 220, 160)];
+    const arrows = [
+      {
+        ...arrow('r1', 'a', 'b'),
+        from: { artifactId: 'a', side: 'right' as const, offset: 0.2 },
+        to: { artifactId: 'b', side: 'left' as const, offset: 0.8 },
+      },
+    ];
+    const searched = searchPorts(artifacts, arrows);
+    const ys = computeArrowGeometries(artifacts, searched.arrows)
       .get('r1')!
       .points.map((p) => p.y);
     expect(new Set(ys).size).toBe(1);
@@ -284,6 +331,10 @@ describe('orthogonal auto router', () => {
     const arrows = [
       {
         ...arrow('skip', 'a', 'b'),
+        // `autoPorts` marks a port the router owns. Without it these sides are
+        // an instruction and are kept as given, blocked corridor or not; with
+        // it the router is free to find the way over the top.
+        autoPorts: true,
         from: { artifactId: 'a', side: 'right' as const },
         to: { artifactId: 'b', side: 'left' as const },
       },

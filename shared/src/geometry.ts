@@ -176,6 +176,44 @@ export const ensureHeadOnBends = (
 
 export const clampOffset = (offset: number): number => Math.min(1, Math.max(0, offset));
 
+/**
+ * How far an automatically chosen port is kept from the corners of its box.
+ *
+ * A line leaving exactly at a corner reads as coming from nothing in
+ * particular: it touches two sides at once, the arrowhead sits on the box
+ * outline, and the eye cannot tell which side it belongs to. The inset is a
+ * distance in pixels rather than a share of the side, so a tall box and a wide
+ * one end up looking the same.
+ *
+ * 14px is the box corner radius (10px) plus a little straight edge: below that
+ * the port sits on the rounded part and the line attaches to nothing. Wider
+ * insets were measured and cost real quality — 18px added about six points of
+ * penalty for no further gain in how the corner reads.
+ *
+ * This binds only where the system *chooses* a port. A side and offset the
+ * agent or the user asked for explicitly are drawn as given — `anchorPoint`
+ * does not apply the inset.
+ */
+export let CORNER_INSET = 14;
+
+/** Switches the corner rule off (0) or retunes it. */
+export const setCornerInset = (px: number): void => {
+  CORNER_INSET = Math.max(0, px);
+};
+
+/**
+ * Pushes a chosen offset out of the corner zone of `side`. On a short side the
+ * two margins would meet, so neither is ever allowed past a third of the side:
+ * the middle stays reachable whatever the box measures.
+ */
+export const insetOffset = (rect: Rect, side: FixedSide, offset: number): number => {
+  const clamped = clampOffset(offset);
+  if (CORNER_INSET <= 0) return clamped;
+  const length = Math.max(1, side === 'top' || side === 'bottom' ? rect.width : rect.height);
+  const margin = Math.min(CORNER_INSET / length, 0.34);
+  return Math.min(1 - margin, Math.max(margin, clamped));
+};
+
 /** Point on a side, `offset` running 0..1 from the top/left corner of that side. */
 export const anchorPoint = (rect: Rect, side: FixedSide, offset = 0.5): Vec2 => {
   const t = clampOffset(offset);
@@ -194,10 +232,21 @@ export const anchorPoint = (rect: Rect, side: FixedSide, offset = 0.5): Vec2 => 
 
 /** Inverse of `anchorPoint`: where `point` sits on `side`, clamped to 0..1. */
 export const offsetFromPoint = (rect: Rect, side: FixedSide, point: Vec2): number => {
-  if (side === 'top' || side === 'bottom') {
-    return clampOffset((point.x - rect.x) / Math.max(rect.width, 1));
-  }
-  return clampOffset((point.y - rect.y) / Math.max(rect.height, 1));
+  // Deliberately *not* inset. This function does not choose a port, it reads
+  // back where the route already met the box, and moving what it reports
+  // breaks the route that was just computed. Two boxes stacked under a third
+  // had their ports placed at 0.063 and 0.944 — different fractions of
+  // different sides that land on the same x, which is what made the line
+  // perfectly straight. Insetting the read-back nudged them apart and turned
+  // two straight arrows into dog-legs.
+  //
+  // The corner rule belongs where a port is invented: `freePortOffset` and the
+  // candidate table in the port search.
+  return clampOffset(
+    side === 'top' || side === 'bottom'
+      ? (point.x - rect.x) / Math.max(rect.width, 1)
+      : (point.y - rect.y) / Math.max(rect.height, 1),
+  );
 };
 
 export interface IntendedPort {
@@ -272,11 +321,27 @@ export const freePortOffset = (
 ): number | null => {
   const len = side === 'top' || side === 'bottom' ? artifact.width : artifact.height;
   const pitch = MIN_PORT_PITCH / Math.max(len, 1);
-  const candidates = [preferred, 0.12, 0.88, 0, 1];
+  const inset = (offset: number) => insetOffset(artifact, side, offset);
+  // The fallbacks used to end at the bare corners, 0 and 1 — which is where a
+  // crowded side sent every port that could not fit anywhere else. The band
+  // edges take their place: still the last resort, but off the corner.
+  // `preferred` is not a guess — the caller worked it out, usually so the port
+  // lines up with the one it faces, and a straight line is worth more than a
+  // clear corner. It is tried as given. Everything after it is invention, and
+  // invention obeys the corner rule.
+  const candidates = [preferred, inset(0.12), inset(0.88), inset(0), inset(1)];
   const steps = Math.max(8, Math.ceil(1 / Math.max(pitch, 1e-6)));
   for (let step = 1; step <= steps; step++) {
+    candidates.push(inset(preferred + step * pitch), inset(preferred - step * pitch));
+  }
+  // The corner rule is a preference, not a wall. On a crowded side the inset
+  // band can genuinely have no free point left, and a port off the corner is
+  // worth less than two ports landing on each other — so the corner zone stays
+  // available as a last tier, after every inset candidate has been refused.
+  for (let step = steps; step >= 1; step--) {
     candidates.push(clampOffset(preferred + step * pitch), clampOffset(preferred - step * pitch));
   }
+  candidates.push(0, 1);
   for (const offset of candidates) {
     const point = anchorPoint(artifact, side, offset);
     if (!findMixedPortConflict(ports, { artifactId: artifact.id, end, point })) return offset;
@@ -605,8 +670,32 @@ const finalizePorts = (
   if (vertices.length < 2) return vertices;
   const start = vertices[0];
   const end = vertices[vertices.length - 1];
-  const stubFrom = { p: stubOf(start.p, fromSide, fromLen), bends: 0 };
-  const stubTo = { p: stubOf(end.p, toSide, toLen), bends: end.bends };
+
+  /**
+   * How far the stub may run before it meets a turn of its own.
+   *
+   * The stub used to be drawn at full length whatever else was on that line.
+   * When a bend sat closer than the stub — 42px out where the stub reaches 72 —
+   * the line shot past it and came back, leaving a spike sticking out of the
+   * box with nothing on the end of it. Stopping at the first turn along the
+   * stub's own direction draws the same route without the doubling back.
+   */
+  const reach = (port: Vec2, side: FixedSide, length: number): number => {
+    const normal = outwardNormal(side);
+    let shortest = length;
+    for (const vertex of vertices.slice(1, -1)) {
+      const dx = vertex.p.x - port.x;
+      const dy = vertex.p.y - port.y;
+      const sideways = normal.x !== 0 ? dy : dx;
+      if (Math.abs(sideways) > ALIGN_EPS) continue;
+      const outward = normal.x !== 0 ? dx * normal.x : dy * normal.y;
+      if (outward > ALIGN_EPS && outward < shortest) shortest = outward;
+    }
+    return shortest;
+  };
+
+  const stubFrom = { p: stubOf(start.p, fromSide, reach(start.p, fromSide, fromLen)), bends: 0 };
+  const stubTo = { p: stubOf(end.p, toSide, reach(end.p, toSide, toLen)), bends: end.bends };
 
   const interior = vertices.slice(1, -1).filter((v) => {
     if (sameVertex(v.p, start.p) || sameVertex(v.p, end.p)) return false;
@@ -779,6 +868,13 @@ export const computeArrowGeometries = (
       continue;
     }
     entries.sort((a, b) => a.sortKey - b.sortKey || a.index - b.index);
+    // An even spread across the whole side, deliberately *without* the corner
+    // inset. The spread never reaches a corner on its own — with n arrows the
+    // outermost sits at 1/(n+1) of the side — and squeezing it into the inset
+    // band shifts every port relative to the port it faces. Measured: it turned
+    // four straight arrows into dog-legs on one board and doubled the turns on
+    // another, both of which had no crossings to fix. The corner rule earns its
+    // keep where ports are chosen one at a time; here it only misaligns them.
     entries.forEach((entry, slot) => {
       const offset = (slot + 1) / (entries.length + 1);
       if (entry.end === 'from') resolved[entry.index].fromOffset = offset;

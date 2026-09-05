@@ -1,0 +1,71 @@
+<title>Сравнение роутеров</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; padding:32px; background:#0b0d11; color:#e8e8ea;
+         font:15px/1.55 "Segoe UI", system-ui, sans-serif; }
+  h1 { font-size:23px; margin:0 0 8px; }
+  h2 { font-size:17px; margin:40px 0 12px; color:#9fb2d4; }
+  .lead { color:#8b93a7; max-width:74ch; margin:0 0 6px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(430px,1fr)); gap:18px; }
+  figure { margin:0; }
+  figcaption { font-size:13px; margin-bottom:6px; }
+  figcaption b { color:#7ddc9a; }
+  figcaption span { display:block; color:#8b93a7; font-size:12px; }
+  img { width:100%; height:auto; border-radius:8px; background:#0e1014; border:1px solid #1c2029; }
+</style>
+<h1>Одна расстановка, четыре способа провести линии</h1>
+<p class="lead">Блоки во всех картинках стоят одинаково — это наша раскладка, и она здесь не
+сравнивается: смысловая расстановка и есть то, ради чего система существует. Различается
+только прокладка линий.</p>
+<p class="lead">Клик по картинке открывает её целиком.</p>
+<section><h2>E08/wiki-anime</h2><div class="grid">
+      <figure>
+        <figcaption>наш роутер <b>43/100</b><span>штраф 33.3 · пересечений 5 · изгибов 10</span></figcaption>
+        <a href="E08_wiki-anime-0.png" target="_blank"><img src="E08_wiki-anime-0.png" alt="наш роутер"></a>
+      </figure>
+      <figure>
+        <figcaption>наш роутер + перебор портов <b>62/100</b><span>штраф 15.3 · пересечений 2 · изгибов 11</span></figcaption>
+        <a href="E08_wiki-anime-1.png" target="_blank"><img src="E08_wiki-anime-1.png" alt="наш роутер + перебор портов"></a>
+      </figure>
+      <figure>
+        <figcaption>libavoid сам выбирает точки крепления <b>27/100</b><span>штраф 68 · пересечений 8 · изгибов 0</span></figcaption>
+        <a href="E08_wiki-anime-2.png" target="_blank"><img src="E08_wiki-anime-2.png" alt="libavoid сам выбирает точки крепления"></a>
+      </figure>
+      <figure>
+        <figcaption>libavoid рисует, порты перебираем мы <b>97/100</b><span>штраф 0.7 · пересечений 0 · изгибов 11</span></figcaption>
+        <a href="E08_wiki-anime-3.png" target="_blank"><img src="E08_wiki-anime-3.png" alt="libavoid рисует, порты перебираем мы"></a>
+      </figure></div></section>
+<section><h2>E08/dense-arch</h2><div class="grid">
+      <figure>
+        <figcaption>наш роутер <b>17/100</b><span>штраф 120 · пересечений 25 · изгибов 20</span></figcaption>
+        <a href="E08_dense-arch-0.png" target="_blank"><img src="E08_dense-arch-0.png" alt="наш роутер"></a>
+      </figure>
+      <figure>
+        <figcaption>наш роутер + перебор портов <b>29/100</b><span>штраф 62 · пересечений 12 · изгибов 18</span></figcaption>
+        <a href="E08_dense-arch-1.png" target="_blank"><img src="E08_dense-arch-1.png" alt="наш роутер + перебор портов"></a>
+      </figure>
+      <figure>
+        <figcaption>libavoid сам выбирает точки крепления <b>17/100</b><span>штраф 124 · пересечений 19 · изгибов 2</span></figcaption>
+        <a href="E08_dense-arch-2.png" target="_blank"><img src="E08_dense-arch-2.png" alt="libavoid сам выбирает точки крепления"></a>
+      </figure>
+      <figure>
+        <figcaption>libavoid рисует, порты перебираем мы <b>46/100</b><span>штраф 29 · пересечений 7 · изгибов 17</span></figcaption>
+        <a href="E08_dense-arch-3.png" target="_blank"><img src="E08_dense-arch-3.png" alt="libavoid рисует, порты перебираем мы"></a>
+      </figure></div></section>
+<section><h2>E08/tree-org</h2><div class="grid">
+      <figure>
+        <figcaption>наш роутер <b>76/100</b><span>штраф 8 · пересечений 2 · изгибов 8</span></figcaption>
+        <a href="E08_tree-org-0.png" target="_blank"><img src="E08_tree-org-0.png" alt="наш роутер"></a>
+      </figure>
+      <figure>
+        <figcaption>наш роутер + перебор портов <b>100/100</b><span>штраф 0 · пересечений 0 · изгибов 8</span></figcaption>
+        <a href="E08_tree-org-1.png" target="_blank"><img src="E08_tree-org-1.png" alt="наш роутер + перебор портов"></a>
+      </figure>
+      <figure>
+        <figcaption>libavoid сам выбирает точки крепления <b>100/100</b><span>штраф 0 · пересечений 0 · изгибов 1</span></figcaption>
+        <a href="E08_tree-org-2.png" target="_blank"><img src="E08_tree-org-2.png" alt="libavoid сам выбирает точки крепления"></a>
+      </figure>
+      <figure>
+        <figcaption>libavoid рисует, порты перебираем мы <b>100/100</b><span>штраф 0 · пересечений 0 · изгибов 6</span></figcaption>
+        <a href="E08_tree-org-3.png" target="_blank"><img src="E08_tree-org-3.png" alt="libavoid рисует, порты перебираем мы"></a>
+      </figure></div></section>

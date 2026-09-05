@@ -230,6 +230,24 @@ const runOne = async (exp: string, task: BenchTask, model: string, repeat = 0): 
   const state: BoardState = after.board.state;
   const quality = boardQuality(state.artifacts, state.arrows);
   const report = checkIntersections(state.artifacts, state.arrows);
+
+  // Did the agent actually build the graph it was asked for?
+  //
+  // `boardQuality` only judges geometry, and geometry has nothing to complain
+  // about when there are no lines: a board of eleven boxes and no arrows scored
+  // a clean 100 on an org-chart task, beating the same task's 82 from the run
+  // before, which had the arrows. An empty graph is the perfect graph as far as
+  // the metric is concerned. So completeness is checked here, separately, and a
+  // task that asked for a graph and got none does not count as a result at all.
+  const connected = new Set<string>();
+  for (const arrow of state.arrows) {
+    connected.add(arrow.from.artifactId);
+    connected.add(arrow.to.artifactId);
+  }
+  const isolated = state.artifacts.filter((artifact) => !connected.has(artifact.id));
+  const missingGraph = task.graph && state.arrows.length === 0;
+  const brokenGraph =
+    task.graph && !missingGraph && isolated.length > state.artifacts.length / 2;
   const runLog = agent.runId
     ? await api('GET', `/runs/${agent.runId}`).catch(() => null)
     : null;
@@ -254,6 +272,15 @@ const runOne = async (exp: string, task: BenchTask, model: string, repeat = 0): 
       counts: quality.counts,
       metrics: quality.metrics,
       breakdown: quality.breakdown,
+    },
+    // Reported next to the score, never folded into it: a score says how well
+    // the picture is drawn, this says whether it is the right picture.
+    completeness: {
+      isolatedNodes: isolated.length,
+      isolatedIds: isolated.map((artifact) => artifact.id),
+      missingGraph,
+      brokenGraph,
+      counts: !missingGraph && !brokenGraph,
     },
     observations: observe(state),
     drawnLength: drawnLength(state),
@@ -285,6 +312,9 @@ const runOne = async (exp: string, task: BenchTask, model: string, repeat = 0): 
   console.log(
     `${(repeat === 0 ? task.id : `${task.id}#${repeat + 1}`).padEnd(18)} ${model.padEnd(18)} score ${String(quality.score).padStart(3)}/100 ` +
       `(${quality.grade}) cost ${quality.cost} | ${state.artifacts.length} узлов, ${state.arrows.length} связей | ` +
+      `${missingGraph ? 'НЕ ЗАСЧИТАНО: связей нет вовсе | ' : ''}` +
+      `${brokenGraph ? `НЕ ЗАСЧИТАНО: ${isolated.length} узлов ни с чем не связаны | ` : ''}` +
+      `${!missingGraph && !brokenGraph && isolated.length > 0 ? `${isolated.length} узлов без связей | ` : ''}` +
       `${result.iterations ?? '?'} итер, ${result.refusals.length} отказов | ${Math.round(agent.ms / 1000)}s` +
       `${result.usage ? ` | ${result.usage.promptTokens}+${result.usage.completionTokens} ток` : ''}` +
       `${agent.errors.length ? ` | ОШИБКИ: ${agent.errors.join('; ').slice(0, 120)}` : ''}`,

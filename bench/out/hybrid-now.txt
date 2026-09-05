@@ -1,0 +1,23 @@
+Cannot enlarge memory, requested 2147622912 bytes, but the limit is 2147483648 bytes!
+Cannot enlarge memory, requested 2147622912 bytes, but the limit is 2147483648 bytes!
+Aborted(unhandled exception: [object WebAssembly.Exception],Error: std::bad_alloc,std::bad_alloc
+    at __throw_exception_with_stack_trace (C:\Users\lieut\OneDrive\Desktop\modern_projects\graph_playground\node_modules\libavoid-js\dist\index-node.mjs:16:16099)
+    at wasm://wasm/001e07f6:wasm-function[234]:0xf7cd
+    at wasm://wasm/001e07f6:wasm-function[582]:0x4a7e2
+    at wasm://wasm/001e07f6:wasm-function[87]:0x7c8b
+    at wasm://wasm/001e07f6:wasm-function[307]:0x18c0a
+    at wasm://wasm/001e07f6:wasm-function[302]:0x17077
+    at wasm://wasm/001e07f6:wasm-function[383]:0x2d5e2
+    at wasm://wasm/001e07f6:wasm-function[343]:0x21a1f
+    at wasm://wasm/001e07f6:wasm-function[88]:0x7cee
+    at wasm://wasm/001e07f6:wasm-function[89]:0x7d27)
+Расстановка одна и та же — наша. Различается только прокладка линий.
+
+| роутер | средний cost | пересечений | изгибов | мс на доску |
+|---|---|---|---|---|
+| наш | 32 | 179 | 297 | 65 |
+| наш + перебор портов | 13 | 63 | 274 | 1420 |
+| libavoid сам по себе | 45 | 156 | 36 | 3 |
+| libavoid + наш перебор | 9.7 | 19 | 340 | 1198 |
+
+досок: 33

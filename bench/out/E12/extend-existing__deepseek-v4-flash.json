@@ -1,0 +1,616 @@
+{
+  "exp": "E12",
+  "task": "extend-existing",
+  "repeat": 0,
+  "probes": "дополнение готового графа новыми узлами без ломки старого",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-05T08:36:45.134Z",
+  "ms": 47232,
+  "aborted": false,
+  "screenshotsServed": 1,
+  "iterations": 7,
+  "seededArtifacts": 4,
+  "seededArrows": 3,
+  "quality": {
+    "score": 90,
+    "cost": 2.7,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 1,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 8,
+      "arrows": 9,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 1,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 11,
+      "drawnTurns": 12,
+      "cornerPorts": 0,
+      "totalLength": 4405,
+      "detour": 1.01
+    },
+    "breakdown": [
+      {
+        "reason": "стрелка идёт впритык к артефакту",
+        "count": 1,
+        "cost": 2
+      },
+      {
+        "reason": "стрелки идут в обход",
+        "count": 1,
+        "cost": 0.7480519480519443
+      }
+    ]
+  },
+  "completeness": {
+    "isolatedNodes": 0,
+    "isolatedIds": [],
+    "missingGraph": false,
+    "brokenGraph": false,
+    "counts": true
+  },
+  "observations": {
+    "artifacts": 8,
+    "arrows": 9,
+    "width": 1540,
+    "height": 800,
+    "aspect": 1.93,
+    "density": 0.2,
+    "edgeLengthMedian": 470,
+    "edgeLengthMax": 922,
+    "edgeLengthSpread": 1.96,
+    "separation": 1.38,
+    "textOverflow": 0,
+    "alignedShare": 0.56,
+    "columnLanes": 4,
+    "rowLanes": 7,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 4405,
+  "ok": true,
+  "findings": [
+    {
+      "kind": "arrow_clearance",
+      "arrowId": "arr_kfdwuwl2ha",
+      "artifactId": "art_c3cm0awem5",
+      "artifactType": "note",
+      "distance": 8,
+      "required": 12,
+      "point": {
+        "x": 990,
+        "y": 28
+      },
+      "note": "Стрелка arr_kfdwuwl2ha проходит в 8px от art_c3cm0awem5 (нужно 12px)."
+    }
+  ],
+  "toolCalls": [
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-300,\"width\":1260,\"height\":560},\"artifacts\":[{\"id\":\"art_8wpw2v5yzx\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## API Gateway\\n\\nВходная точка, маршрутизация и rate limit.\",\"color\":\"blue\"},\"createdAt\":1788597357795,\"updatedAt\":1788597357795},{\"id\":\"art_w61zljphwn\",\"type\":\"note\",\"x\":400,\"y\":-180,\"width\":220,\"height\":140,\"z\":2,\"rota…"
+    },
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: **ра…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":800,\"y\":-180,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Payments Service\\n\\nОбработка платежей.\\nВызывается из Orders.\",\"color\":\"green\"}}",
+      "resultSummary": "{\"id\":\"art_r46sx996zu\",\"type\":\"note\",\"x\":800,\"y\":-180,\"width\":220,\"height\":140,\"z\":5,\"rotation\":0,\"props\":{\"text\":\"## Payments Service\\n\\nОбработка платежей.\\nВызывается из Orders.\",\"color\":\"green\"},\"createdAt\":1788597371386,\"updatedAt\":1788597371386}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":0,\"y\":-300,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\\nБыстрый доступ к сессиям и данным.\",\"color\":\"pink\"}}",
+      "resultSummary": "{\"id\":\"art_jjxz49mjf9\",\"type\":\"note\",\"x\":0,\"y\":-300,\"width\":220,\"height\":140,\"z\":6,\"rotation\":0,\"props\":{\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\\nБыстрый доступ к сессиям и данным.\",\"color\":\"pink\"},\"createdAt\":1788597371387,\"updatedAt\":1788597371387}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":800,\"y\":-360,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Kafka\\n\\nШина событий.\\nOrders → события,\\nPayments ← читает.\",\"color\":\"purple\"}}",
+      "resultSummary": "{\"id\":\"art_ucqbdzbbe4\",\"type\":\"note\",\"x\":800,\"y\":-360,\"width\":220,\"height\":140,\"z\":7,\"rotation\":0,\"props\":{\"text\":\"## Kafka\\n\\nШина событий.\\nOrders → события,\\nPayments ← читает.\",\"color\":\"purple\"},\"createdAt\":1788597371388,\"updatedAt\":1788597371388}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"type\":\"note\",\"x\":800,\"y\":-540,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Notification Service\\n\\nЧитает события из Kafka,\\nрассылает email-уведомления.\",\"color\":\"blue\"}}",
+      "resultSummary": "{\"id\":\"art_tfl6fofemu\",\"type\":\"note\",\"x\":800,\"y\":-540,\"width\":220,\"height\":140,\"z\":8,\"rotation\":0,\"props\":{\"text\":\"## Notification Service\\n\\nЧитает события из Kafka,\\nрассылает email-уведомления.\",\"color\":\"blue\"},\"createdAt\":1788597371389,\"updatedAt\":1788597371389}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_j4h9ndsfxl\",\"toId\":\"art_r46sx996zu\",\"label\":\"вызывает\"}",
+      "resultSummary": "{\"id\":\"arr_e4ytzv9fk3\",\"from\":{\"artifactId\":\"art_j4h9ndsfxl\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_r46sx996zu\",\"side\":\"auto\"},\"bends\":[],\"label\":\"вызывает\",\"style\":{},\"createdAt\":1788597377334,\"updatedAt\":1788597377334}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_w61zljphwn\",\"toId\":\"art_jjxz49mjf9\",\"label\":\"кэширует\"}",
+      "resultSummary": "{\"id\":\"arr_zlfqvqsdc1\",\"from\":{\"artifactId\":\"art_w61zljphwn\",\"side\":\"left\",\"offset\":0.12},\"to\":{\"artifactId\":\"art_jjxz49mjf9\",\"side\":\"right\"},\"bends\":[],\"label\":\"кэширует\",\"style\":{},\"createdAt\":1788597377335,\"updatedAt\":1788597377335,\"adjustments\":[\"Выход на art_w61zljphwn: сторона left уже занята концом стрелки arr_fks5vh8w3l, порт сдвинут на offset=0.12.\"]}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_j4h9ndsfxl\",\"toId\":\"art_jjxz49mjf9\",\"label\":\"кэширует\"}",
+      "resultSummary": "{\"id\":\"arr_kfdwuwl2ha\",\"from\":{\"artifactId\":\"art_j4h9ndsfxl\",\"side\":\"top\"},\"to\":{\"artifactId\":\"art_jjxz49mjf9\",\"side\":\"bottom\"},\"bends\":[{\"x\":510,\"y\":-32},{\"x\":110,\"y\":-88}],\"label\":\"кэширует\",\"style\":{},\"createdAt\":1788597377337,\"updatedAt\":1788597377337,\"adjustments\":[\"Стрелка подходила к стороне плашмя (22°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_arrange_gr…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_j4h9ndsfxl\",\"toId\":\"art_ucqbdzbbe4\",\"label\":\"публикует события\"}",
+      "resultSummary": "{\"id\":\"arr_8d9xstlcf3\",\"from\":{\"artifactId\":\"art_j4h9ndsfxl\",\"side\":\"top\"},\"to\":{\"artifactId\":\"art_ucqbdzbbe4\",\"side\":\"bottom\"},\"bends\":[{\"x\":510,\"y\":-32},{\"x\":910,\"y\":-188}],\"label\":\"публикует события\",\"style\":{},\"createdAt\":1788597377338,\"updatedAt\":1788597377338,\"adjustments\":[\"Стрелка подходила к стороне плашмя (29°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"fromId\":\"art_ucqbdzbbe4\",\"toId\":\"art_r46sx996zu\",\"label\":\"читает события\"}",
+      "resultSummary": "{\"id\":\"arr_mpiw9kopp6\",\"from\":{\"artifactId\":\"art_ucqbdzbbe4\",\"side\":\"bottom\",\"offset\":0.12},\"to\":{\"artifactId\":\"art_r46sx996zu\",\"side\":\"top\"},\"bends\":[{\"x\":826,\"y\":-188},{\"x\":910,\"y\":-212}],\"label\":\"читает события\",\"style\":{},\"createdAt\":1788597377340,\"updatedAt\":1788597377340,\"adjustments\":[\"Выход на art_ucqbdzbbe4: сторона bottom уже занята концом стрелки arr_8d9xstlcf3, порт сдвинут на offset=0…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_ucqbdzbbe4\",\"toId\":\"art_tfl6fofemu\",\"label\":\"читает события\"}",
+      "resultSummary": "{\"id\":\"arr_19yxsoz5uv\",\"from\":{\"artifactId\":\"art_ucqbdzbbe4\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_tfl6fofemu\",\"side\":\"auto\"},\"bends\":[],\"label\":\"читает события\",\"style\":{},\"createdAt\":1788597377343,\"updatedAt\":1788597377343}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"lockIds\":[\"art_8wpw2v5yzx\",\"art_w61zljphwn\",\"art_j4h9ndsfxl\",\"art_c3cm0awem5\"],\"direction\":\"auto\",\"nodeSpacing\":80,\"layerSpacing\":220}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":4,\"layerSizes\":[1,2,4,2],\"crossings\":0,\"crossingsBefore\":2,\"reversedEdges\":0,\"moved\":8,\"bounds\":{\"x\":0,\"y\":-192,\"width\":1540,\"height\":800},\"qualityBefore\":{\"score\":26,\"cost\":72.3,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":90,\"cost\":2.7,\"grade\":\"отлично\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":90,\"cost\":2.7,\"grade\"…"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-312,\"width\":1780,\"height\":1040},\"artifacts\":[{\"id\":\"art_8wpw2v5yzx\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## API Gateway\\n\\nВходная точка, маршрутизация и rate limit.\",\"color\":\"blue\"},\"createdAt\":1788597357795,\"updatedAt\":1788597357795},{\"id\":\"art_w61zljphwn\",\"type\":\"note\",\"x\":440,\"y\":-192,\"width\":220,\"height\":140,\"z\":2,\"rot…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"x\":-120,\"y\":-300,\"width\":1700,\"height\":900}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-300,\"width\":1700,\"height\":900},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":1,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":90,\"cost\":2.7,\"grade\":\"отлично\",\"previousCost\":2.7,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 1368,
+      "args": "{\"x\":-120,\"y\":-312,\"width\":1780,\"height\":1040}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-312,\"width\":1780,\"height\":1040},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    }
+  ],
+  "toolHistogram": {
+    "board_get_region": 2,
+    "skill_get": 1,
+    "artifact_create": 4,
+    "arrow_create": 6,
+    "board_arrange_graph": 1,
+    "board_check_intersections": 1,
+    "board_screenshot": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 96896,
+    "completionTokens": 2165,
+    "totalTokens": 99061,
+    "calls": 7,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 76032
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nДавайте сначала посмотрим на текущее состояние доски и прочитаем скилл для работы с графом.\n\nОтлично! Вижу текущую схему:\n\n- **API Gateway** (0,0) → **Auth Service** (400,-180) и **Orders Service** (400,0)\n- **Orders Service** → **PostgreSQL** (800,0)\n\nНужно добавить:\n1. **Payments Service** — вызывается из Orders\n2. **Redis** — кэш для Auth и Orders\n3. **Kafka** — Orders публикует события, Payments читает\n4. **Notification Service** — читает из Kafka, шлёт письма\n\nСуществующие блоки и связи не ломаем. Новые узлы добавлю рядом, а потом разложу граф с lockIds на существующие.\n\nСначала создам все новые узлы на свободном месте:\n\nУзлы созданы. Теперь создаю все стрелки для новых связей:\n\nВсе стрелки созданы. Теперь вызываю board_arrange_graph. Существующие блоки (API Gateway, Auth, Orders, PostgreSQL) кладу в lockIds, чтобы они не двигались. Новые узлы и все стрелки раскладываются автоматически.\n\nОтлично! Раскладка сработала. Давайте проверим результат:\n\nДавайте посмотрим скриншот, чтобы оценить визуальный результат:\n\nВсё отлично! Давайте посмотрим на результат и подведём итог.\n\n## Что получилось\n\nСхема разложена слева направо (LR) в 4 слоя, **0 пересечений стрелок**, оценка качества **90/100 (отлично)**.\n\n### Слои (слева направо):\n\n1. **Слой 1** — **API Gateway** (входная точка)\n2. **Слой 2** — **Auth Service** (сверху) и **Orders Service** (снизу) — оба получают запросы от Gateway\n3. **Слой 3** — **Redis** (кэш для Auth и Orders), **PostgreSQL** (хранилище заказов), **Kafka** (шина событий)\n4. **Слой 4** — **Payments Service** (обрабатывает платежи) и **Notification Service** (рассылает письма)\n\n### Новые связи:\n- **Orders → Payments** — «вызывает» (через нижний обход)\n- **Auth → Redis** — «кэширует»\n- **Orders → Redis** — «кэширует»\n- **Orders → Kafka** — «публикует события»\n- **Kafka → Payments** — «читает события»\n- **Kafka → Notification** — «читает события»\n\n### Единственный нюанс:\nСтрелка «кэширует» (Orders → Redis) проходит в 8px от PostgreSQL (нужно 12px) — минимальный зазор, не критично. Все остальные проверки пройдены: наложений нет, подписи не пересекаются, стрелки не слипаются.",
+  "boardId": "brd_vtahuf2xy3",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_8wpw2v5yzx",
+        "type": "note",
+        "x": 0,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "## API Gateway\n\nВходная точка, маршрутизация и rate limit.",
+          "color": "blue"
+        },
+        "createdAt": 1788597357795,
+        "updatedAt": 1788597357795
+      },
+      {
+        "id": "art_w61zljphwn",
+        "type": "note",
+        "x": 440,
+        "y": -192,
+        "width": 220,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "## Auth Service\n\nВыдаёт и проверяет JWT.",
+          "color": "green"
+        },
+        "createdAt": 1788597357810,
+        "updatedAt": 1788597389052
+      },
+      {
+        "id": "art_j4h9ndsfxl",
+        "type": "note",
+        "x": 440,
+        "y": 193,
+        "width": 220,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "## Orders Service\n\nСоздание и статусы заказов.",
+          "color": "green"
+        },
+        "createdAt": 1788597357826,
+        "updatedAt": 1788597389052
+      },
+      {
+        "id": "art_c3cm0awem5",
+        "type": "note",
+        "x": 880,
+        "y": 28,
+        "width": 220,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "## PostgreSQL\n\nОсновное хранилище заказов.",
+          "color": "gray"
+        },
+        "createdAt": 1788597357842,
+        "updatedAt": 1788597389052
+      },
+      {
+        "id": "art_r46sx996zu",
+        "type": "note",
+        "x": 1320,
+        "y": 468,
+        "width": 220,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "## Payments Service\n\nОбработка платежей.\nВызывается из Orders.",
+          "color": "green"
+        },
+        "createdAt": 1788597371386,
+        "updatedAt": 1788597389052
+      },
+      {
+        "id": "art_jjxz49mjf9",
+        "type": "note",
+        "x": 880,
+        "y": -192,
+        "width": 220,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "## Redis\n\nКэш для Auth и Orders.\nБыстрый доступ к сессиям и данным.",
+          "color": "pink"
+        },
+        "createdAt": 1788597371387,
+        "updatedAt": 1788597389052
+      },
+      {
+        "id": "art_ucqbdzbbe4",
+        "type": "note",
+        "x": 880,
+        "y": 358,
+        "width": 220,
+        "height": 140,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "## Kafka\n\nШина событий.\nOrders → события,\nPayments ← читает.",
+          "color": "purple"
+        },
+        "createdAt": 1788597371388,
+        "updatedAt": 1788597389052
+      },
+      {
+        "id": "art_tfl6fofemu",
+        "type": "note",
+        "x": 1320,
+        "y": 248,
+        "width": 220,
+        "height": 140,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "## Notification Service\n\nЧитает события из Kafka,\nрассылает email-уведомления.",
+          "color": "blue"
+        },
+        "createdAt": 1788597371389,
+        "updatedAt": 1788597389052
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_fks5vh8w3l",
+        "from": {
+          "artifactId": "art_8wpw2v5yzx",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_w61zljphwn",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 110,
+            "y": -122
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788597357857,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_w5bp0zdks7",
+        "from": {
+          "artifactId": "art_8wpw2v5yzx",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_j4h9ndsfxl",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 292,
+            "y": 70
+          },
+          {
+            "x": 292,
+            "y": 263
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788597357872,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_0ne7nryu2p",
+        "from": {
+          "artifactId": "art_j4h9ndsfxl",
+          "side": "top",
+          "offset": 0.6454545454545455
+        },
+        "to": {
+          "artifactId": "art_c3cm0awem5",
+          "side": "left",
+          "offset": 0.2785714285714286
+        },
+        "bends": [
+          {
+            "x": 582,
+            "y": 67
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1788597357889,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_e4ytzv9fk3",
+        "from": {
+          "artifactId": "art_j4h9ndsfxl",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_r46sx996zu",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 550,
+            "y": 680
+          },
+          {
+            "x": 1430,
+            "y": 680
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "вызывает",
+        "style": {},
+        "createdAt": 1788597377334,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_zlfqvqsdc1",
+        "from": {
+          "artifactId": "art_w61zljphwn",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_jjxz49mjf9",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "кэширует",
+        "style": {},
+        "createdAt": 1788597377335,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_kfdwuwl2ha",
+        "from": {
+          "artifactId": "art_j4h9ndsfxl",
+          "side": "top",
+          "offset": 0.35454545454545455
+        },
+        "to": {
+          "artifactId": "art_jjxz49mjf9",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 518,
+            "y": 20
+          },
+          {
+            "x": 990,
+            "y": 20
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "кэширует",
+        "style": {},
+        "createdAt": 1788597377337,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_8d9xstlcf3",
+        "from": {
+          "artifactId": "art_j4h9ndsfxl",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_ucqbdzbbe4",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 732,
+            "y": 263
+          },
+          {
+            "x": 732,
+            "y": 428
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "публикует события",
+        "style": {},
+        "createdAt": 1788597377338,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_mpiw9kopp6",
+        "from": {
+          "artifactId": "art_ucqbdzbbe4",
+          "side": "right",
+          "offset": 0.8928571428571429
+        },
+        "to": {
+          "artifactId": "art_r46sx996zu",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1172,
+            "y": 538
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "читает события",
+        "style": {},
+        "createdAt": 1788597377340,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_19yxsoz5uv",
+        "from": {
+          "artifactId": "art_ucqbdzbbe4",
+          "side": "right",
+          "offset": 0.10714285714285714
+        },
+        "to": {
+          "artifactId": "art_tfl6fofemu",
+          "side": "left",
+          "offset": 0.8928571428571429
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "читает события",
+        "style": {},
+        "createdAt": 1788597377343,
+        "updatedAt": 1788597389052,
+        "autoPorts": true
+      }
+    ]
+  }
+}

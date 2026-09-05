@@ -11,7 +11,7 @@
  *    under the port search: moving a port changes the pin, and libavoid draws
  *    the line for it.
  */
-import type { Arrow, Artifact } from '@teca/shared';
+import { computeArrowGeometries, type Arrow, type Artifact } from '@teca/shared';
 import { AvoidLib } from 'libavoid-js';
 
 /** libavoid's direction flags, as used by `ShapeConnectionPin`. */
@@ -27,14 +27,48 @@ export const loadAvoid = async (): Promise<any> => {
   return instance;
 };
 
+/**
+ * How far a connector must stay clear of a shape. Our renderer draws a
+ * perpendicular stub of `min(PORT_STUB, room - 8)` from every port before the
+ * first stored bend, so libavoid has to leave at least as much room — otherwise
+ * its first bend falls inside our stub, the tidy pass drops it, and the drawn
+ * line no longer matches the route that was computed.
+ */
+export let bufferDistance = Number(process.env.AVOID_BUFFER ?? 72);
+export const setBufferDistance = (value: number): void => {
+  bufferDistance = value;
+};
+
+/**
+ * One router, reused for every call.
+ *
+ * libavoid-js exposes `deleteConnector` and `deleteShape` but no way to free a
+ * Router, so building a fresh one per call leaks it — and the port search calls
+ * this hundreds of times per board. Measured: the WASM heap hit its 2GB ceiling
+ * after 33 boards, aborted, and every call from then on returned "program has
+ * already aborted" while the harness quietly counted those boards as skipped.
+ * Reusing one router and handing back its shapes and connectors afterwards runs
+ * the whole corpus — 890 routings, no failures.
+ */
+let sharedRouter: any = null;
+
 const makeRouter = (Avoid: any) => {
-  // Embind exposes enum members as objects; the number lives on `.value`.
-  const router = new Avoid.Router(Avoid.RouterFlag.OrthogonalRouting.value);
-  router.setRoutingParameter(Avoid.RoutingParameter.shapeBufferDistance, 16);
-  router.setRoutingParameter(Avoid.RoutingParameter.idealNudgingDistance, 16);
-  router.setRoutingOption(Avoid.RoutingOption.nudgeOrthogonalSegmentsConnectedToShapes, true);
-  router.setRoutingOption(Avoid.RoutingOption.nudgeSharedPathsWithCommonEndPoint, true);
-  return router;
+  if (!sharedRouter) {
+    // Embind exposes enum members as objects; the number lives on `.value`.
+    sharedRouter = new Avoid.Router(Avoid.RouterFlag.OrthogonalRouting.value);
+    sharedRouter.setRoutingOption(Avoid.RoutingOption.nudgeOrthogonalSegmentsConnectedToShapes, true);
+    sharedRouter.setRoutingOption(Avoid.RoutingOption.nudgeSharedPathsWithCommonEndPoint, true);
+  }
+  sharedRouter.setRoutingParameter(Avoid.RoutingParameter.shapeBufferDistance, bufferDistance);
+  sharedRouter.setRoutingParameter(Avoid.RoutingParameter.idealNudgingDistance, 16);
+  return sharedRouter;
+};
+
+/** Gives the router back everything one call put into it. */
+const release = (router: any, shapes: Map<string, any>, connectors: Map<string, any>) => {
+  for (const connector of connectors.values()) router.deleteConnector(connector);
+  for (const shape of shapes.values()) router.deleteShape(shape);
+  router.processTransaction();
 };
 
 const addShapes = (Avoid: any, router: any, artifacts: Artifact[]) => {
@@ -114,7 +148,7 @@ export const routeFree = (Avoid: any, artifacts: Artifact[], arrows: Arrow[]): A
   }
   router.processTransaction();
 
-  return arrows.map((arrow) => {
+  const out = arrows.map((arrow) => {
     const conn = connectors.get(arrow.id);
     if (!conn) return arrow;
     const points = readRoute(conn);
@@ -129,6 +163,8 @@ export const routeFree = (Avoid: any, artifacts: Artifact[], arrows: Arrow[]): A
       to: { ...arrow.to, side: 'auto' as const, offset: undefined },
     };
   });
+  release(router, shapes, connectors);
+  return out;
 };
 
 /**
@@ -143,6 +179,25 @@ export const routeAtPorts = (
   arrowIds?: string[],
 ): Arrow[] | null => {
   const wanted = arrowIds ? new Set(arrowIds) : null;
+
+  // An endpoint left on `auto` is decided twice and by two different rules:
+  // libavoid pins it to the shape centre and leaves whichever way suits its
+  // route, while the renderer picks a side from the geometry. When the two
+  // disagree the stored route starts at a point the drawn line never visits,
+  // and the arrow ends up as a stub hanging off the box. Resolving each end to
+  // the side the renderer would choose — and writing it into the arrow —
+  // leaves nothing for the two to disagree about.
+  const resolved = computeArrowGeometries(artifacts, arrows);
+  const pinned = arrows.map((arrow) => {
+    const g = resolved.get(arrow.id);
+    if (!g) return arrow;
+    return {
+      ...arrow,
+      from: { ...arrow.from, side: g.fromSide, offset: g.fromOffset },
+      to: { ...arrow.to, side: g.toSide, offset: g.toOffset },
+    };
+  });
+
   const byId = new Map(artifacts.map((a) => [a.id, a]));
   const router = makeRouter(Avoid);
   const shapes = addShapes(Avoid, router, artifacts);
@@ -150,7 +205,7 @@ export const routeAtPorts = (
   const connectors = new Map<string, any>();
 
   let pinClass = 1;
-  for (const arrow of usable(arrows, ids)) {
+  for (const arrow of usable(pinned, ids)) {
     const ends: number[] = [];
     for (const end of ['from', 'to'] as const) {
       const endpoint = arrow[end];
@@ -174,7 +229,7 @@ export const routeAtPorts = (
   }
   router.processTransaction();
 
-  return arrows.map((arrow) => {
+  const out = pinned.map((arrow) => {
     if (wanted && !wanted.has(arrow.id)) return arrow;
     const conn = connectors.get(arrow.id);
     if (!conn) return arrow;
@@ -182,4 +237,6 @@ export const routeAtPorts = (
     if (points.length < 2) return arrow;
     return { ...arrow, bends: points.slice(1, -1), routing: 'orthogonal' as const };
   });
+  release(router, shapes, connectors);
+  return out;
 };

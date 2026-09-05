@@ -77,7 +77,11 @@ describe('board_route_arrows', () => {
       expect((result as { mutated?: boolean }).mutated).toBe(false);
       expect(data.refused).toBe(true);
       expect(data.crowded).toHaveLength(1);
-      expect(data.verdict).toMatch(/Раздвинь узлы/);
+      // Both ports here are pinned to the sides the arrow was created with, so
+      // the gate judges those sides and no others — and reports that they are
+      // buried. An arrow whose ports the router owns is judged on whether any
+      // side would work, which is what lets a deliberately tight row be routed.
+      expect(data.verdict).toMatch(/нет свободной стороны/);
       expect(data.verdict).toMatch(/Маршрут не проложен/);
       expect(env.ctx.boards.read(boardId, (s) => s.arrows[0].bends)).toEqual([]);
     } finally {
@@ -458,6 +462,47 @@ describe('arrow ports', () => {
 });
 
 describe('artifact overlap and placements', () => {
+  it('moves a whole row in one call and still reports the one that clashed', async () => {
+    // Building a row used to be one call per block, and every call is a model
+    // iteration with the whole prompt behind it. A clash on one block must not
+    // send the others back for another round trip either.
+    const env = makeEnv();
+    try {
+      const board = env.ctx.boards.create();
+      const ids = env.ctx.boards.mutate(board.id, (state) => [
+        createArtifact(state, { type: 'note', x: 0, y: 0 }).id,
+        createArtifact(state, { type: 'note', x: 400, y: 0 }).id,
+        createArtifact(state, { type: 'note', x: 800, y: 0 }).id,
+        createArtifact(state, { type: 'note', x: 0, y: 600 }).id,
+      ]);
+
+      const result = await new ToolRegistry().get('artifact_move')!.run(
+        {
+          moves: [
+            { id: ids[0], x: 0, y: 1200 },
+            { id: ids[1], x: 240, y: 1200 },
+            // Straight on top of the block parked at (0, 600).
+            { id: ids[2], x: 0, y: 600 },
+          ],
+        },
+        toolContext(env, board.id),
+      );
+      const data = (result as { data: Record<string, unknown> }).data;
+
+      expect(data.moved).toBe(2);
+      expect((data.blocked as unknown[]) ?? []).toHaveLength(1);
+      const positions = env.ctx.boards.read(board.id, (s2) =>
+        Object.fromEntries(s2.artifacts.map((a) => [a.id, { x: a.x, y: a.y }])),
+      );
+      expect(positions[ids[0]]).toEqual({ x: 0, y: 1200 });
+      expect(positions[ids[1]]).toEqual({ x: 240, y: 1200 });
+      // The one that clashed stayed where it was.
+      expect(positions[ids[2]]).toEqual({ x: 800, y: 0 });
+    } finally {
+      void env.dispose();
+    }
+  });
+
   it('refuses to create a block on top of another unless acceptOverlap is set', async () => {
     const env = makeEnv();
     try {

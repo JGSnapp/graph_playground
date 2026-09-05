@@ -1,5 +1,6 @@
 import type { Arrow, Artifact, Rect, Vec2 } from './artifacts.js';
 import {
+  FIXED_SIDES,
   MIN_EDGE,
   MIN_PORT_ANGLE_DEG,
   approachLength,
@@ -105,7 +106,22 @@ const DEFAULTS = {
   clearance: 8,
   turnPenalty: 120,
   overlapPenalty: 2,
-  crossPenalty: 80,
+  // A crossing has to be worth a couple of turns before the router accepts it.
+  // The old price of 80 sat below the cost of a single turn (`turnPenalty` 120),
+  // so cutting through was always cheaper than stepping around.
+  //
+  // 200 measured on the whole corpus of 66 boards, against the old 80: 27
+  // boards better, 2 worse, worst single board +4.3. It beats every other price
+  // tried on all four counts at once — 150 wins less and loses harder, 300
+  // gains a little average and ruins four boards, one by 12 points. The router
+  // lays arrows one after another, so refusing a crossing early can corner the
+  // ones that come later; too high a price makes that happen more, not less.
+  //
+  // Grid rings outside the composition were measured alongside this and turned
+  // out to be inert: rings 0, 1 and 2 give byte-identical results at every
+  // price. The detour the router actually takes runs between the boxes, not
+  // around the outside, so rings only enlarge the grid. Left at 0.
+  crossPenalty: 200,
   outerRings: 0,
   jogLength: 64,
   // Cheap insurance: at 400 a wobble has to save more than three turns to be
@@ -580,6 +596,7 @@ export const tooTightToRoute = (
   }
 
   const wanted = arrowIds ? new Set(arrowIds) : null;
+  const byId = new Map(artifacts.map((artifact) => [artifact.id, artifact]));
   const geometries = computeArrowGeometries(artifacts, arrows);
   const inflated = artifacts.map((a) => ({ id: a.id, rect: inflate(a, DEFAULTS.clearance) }));
   const crowded: string[] = [];
@@ -592,19 +609,51 @@ export const tooTightToRoute = (
     const start = stubPoint(geometry.fromPoint, geometry.fromSide, arrow.from.artifactId, artifacts);
     const goal = stubPoint(geometry.toPoint, geometry.toSide, arrow.to.artifactId, artifacts);
     const ends = new Set([arrow.from.artifactId, arrow.to.artifactId]);
-    const blocked = inflated.some(
-      (item) =>
-        !ends.has(item.id) &&
-        (segmentHitsRect(start, start, item.rect) || segmentHitsRect(goal, goal, item.rect)),
-    );
-    if (blocked) crowded.push(arrow.id);
+    const clear = (point: Vec2) =>
+      !inflated.some((item) => !ends.has(item.id) && segmentHitsRect(point, point, item.rect));
+
+    if (clear(start) && clear(goal)) continue;
+
+    // The port that is blocked is not necessarily the only port available.
+    //
+    // Asked for a row of blocks packed tightly — which is a real requirement,
+    // not a mistake — the sides facing along the row are buried in the
+    // neighbours, while the tops and bottoms are wide open. Judging the arrow
+    // by the side it happens to be on refused the whole board and told the
+    // agent to spread the nodes out by 100px, undoing exactly what it had been
+    // asked to do. It obeyed, was refused again for another reason, and went
+    // round three times.
+    //
+    // So the question is whether *any* attachment works, not whether this one
+    // does. A port the agent pinned deliberately is exempt: there the specific
+    // side is the instruction, and reporting it blocked is the useful answer.
+    const from = byId.get(arrow.from.artifactId);
+    const to = byId.get(arrow.to.artifactId);
+    const pinnedFrom = arrow.autoPorts !== true && arrow.from.side !== 'auto';
+    const pinnedTo = arrow.autoPorts !== true && arrow.to.side !== 'auto';
+
+    const openSides = (
+      artifact: Artifact | undefined,
+      pinned: boolean,
+      side: FixedSide,
+    ): Vec2[] => {
+      if (!artifact) return [];
+      const sides = pinned ? [side] : FIXED_SIDES;
+      return sides
+        .map((candidate) => stubPoint(anchorPoint(artifact, candidate, 0.5), candidate, artifact.id, artifacts))
+        .filter(clear);
+    };
+
+    const fromOptions = openSides(from, pinnedFrom, geometry.fromSide);
+    const toOptions = openSides(to, pinnedTo, geometry.toSide);
+    if (fromOptions.length === 0 || toOptions.length === 0) crowded.push(arrow.id);
   }
 
   const ready = overlapping === 0 && crowded.length === 0;
   const note = !ready
     ? overlapping > 0
       ? `Узлы накладываются (${overlapping} пар). Раздвинь артефакты (между соседями от 100px) и вызови роутер снова. Маршрут не проложен.`
-      : `Для стрелок ${crowded.join(', ')} нет чистого коридора: точки присоединения оказались внутри соседних артефактов. Раздвинь узлы (между соседями от 100px) и вызови роутер снова. Маршрут не проложен.`
+      : `Для стрелок ${crowded.join(', ')} нет свободной стороны: все четыре стороны хотя бы одного из блоков закрыты соседями. Раздвинь эти блоки или освободи одну сторону. Маршрут не проложен.`
     : '';
 
   return { ready, crowded, overlapping, note };
@@ -795,13 +844,45 @@ export const routeArrows = (
     const requested: [FixedSide, FixedSide] = geometry
       ? [geometry.fromSide, geometry.toSide]
       : facingPair(from, to);
-    const pairs = uniquePairs([requested, facingPair(from, to), ...SIDE_PAIRS]);
 
-    for (const [fromSide, toSide] of pairs) {
-      for (const { start, goal } of facingLanes(from, fromSide, to, toSide, artifacts)) {
-        const passable = passableAt(start, goal);
-        for (const candidate of simpleRoutes(start, goal)) {
-          consider(candidate, start, goal, fromSide, toSide, passable);
+    /**
+     * A port somebody pinned deliberately is an instruction, not a hint.
+     *
+     * Without this the loop below sweeps all sixteen side pairs and every lane
+     * within them, scores each on path quality alone — nothing charges for
+     * ignoring what was asked — and keeps whichever it likes best. So the port
+     * search would choose a port, the router would overrule it, and the search
+     * would then measure the router's choice as if it were its own. Measured on
+     * 77 attempts: not one requested offset survived, and one requested side.
+     *
+     * `autoPorts` marks a port the router owns and may move. Anything else was
+     * put there by the port search, the agent, or the user.
+     */
+    // Sides and offsets are pinned separately, because they are asked for
+    // separately: the search's side move names a side and deliberately leaves
+    // the offset free for the draw-time spread to place.
+    const owned = arrow.autoPorts === true;
+    const sidesPinned = !owned && arrow.from.side !== 'auto' && arrow.to.side !== 'auto';
+    const portsPinned =
+      sidesPinned && arrow.from.offset != null && arrow.to.offset != null;
+
+    if (portsPinned && geometry) {
+      const start = stubPoint(geometry.fromPoint, geometry.fromSide, from.id, artifacts);
+      const goal = stubPoint(geometry.toPoint, geometry.toSide, to.id, artifacts);
+      const passable = passableAt(start, goal);
+      for (const candidate of simpleRoutes(start, goal)) {
+        consider(candidate, start, goal, geometry.fromSide, geometry.toSide, passable);
+      }
+    } else {
+      const pairs = sidesPinned
+        ? [requested]
+        : uniquePairs([requested, facingPair(from, to), ...SIDE_PAIRS]);
+      for (const [fromSide, toSide] of pairs) {
+        for (const { start, goal } of facingLanes(from, fromSide, to, toSide, artifacts)) {
+          const passable = passableAt(start, goal);
+          for (const candidate of simpleRoutes(start, goal)) {
+            consider(candidate, start, goal, fromSide, toSide, passable);
+          }
         }
       }
     }

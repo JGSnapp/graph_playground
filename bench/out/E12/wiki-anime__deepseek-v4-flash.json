@@ -1,0 +1,677 @@
+{
+  "exp": "E12",
+  "task": "wiki-anime",
+  "repeat": 0,
+  "probes": "вики по документу, чистый лист, 8-10 узлов, дерево связей",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-05T08:32:54.310Z",
+  "ms": 137496,
+  "aborted": false,
+  "screenshotsServed": 1,
+  "iterations": 7,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 95,
+    "cost": 1.2,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 8,
+      "arrows": 10,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 10,
+      "drawnTurns": 11,
+      "cornerPorts": 0,
+      "totalLength": 9568,
+      "detour": 1.01
+    },
+    "breakdown": [
+      {
+        "reason": "поворот линии",
+        "count": 1,
+        "cost": 0.5
+      },
+      {
+        "reason": "стрелки идут в обход",
+        "count": 1,
+        "cost": 0.7206005004170191
+      }
+    ]
+  },
+  "completeness": {
+    "isolatedNodes": 0,
+    "isolatedIds": [],
+    "missingGraph": false,
+    "brokenGraph": false,
+    "counts": true
+  },
+  "observations": {
+    "artifacts": 8,
+    "arrows": 10,
+    "width": 2432,
+    "height": 910,
+    "aspect": 2.67,
+    "density": 0.14,
+    "edgeLengthMedian": 843,
+    "edgeLengthMax": 2219,
+    "edgeLengthSpread": 2.63,
+    "separation": 1.42,
+    "textOverflow": 0,
+    "alignedShare": 0.56,
+    "columnLanes": 5,
+    "rowLanes": 6,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 9568,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: **ра…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":160,\"props\":{\"color\":\"purple\",\"text\":\"**📓 Тетрадь смерти**\\n\\nАртефакт синигами. Тот, кто запишет имя человека в эту тетрадь, убьёт его. Если записать обстоятельства смерти, они сбудутся.\"},\"type\":\"note\",\"width\":240,\"x\":0,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_rl0ezw0nyp\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":240,\"height\":160,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"**📓 Тетрадь смерти**\\n\\nАртефакт синигами. Тот, кто запишет имя человека в эту тетрадь, убьёт его. Если записать обстоятельства смерти, они сбудутся.\",\"color\":\"purple\"},\"createdAt\":1788597068200,\"updatedAt\":1788597068200}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":160,\"props\":{\"color\":\"blue\",\"text\":\"**🔍 Лайт Ягами**\\n\\nГениальный старшеклассник, нашедший Тетрадь смерти. Становится Кирой — вершителем правосудия. Сын главы полиции.\"},\"type\":\"note\",\"width\":240,\"x\":320,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_mwjscd324q\",\"type\":\"note\",\"x\":320,\"y\":0,\"width\":240,\"height\":160,\"z\":2,\"rotation\":0,\"props\":{\"text\":\"**🔍 Лайт Ягами**\\n\\nГениальный старшеклассник, нашедший Тетрадь смерти. Становится Кирой — вершителем правосудия. Сын главы полиции.\",\"color\":\"blue\"},\"createdAt\":1788597068200,\"updatedAt\":1788597068200}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":160,\"props\":{\"color\":\"pink\",\"text\":\"**👻 Рюк**\\n\\nБог смерти, уронивший Тетрадь в мир людей. Наблюдает за Лайтом из скуки. Не помогает и не мешает — нейтрален.\"},\"type\":\"note\",\"width\":240,\"x\":0,\"y\":240}",
+      "resultSummary": "{\"id\":\"art_iu8ga4a9r6\",\"type\":\"note\",\"x\":0,\"y\":240,\"width\":240,\"height\":160,\"z\":3,\"rotation\":0,\"props\":{\"text\":\"**👻 Рюк**\\n\\nБог смерти, уронивший Тетрадь в мир людей. Наблюдает за Лайтом из скуки. Не помогает и не мешает — нейтрален.\",\"color\":\"pink\"},\"createdAt\":1788597068201,\"updatedAt\":1788597068201}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":160,\"props\":{\"color\":\"gray\",\"text\":\"**🕵️ L**\\n\\nВеличайший детектив мира. Ведёт расследование Киры. Противник Лайта. Работает с японской полицией.\"},\"type\":\"note\",\"width\":240,\"x\":640,\"y\":0}",
+      "resultSummary": "{\"id\":\"art_60apc2l725\",\"type\":\"note\",\"x\":640,\"y\":0,\"width\":240,\"height\":160,\"z\":4,\"rotation\":0,\"props\":{\"text\":\"**🕵️ L**\\n\\nВеличайший детектив мира. Ведёт расследование Киры. Противник Лайта. Работает с японской полицией.\",\"color\":\"gray\"},\"createdAt\":1788597068201,\"updatedAt\":1788597068201}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":160,\"props\":{\"color\":\"green\",\"text\":\"**💖 Миса Амане**\\n\\nПоклонница Киры, получившая Тетрадь от Рюка. Влюблена в Лайта. Помогает ему как вторая Кира.\"},\"type\":\"note\",\"width\":240,\"x\":320,\"y\":240}",
+      "resultSummary": "{\"id\":\"art_havmenetsh\",\"type\":\"note\",\"x\":320,\"y\":240,\"width\":240,\"height\":160,\"z\":5,\"rotation\":0,\"props\":{\"text\":\"**💖 Миса Амане**\\n\\nПоклонница Киры, получившая Тетрадь от Рюка. Влюблена в Лайта. Помогает ему как вторая Кира.\",\"color\":\"green\"},\"createdAt\":1788597068201,\"updatedAt\":1788597068201}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":160,\"props\":{\"color\":\"gray\",\"text\":\"**🧩 Ниа**\\n\\nПреемник L в организации Wammy's House. После смерти L продолжает расследование и в итоге раскрывает Киру.\"},\"type\":\"note\",\"width\":240,\"x\":640,\"y\":240}",
+      "resultSummary": "{\"id\":\"art_ialmq9r8kl\",\"type\":\"note\",\"x\":640,\"y\":240,\"width\":240,\"height\":160,\"z\":6,\"rotation\":0,\"props\":{\"text\":\"**🧩 Ниа**\\n\\nПреемник L в организации Wammy's House. После смерти L продолжает расследование и в итоге раскрывает Киру.\",\"color\":\"gray\"},\"createdAt\":1788597068201,\"updatedAt\":1788597068201}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":160,\"props\":{\"color\":\"blue\",\"text\":\"**👨‍👦 Ягами Сойтиро**\\n\\nОтец Лайта, начальник японской полиции. Честный и принципиальный. Не подозревает, что его сын — Кира.\"},\"type\":\"note\",\"width\":240,\"x\":0,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_dgmtau9djs\",\"type\":\"note\",\"x\":0,\"y\":480,\"width\":240,\"height\":160,\"z\":7,\"rotation\":0,\"props\":{\"text\":\"**👨‍👦 Ягами Сойтиро**\\n\\nОтец Лайта, начальник японской полиции. Честный и принципиальный. Не подозревает, что его сын — Кира.\",\"color\":\"blue\"},\"createdAt\":1788597068201,\"updatedAt\":1788597068201}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":160,\"props\":{\"color\":\"yellow\",\"text\":\"**🏛️ Японская полиция**\\n\\nНациональное полицейское агентство Японии. Участвует в расследовании дела Киры под руководством L.\"},\"type\":\"note\",\"width\":240,\"x\":320,\"y\":480}",
+      "resultSummary": "{\"id\":\"art_uy8z7wwc9e\",\"type\":\"note\",\"x\":320,\"y\":480,\"width\":240,\"height\":160,\"z\":8,\"rotation\":0,\"props\":{\"text\":\"**🏛️ Японская полиция**\\n\\nНациональное полицейское агентство Японии. Участвует в расследовании дела Киры под руководством L.\",\"color\":\"yellow\"},\"createdAt\":1788597068202,\"updatedAt\":1788597068202}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_rl0ezw0nyp\",\"label\":\"нашёл\",\"toId\":\"art_mwjscd324q\"}",
+      "resultSummary": "{\"id\":\"arr_19hve4red9\",\"from\":{\"artifactId\":\"art_rl0ezw0nyp\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_mwjscd324q\",\"side\":\"auto\"},\"bends\":[],\"label\":\"нашёл\",\"style\":{},\"createdAt\":1788597079503,\"updatedAt\":1788597079503}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_iu8ga4a9r6\",\"label\":\"уронил\",\"toId\":\"art_rl0ezw0nyp\"}",
+      "resultSummary": "{\"id\":\"arr_m54kxhfyph\",\"from\":{\"artifactId\":\"art_iu8ga4a9r6\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_rl0ezw0nyp\",\"side\":\"auto\"},\"bends\":[],\"label\":\"уронил\",\"style\":{},\"createdAt\":1788597079506,\"updatedAt\":1788597079506}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_iu8ga4a9r6\",\"label\":\"наблюдает\",\"toId\":\"art_mwjscd324q\"}",
+      "resultSummary": "{\"id\":\"arr_jy4xsxj0tk\",\"from\":{\"artifactId\":\"art_iu8ga4a9r6\",\"side\":\"top\"},\"to\":{\"artifactId\":\"art_mwjscd324q\",\"side\":\"bottom\"},\"bends\":[{\"x\":120,\"y\":168},{\"x\":440,\"y\":232}],\"label\":\"наблюдает\",\"style\":{},\"createdAt\":1788597079508,\"updatedAt\":1788597079508,\"adjustments\":[\"Стрелка подходила к стороне плашмя (14°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_arrange_g…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_mwjscd324q\",\"label\":\"противостояние\",\"toId\":\"art_60apc2l725\"}",
+      "resultSummary": "{\"id\":\"arr_tkibluwkik\",\"from\":{\"artifactId\":\"art_mwjscd324q\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_60apc2l725\",\"side\":\"auto\"},\"bends\":[],\"label\":\"противостояние\",\"style\":{},\"createdAt\":1788597079510,\"updatedAt\":1788597079510}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_60apc2l725\",\"label\":\"работает с\",\"toId\":\"art_uy8z7wwc9e\"}",
+      "resultSummary": "{\"id\":\"arr_8srqvz9mw1\",\"from\":{\"artifactId\":\"art_60apc2l725\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_uy8z7wwc9e\",\"side\":\"auto\"},\"bends\":[],\"label\":\"работает с\",\"style\":{},\"createdAt\":1788597079512,\"updatedAt\":1788597079512}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_dgmtau9djs\",\"label\":\"состоит\",\"toId\":\"art_uy8z7wwc9e\"}",
+      "resultSummary": "{\"id\":\"arr_6v4xmg27rc\",\"from\":{\"artifactId\":\"art_dgmtau9djs\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_uy8z7wwc9e\",\"side\":\"auto\"},\"bends\":[],\"label\":\"состоит\",\"style\":{},\"createdAt\":1788597079515,\"updatedAt\":1788597079515}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_dgmtau9djs\",\"label\":\"отец\",\"toId\":\"art_mwjscd324q\"}",
+      "resultSummary": "{\"id\":\"arr_7kdbht3sdz\",\"from\":{\"artifactId\":\"art_dgmtau9djs\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_mwjscd324q\",\"side\":\"auto\"},\"bends\":[],\"label\":\"отец\",\"style\":{},\"createdAt\":1788597079518,\"updatedAt\":1788597079518}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_havmenetsh\",\"label\":\"влюблена\",\"toId\":\"art_mwjscd324q\"}",
+      "resultSummary": "{\"id\":\"arr_du5dnvatv1\",\"from\":{\"artifactId\":\"art_havmenetsh\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_mwjscd324q\",\"side\":\"auto\"},\"bends\":[],\"label\":\"влюблена\",\"style\":{},\"createdAt\":1788597079520,\"updatedAt\":1788597079520}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_ialmq9r8kl\",\"label\":\"расследует после L\",\"toId\":\"art_mwjscd324q\"}",
+      "resultSummary": "{\"id\":\"arr_eg10wsk1ed\",\"from\":{\"artifactId\":\"art_ialmq9r8kl\",\"side\":\"top\"},\"to\":{\"artifactId\":\"art_mwjscd324q\",\"side\":\"bottom\"},\"bends\":[{\"x\":760,\"y\":168},{\"x\":440,\"y\":232}],\"label\":\"расследует после L\",\"style\":{},\"createdAt\":1788597079524,\"updatedAt\":1788597079524,\"adjustments\":[\"Стрелка подходила к стороне плашмя (14°, нужно от 30°): добавлен перпендикулярный изгиб. board_route_arrows или board_…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"fromId\":\"art_60apc2l725\",\"label\":\"преемник\",\"toId\":\"art_ialmq9r8kl\"}",
+      "resultSummary": "{\"id\":\"arr_jjixi60y4s\",\"from\":{\"artifactId\":\"art_60apc2l725\",\"side\":\"bottom\"},\"to\":{\"artifactId\":\"art_ialmq9r8kl\",\"side\":\"top\",\"offset\":0.12},\"bends\":[],\"label\":\"преемник\",\"style\":{},\"createdAt\":1788597079527,\"updatedAt\":1788597079527,\"adjustments\":[\"Вход на art_ialmq9r8kl: сторона top уже занята концом стрелки arr_eg10wsk1ed, порт сдвинут на offset=0.12.\"]}"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"auto\",\"groups\":[{\"id\":\"police\",\"nodeIds\":[\"art_dgmtau9djs\",\"art_uy8z7wwc9e\"]},{\"id\":\"investigation\",\"nodeIds\":[\"art_60apc2l725\",\"art_ialmq9r8kl\"]}],\"nodeSpacing\":80,\"layerSpacing\":220}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1.4,\"layers\":5,\"layerSizes\":[3,5,2,3,2],\"crossings\":0,\"crossingsBefore\":7,\"reversedEdges\":1,\"moved\":8,\"bounds\":{\"x\":0,\"y\":0,\"width\":2432,\"height\":910},\"qualityBefore\":{\"score\":20,\"cost\":101.4,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":95,\"cost\":1.2,\"grade\":\"отлично\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":79,\"cost\":6.8,\"grad…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":3,\"quality\":{\"score\":95,\"cost\":1.2,\"grade\":\"отлично\",\"previousCost\":1.2,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":10,\"edgeNodeHits\":0,\"crossings\":0,\"shallow…"
+    },
+    {
+      "name": "board_quality",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"score\":95,\"cost\":1.2,\"grade\":\"отлично\",\"previousCost\":1.2,\"improvedBy\":0,\"metrics\":{\"artifacts\":8,\"arrows\":10,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCrossings\":0,\"mergedArrows\":0,\"clearanceHits\":0,\"overlaps\":0,\"tightPairs\":0,\"labelConflicts\":0,\"bends\":10,\"drawnTurns\":11,\"cornerPorts\":0,\"totalLength\":9568,\"detour\":1.01},\"breakdown\":[{\"reason\":\"поворот линии\",\"count\":1,\"cost\":0.5},{\"reason\":\"стрел…"
+    },
+    {
+      "name": "board_screenshot",
+      "status": "done",
+      "refused": false,
+      "ms": 7463,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":2672,\"height\":1150},\"captured\":true,\"note\":\"Скриншот приложен следующим сообщением.\"}"
+    }
+  ],
+  "toolHistogram": {
+    "skill_get": 1,
+    "artifact_create": 8,
+    "arrow_create": 10,
+    "board_arrange_graph": 1,
+    "board_check_intersections": 1,
+    "board_quality": 1,
+    "board_screenshot": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 100120,
+    "completionTokens": 3468,
+    "totalTokens": 103588,
+    "calls": 7,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 77312
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nОтличная задача! Это граф с множеством связей, так что буду использовать скилл graph-layout. Давай сначала прочитаю его инструкцию.\n\nОтлично, инструкция получена. Теперь приступим по шагам.\n\n## Шаг 1. Описываю граф\n\n**Узлы (8 штук):**\n1. Тетрадь смерти — артефакт\n2. Лайт Ягами — главный герой\n3. L — детектив\n4. Рюк — бог смерти\n5. Миса Амане — кира-фанатка\n6. Ниа — преемник L\n7. Ягами Сойтиро — отец Лайта, глава полиции\n8. Японская полиция — организация\n\n**Связи (9 штук):**\n- Тетрадь смерти → Лайт (нашёл)\n- Рюк → Тетрадь смерти (уронил)\n- Рюк → Лайт (наблюдает)\n- Лайт → L (противостояние)\n- L → Японская полиция (работает с)\n- Ягами Сойтиро → Японская полиция (состоит)\n- Ягами Сойтиро → Лайт (отец)\n- Миса → Лайт (влюблена)\n- Ниа → Лайт (расследует после L)\n- L → Ниа (преемник)\n\n**Группы:** Можно выделить две подсистемы:\n- «Семья/полиция»: Ягами Сойтиро, Японская полиция\n- «Расследование»: L, Ниа\n\n## Шаг 2. Создаю узлы\n\nРазмещу их сеткой с шагом 320×240.\n\nВсе 8 узлов созданы. Теперь Шаг 3 — создаю все стрелки.\n\n## Шаг 3. Создаю все стрелки\n\nВсе 10 стрелок созданы. Некоторые получили временные изгибы — это нормально, раскладка их переложит. Теперь Шаг 4 — запускаю board_arrange_graph.\n\n## Шаг 4. Раскладка графа\n\nГруппы:\n- «Полиция»: Ягами Сойтиро, Японская полиция\n- «Расследование»: L, Ниа\n\n\n\nОтличный результат! Раскладка выбрала направление слева направо (LR), 5 слоёв, 0 пересечений, оценка качества поднялась с 20 до 95/100. Теперь проверю качество.\n\n## Шаг 5. Проверка\n\n\n\nВсё чисто. Давай посмотрю, как это выглядит визуально.\n\nВот результат — схема получилась отличная. Давай подведу итог.\n\n---\n\n## ✅ Итог: Вики-схема «Тетрадь смерти»\n\n**Что размещено:**\n8 узлов-заметок с краткими описаниями персонажей и ключевых элементов, соединённых 10 стрелками с подписями.\n\n**Принцип раскладки:**\nГраф разложен автоматически в направлении **слева направо (LR)** по 5 слоям:\n1. **Рюк** → уронил Тетрадь\n2. **Тетрадь смерти** → нашёл Лайт\n3. **Лайт Ягами** — центральный узел (к нему сходятся 4 связи)\n4. **L** и **Миса Амане** — противостояние и влюблённость\n5. **Ниа**, **Ягами Сойтиро**, **Японская полиция** — расследование и семья\n\nГруппы «Полиция» (Сойтиро + полиция) и «Расследование» (L + Ниа) держатся компактно.\n\n**Качество раскладки:**\n- **Оценка: 95/100 (отлично)**\n- Пересечений стрелок: **0**\n- Наложений артефактов: **0**\n- Конфликтов подписей: **0**\n- Штраф: всего 1.2 (минимальные повороты и обходы)\n\nСхема читается естественно: слева — причины (Рюк, Тетрадь), в центре — Лайт, справа — следствия (L, полиция, Ниа).",
+  "boardId": "brd_vp8sc4nomu",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_rl0ezw0nyp",
+        "type": "note",
+        "x": 548,
+        "y": 103,
+        "width": 240,
+        "height": 160,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "**📓 Тетрадь смерти**\n\nАртефакт синигами. Тот, кто запишет имя человека в эту тетрадь, убьёт его. Если записать обстоятельства смерти, они сбудутся.",
+          "color": "purple"
+        },
+        "createdAt": 1788597068200,
+        "updatedAt": 1788597103009
+      },
+      {
+        "id": "art_mwjscd324q",
+        "type": "note",
+        "x": 1096,
+        "y": 103,
+        "width": 240,
+        "height": 160,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "**🔍 Лайт Ягами**\n\nГениальный старшеклассник, нашедший Тетрадь смерти. Становится Кирой — вершителем правосудия. Сын главы полиции.",
+          "color": "blue"
+        },
+        "createdAt": 1788597068200,
+        "updatedAt": 1788597103009
+      },
+      {
+        "id": "art_iu8ga4a9r6",
+        "type": "note",
+        "x": 0,
+        "y": 206,
+        "width": 240,
+        "height": 160,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "**👻 Рюк**\n\nБог смерти, уронивший Тетрадь в мир людей. Наблюдает за Лайтом из скуки. Не помогает и не мешает — нейтрален.",
+          "color": "pink"
+        },
+        "createdAt": 1788597068201,
+        "updatedAt": 1788597103009
+      },
+      {
+        "id": "art_60apc2l725",
+        "type": "note",
+        "x": 1644,
+        "y": 206,
+        "width": 240,
+        "height": 160,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "**🕵️ L**\n\nВеличайший детектив мира. Ведёт расследование Киры. Противник Лайта. Работает с японской полицией.",
+          "color": "gray"
+        },
+        "createdAt": 1788597068201,
+        "updatedAt": 1788597103009
+      },
+      {
+        "id": "art_havmenetsh",
+        "type": "note",
+        "x": 0,
+        "y": 478,
+        "width": 240,
+        "height": 160,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "**💖 Миса Амане**\n\nПоклонница Киры, получившая Тетрадь от Рюка. Влюблена в Лайта. Помогает ему как вторая Кира.",
+          "color": "green"
+        },
+        "createdAt": 1788597068201,
+        "updatedAt": 1788597103009
+      },
+      {
+        "id": "art_ialmq9r8kl",
+        "type": "note",
+        "x": 2192,
+        "y": 0,
+        "width": 240,
+        "height": 160,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "**🧩 Ниа**\n\nПреемник L в организации Wammy's House. После смерти L продолжает расследование и в итоге раскрывает Киру.",
+          "color": "gray"
+        },
+        "createdAt": 1788597068201,
+        "updatedAt": 1788597103009
+      },
+      {
+        "id": "art_dgmtau9djs",
+        "type": "note",
+        "x": 0,
+        "y": 750,
+        "width": 240,
+        "height": 160,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "**👨‍👦 Ягами Сойтиро**\n\nОтец Лайта, начальник японской полиции. Честный и принципиальный. Не подозревает, что его сын — Кира.",
+          "color": "blue"
+        },
+        "createdAt": 1788597068201,
+        "updatedAt": 1788597103009
+      },
+      {
+        "id": "art_uy8z7wwc9e",
+        "type": "note",
+        "x": 2192,
+        "y": 406,
+        "width": 240,
+        "height": 160,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "**🏛️ Японская полиция**\n\nНациональное полицейское агентство Японии. Участвует в расследовании дела Киры под руководством L.",
+          "color": "yellow"
+        },
+        "createdAt": 1788597068202,
+        "updatedAt": 1788597103009
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_19hve4red9",
+        "from": {
+          "artifactId": "art_rl0ezw0nyp",
+          "side": "right",
+          "offset": 0.55625
+        },
+        "to": {
+          "artifactId": "art_mwjscd324q",
+          "side": "left",
+          "offset": 0.55625
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "нашёл",
+        "style": {},
+        "createdAt": 1788597079503,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_m54kxhfyph",
+        "from": {
+          "artifactId": "art_iu8ga4a9r6",
+          "side": "right",
+          "offset": 0.18125
+        },
+        "to": {
+          "artifactId": "art_rl0ezw0nyp",
+          "side": "left",
+          "offset": 0.825
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "уронил",
+        "style": {},
+        "createdAt": 1788597079506,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_jy4xsxj0tk",
+        "from": {
+          "artifactId": "art_iu8ga4a9r6",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_mwjscd324q",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 120,
+            "y": 31
+          },
+          {
+            "x": 1216,
+            "y": 31
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "наблюдает",
+        "style": {},
+        "createdAt": 1788597079508,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_tkibluwkik",
+        "from": {
+          "artifactId": "art_mwjscd324q",
+          "side": "right",
+          "offset": 0.825
+        },
+        "to": {
+          "artifactId": "art_60apc2l725",
+          "side": "left",
+          "offset": 0.18125
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "противостояние",
+        "style": {},
+        "createdAt": 1788597079510,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_8srqvz9mw1",
+        "from": {
+          "artifactId": "art_60apc2l725",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_uy8z7wwc9e",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1764,
+            "y": 486
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "работает с",
+        "style": {},
+        "createdAt": 1788597079512,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_6v4xmg27rc",
+        "from": {
+          "artifactId": "art_dgmtau9djs",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_uy8z7wwc9e",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 2312,
+            "y": 830
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "состоит",
+        "style": {},
+        "createdAt": 1788597079515,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_7kdbht3sdz",
+        "from": {
+          "artifactId": "art_dgmtau9djs",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_mwjscd324q",
+          "side": "bottom",
+          "offset": 0.6458333333333334
+        },
+        "bends": [
+          {
+            "x": 120,
+            "y": 678
+          },
+          {
+            "x": 1251,
+            "y": 678
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "отец",
+        "style": {},
+        "createdAt": 1788597079518,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_du5dnvatv1",
+        "from": {
+          "artifactId": "art_havmenetsh",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_mwjscd324q",
+          "side": "bottom",
+          "offset": 0.3541666666666667
+        },
+        "bends": [
+          {
+            "x": 120,
+            "y": 406
+          },
+          {
+            "x": 1181,
+            "y": 406
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "влюблена",
+        "style": {},
+        "createdAt": 1788597079520,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_eg10wsk1ed",
+        "from": {
+          "artifactId": "art_ialmq9r8kl",
+          "side": "left",
+          "offset": 0.12
+        },
+        "to": {
+          "artifactId": "art_mwjscd324q",
+          "side": "right",
+          "offset": 0.18125
+        },
+        "bends": [
+          {
+            "x": 1408,
+            "y": 80
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "расследует после L",
+        "style": {},
+        "createdAt": 1788597079524,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_jjixi60y4s",
+        "from": {
+          "artifactId": "art_60apc2l725",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_ialmq9r8kl",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1764,
+            "y": 80
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "преемник",
+        "style": {},
+        "createdAt": 1788597079527,
+        "updatedAt": 1788597103009,
+        "autoPorts": true
+      }
+    ]
+  }
+}

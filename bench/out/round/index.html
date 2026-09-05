@@ -1,0 +1,110 @@
+<title>Итерации: углы, повороты, обход</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; padding:32px; background:#0b0d11; color:#e8e8ea;
+         font:15px/1.55 "Segoe UI", system-ui, sans-serif; }
+  h1 { font-size:23px; margin:0 0 10px; }
+  h2 { font-size:17px; margin:40px 0 12px; color:#9fb2d4; }
+  .lead { color:#8b93a7; max-width:76ch; margin:0 0 4px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(430px,1fr)); gap:18px; }
+  figure { margin:0; }
+  figcaption { font-size:13px; margin-bottom:6px; }
+  figcaption b { color:#7ddc9a; }
+  figcaption span { display:block; color:#8b93a7; font-size:12px; }
+  img { width:100%; height:auto; border-radius:8px; background:#0e1014; border:1px solid #1c2029; }
+  ol { color:#c9cedb; max-width:76ch; } li { margin:6px 0; }
+</style>
+<h1>Три изменения этого круга</h1>
+<ol>
+  <li><b>Каждая сторона раскладывается ровно.</b> Перебор двигает порты по
+      одному и принимает любое неухудшающее движение, так что сторона
+      оставалась неровной: три стрелки на одном ребре стояли там, где поиск
+      остановился. Метрика ровности не видит, поэтому её никто не наводил — и
+      веер подчинённых, который читался симметрично, выходил вразнобой. Теперь
+      стороны выравниваются в конце, с сохранением порядка.</li>
+  <li><b>Порт у края теперь чего-то стоит.</b> Раньше метрика его не видела
+      вовсе, поэтому ничто в системе не имело причины его двигать: перебор
+      принимает только строгие улучшения, а уход с угла улучшением не был.
+      Девять из десяти таких портов держали прямую линию — их удалось сдвинуть
+      вместе с партнёром, не сгибая её.</li>
+  <li><b>Порты не садятся в угол.</b> Отступ 14px — скругление блока (10px)
+      плюс немного прямой кромки. Действует только там, где порт
+      <i>придумывается</i>, и не действует там, где он считывается с уже
+      проложенной трассы или задан явно: первая версия правила двигала и такие
+      порты и ломала прямые линии — две доски со 100 баллов падали до 76 и 86.</li>
+  <li><b>Штраф считает нарисованные повороты, а не сохранённые изгибы.</b>
+      Стрелка, которая отходит вбок и сразу возвращается, хранила два изгиба и
+      проходила бесплатно, рисуя четыре видимых поворота.</li>
+  <li><b>Пересечение подорожало.</b> Оно стоило 80 при цене поворота 120 — то
+      есть перечеркнуть чужую линию всегда было дешевле, чем шагнуть в сторону.
+      Теперь 200: на 66 досках 27 стали лучше, 2 хуже, худшая потеря +4.3.
+      Другие цены проверены и проигрывают по всем четырём числам сразу.</li>
+</ol>
+<p class="lead">Блоки в обеих картинках стоят одинаково — различается только
+прокладка линий.</p>
+<section><h2>E08/dense-arch</h2><div class="grid"><figure>
+  <figcaption>было <b>51/100</b>
+    <span>пересечений 6 · поворотов 26 · портов у края 2</span>
+  </figcaption>
+  <a href="E08_dense-arch-0.png" target="_blank"><img src="E08_dense-arch-0.png" alt="было"></a>
+</figure><figure>
+  <figcaption>стало <b>51/100</b>
+    <span>пересечений 6 · поворотов 24 · портов у края 0</span>
+  </figcaption>
+  <a href="E08_dense-arch-1.png" target="_blank"><img src="E08_dense-arch-1.png" alt="стало"></a>
+</figure></div></section>
+<section><h2>E08/wiki-anime</h2><div class="grid"><figure>
+  <figcaption>было <b>87/100</b>
+    <span>пересечений 0 · поворотов 11 · портов у края 2</span>
+  </figcaption>
+  <a href="E08_wiki-anime-0.png" target="_blank"><img src="E08_wiki-anime-0.png" alt="было"></a>
+</figure><figure>
+  <figcaption>стало <b>98/100</b>
+    <span>пересечений 0 · поворотов 9 · портов у края 0</span>
+  </figcaption>
+  <a href="E08_wiki-anime-1.png" target="_blank"><img src="E08_wiki-anime-1.png" alt="стало"></a>
+</figure></div></section>
+<section><h2>E08/tree-org</h2><div class="grid"><figure>
+  <figcaption>было <b>100/100</b>
+    <span>пересечений 0 · поворотов 8 · портов у края 9</span>
+  </figcaption>
+  <a href="E08_tree-org-0.png" target="_blank"><img src="E08_tree-org-0.png" alt="было"></a>
+</figure><figure>
+  <figcaption>стало <b>86/100</b>
+    <span>пересечений 0 · поворотов 16 · портов у края 0</span>
+  </figcaption>
+  <a href="E08_tree-org-1.png" target="_blank"><img src="E08_tree-org-1.png" alt="стало"></a>
+</figure></div></section>
+<section><h2>E08/states-order</h2><div class="grid"><figure>
+  <figcaption>было <b>100/100</b>
+    <span>пересечений 0 · поворотов 0 · портов у края 4</span>
+  </figcaption>
+  <a href="E08_states-order-0.png" target="_blank"><img src="E08_states-order-0.png" alt="было"></a>
+</figure><figure>
+  <figcaption>стало <b>93/100</b>
+    <span>пересечений 0 · поворотов 4 · портов у края 0</span>
+  </figcaption>
+  <a href="E08_states-order-1.png" target="_blank"><img src="E08_states-order-1.png" alt="стало"></a>
+</figure></div></section>
+<section><h2>E08/extend-existing</h2><div class="grid"><figure>
+  <figcaption>было <b>93/100</b>
+    <span>пересечений 0 · поворотов 12 · портов у края 0</span>
+  </figcaption>
+  <a href="E08_extend-existing-0.png" target="_blank"><img src="E08_extend-existing-0.png" alt="было"></a>
+</figure><figure>
+  <figcaption>стало <b>93/100</b>
+    <span>пересечений 0 · поворотов 11 · портов у края 0</span>
+  </figcaption>
+  <a href="E08_extend-existing-1.png" target="_blank"><img src="E08_extend-existing-1.png" alt="стало"></a>
+</figure></div></section>
+<section><h2>E07/fix-broken</h2><div class="grid"><figure>
+  <figcaption>было <b>98/100</b>
+    <span>пересечений 0 · поворотов 5 · портов у края 1</span>
+  </figcaption>
+  <a href="E07_fix-broken-0.png" target="_blank"><img src="E07_fix-broken-0.png" alt="было"></a>
+</figure><figure>
+  <figcaption>стало <b>94/100</b>
+    <span>пересечений 0 · поворотов 5 · портов у края 0</span>
+  </figcaption>
+  <a href="E07_fix-broken-1.png" target="_blank"><img src="E07_fix-broken-1.png" alt="стало"></a>
+</figure></div></section>
