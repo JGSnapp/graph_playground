@@ -1,6 +1,7 @@
 import type { Arrow, Artifact } from '@teca/shared';
 import {
-  CORNER_RADIUS,
+  CORNER_RADIUS_MAX,
+  CORNER_RADIUS_SHARE,
   MIN_EDGE,
   MIN_MIXED_PORT,
   MIN_PORT_ANGLE_DEG,
@@ -16,6 +17,7 @@ import {
   boundsOf,
   arrowPathData,
   computeArrowGeometries,
+  drawnPolyline,
   rectsIntersect,
   resolveSide,
   tidyOrthogonal,
@@ -687,13 +689,43 @@ describe('arrowPathData', () => {
     // and only the corner between them is drawn round.
     expect(d.startsWith('M 0 0')).toBe(true);
     expect(d.endsWith('L 100 100')).toBe(true);
-    expect(d).toContain(`Q 100 0`);
-    expect(d).toContain(`L ${100 - CORNER_RADIUS} 0`);
+    expect(d).toContain('Q 100 0');
+    expect(d).toContain(`L ${100 - 100 * CORNER_RADIUS_SHARE} 0`);
+  });
+
+  it('gives a longer run a wider sweep', () => {
+    // The radius is a share of the run, not a fixed number, so corners on a
+    // spacious board read differently from corners on a cramped one.
+    const sweep = (run: number) => {
+      const d = arrowPathData(
+        [
+          { x: 0, y: 0 },
+          { x: run, y: 0 },
+          { x: run, y: run },
+        ],
+        'curved',
+      );
+      return run - Number(d.split(' L ')[1].split(' ')[0]);
+    };
+    expect(sweep(400)).toBeGreaterThan(sweep(100));
+    expect(sweep(100)).toBeGreaterThan(sweep(40));
+  });
+
+  it('caps the sweep so a very long run does not balloon', () => {
+    const d = arrowPathData(
+      [
+        { x: 0, y: 0 },
+        { x: 1000, y: 0 },
+        { x: 1000, y: 1000 },
+      ],
+      'curved',
+    );
+    expect(d).toContain(`L ${1000 - CORNER_RADIUS_MAX} 0`);
   });
 
   it('shrinks the radius rather than overrunning a short segment', () => {
-    // Ten pixels of run cannot carry a sixteen pixel radius; half the segment
-    // is the most it may take, so the arc still ends inside its own leg.
+    // Ten pixels of run cannot carry a wide arc; the share keeps it inside its
+    // own leg, so the corner stays sharp-ish rather than spilling over.
     const d = arrowPathData(
       [
         { x: 0, y: 0 },
@@ -702,7 +734,23 @@ describe('arrowPathData', () => {
       ],
       'curved',
     );
-    expect(d).toBe('M 0 0 L 5 0 Q 10 0 10 5 L 10 10');
+    expect(d).toBe('M 0 0 L 6 0 Q 10 0 10 5 L 10 10');
+  });
+
+  it('measures the drawn arc, not the corner it replaced', () => {
+    // A curved arrow is not the same line as its route, so anything judging
+    // what the reader sees has to be given the arc in pieces.
+    const route = [
+      { x: 0, y: 0 },
+      { x: 200, y: 0 },
+      { x: 200, y: 200 },
+    ];
+    const drawn = drawnPolyline(route, 'curved');
+    expect(drawn.length).toBeGreaterThan(route.length);
+    // The apex of the turn is cut off: nothing drawn reaches the corner itself.
+    expect(drawn.some((p) => p.x > 199 && p.y < 1)).toBe(false);
+    // And an orthogonal arrow is handed back untouched.
+    expect(drawnPolyline(route, 'orthogonal')).toBe(route);
   });
 
   it('does not bend a point that lies on a straight run', () => {

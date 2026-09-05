@@ -5,6 +5,7 @@ import {
   MIN_PORT_ANGLE_DEG,
   angleToSide,
   computeArrowGeometries,
+  drawnPolyline,
   labelAnchor,
   rectsIntersect,
 } from './geometry.js';
@@ -31,6 +32,9 @@ const straightRuns = (points: Vec2[]): Vec2[] => {
   out.push(points[points.length - 1]);
   return out;
 };
+
+/** How close to a shared port a meeting still counts as a fork, not a crossing. */
+const FORK_RADIUS = 28;
 
 export interface SegmentHit {
   point: Vec2;
@@ -501,7 +505,13 @@ export const checkIntersections = (
   for (const arrow of scopedArrows) {
     const geometry = geometries.get(arrow.id);
     if (!geometry) continue;
-    polylines.set(arrow.id, geometry.points);
+    // Crossings, cuts through blocks and clearances are facts about the line
+    // the reader sees. On a curved arrow that is not the route: the corners are
+    // arcs, and an arc sits inside its turn. Everything below that judges the
+    // drawing measures this; what judges the route still reads
+    // `geometry.points`, because an arc is one turn however finely it is cut.
+    const drawn = drawnPolyline(geometry.points, arrow.routing);
+    polylines.set(arrow.id, drawn);
 
     const first = geometry.points[0];
     const second = geometry.points[1];
@@ -566,14 +576,14 @@ export const checkIntersections = (
     for (const artifact of scopedArtifacts) {
       const isEndpoint =
         artifact.id === arrow.from.artifactId || artifact.id === arrow.to.artifactId;
-      const hits = polylineRectHits(geometry.points, artifact);
+      const hits = polylineRectHits(drawn, artifact);
 
       if (hits.length === 0) {
         if (
           !isEndpoint &&
-          geometry.points.some(
+          drawn.some(
             (p, index) =>
-              index > 0 && index < geometry.points.length - 1 && pointInRect(p, artifact),
+              index > 0 && index < drawn.length - 1 && pointInRect(p, artifact),
           )
         ) {
           findings.push({
@@ -591,9 +601,9 @@ export const checkIntersections = (
         }
 
         if (includeClearance && !isEndpoint) {
-          let closest = { distance: Infinity, point: geometry.points[0] };
-          for (let i = 0; i < geometry.points.length - 1; i++) {
-            const candidate = segmentRectDistance(geometry.points[i], geometry.points[i + 1], artifact);
+          let closest = { distance: Infinity, point: drawn[0] };
+          for (let i = 0; i < drawn.length - 1; i++) {
+            const candidate = segmentRectDistance(drawn[i], drawn[i + 1], artifact);
             if (candidate.distance < closest.distance) closest = candidate;
           }
           if (closest.distance < minArrowClearance) {
@@ -712,6 +722,41 @@ export const checkIntersections = (
         // that count was inflated with it.
         const seen = new Set<string>();
 
+        // Where the two lines run along one another.
+        //
+        // Two arrows out of one port share a run and then part. The point where
+        // they part sits on both lines, so the crossing test calls it a
+        // crossing — at whatever shallow angle the parting takes. Sharp, that
+        // angle was 90° and the pair was reported as merged instead; drawn
+        // round, the arc lifts away at five degrees and the same parting became
+        // a hundred "shallow crossings" across the corpus. A meeting inside a
+        // shared run is a parting, not a crossing.
+        const shared: Array<{ from: Vec2; to: Vec2 }> = [];
+        for (let sa = 0; sa < ptsA.length - 1; sa++) {
+          for (let sb = 0; sb < ptsB.length - 1; sb++) {
+            const overlap = parallelOverlap(
+              ptsA[sa],
+              ptsA[sa + 1],
+              ptsB[sb],
+              ptsB[sb + 1],
+              mergeTolerance,
+            );
+            if (overlap && overlap.length >= minMergeLength) {
+              shared.push({ from: overlap.from, to: overlap.to });
+            }
+          }
+        }
+        const onSharedRun = (point: Vec2): boolean =>
+          shared.some(({ from, to }) => {
+            const dx = to.x - from.x;
+            const dy = to.y - from.y;
+            const len = dx * dx + dy * dy;
+            if (len < 1e-6) return false;
+            let t = ((point.x - from.x) * dx + (point.y - from.y) * dy) / len;
+            t = Math.max(0, Math.min(1, t));
+            return Math.hypot(point.x - (from.x + t * dx), point.y - (from.y + t * dy)) <= mergeTolerance;
+          });
+
         for (let sa = 0; sa < ptsA.length - 1; sa++) {
           for (let sb = 0; sb < ptsB.length - 1; sb++) {
             if (includeArrowOverlaps) {
@@ -726,8 +771,8 @@ export const checkIntersections = (
                 // A deliberate fork shares one port: overlap next to it is fine.
                 const atFork = sharedPorts.some(
                   (port) =>
-                    Math.hypot(port.x - overlap.from.x, port.y - overlap.from.y) <= 28 ||
-                    Math.hypot(port.x - overlap.to.x, port.y - overlap.to.y) <= 28,
+                    Math.hypot(port.x - overlap.from.x, port.y - overlap.from.y) <= FORK_RADIUS ||
+                    Math.hypot(port.x - overlap.to.x, port.y - overlap.to.y) <= FORK_RADIUS,
                 );
                 if (!atFork && (!merged || overlap.length > merged.length)) {
                   merged = { ...overlap, reported: false };
@@ -738,7 +783,20 @@ export const checkIntersections = (
             if (!includeArrowArrow) continue;
             const hit = segmentIntersection(ptsA[sa], ptsA[sa + 1], ptsB[sb], ptsB[sb + 1]);
             if (!hit) continue;
-            // Ignore shared endpoints that merely meet at an artifact.
+            // Two arrows leaving one port are a fork, not a crossing.
+            //
+            // This used to be decided by segment index — first or last segment,
+            // at its very end. That held while a polyline was the route itself,
+            // and broke the moment a curved arrow was cut into arcs: the fork
+            // then met a few sampled segments in, the rule stopped recognising
+            // it, and a board full of forks grew a hundred "crossings" at five
+            // degrees. Distance from the shared port says the same thing and
+            // does not care how finely the line is cut.
+            const atFork = sharedPorts.some(
+              (port) => Math.hypot(port.x - hit.point.x, port.y - hit.point.y) <= FORK_RADIUS,
+            );
+            if (atFork) continue;
+            if (onSharedRun(hit.point)) continue;
             const atEndA = (sa === 0 && hit.t < 0.02) || (sa === ptsA.length - 2 && hit.t > 0.98);
             const atEndB = (sb === 0 && hit.u < 0.02) || (sb === ptsB.length - 2 && hit.u > 0.98);
             if (atEndA && atEndB) continue;

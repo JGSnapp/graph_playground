@@ -175,19 +175,69 @@ export const ensureHeadOnBends = (
 };
 
 /**
- * How far a curved corner is allowed to round off. Never more than half the
- * shorter of the two segments it joins, so the arc cannot eat into a
- * neighbouring run — on a tight route the corners simply stay sharp.
+ * The largest sweep a curved corner may take, and the share of a segment it may
+ * spend getting there.
+ *
+ * A single fixed radius made every corner identical, which reads as a stencil
+ * rather than a drawn line. The radius is a share of the shorter of the two
+ * segments the corner joins, so a long run gets a wide sweep and a short one a
+ * tight turn, and the cap only stops the very longest from ballooning.
+ *
+ * The share stays under a half: two corners at the ends of one segment take
+ * 0.45 of it each and still leave room between them, so an arc can never run
+ * into its neighbour.
  */
-export const CORNER_RADIUS = 16;
+export const CORNER_RADIUS_MAX = 72;
+export const CORNER_RADIUS_SHARE = 0.45;
+
+/** One rounded corner: where the arc leaves the run, its apex, where it rejoins. */
+export interface RoundedCorner {
+  start: Vec2;
+  apex: Vec2;
+  end: Vec2;
+}
+
+/**
+ * The corners of a polyline as arcs.
+ *
+ * Every consumer of the curved shape comes through here — the SVG path, and the
+ * polyline the quality metric measures. Two places computing the same rounding
+ * from the same points independently is exactly how the libavoid routes ended
+ * up drawn differently from how they were measured.
+ */
+export const roundedCorners = (points: Vec2[]): RoundedCorner[] => {
+  const out: RoundedCorner[] = [];
+  for (let i = 1; i < points.length - 1; i++) {
+    const before = points[i - 1];
+    const apex = points[i];
+    const after = points[i + 1];
+    const inLen = Math.hypot(apex.x - before.x, apex.y - before.y);
+    const outLen = Math.hypot(after.x - apex.x, after.y - apex.y);
+    if (inLen < 1 || outLen < 1) continue;
+
+    const inX = (apex.x - before.x) / inLen;
+    const inY = (apex.y - before.y) / inLen;
+    const outX = (after.x - apex.x) / outLen;
+    const outY = (after.y - apex.y) / outLen;
+    // Straight through: nothing to round.
+    if (Math.abs(inX - outX) < 1e-6 && Math.abs(inY - outY) < 1e-6) continue;
+
+    const r = Math.min(CORNER_RADIUS_MAX, inLen * CORNER_RADIUS_SHARE, outLen * CORNER_RADIUS_SHARE);
+    out.push({
+      start: { x: apex.x - inX * r, y: apex.y - inY * r },
+      apex,
+      end: { x: apex.x + outX * r, y: apex.y + outY * r },
+    });
+  }
+  return out;
+};
 
 /**
  * The SVG path for one arrow.
  *
  * The polyline is the route; this only decides how it is drawn. Both renderers
  * — the board in the browser and the bench that makes the screenshots — build
- * their path here, so a curve added for one is a curve in the other, and the
- * quality metric keeps measuring the same geometry either way.
+ * their path here, so a curve added for one is a curve in the other.
  */
 export const arrowPathData = (points: Vec2[], routing?: ArrowRouting): string => {
   if (points.length === 0) return '';
@@ -195,34 +245,48 @@ export const arrowPathData = (points: Vec2[], routing?: ArrowRouting): string =>
   if (routing !== 'curved' || points.length < 3) return sharp();
 
   const out: string[] = [`M ${points[0].x} ${points[0].y}`];
-  for (let i = 1; i < points.length - 1; i++) {
-    const before = points[i - 1];
-    const corner = points[i];
-    const after = points[i + 1];
-    const inLen = Math.hypot(corner.x - before.x, corner.y - before.y);
-    const outLen = Math.hypot(after.x - corner.x, after.y - corner.y);
-    if (inLen < 1 || outLen < 1) continue;
-
-    const inX = (corner.x - before.x) / inLen;
-    const inY = (corner.y - before.y) / inLen;
-    const outX = (after.x - corner.x) / outLen;
-    const outY = (after.y - corner.y) / outLen;
-    // Straight through: nothing to round.
-    if (Math.abs(inX - outX) < 1e-6 && Math.abs(inY - outY) < 1e-6) continue;
-
-    const r = Math.min(CORNER_RADIUS, inLen / 2, outLen / 2);
-    const startX = corner.x - inX * r;
-    const startY = corner.y - inY * r;
-    const endX = corner.x + outX * r;
-    const endY = corner.y + outY * r;
-    out.push(`L ${Math.round(startX)} ${Math.round(startY)}`);
+  for (const corner of roundedCorners(points)) {
+    out.push(`L ${Math.round(corner.start.x)} ${Math.round(corner.start.y)}`);
     // The corner itself is the control point, so the arc leaves and arrives
     // along the original segments and the arrowhead still points true.
-    out.push(`Q ${corner.x} ${corner.y} ${Math.round(endX)} ${Math.round(endY)}`);
+    out.push(`Q ${corner.apex.x} ${corner.apex.y} ${Math.round(corner.end.x)} ${Math.round(corner.end.y)}`);
   }
   const last = points[points.length - 1];
   out.push(`L ${last.x} ${last.y}`);
   return out.join(' ');
+};
+
+/** Samples per arc when the curve is turned back into a polyline for measuring. */
+const ARC_SAMPLES = 6;
+
+/**
+ * The line as drawn, in straight pieces.
+ *
+ * Everything that judges what the reader sees — crossings, lines cutting
+ * through blocks, clearances — measures this, because on a curved arrow the
+ * drawn line and the route are not the same line. What the route itself is
+ * worth — turns, bends, detour — is still measured on `points`: an arc is one
+ * turn however finely it is sampled.
+ */
+export const drawnPolyline = (points: Vec2[], routing?: ArrowRouting): Vec2[] => {
+  if (routing !== 'curved' || points.length < 3) return points;
+  const corners = roundedCorners(points);
+  if (corners.length === 0) return points;
+
+  const out: Vec2[] = [points[0]];
+  for (const { start, apex, end } of corners) {
+    out.push(start);
+    for (let step = 1; step <= ARC_SAMPLES; step++) {
+      const t = step / ARC_SAMPLES;
+      const m = 1 - t;
+      out.push({
+        x: m * m * start.x + 2 * m * t * apex.x + t * t * end.x,
+        y: m * m * start.y + 2 * m * t * apex.y + t * t * end.y,
+      });
+    }
+  }
+  out.push(points[points.length - 1]);
+  return out;
 };
 
 export const clampOffset = (offset: number): number => Math.min(1, Math.max(0, offset));
