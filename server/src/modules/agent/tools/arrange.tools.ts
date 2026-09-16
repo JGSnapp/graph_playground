@@ -12,6 +12,10 @@ const stringList = (value: unknown): string[] =>
  */
 export const boardArrangeGraph: ToolSpec = {
   name: 'board_arrange_graph',
+  // The manual half of the placement experiment does without it entirely: the
+  // model is told the coordinates are its job, so the tool must not be sitting
+  // there as a way out.
+  isEnabled: () => process.env.TECA_MANUAL_LAYOUT !== '1',
   description:
     // Why layering beats bending is the skill's argument, and `direction` and
     // `lockIds` explain themselves below. This schema rides in every request;

@@ -91,10 +91,10 @@ const proposedRect = (base: Rect, patch: Partial<Rect>): Rect => ({
 
 export const artifactCreate: ToolSpec = {
   name: 'artifact_create',
-  description: `Создаёт артефакт на доске. Доступные типы и их props: ${typeCatalog}. Если размеры не заданы, берутся значения по умолчанию для типа. Если новый блок наложится на уже стоящий, тул не создаёт его и просит либо другие координаты, либо acceptOverlap=true — только если наложение задумано.`,
+  description: `Создаёт артефакты на доске. Один блок — type/x/y, несколько сразу — items (так дешевле: схема из десяти блоков это один вызов, а не десять). Доступные типы и их props: ${typeCatalog}. Если размеры не заданы, берутся значения по умолчанию для типа. Блок, который наложился бы на уже стоящий, не создаётся, и тул называет ближайшее свободное место; остальные из items создаются всё равно. Наложение делается через acceptOverlap=true.`,
   parameters: objectSchema(
     {
-      type: enumOf(ARTIFACT_TYPES, 'Тип артефакта'),
+      type: enumOf(ARTIFACT_TYPES, 'Тип артефакта (для одного блока)'),
       x: num('Координата левого края'),
       y: num('Координата верхнего края'),
       width: num('Ширина, необязательно'),
@@ -104,40 +104,100 @@ export const artifactCreate: ToolSpec = {
         description: 'Содержимое артефакта, набор полей зависит от типа',
         additionalProperties: true,
       },
+      items: {
+        type: 'array',
+        description: 'Несколько блоков за один вызов',
+        items: objectSchema(
+          {
+            type: enumOf(ARTIFACT_TYPES, 'Тип'),
+            x: num('x'),
+            y: num('y'),
+            width: num('Ширина'),
+            height: num('Высота'),
+            props: {
+              type: 'object',
+              description: 'Содержимое',
+              additionalProperties: true,
+            },
+          },
+          ['type', 'x', 'y'],
+        ),
+      },
       acceptOverlap: bool(
-        'true — создать даже при наложении на другой блок, на свою ответственность. Без флага при наложении действие отменяется.',
+        'true — создавать даже при наложении на другой блок, на свою ответственность. Без флага наложившийся блок пропускается.',
       ),
     },
-    ['type', 'x', 'y'],
+    [],
   ),
   run: (args, ctx) => {
-    const type = args.type as ArtifactType;
-    const blueprint = ARTIFACT_BLUEPRINTS[type];
-    const rect: Rect = {
-      x: args.x as number,
-      y: args.y as number,
-      width: (args.width as number | undefined) ?? blueprint.width,
-      height: (args.height as number | undefined) ?? blueprint.height,
-    };
-    const refused = ctx.boards.read(ctx.boardId, (state) =>
-      overlapRefuse(overlappingNeighbors(rect, state.artifacts), args.acceptOverlap === true, rect),
-    );
-    if (refused) return { data: { created: false, ...refused }, mutated: false };
+    // One call, many blocks.
+    //
+    // A block is cheap to create and expensive to ask for: every call is a whole
+    // model iteration with the system prompt, the tool schemas and the growing
+    // history behind it. A schema of ten nodes used to cost ten of those.
+    const list = Array.isArray(args.items)
+      ? (args.items as Array<Record<string, unknown>>)
+      : args.type != null
+        ? [args]
+        : [];
+    if (list.length === 0) {
+      return {
+        data: { created: false, refused: true, reason: 'Нужен либо type с x,y, либо непустой items.' },
+        mutated: false,
+      };
+    }
 
-    const artifact = ctx.boards.mutate(ctx.boardId, (state) =>
-      createArtifact(state, {
-        type,
-        x: rect.x,
-        y: rect.y,
-        width: args.width as number | undefined,
-        height: args.height as number | undefined,
-        props: (args.props as Record<string, unknown>) ?? {},
-        // Confirming an overlap records it as deliberate, so the quality metric
-        // stops calling it a defect on every later check.
-        allowOverlap: args.acceptOverlap === true,
-      }),
-    );
-    return { data: artifact, mutated: true };
+    const accept = args.acceptOverlap === true;
+    const made: unknown[] = [];
+    const blocked: Array<Record<string, unknown>> = [];
+
+    for (const spec of list) {
+      const type = spec.type as ArtifactType;
+      const blueprint = ARTIFACT_BLUEPRINTS[type];
+      if (!blueprint) {
+        blocked.push({ refused: true, reason: `Неизвестный тип ${String(type)}.` });
+        continue;
+      }
+      const rect: Rect = {
+        x: spec.x as number,
+        y: spec.y as number,
+        width: (spec.width as number | undefined) ?? blueprint.width,
+        height: (spec.height as number | undefined) ?? blueprint.height,
+      };
+      const refused = ctx.boards.read(ctx.boardId, (state) =>
+        overlapRefuse(overlappingNeighbors(rect, state.artifacts), accept, rect),
+      );
+      if (refused) {
+        // The rest are still created: one clash used to cost another round trip
+        // for every block that was fine.
+        blocked.push(refused as unknown as Record<string, unknown>);
+        continue;
+      }
+      made.push(
+        ctx.boards.mutate(ctx.boardId, (state) =>
+          createArtifact(state, {
+            type,
+            x: rect.x,
+            y: rect.y,
+            width: spec.width as number | undefined,
+            height: spec.height as number | undefined,
+            props: (spec.props as Record<string, unknown>) ?? {},
+            // Confirming an overlap records it as deliberate, so the quality
+            // metric stops calling it a defect on every later check.
+            allowOverlap: accept,
+          }),
+        ),
+      );
+    }
+
+    if (made.length === 0) {
+      return { data: { created: false, ...(blocked[0] ?? {}), blocked }, mutated: false };
+    }
+    if (list.length === 1 && blocked.length === 0) return { data: made[0], mutated: true };
+    return {
+      data: { created: made.length, artifacts: made, ...(blocked.length ? { blocked } : {}) },
+      mutated: true,
+    };
   },
 };
 

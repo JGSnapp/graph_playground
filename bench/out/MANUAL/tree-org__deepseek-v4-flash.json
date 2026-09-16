@@ -1,0 +1,1017 @@
+{
+  "exp": "MANUAL",
+  "task": "tree-org",
+  "repeat": 0,
+  "probes": "иерархия, ветви должны держаться у своих корней",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-16T13:25:35.443Z",
+  "ms": 334492,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 20,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 12,
+      "arrows": 11,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 8,
+      "drawnTurns": 8,
+      "cornerPorts": 0,
+      "totalLength": 2427,
+      "detour": 1
+    },
+    "breakdown": []
+  },
+  "completeness": {
+    "isolatedNodes": 0,
+    "isolatedIds": [],
+    "missingGraph": false,
+    "brokenGraph": false,
+    "counts": true
+  },
+  "observations": {
+    "artifacts": 12,
+    "arrows": 11,
+    "width": 1890,
+    "height": 760,
+    "aspect": 2.49,
+    "density": 0.25,
+    "edgeLengthMedian": 258,
+    "edgeLengthMax": 782,
+    "edgeLengthSpread": 3.03,
+    "separation": 2.5,
+    "textOverflow": 0,
+    "alignedShare": 0.71,
+    "columnLanes": 9,
+    "rowLanes": 4,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 2427,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа вручную\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное прави…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":480,\"y\":0,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"}},{\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CTO**\\nТехнологическая стратегия, архитектура, инновации, tech-команды\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":480,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CPO**\\nСтратегия продукта, дорожная карта, продуктовые метрики\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":960,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CFO**\\nФинансовое планирование, бюджетирование, отчётность, риски\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":-60,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Backend-команда**\\nСерверная разработка, API, базы данных, бизнес-логика\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":240,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Frontend-команда**\\nКлиентские приложения, UI/UX реализация, производительность\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":540,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**SRE**\\nНадёжность, инфраструктура, CI/CD, мониторинг, деплой\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":420,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Дизайн**\\nUX-исследования, интерфейсы, дизайн-система, прототипы\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":660,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Продуктовая аналитика**\\nМетрики, A/B-тесты, когортный анализ, дашборды\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":900,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Бухгалтерия**\\nУчёт, налоги, зарплата, первичная документация\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":-120,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Платформа**\\nОбщие сервисы, микросервисная инфраструктура, API-gateway\",\"color\":\"gray\"}},{\"type\":\"note\",\"x\":120,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Биллинг**\\nТарификация, платежи, подписки, финансовые транзакции\",\"color\":\"gray\"}}]}",
+      "resultSummary": "{\"created\":10,\"artifacts\":[{\"id\":\"art_9tjoguz4si\",\"type\":\"note\",\"x\":480,\"y\":0,\"width\":240,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"},\"createdAt\":1789564827173,\"updatedAt\":1789564827173},{\"id\":\"art_nhxtiglqx0\",\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{…"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_l4rsq1pxf4\"}",
+      "resultSummary": "{\"deleted\":\"art_l4rsq1pxf4\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_twwh7bfram\"}",
+      "resultSummary": "{\"deleted\":\"art_twwh7bfram\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_9s9a9exp3w\"}",
+      "resultSummary": "{\"deleted\":\"art_9s9a9exp3w\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_ne10wthvxu\"}",
+      "resultSummary": "{\"deleted\":\"art_ne10wthvxu\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_kfk2fzxhi3\"}",
+      "resultSummary": "{\"deleted\":\"art_kfk2fzxhi3\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_fd6pqar0ni\"}",
+      "resultSummary": "{\"deleted\":\"art_fd6pqar0ni\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":480,\"y\":0,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"}},{\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CTO**\\nТехнологическая стратегия, архитектура, инновации, tech-команды\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":480,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CPO**\\nСтратегия продукта, дорожная карта, продуктовые метрики\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":960,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CFO**\\nФинансовое планирование, бюджетирование, отчётность, риски\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":-60,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Backend-команда**\\nСерверная разработка, API, базы данных, бизнес-логика\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":120,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Frontend-команда**\\nКлиентские приложения, UI/UX реализация, производительность\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":300,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**SRE**\\nНадёжность, инфраструктура, CI/CD, мониторинг, деплой\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":480,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Дизайн**\\nUX-исследования, интерфейсы, дизайн-система, прототипы\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":720,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Продуктовая аналитика**\\nМетрики, A/B-тесты, когортный анализ, дашборды\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":960,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Бухгалтерия**\\nУчёт, налоги, зарплата, первичная документация\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":-60,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Платформа**\\nОбщие сервисы, микросервисная инфраструктура, API-gateway\",\"color\":\"gray\"}},{\"type\":\"note\",\"x\":120,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Биллинг**\\nТарификация, платежи, подписки, финансовые транзакции\",\"color\":\"gray\"}}]}",
+      "resultSummary": "{\"created\":5,\"artifacts\":[{\"id\":\"art_0e6q6o79b1\",\"type\":\"note\",\"x\":-60,\"y\":440,\"width\":240,\"height\":120,\"z\":5,\"rotation\":0,\"props\":{\"text\":\"**Backend-команда**\\nСерверная разработка, API, базы данных, бизнес-логика\",\"color\":\"pink\"},\"createdAt\":1789564854950,\"updatedAt\":1789564854950},{\"id\":\"art_swfd1quje5\",\"type\":\"note\",\"x\":300,\"y\":440,\"width\":240,\"height\":120,\"z\":6,\"rotation\":0,\"props\":{\"text\":\"*…"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-180,\"y\":-120,\"width\":1500,\"height\":1000},\"artifacts\":[{\"id\":\"art_9tjoguz4si\",\"type\":\"note\",\"x\":480,\"y\":0,\"width\":240,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"},\"createdAt\":1789564827173,\"updatedAt\":1789564827173},{\"id\":\"art_nhxtiglqx0\",\"type\":\"note\",\"x\":0,\"y\":220,\"width\":24…"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_9tjoguz4si\"}",
+      "resultSummary": "{\"deleted\":\"art_9tjoguz4si\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_nhxtiglqx0\"}",
+      "resultSummary": "{\"deleted\":\"art_nhxtiglqx0\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_hvww19rt90\"}",
+      "resultSummary": "{\"deleted\":\"art_hvww19rt90\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_vgo1i6zaw2\"}",
+      "resultSummary": "{\"deleted\":\"art_vgo1i6zaw2\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_0e6q6o79b1\"}",
+      "resultSummary": "{\"deleted\":\"art_0e6q6o79b1\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_swfd1quje5\"}",
+      "resultSummary": "{\"deleted\":\"art_swfd1quje5\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_2lgs8wx1pp\"}",
+      "resultSummary": "{\"deleted\":\"art_2lgs8wx1pp\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_zvm07kjpxx\"}",
+      "resultSummary": "{\"deleted\":\"art_zvm07kjpxx\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_e9fzmljoby\"}",
+      "resultSummary": "{\"deleted\":\"art_e9fzmljoby\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":480,\"y\":0,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"}},{\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CTO**\\nТехнологическая стратегия, архитектура, инновации, tech-команды\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":480,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CPO**\\nСтратегия продукта, дорожная карта, продуктовые метрики\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":960,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CFO**\\nФинансовое планирование, бюджетирование, отчётность, риски\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":-60,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Backend-команда**\\nСерверная разработка, API, базы данных, бизнес-логика\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":120,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Frontend-команда**\\nКлиентские приложения, UI/UX реализация, производительность\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":300,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**SRE**\\nНадёжность, инфраструктура, CI/CD, мониторинг, деплой\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":480,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Дизайн**\\nUX-исследования, интерфейсы, дизайн-система, прототипы\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":780,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Продуктовая аналитика**\\nМетрики, A/B-тесты, когортный анализ, дашборды\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":960,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Бухгалтерия**\\nУчёт, налоги, зарплата, первичная документация\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":-60,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Платформа**\\nОбщие сервисы, микросервисная инфраструктура, API-gateway\",\"color\":\"gray\"}},{\"type\":\"note\",\"x\":120,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Биллинг**\\nТарификация, платежи, подписки, финансовые транзакции\",\"color\":\"gray\"}}]}",
+      "resultSummary": "{\"created\":8,\"artifacts\":[{\"id\":\"art_t5wz91u5dp\",\"type\":\"note\",\"x\":480,\"y\":0,\"width\":240,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"},\"createdAt\":1789564906361,\"updatedAt\":1789564906361},{\"id\":\"art_bpvju43st4\",\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{\"…"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_t5wz91u5dp\"}",
+      "resultSummary": "{\"deleted\":\"art_t5wz91u5dp\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_bpvju43st4\"}",
+      "resultSummary": "{\"deleted\":\"art_bpvju43st4\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pfsxkggdl9\"}",
+      "resultSummary": "{\"deleted\":\"art_pfsxkggdl9\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_vpy27oybtz\"}",
+      "resultSummary": "{\"deleted\":\"art_vpy27oybtz\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_0djms5iax0\"}",
+      "resultSummary": "{\"deleted\":\"art_0djms5iax0\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_cfrfg52lwl\"}",
+      "resultSummary": "{\"deleted\":\"art_cfrfg52lwl\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_g2du5qri88\"}",
+      "resultSummary": "{\"deleted\":\"art_g2du5qri88\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_czrdxb52cp\"}",
+      "resultSummary": "{\"deleted\":\"art_czrdxb52cp\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":480,\"y\":0,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"}},{\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CTO**\\nТехнологическая стратегия, архитектура, инновации, tech-команды\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":480,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CPO**\\nСтратегия продукта, дорожная карта, продуктовые метрики\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":960,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CFO**\\nФинансовое планирование, бюджетирование, отчётность, риски\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":-300,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Backend-команда**\\nСерверная разработка, API, базы данных, бизнес-логика\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":0,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Frontend-команда**\\nКлиентские приложения, UI/UX реализация, производительность\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":300,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**SRE**\\nНадёжность, инфраструктура, CI/CD, мониторинг, деплой\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":330,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Дизайн**\\nUX-исследования, интерфейсы, дизайн-система, прототипы\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":630,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Продуктовая аналитика**\\nМетрики, A/B-тесты, когортный анализ, дашборды\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":960,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Бухгалтерия**\\nУчёт, налоги, зарплата, первичная документация\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":-450,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Платформа**\\nОбщие сервисы, микросервисная инфраструктура, API-gateway\",\"color\":\"gray\"}},{\"type\":\"note\",\"x\":-150,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Биллинг**\\nТарификация, платежи, подписки, финансовые транзакции\",\"color\":\"gray\"}}]}",
+      "resultSummary": "{\"created\":11,\"artifacts\":[{\"id\":\"art_xgnx0wla45\",\"type\":\"note\",\"x\":480,\"y\":0,\"width\":240,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"},\"createdAt\":1789564960433,\"updatedAt\":1789564960433},{\"id\":\"art_xwiji05rbo\",\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{…"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_xgnx0wla45\"}",
+      "resultSummary": "{\"deleted\":\"art_xgnx0wla45\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_xwiji05rbo\"}",
+      "resultSummary": "{\"deleted\":\"art_xwiji05rbo\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_vbywsu574o\"}",
+      "resultSummary": "{\"deleted\":\"art_vbywsu574o\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pxid71whyi\"}",
+      "resultSummary": "{\"deleted\":\"art_pxid71whyi\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_out44093lb\"}",
+      "resultSummary": "{\"deleted\":\"art_out44093lb\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_ag0l6pfku6\"}",
+      "resultSummary": "{\"deleted\":\"art_ag0l6pfku6\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_am83uj2m3b\"}",
+      "resultSummary": "{\"deleted\":\"art_am83uj2m3b\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_6bz6nsww4t\"}",
+      "resultSummary": "{\"deleted\":\"art_6bz6nsww4t\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_d7gp7t32dp\"}",
+      "resultSummary": "{\"deleted\":\"art_d7gp7t32dp\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_vmykvb04j3\"}",
+      "resultSummary": "{\"deleted\":\"art_vmykvb04j3\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_3w64r49qh2\"}",
+      "resultSummary": "{\"deleted\":\"art_3w64r49qh2\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":540,\"y\":0,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"}},{\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CTO**\\nТехнологическая стратегия, архитектура, инновации, tech-команды\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":540,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CPO**\\nСтратегия продукта, дорожная карта, продуктовые метрики\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":1080,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CFO**\\nФинансовое планирование, бюджетирование, отчётность, риски\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":-300,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Backend-команда**\\nСерверная разработка, API, базы данных, бизнес-логика\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":0,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Frontend-команда**\\nКлиентские приложения, UI/UX реализация, производительность\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":300,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**SRE**\\nНадёжность, инфраструктура, CI/CD, мониторинг, деплой\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":390,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Дизайн**\\nUX-исследования, интерфейсы, дизайн-система, прототипы\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":690,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Продуктовая аналитика**\\nМетрики, A/B-тесты, когортный анализ, дашборды\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":1080,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Бухгалтерия**\\nУчёт, налоги, зарплата, первичная документация\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":-450,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Платформа**\\nОбщие сервисы, микросервисная инфраструктура, API-gateway\",\"color\":\"gray\"}},{\"type\":\"note\",\"x\":-150,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Биллинг**\\nТарификация, платежи, подписки, финансовые транзакции\",\"color\":\"gray\"}}]}",
+      "resultSummary": "{\"created\":11,\"artifacts\":[{\"id\":\"art_xfbqodd3mv\",\"type\":\"note\",\"x\":540,\"y\":0,\"width\":240,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"},\"createdAt\":1789565009198,\"updatedAt\":1789565009198},{\"id\":\"art_r9l7puqq7l\",\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{…"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_xfbqodd3mv\"}",
+      "resultSummary": "{\"deleted\":\"art_xfbqodd3mv\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_r9l7puqq7l\"}",
+      "resultSummary": "{\"deleted\":\"art_r9l7puqq7l\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_43k9kw7sdu\"}",
+      "resultSummary": "{\"deleted\":\"art_43k9kw7sdu\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_wykxqj3c9m\"}",
+      "resultSummary": "{\"deleted\":\"art_wykxqj3c9m\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_llxinnvzcx\"}",
+      "resultSummary": "{\"deleted\":\"art_llxinnvzcx\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_sznovbw2pt\"}",
+      "resultSummary": "{\"deleted\":\"art_sznovbw2pt\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_f6eaien9e1\"}",
+      "resultSummary": "{\"deleted\":\"art_f6eaien9e1\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_ne2q1fcaql\"}",
+      "resultSummary": "{\"deleted\":\"art_ne2q1fcaql\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_9yikjyji1v\"}",
+      "resultSummary": "{\"deleted\":\"art_9yikjyji1v\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_mmct10tpj7\"}",
+      "resultSummary": "{\"deleted\":\"art_mmct10tpj7\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_jpovs0vsj2\"}",
+      "resultSummary": "{\"deleted\":\"art_jpovs0vsj2\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":750,\"y\":0,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"}},{\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CTO**\\nТехнологическая стратегия, архитектура, инновации, tech-команды\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":750,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CPO**\\nСтратегия продукта, дорожная карта, продуктовые метрики\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":1080,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CFO**\\nФинансовое планирование, бюджетирование, отчётность, риски\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":-300,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Backend-команда**\\nСерверная разработка, API, базы данных, бизнес-логика\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":0,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Frontend-команда**\\nКлиентские приложения, UI/UX реализация, производительность\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":300,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**SRE**\\nНадёжность, инфраструктура, CI/CD, мониторинг, деплой\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":600,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Дизайн**\\nUX-исследования, интерфейсы, дизайн-система, прототипы\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":900,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Продуктовая аналитика**\\nМетрики, A/B-тесты, когортный анализ, дашборды\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":1080,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Бухгалтерия**\\nУчёт, налоги, зарплата, первичная документация\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":-450,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Платформа**\\nОбщие сервисы, микросервисная инфраструктура, API-gateway\",\"color\":\"gray\"}},{\"type\":\"note\",\"x\":-150,\"y\":640,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Биллинг**\\nТарификация, платежи, подписки, финансовые транзакции\",\"color\":\"gray\"}}]}",
+      "resultSummary": "{\"created\":11,\"artifacts\":[{\"id\":\"art_fbtpqbh4ds\",\"type\":\"note\",\"x\":750,\"y\":0,\"width\":240,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"**CEO**\\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации\",\"color\":\"blue\"},\"createdAt\":1789565066306,\"updatedAt\":1789565066306},{\"id\":\"art_twjp0ueyi4\",\"type\":\"note\",\"x\":0,\"y\":220,\"width\":240,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{…"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_e5nq0nwgh4\"}",
+      "resultSummary": "{\"deleted\":\"art_e5nq0nwgh4\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":1200,\"y\":220,\"width\":240,\"height\":140,\"props\":{\"text\":\"**CFO**\\nФинансовое планирование, бюджетирование, отчётность, риски\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":1200,\"y\":440,\"width\":240,\"height\":120,\"props\":{\"text\":\"**Бухгалтерия**\\nУчёт, налоги, зарплата, первичная документация\",\"color\":\"pink\"}}]}",
+      "resultSummary": "{\"created\":2,\"artifacts\":[{\"id\":\"art_oyuzv5dhu8\",\"type\":\"note\",\"x\":1200,\"y\":220,\"width\":240,\"height\":140,\"z\":12,\"rotation\":0,\"props\":{\"text\":\"**CFO**\\nФинансовое планирование, бюджетирование, отчётность, риски\",\"color\":\"green\"},\"createdAt\":1789565087265,\"updatedAt\":1789565087265},{\"id\":\"art_7ffjqxpz0j\",\"type\":\"note\",\"x\":1200,\"y\":440,\"width\":240,\"height\":120,\"z\":13,\"rotation\":0,\"props\":{\"text\":\"**Б…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"links\":[{\"fromId\":\"art_fbtpqbh4ds\",\"toId\":\"art_twjp0ueyi4\"},{\"fromId\":\"art_fbtpqbh4ds\",\"toId\":\"art_27m0djh26x\"},{\"fromId\":\"art_fbtpqbh4ds\",\"toId\":\"art_oyuzv5dhu8\"},{\"fromId\":\"art_twjp0ueyi4\",\"toId\":\"art_2c8e9e18za\"},{\"fromId\":\"art_twjp0ueyi4\",\"toId\":\"art_3813i36c2m\"},{\"fromId\":\"art_twjp0ueyi4\",\"toId\":\"art_dam2vpehq4\"},{\"fromId\":\"art_27m0djh26x\",\"toId\":\"art_it5ahhdr65\"},{\"fromId\":\"art_27m0djh26x\",\"toId\":\"art_kjtyerntvu\"},{\"fromId\":\"art_oyuzv5dhu8\",\"toId\":\"art_7ffjqxpz0j\"},{\"fromId\":\"art_2c8e9e18za\",\"toId\":\"art_ed104ifk0o\"},{\"fromId\":\"art_2c8e9e18za\",\"toId\":\"art_7mjrbcesvl\"}]}",
+      "resultSummary": "{\"created\":11,\"arrows\":[{\"id\":\"arr_8w4de0u78u\",\"from\":{\"artifactId\":\"art_fbtpqbh4ds\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_twjp0ueyi4\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1789565096951,\"updatedAt\":1789565096951},{\"id\":\"arr_d1upxjibmu\",\"from\":{\"artifactId\":\"art_fbtpqbh4ds\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_27m0djh26x\",\"side\":\"auto\"},\"bends\":[],\"style\":{},\"createdAt\":1789565096951…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_8w4de0u78u\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1upxjibmu\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_9ujef1k67a\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_3smlkklmpw\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"x\":-500,\"y\":-50,\"width\":2000,\"height\":900}",
+      "resultSummary": "{\"region\":{\"x\":-500,\"y\":-50,\"width\":2000,\"height\":900},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":0,\"quality\":{\"score\":100,\"cost\":0,\"grade\":\"отлично\",\"previousCost\":0,\"improvedBy\":0},\"metrics\":{\"artifacts\":12,\"arrows\":11,\"…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"svg\",\"x\":-500,\"y\":-50,\"width\":2000,\"height\":900}",
+      "resultSummary": "{\"format\":\"svg\",\"region\":{\"x\":-500,\"y\":-50,\"width\":2000,\"height\":900},\"schema\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"1024\\\" height=\\\"461\\\" viewBox=\\\"-500 -50 2000 900\\\">\\n<rect x=\\\"-500\\\" y=\\\"-50\\\" width=\\\"2000\\\" height=\\\"900\\\" fill=\\\"#101216\\\"/>\\n<polyline points=\\\"750,70 678,70 678,290 312,290 240,290\\\" fill=\\\"none\\\" stroke=\\\"#7c8aa5\\\" stroke-width=\\\"2\\\"/><polygon points=\\\"240,290 2…"
+    }
+  ],
+  "toolHistogram": {
+    "skill_get": 1,
+    "artifact_create": 7,
+    "artifact_delete": 46,
+    "board_get_region": 1,
+    "arrow_create": 1,
+    "board_route_arrows": 1,
+    "board_check_intersections": 1,
+    "board_get_schema": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 456417,
+    "completionTokens": 12571,
+    "totalTokens": 468988,
+    "calls": 20,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 412928
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nЯ построю оргструктуру в виде дерева. Сначала прочитаю скилл для графовых схем.\n\nОтлично, разберу структуру по слоям и посчитаю координаты.\n\n**Структура:**\n- Слой 0: CEO\n- Слой 1: CTO, CPO, CFO\n- Слой 2: Backend-команда, Frontend-команда, SRE (под CTO); Дизайн, Продуктовая аналитика (под CPO); Бухгалтерия (под CFO)\n- Слой 3: Платформа, Биллинг (под Backend-командой)\n\n**Направление:** сверху вниз, поток шире чем длиннее — но всё же веду сверху вниз.\n\n**Размеры блоков:** 240×140 для верхних, 240×120 для нижних (текст короче).\n\n**Расчёт координат:**\n- Слой 0 (y=0): CEO — центр, x=600\n- Слой 1 (y=220): CTO(x=120), CPO(x=600), CFO(x=1080)\n- Слой 2 (y=440): \n  - Под CTO: Backend(x=0), Frontend(x=240), SRE(x=480) — центрированы под CTO\n  - Под CPO: Дизайн(x=540), Продуктовая аналитика(x=780)\n  - Под CFO: Бухгалтерия(x=1080)\n- Слой 3 (y=660): Под Backend: Платформа(x=-60), Биллинг(x=180)\n\nДавайте создадим всё сразу.\n\nДва блока не создались из-за наложений. Нужно скорректировать расположение. Проблема: я поставил Дизайн (x=420) и Продуктовую аналитику (x=660) — они наложились на SRE (x=540) и Frontend (x=240). Нужно пересчитать координаты слоя 2.\n\nДавайте перепланирую:\n\n**Слой 2 (y=440):**\n- Под CTO (центр в 120): Backend(x=-60), Frontend(x=120), SRE(x=300) — ширина 240, между ними 60px\n- Под CPO (центр в 600): Дизайн(x=480), Продуктовая аналитика(x=720)\n- Под CFO (центр в 1080): Бухгалтерия(x=960)\n\n**Слой 3 (y=640):**\n- Под Backend (центр в 60): Платформа(x=-60), Биллинг(x=120)\n\nУдалим ошибочные блоки и создадим заново с правильными координатами.\n\nТеперь создадим все блоки с правильными координатами:\n\nВижу проблему — блоки из предыдущего набора (CEO, CTO, CPO, CFO) уже существуют, и новые блоки накладываются на них. Нужно удалить старые блоки и создать всё заново.\n\nДавайте посмотрим, что сейчас на доске:\n\nХорошо, у меня есть 9 блоков из 12. Не создались: Frontend-команда (наложилась на Backend), Дизайн (наложился на SRE), Биллинг (наложился на Платформу). Нужно удалить всё и создать с правильными отступами.\n\nПроблема в том, что я неправильно посчитал расстояния. Давайте перепланирую:\n\n**Слой 0 (y=0):** CEO — центр в 600\n**Слой 1 (y=220):** CTO(0), CPO(480), CFO(960) — ширина 240, между 240px\n**Слой 2 (y=440):** \n- Под CTO (центр 120): Backend(-60), Frontend(120), SRE(300) — ширина 240, между 60px\n- Под CPO (центр 600): Дизайн(480), Продуктовая аналитика(720) — ширина 240, между 60px\n- Под CFO (центр 1080): Бухгалтерия(960) — ширина 240\n**Слой 3 (y=640):** \n- Под Backend (центр 60): Платформа(-60), Биллинг(120) — ширина 240, между 60px\n\nПроверяю: Backend x=-60, w=240 → от -60 до 180. Frontend x=120, w=240 → от 120 до 360. Между ними 180-120=60px — ОК, не накладываются.\n\nДизайн x=480, w=240 → от 480 до 720. Продуктовая аналитика x=720, w=240 → от 720 до 960. Между ними 720-720=0 — наложение! Нужно сдвинуть.\n\nИсправляю: Дизайн x=480, Продуктовая аналитика x=780 (между ними 780-720=60px).\n\nБиллинг x=120, w=240 → от 120 до 360. Платформа x=-60, w=240 → от -60 до 180. Между ними 180-120=60px — ОК.\n\nУдаляю всё и создаю заново:\n\n\n\nТеперь создаю все 12 блоков с правильными координатами:\n\n\n\nВсё ещё наложения. Проблема: блоки шириной 240 с расстоянием 60px между ними. Backend x=-60 (до 180), Frontend x=120 (до 360) — 180-120=60, должно работать. Но тул говорит, что Frontend накладывается на Backend. \n\nДавайте проверю: Backend: -60 до 180. Frontend: 120 до 360. 180 > 120, значит между ними 0px, а не 60px! Я ошибся в расчётах: Backend заканчивается на -60+240=180, а Frontend начинается на 120. Между ними 180-120=60px — это нормально, но тул считает это наложением? \n\nА, понял — у меня Backend x=-60, Frontend x=120. Backend занимает [-60, 180], Frontend [120, 360]. Они перекрываются на [120, 180]! Потому что 180 > 120. Мне нужно 60px зазора: Backend заканчивается на 180, Frontend должен начинаться на 180+60=240.\n\nДавайте пересчитаю всё с правильными отступами.\n\n**Слой 2 (y=440):** ширина блоков 240, зазор 60px\n- Под CTO (центр 120): \n  - Backend: центр 120 - 240 - 60 = -180? Нет, давайте просто: Backend x=-180, Frontend x=120, SRE x=420\n  - Проверка: Backend [-180, 60], Frontend [120, 360], SRE [420, 660]. Между Backend и Frontend: 60-120=-60 → 60px зазора. Между Frontend и SRE: 360-420=-60 → 60px зазора. ОК!\n  - Центр Backend: -60. Центр Frontend: 240. Центр SRE: 540. CTO в x=0, центр 120. Не центрировано...\n\nЛучше сделаю по-другому. CTO в x=0 (центр 120). Три дочерних блока по 240 с зазором 60:\n- Общая ширина: 240*3 + 60*2 = 840\n- Начало: 120 - 840/2 = 120 - 420 = -300\n- Backend: x=-300, Frontend: x=0, SRE: x=300\n- Проверка: Backend [-300, -60], Frontend [0, 240], SRE [300, 540]. Между -60 и 0 = 60px. Между 240 и 300 = 60px. ОК!\n- Центры: Backend=-180, Frontend=120, SRE=420. CTO центр 120 — Frontend прямо под CTO!\n\nПод CPO (центр 600): Дизайн и Продуктовая аналитика\n- Общая ширина: 240*2 + 60 = 540\n- Начало: 600 - 540/2 = 600 - 270 = 330\n- Дизайн: x=330, Продуктовая аналитика: x=630\n- Проверка: Дизайн [330, 570], Аналитика [630, 870]. Между 570 и 630 = 60px. ОК!\n- Центры: Дизайн=450, Аналитика=750. CPO центр 600 — симметрично.\n\nПод CFO (центр 1080): Бухгалтерия\n- Центр 1080, ширина 240 → x=960\n\n**Слой 3 (y=640):** Под Backend (центр -180): Платформа и Биллинг\n- Общая ширина: 240*2 + 60 = 540\n- Начало: -180 - 540/2 = -180 - 270 = -450\n- Платформа: x=-450, Биллинг: x=-150\n- Проверка: Платформа [-450, -210], Биллинг [-150, 90]. Между -210 и -150 = 60px. ОК!\n\nУдаляю всё и создаю заново:\n\n\n\n\n\nОтлично! 11 из 12 блоков созданы. Не создался только **Дизайн** — он накладывается на SRE. SRE: x=300, w=240 → [300, 540]. Дизайн: x=330, w=240 → [330, 570]. Они перекрываются на [330, 540].\n\nНужно сдвинуть Дизайн. SRE заканчивается на 540. Дизайн должен начинаться на 540+60=600. Но тогда Дизайн будет x=600, а Продуктовая аналитика x=630... тоже наложение.\n\nДавайте пересчитаю слой под CPO. CPO центр 600. Два блока по 240 с зазором 60:\n- Общая ширина: 240+60+240 = 540\n- Начало: 600-270 = 330\n- Дизайн: x=330, Продуктовая аналитика: x=630\n\nНо SRE [300, 540] и Дизайн [330, 570] перекрываются. Нужно сдвинуть SRE левее или Дизайн правее.\n\nВариант: сдвинуть SRE левее. Сейчас SRE x=300. Можно x=240. Тогда SRE [240, 480], Дизайн [330, 570] — перекрытие [330, 480]. Всё ещё перекрытие.\n\nЛучше: SRE x=180. SRE [180, 420], Дизайн [330, 570] — между 420 и 330 = -90, перекрытие. \n\nНужно больше места. Давайте перепланирую слой 2 полностью:\n\nПод CTO (центр 120): Backend, Frontend, SRE — 3 блока по 240, зазор 60\n- Общая ширина: 240*3 + 60*2 = 840\n- Начало: 120 - 420 = -300\n- Backend: x=-300, Frontend: x=0, SRE: x=300\n\nПод CPO (центр 600): Дизайн, Продуктовая аналитика — 2 блока по 240, зазор 60\n- Общая ширина: 240*2 + 60 = 540\n- Начало: 600 - 270 = 330\n- Дизайн: x=330, Аналитика: x=630\n\nПроблема: SRE [300, 540] и Дизайн [330, 570] перекрываются. Между ними всего 540-330=210, а нужно 240+60=300.\n\nРешение: увеличить расстояние между группами. Сдвину группу CPO правее. CPO центр 600 → пусть будет 660. Тогда:\n- Дизайн: 660-270=390, Аналитика: 690\n- SRE [300, 540], Дизайн [390, 630] — между 540 и 390 = 150px зазор. Отлично!\n\nИ CFO тогда сдвинуть: CFO центр 1080 → 1140. Бухгалтерия x=1140-120=1020.\n\nCEO тоже сдвинуть: CEO центр 600 → 660. CEO x=660-120=540.\n\nДавайте удалим всё и создадим заново с новыми координатами.\n\n\n\n\n\nТеперь создаю всё с новыми, проверенными координатами:\n\n**Слой 0 (y=0):** CEO — центр 660, x=540\n**Слой 1 (y=220):** CTO(0), CPO(540), CFO(1080) — центры 120, 660, 1200\n**Слой 2 (y=440):**\n- Под CTO (центр 120): Backend(-300), Frontend(0), SRE(300)\n- Под CPO (центр 660): Дизайн(390), Продуктовая аналитика(690)\n- Под CFO (центр 1200): Бухгалтерия(1080)\n**Слой 3 (y=640):**\n- Под Backend (центр -180): Платформа(-450), Биллинг(-150)\n\nПроверяю зазоры:\n- SRE [300, 540], Дизайн [390, 630] → 540-390=150px зазор ✅\n- Backend [-300, -60], Frontend [0, 240] → -60-0=-60 → 60px ✅\n- Frontend [0, 240], SRE [300, 540] → 240-300=-60 → 60px ✅\n- Дизайн [390, 630], Аналитика [690, 930] → 630-690=-60 → 60px ✅\n- Платформа [-450, -210], Биллинг [-150, 90] → -210-(-150)=-60 → 60px ✅\n\n\n\nСнова Дизайн (x=390) накладывается на SRE (x=300, w=240 → до 540). SRE [300, 540], Дизайн [390, 630] — перекрытие [390, 540]. \n\nМне нужно больше зазора между группами CTO и CPO. SRE заканчивается на 540, Дизайн начинается на 390 — это перекрытие 150px. Нужно, чтобы Дизайн начинался минимум на 540+60=600.\n\nТогда Дизайн x=600, Продуктовая аналитика x=900. CPO центр должен быть между ними: (600+120, 900+120) → центры 660 и 960, CPO центр = (660+960)/2 = 810. Но CPO сейчас в x=540 (центр 660).\n\nНужно сдвинуть CPO правее. Пусть CPO будет x=660 (центр 780). Тогда:\n- Дизайн: центр 780-150=630, x=630-120=510... нет, давайте проще.\n\nДизайн x=600, Аналитика x=900. CPO центр = (600+120 + 900+120)/2 = (720+1020)/2 = 870. CPO x=870-120=750.\n\nИ CEO тогда тоже сдвинуть: CEO центр 870, x=870-120=750.\n\nА CTO и CFO оставить? CTO в 0 (центр 120), CFO в 1080 (центр 1200). Между группами: SRE [300, 540], Дизайн [600, 840] → 540-600=-60 → 60px зазора. Отлично!\n\nМежду Аналитикой [900, 1140] и Бухгалтерией [1080, 1320] → 1140-1080=60px. Тоже хорошо!\n\nДавайте удалим и создадим заново.\n\n\n\n\n\n11 из 12 созданы! Не создалась **Бухгалтерия** (x=1080) — накладывается на Продуктовую аналитику (x=900, w=240 → [900, 1140]). Бухгалтерия [1080, 1320] перекрывается с [900, 1140].\n\nНужно сдвинуть Бухгалтерию. Продуктовая аналитика заканчивается на 1140. Бухгалтерия должна начинаться на 1140+60=1200. Тогда Бухгалтерия x=1200.\n\nИ CFO тогда x=1200 (центр 1320). CEO тоже сдвинуть? CEO центр 870, CPO центр 870 — нормально.\n\nДавайте удалим Бухгалтерию и CFO и создадим заново.\n\n\n\n\n\nВсе 12 блоков созданы! Теперь создаю стрелки.\n\nСвязи:\n1. CEO → CTO\n2. CEO → CPO\n3. CEO → CFO\n4. CTO → Backend-команда\n5. CTO → Frontend-команда\n6. CTO → SRE\n7. CPO → Дизайн\n8. CPO → Продуктовая аналитика\n9. CFO → Бухгалтерия\n10. Backend-команда → Платформа\n11. Backend-команда → Биллинг\n\n\n\nСтрелки созданы. Теперь проложу маршруты через board_route_arrows:\n\nОтлично! Качество 100/100. Теперь проверю пересечения:\n\n\n\nВсё идеально! Давайте посмотрим на результат:\n\n\n\n\n\nОтлично! Всё выглядит хорошо. Давайте подведу итог.\n\n---\n\n## Результат: Оргструктура продуктовой компании\n\n**Что размещено:** 12 узлов, 11 связей — полное дерево подчинения от CEO до листовых команд.\n\n**Принцип расстановки:**\n- **Направление:** сверху вниз, 4 слоя\n- **Слой 0 (y=0):** CEO — центр композиции\n- **Слой 1 (y=220):** CTO, CPO, CFO — три дивизиона под CEO\n- **Слой 2 (y=440):** 7 команд — Backend, Frontend, SRE (под CTO); Дизайн, Продуктовая аналитика (под CPO); Бухгалтерия (под CFO)\n- **Слой 3 (y=640):** Платформа, Биллинг (под Backend-командой)\n- **Цветовая кодировка:** синий (CEO), зелёные (C-level), розовые (команды), серые (подкоманды)\n- **Зазоры:** 60px между соседями в слое, 80px между слоями (от края до края)\n\n**Качество раскладки:** ✅ **100/100** — идеально, ни одного пересечения, наложения или конфликта. Все стрелки проложены аккуратно, без крюков.",
+  "boardId": "brd_h90ut3pi92",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_fbtpqbh4ds",
+        "type": "note",
+        "x": 750,
+        "y": 0,
+        "width": 240,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "**CEO**\nСтратегия компании, общее руководство, ключевые решения, внешние коммуникации",
+          "color": "blue"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_twjp0ueyi4",
+        "type": "note",
+        "x": 0,
+        "y": 220,
+        "width": 240,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "**CTO**\nТехнологическая стратегия, архитектура, инновации, tech-команды",
+          "color": "green"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_27m0djh26x",
+        "type": "note",
+        "x": 750,
+        "y": 220,
+        "width": 240,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "**CPO**\nСтратегия продукта, дорожная карта, продуктовые метрики",
+          "color": "green"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_2c8e9e18za",
+        "type": "note",
+        "x": -300,
+        "y": 440,
+        "width": 240,
+        "height": 120,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "**Backend-команда**\nСерверная разработка, API, базы данных, бизнес-логика",
+          "color": "pink"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_3813i36c2m",
+        "type": "note",
+        "x": 0,
+        "y": 440,
+        "width": 240,
+        "height": 120,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "**Frontend-команда**\nКлиентские приложения, UI/UX реализация, производительность",
+          "color": "pink"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_dam2vpehq4",
+        "type": "note",
+        "x": 300,
+        "y": 440,
+        "width": 240,
+        "height": 120,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "**SRE**\nНадёжность, инфраструктура, CI/CD, мониторинг, деплой",
+          "color": "pink"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_it5ahhdr65",
+        "type": "note",
+        "x": 600,
+        "y": 440,
+        "width": 240,
+        "height": 120,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "**Дизайн**\nUX-исследования, интерфейсы, дизайн-система, прототипы",
+          "color": "pink"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_kjtyerntvu",
+        "type": "note",
+        "x": 900,
+        "y": 440,
+        "width": 240,
+        "height": 120,
+        "z": 9,
+        "rotation": 0,
+        "props": {
+          "text": "**Продуктовая аналитика**\nМетрики, A/B-тесты, когортный анализ, дашборды",
+          "color": "pink"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_ed104ifk0o",
+        "type": "note",
+        "x": -450,
+        "y": 640,
+        "width": 240,
+        "height": 120,
+        "z": 10,
+        "rotation": 0,
+        "props": {
+          "text": "**Платформа**\nОбщие сервисы, микросервисная инфраструктура, API-gateway",
+          "color": "gray"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_7mjrbcesvl",
+        "type": "note",
+        "x": -150,
+        "y": 640,
+        "width": 240,
+        "height": 120,
+        "z": 11,
+        "rotation": 0,
+        "props": {
+          "text": "**Биллинг**\nТарификация, платежи, подписки, финансовые транзакции",
+          "color": "gray"
+        },
+        "createdAt": 1789565066306,
+        "updatedAt": 1789565066306
+      },
+      {
+        "id": "art_oyuzv5dhu8",
+        "type": "note",
+        "x": 1200,
+        "y": 220,
+        "width": 240,
+        "height": 140,
+        "z": 12,
+        "rotation": 0,
+        "props": {
+          "text": "**CFO**\nФинансовое планирование, бюджетирование, отчётность, риски",
+          "color": "green"
+        },
+        "createdAt": 1789565087265,
+        "updatedAt": 1789565087265
+      },
+      {
+        "id": "art_7ffjqxpz0j",
+        "type": "note",
+        "x": 1200,
+        "y": 440,
+        "width": 240,
+        "height": 120,
+        "z": 13,
+        "rotation": 0,
+        "props": {
+          "text": "**Бухгалтерия**\nУчёт, налоги, зарплата, первичная документация",
+          "color": "pink"
+        },
+        "createdAt": 1789565087265,
+        "updatedAt": 1789565087265
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_8w4de0u78u",
+        "from": {
+          "artifactId": "art_fbtpqbh4ds",
+          "side": "left",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_twjp0ueyi4",
+          "side": "right",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 678,
+            "y": 70
+          },
+          {
+            "x": 678,
+            "y": 290
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096951,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_d1upxjibmu",
+        "from": {
+          "artifactId": "art_fbtpqbh4ds",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_27m0djh26x",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096951,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_9ujef1k67a",
+        "from": {
+          "artifactId": "art_fbtpqbh4ds",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_oyuzv5dhu8",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1062,
+            "y": 70
+          },
+          {
+            "x": 1062,
+            "y": 290
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096951,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_3smlkklmpw",
+        "from": {
+          "artifactId": "art_twjp0ueyi4",
+          "side": "bottom",
+          "offset": 0.2791666666666667
+        },
+        "to": {
+          "artifactId": "art_2c8e9e18za",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 67,
+            "y": 368
+          },
+          {
+            "x": -180,
+            "y": 368
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096952,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_us5je3chvy",
+        "from": {
+          "artifactId": "art_twjp0ueyi4",
+          "side": "bottom",
+          "offset": 0.4
+        },
+        "to": {
+          "artifactId": "art_3813i36c2m",
+          "side": "top",
+          "offset": 0.4
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096952,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_oxyddtq3tr",
+        "from": {
+          "artifactId": "art_twjp0ueyi4",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_dam2vpehq4",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 120,
+            "y": 432
+          },
+          {
+            "x": 420,
+            "y": 432
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096952,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_gb91rl72b7",
+        "from": {
+          "artifactId": "art_27m0djh26x",
+          "side": "bottom",
+          "offset": 0.1875
+        },
+        "to": {
+          "artifactId": "art_it5ahhdr65",
+          "side": "top",
+          "offset": 0.8125
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096952,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_914qv6px3l",
+        "from": {
+          "artifactId": "art_27m0djh26x",
+          "side": "bottom",
+          "offset": 0.8125
+        },
+        "to": {
+          "artifactId": "art_kjtyerntvu",
+          "side": "top",
+          "offset": 0.1875
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096952,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_jcsd80scbu",
+        "from": {
+          "artifactId": "art_oyuzv5dhu8",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_7ffjqxpz0j",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096952,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_w6jascox5o",
+        "from": {
+          "artifactId": "art_2c8e9e18za",
+          "side": "bottom",
+          "offset": 0.1875
+        },
+        "to": {
+          "artifactId": "art_ed104ifk0o",
+          "side": "top",
+          "offset": 0.8125
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096952,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_wa4xltph0i",
+        "from": {
+          "artifactId": "art_2c8e9e18za",
+          "side": "bottom",
+          "offset": 0.8125
+        },
+        "to": {
+          "artifactId": "art_7mjrbcesvl",
+          "side": "top",
+          "offset": 0.1875
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789565096952,
+        "updatedAt": 1789565105820,
+        "autoPorts": true
+      }
+    ]
+  }
+}

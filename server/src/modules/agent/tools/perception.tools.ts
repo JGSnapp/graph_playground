@@ -69,6 +69,10 @@ export const boardGetSchema: ToolSpec = {
 
 export const boardScreenshot: ToolSpec = {
   name: 'board_screenshot',
+  // A model without vision cannot be handed an image: the gateway answers 400
+  // and the whole iteration dies. Offering the tool anyway cost four of seven
+  // boards in one run. board_get_schema covers the same need in text.
+  isEnabled: () => process.env.TECA_NO_VISION !== '1',
   description:
     'Настоящий скриншот области доски в том виде, в котором её видит пользователь. Используй, когда нужно оценить визуальный результат: читаемость, наложения, композицию. Если клиент недоступен, вернётся схема.',
   parameters: objectSchema(regionProps),

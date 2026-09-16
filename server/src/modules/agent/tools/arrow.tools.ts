@@ -273,7 +273,7 @@ const exactSchema = bool(
 export const arrowCreate: ToolSpec = {
   name: 'arrow_create',
   description:
-    'Соединяет два артефакта стрелкой. Сторона — явная (top/right/bottom/left) или auto по взаимному расположению; без fromOffset/toOffset порты распределяются сами, чтобы параллельные линии не слились. Плохое крепление тул чинит молча и перечисляет правки в adjustments. exact=true — крепление задал пользователь, менять нельзя: тул сохранит как есть и только предупредит.',
+    'Соединяет артефакты стрелками. Одна связь — fromId/toId, несколько сразу — links (так дешевле: граф из десяти связей это один вызов). Сторона — явная (top/right/bottom/left) или auto по взаимному расположению; без fromOffset/toOffset порты распределяются сами, чтобы параллельные линии не слились. Плохое крепление тул чинит молча и перечисляет правки в adjustments. exact=true — крепление задал пользователь, менять нельзя: тул сохранит как есть и только предупредит.',
   parameters: objectSchema(
     {
       fromId: str('Идентификатор артефакта-источника'),
@@ -284,29 +284,78 @@ export const arrowCreate: ToolSpec = {
       toOffset: offsetSchema('приёмника'),
       bends: { type: 'array', description: 'Точки изгиба по порядку', items: pointSchema },
       label: str('Подпись на стрелке'),
+      links: {
+        type: 'array',
+        description:
+          'Несколько стрелок за один вызов. Каждая проходит ту же проверку креплений, что и одиночная.',
+        items: objectSchema(
+          {
+            fromId: str('Источник'),
+            toId: str('Приёмник'),
+            label: str('Подпись'),
+            fromSide: enumOf(ANCHOR_SIDES, 'Сторона источника'),
+            toSide: enumOf(ANCHOR_SIDES, 'Сторона приёмника'),
+          },
+          ['fromId', 'toId'],
+        ),
+      },
       routing: routingSchema,
       style: styleSchema,
       exact: exactSchema,
     },
-    ['fromId', 'toId'],
+    [],
   ),
   run: (args, ctx) => {
-    const fromId = args.fromId as string;
-    const toId = args.toId as string;
-    const fromSide = (args.fromSide as AnchorSide | undefined) ?? 'auto';
-    const toSide = (args.toSide as AnchorSide | undefined) ?? 'auto';
-    const bends = (args.bends as Vec2[] | undefined) ?? [];
-    const fromOffset = args.fromOffset as number | undefined;
-    const toOffset = args.toOffset as number | undefined;
+    // One call, many arrows.
+    //
+    // Each link still goes through the same port repair as a single one: the
+    // batch is about round trips, not about skipping checks.
+    const list = Array.isArray(args.links)
+      ? (args.links as Array<Record<string, unknown>>)
+      : args.fromId != null && args.toId != null
+        ? [args]
+        : [];
+    if (list.length === 0) {
+      return {
+        data: { created: false, refused: true, reason: 'Нужны либо fromId и toId, либо непустой links.' },
+        mutated: false,
+      };
+    }
 
     const exact = args.exact === true;
-    const inspected = ctx.boards.read(ctx.boardId, (state) => {
-      const from = state.artifacts.find((item) => item.id === fromId);
-      const to = state.artifacts.find((item) => item.id === toId);
-      if (!from || !to) return null;
-      if (exact) {
+    const made: unknown[] = [];
+    const blocked: Array<Record<string, unknown>> = [];
+
+    for (const spec of list) {
+      const fromId = spec.fromId as string;
+      const toId = spec.toId as string;
+      const fromSide = (spec.fromSide as AnchorSide | undefined) ?? 'auto';
+      const toSide = (spec.toSide as AnchorSide | undefined) ?? 'auto';
+      const bends = (spec.bends as Vec2[] | undefined) ?? [];
+      const fromOffset = spec.fromOffset as number | undefined;
+      const toOffset = spec.toOffset as number | undefined;
+
+      const inspected = ctx.boards.read(ctx.boardId, (state) => {
+        const from = state.artifacts.find((item) => item.id === fromId);
+        const to = state.artifacts.find((item) => item.id === toId);
+        if (!from || !to) return null;
+        if (exact) {
+          return {
+            warnings: describePortIssues(
+              state.artifacts,
+              state.arrows,
+              from,
+              to,
+              fromSide,
+              toSide,
+              bends,
+              fromOffset,
+              toOffset,
+            ),
+          };
+        }
         return {
-          warnings: describePortIssues(
+          repair: repairPorts(
             state.artifacts,
             state.arrows,
             from,
@@ -318,54 +367,72 @@ export const arrowCreate: ToolSpec = {
             toOffset,
           ),
         };
-      }
-      return {
-        repair: repairPorts(
-          state.artifacts,
-          state.arrows,
-          from,
-          to,
-          fromSide,
-          toSide,
-          bends,
-          fromOffset,
-          toOffset,
-        ),
-      };
-    });
-    const repair = inspected && 'repair' in inspected ? inspected.repair : null;
-    const warnings = (inspected && 'warnings' in inspected ? inspected.warnings : []) ?? [];
-    if (repair?.refused) return { data: { created: false, ...repair.refused }, mutated: false };
+      });
 
-    const arrow = ctx.boards.mutate(ctx.boardId, (state) =>
-      createArrow(state, {
-        fromId,
-        toId,
-        fromSide: repair?.fromSide ?? fromSide,
-        toSide: repair?.toSide ?? toSide,
-        fromOffset: repair?.fromOffset ?? fromOffset,
-        toOffset: repair?.toOffset ?? toOffset,
-        bends: repair?.bends ?? bends,
-        label: args.label as string | undefined,
-        routing: args.routing as ArrowRouting | undefined,
-        style: args.style as Record<string, never> | undefined,
-      }),
-    );
-    if (repair && repair.adjustments.length > 0) {
-      return { data: { ...arrow, adjustments: repair.adjustments }, mutated: true };
+      // An id that does not exist stays an error when it is the whole call, as
+      // it has always been; inside a batch it is recorded and the rest proceed.
+      if (inspected === null && list.length > 1) {
+        blocked.push({ refused: true, reason: `Нет артефакта ${fromId} или ${toId}.` });
+        continue;
+      }
+
+      const repair = inspected && 'repair' in inspected ? inspected.repair : null;
+      const warnings = (inspected && 'warnings' in inspected ? inspected.warnings : []) ?? [];
+      if (repair?.refused) {
+        if (list.length === 1) return { data: { created: false, ...repair.refused }, mutated: false };
+        blocked.push(repair.refused as unknown as Record<string, unknown>);
+        continue;
+      }
+
+      const arrow = ctx.boards.mutate(ctx.boardId, (state) =>
+        createArrow(state, {
+          fromId,
+          toId,
+          fromSide: repair?.fromSide ?? fromSide,
+          toSide: repair?.toSide ?? toSide,
+          fromOffset: repair?.fromOffset ?? fromOffset,
+          toOffset: repair?.toOffset ?? toOffset,
+          bends: repair?.bends ?? bends,
+          label: spec.label as string | undefined,
+          routing: (spec.routing ?? args.routing) as ArrowRouting | undefined,
+          style: (spec.style ?? args.style) as Record<string, never> | undefined,
+        }),
+      );
+
+      if (list.length === 1) {
+        if (repair && repair.adjustments.length > 0) {
+          return { data: { ...arrow, adjustments: repair.adjustments }, mutated: true };
+        }
+        if (warnings.length > 0) {
+          return {
+            data: {
+              ...arrow,
+              exact: true,
+              warnings,
+              note: 'Крепление сохранено ровно как задано. Оценка раскладки может это отметить — это ожидаемо.',
+            },
+            mutated: true,
+          };
+        }
+        return { data: arrow, mutated: true };
+      }
+
+      made.push(
+        repair && repair.adjustments.length > 0
+          ? { ...arrow, adjustments: repair.adjustments }
+          : warnings.length > 0
+            ? { ...arrow, exact: true, warnings }
+            : arrow,
+      );
     }
-    if (warnings.length > 0) {
-      return {
-        data: {
-          ...arrow,
-          exact: true,
-          warnings,
-          note: 'Крепление сохранено ровно как задано. Оценка раскладки может это отметить — это ожидаемо.',
-        },
-        mutated: true,
-      };
+
+    if (made.length === 0) {
+      return { data: { created: false, ...(blocked[0] ?? {}), blocked }, mutated: false };
     }
-    return { data: arrow, mutated: true };
+    return {
+      data: { created: made.length, arrows: made, ...(blocked.length ? { blocked } : {}) },
+      mutated: true,
+    };
   },
 };
 

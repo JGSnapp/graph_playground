@@ -1,0 +1,632 @@
+{
+  "exp": "MANUAL",
+  "task": "next-to-occupied",
+  "repeat": 0,
+  "probes": "новая композиция рядом с занятой зоной, без наложений",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-16T13:34:45.381Z",
+  "ms": 180473,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 20,
+  "seededArtifacts": 6,
+  "seededArrows": 0,
+  "quality": {
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 13,
+      "arrows": 7,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 2,
+      "drawnTurns": 2,
+      "cornerPorts": 0,
+      "totalLength": 1217,
+      "detour": 1
+    },
+    "breakdown": []
+  },
+  "completeness": {
+    "isolatedNodes": 6,
+    "isolatedIds": [
+      "art_ubbhtz0rcr",
+      "art_2kc8zyd7si",
+      "art_6b9ck1m2f4",
+      "art_slj11qpuyo",
+      "art_h1tqngm4j2",
+      "art_p58zejy1lw"
+    ],
+    "missingGraph": false,
+    "brokenGraph": false,
+    "counts": true
+  },
+  "observations": {
+    "artifacts": 13,
+    "arrows": 7,
+    "width": 1480,
+    "height": 1000,
+    "aspect": 1.48,
+    "density": 0.22,
+    "edgeLengthMedian": 180,
+    "edgeLengthMax": 522,
+    "edgeLengthSpread": 2.9,
+    "separation": 2.43,
+    "textOverflow": 0,
+    "alignedShare": 0.77,
+    "columnLanes": 5,
+    "rowLanes": 7,
+    "isolatedNodes": 6
+  },
+  "drawnLength": 1217,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа вручную\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное прави…"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":980,\"height\":560},\"artifacts\":[{\"id\":\"art_ubbhtz0rcr\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Спринт 12\\n\\nЗакрытые задачи команды.\",\"color\":\"purple\"},\"createdAt\":1789565504813,\"updatedAt\":1789565504813},{\"id\":\"art_2kc8zyd7si\",\"type\":\"note\",\"x\":260,\"y\":0,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{\"text…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":780,\"y\":0,\"width\":200,\"height\":100,\"props\":{\"text\":\"## Алерт\\n\\nСистема зафиксировала\\nотклонение\",\"color\":\"red\"}},{\"type\":\"note\",\"x\":780,\"y\":140,\"width\":200,\"height\":100,\"props\":{\"text\":\"## Дежурный\\n\\nПриём и первичная\\nоценка инцидента\",\"color\":\"yellow\"}},{\"type\":\"note\",\"x\":780,\"y\":280,\"width\":200,\"height\":100,\"props\":{\"text\":\"## Диагностика\\n\\nПоиск первопричины\\nи вектора решения\",\"color\":\"blue\"}},{\"type\":\"note\",\"x\":780,\"y\":420,\"width\":200,\"height\":100,\"props\":{\"text\":\"## Митигация\\n\\nУстранение последствий\\nи восстановление сервиса\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":780,\"y\":560,\"width\":200,\"height\":100,\"props\":{\"text\":\"## Постмортем\\n\\nАнализ причин,\\nхронология, уроки\",\"color\":\"purple\"}},{\"type\":\"note\",\"x\":780,\"y\":700,\"width\":200,\"height\":100,\"props\":{\"text\":\"## Задача в бэклог\\n\\nДействия по\\nпредотвращению\",\"color\":\"gray\"}},{\"type\":\"note\",\"x\":1020,\"y\":280,\"width\":200,\"height\":100,\"props\":{\"text\":\"## Эскалация\\n\\nПривлечение старших\\nспециалистов / L2/L3\",\"color\":\"pink\"}}]}",
+      "resultSummary": "{\"created\":7,\"artifacts\":[{\"id\":\"art_wy4i011ga2\",\"type\":\"note\",\"x\":780,\"y\":0,\"width\":200,\"height\":100,\"z\":7,\"rotation\":0,\"props\":{\"text\":\"## Алерт\\n\\nСистема зафиксировала\\nотклонение\",\"color\":\"red\"},\"createdAt\":1789565532702,\"updatedAt\":1789565532702},{\"id\":\"art_u1i7g1ij9s\",\"type\":\"note\",\"x\":780,\"y\":140,\"width\":200,\"height\":100,\"z\":8,\"rotation\":0,\"props\":{\"text\":\"## Дежурный\\n\\nПриём и первичная\\…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"links\":[{\"fromId\":\"art_wy4i011ga2\",\"toId\":\"art_u1i7g1ij9s\",\"label\":\"уведомление\"},{\"fromId\":\"art_u1i7g1ij9s\",\"toId\":\"art_zloa1a6tds\",\"label\":\"передача\"},{\"fromId\":\"art_zloa1a6tds\",\"toId\":\"art_2hmdwjthow\",\"label\":\"план\"},{\"fromId\":\"art_zloa1a6tds\",\"toId\":\"art_n0lrprwya3\",\"label\":\"нужна помощь\"},{\"fromId\":\"art_n0lrprwya3\",\"toId\":\"art_2hmdwjthow\",\"label\":\"решение\"},{\"fromId\":\"art_2hmdwjthow\",\"toId\":\"art_x4xga6mcgq\",\"label\":\"сервис восстановлен\"},{\"fromId\":\"art_x4xga6mcgq\",\"toId\":\"art_ksto8z8zg7\",\"label\":\"выводы\"}]}",
+      "resultSummary": "{\"created\":7,\"arrows\":[{\"id\":\"arr_z9lcoez0jl\",\"from\":{\"artifactId\":\"art_wy4i011ga2\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_u1i7g1ij9s\",\"side\":\"auto\"},\"bends\":[],\"label\":\"уведомление\",\"style\":{},\"createdAt\":1789565543994,\"updatedAt\":1789565543994},{\"id\":\"arr_v05hnfkgi5\",\"from\":{\"artifactId\":\"art_u1i7g1ij9s\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_zloa1a6tds\",\"side\":\"auto\"},\"bends\":[],\"label\":\"переда…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_z9lcoez0jl\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v05hnfkgi5\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_i4eh231gh6\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_a3vfwisoh3\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"x\":760,\"y\":-20,\"width\":500,\"height\":850}",
+      "resultSummary": "{\"region\":{\"x\":760,\"y\":-20,\"width\":500,\"height\":850},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":7,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":54,\"cost\":21,\"grade\":\"терпимо\",\"previousCost\":21,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"ed…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"moves\":[{\"id\":\"art_u1i7g1ij9s\",\"x\":780,\"y\":180},{\"id\":\"art_zloa1a6tds\",\"x\":780,\"y\":360},{\"id\":\"art_n0lrprwya3\",\"x\":1020,\"y\":360},{\"id\":\"art_2hmdwjthow\",\"x\":780,\"y\":540},{\"id\":\"art_x4xga6mcgq\",\"x\":780,\"y\":720},{\"id\":\"art_ksto8z8zg7\",\"x\":780,\"y\":900}]}",
+      "resultSummary": "{\"moved\":3,\"artifacts\":[{\"id\":\"art_u1i7g1ij9s\",\"x\":780,\"y\":180},{\"id\":\"art_n0lrprwya3\",\"x\":1020,\"y\":360},{\"id\":\"art_ksto8z8zg7\",\"x\":780,\"y\":900}],\"blocked\":[{\"id\":\"art_zloa1a6tds\",\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_2hmdwjthow («Митигация»). Если так и задумано — вызови тул снова с acceptOverlap=true (наложение останется на твоей ответственности). Ближайшее своб…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"moves\":[{\"id\":\"art_ksto8z8zg7\",\"x\":780,\"y\":900},{\"id\":\"art_x4xga6mcgq\",\"x\":780,\"y\":720},{\"id\":\"art_2hmdwjthow\",\"x\":780,\"y\":540},{\"id\":\"art_n0lrprwya3\",\"x\":1020,\"y\":390},{\"id\":\"art_zloa1a6tds\",\"x\":780,\"y\":360},{\"id\":\"art_u1i7g1ij9s\",\"x\":780,\"y\":180}]}",
+      "resultSummary": "{\"moved\":6,\"artifacts\":[{\"id\":\"art_ksto8z8zg7\",\"x\":780,\"y\":900},{\"id\":\"art_x4xga6mcgq\",\"x\":780,\"y\":720},{\"id\":\"art_2hmdwjthow\",\"x\":780,\"y\":540},{\"id\":\"art_n0lrprwya3\",\"x\":1020,\"y\":390},{\"id\":\"art_zloa1a6tds\",\"x\":780,\"y\":360},{\"id\":\"art_u1i7g1ij9s\",\"x\":780,\"y\":180}],\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай ро…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_z9lcoez0jl\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v05hnfkgi5\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_i4eh231gh6\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_a3vfwisoh3\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":950,\"width\":500,\"x\":760,\"y\":-20}",
+      "resultSummary": "{\"region\":{\"x\":760,\"y\":-20,\"width\":500,\"height\":950},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":2,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":81,\"cost\":6,\"grade\":\"хорошо\",\"previousCost\":6,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"edgeN…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_n0lrprwya3\",\"x\":1080,\"y\":390}",
+      "resultSummary": "{\"moved\":1,\"artifacts\":[{\"id\":\"art_n0lrprwya3\",\"x\":1080,\"y\":390}],\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_z9lcoez0jl\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v05hnfkgi5\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_i4eh231gh6\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_a3vfwisoh3\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":950,\"width\":600,\"x\":760,\"y\":-20}",
+      "resultSummary": "{\"region\":{\"x\":760,\"y\":-20,\"width\":600,\"height\":950},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":89,\"cost\":3,\"grade\":\"хорошо\",\"previousCost\":3,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"edgeN…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_n0lrprwya3\",\"x\":1140,\"y\":390}",
+      "resultSummary": "{\"moved\":1,\"artifacts\":[{\"id\":\"art_n0lrprwya3\",\"x\":1140,\"y\":390}],\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_z9lcoez0jl\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v05hnfkgi5\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_i4eh231gh6\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_a3vfwisoh3\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":950,\"width\":700,\"x\":760,\"y\":-20}",
+      "resultSummary": "{\"region\":{\"x\":760,\"y\":-20,\"width\":700,\"height\":950},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":89,\"cost\":3,\"grade\":\"хорошо\",\"previousCost\":3,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"edgeN…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_n0lrprwya3\",\"x\":1280,\"y\":390}",
+      "resultSummary": "{\"moved\":1,\"artifacts\":[{\"id\":\"art_n0lrprwya3\",\"x\":1280,\"y\":390}],\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_z9lcoez0jl\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_v05hnfkgi5\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_i4eh231gh6\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_a3vfwisoh3\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":950,\"width\":800,\"x\":760,\"y\":-20}",
+      "resultSummary": "{\"region\":{\"x\":760,\"y\":-20,\"width\":800,\"height\":950},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":100,\"cost\":0,\"grade\":\"отлично\",\"previousCost\":0,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"edg…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\",\"x\":760,\"y\":-20,\"width\":800,\"height\":1000}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":760,\"y\":-20,\"width\":800,\"height\":1000},\"schema\":\"region: x=760 y=-20 w=800 h=1000 (1 char ≈ 12x33 px)\\n\\n  +----------------+\\n  |n:wy4i          |\\n  |                |\\n  +----------------+\\n          ·\\n  +----------------+\\n  |n:u1i7          |\\n  |                |\\n  +----------------+\\n          ·\\n  +----------------+\\n  |n:zloa          |                   …"
+    }
+  ],
+  "toolHistogram": {
+    "skill_get": 1,
+    "board_get_region": 1,
+    "artifact_create": 1,
+    "arrow_create": 1,
+    "board_route_arrows": 5,
+    "board_check_intersections": 5,
+    "artifact_move": 5,
+    "board_get_schema": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 330490,
+    "completionTokens": 4580,
+    "totalTokens": 335070,
+    "calls": 20,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 276480
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nМне нужно построить граф (схему процесса) рядом с существующими карточками. Давай сначала прочитаю скилл graph-layout и посмотрю текущее состояние доски.\n\nОтлично. Вижу занятую зону: 6 карточек 2×3, занимают область от x=0 до x=740, y=0 до y=320.\n\nТеперь спланирую схему процесса инцидента. Размещу её справа от существующих карточек.\n\n**План схемы (слева направо, поток сверху вниз):**\n\nУзлы (каждый 200×100):\n1. **Алерт** — слой 0\n2. **Дежурный** — слой 1\n3. **Диагностика** — слой 2, от неё стрелка в Эскалацию\n4. **Митигация** — слой 3 (в неё входит и Диагностика, и Эскалация)\n5. **Постмортем** — слой 4\n6. **Задача в бэклог** — слой 5\n7. **Эскалация** — сбоку от Диагностики\n\nРасположу справа от существующих блоков (x=780+). Основной поток — сверху вниз.\n\nСхема:\n- Алерт: x=780, y=0\n- Дежурный: x=780, y=140 (с зазором 40px)\n- Диагностика: x=780, y=280\n- Митигация: x=780, y=420\n- Постмортем: x=780, y=560\n- Задача в бэклог: x=780, y=700\n\n- Эскалация: справа от Диагностики, x=1020, y=280\n\nСвязи:\n- Алерт → Дежурный\n- Дежурный → Диагностика\n- Диагностика → Митигация\n- Диагностика → Эскалация\n- Эскалация → Митигация\n- Митигация → Постмортем\n- Постмортем → Задача в бэклог\n\nДавай создадим все узлы и стрелки.\n\nВсе 7 узлов созданы. Теперь создаю стрелки:\n\nСтрелки созданы. Теперь проложу маршруты через board_route_arrows:\n\nХорошо, линии проложены. Проверю пересечения и качество:\n\nВижу проблему: подписи на стрелках накладываются на блоки, потому что расстояние между узлами по вертикали (140px) маловато для подписей. Нужно увеличить зазор между узлами, чтобы подписи помещались. Увеличу вертикальный шаг с 140 до 180px и сдвину блоки начиная с Дежурного.\n\nСейчас блоки:\n- Алерт: y=0\n- Дежурный: y=140 → нужно y=180\n- Диагностика: y=280 → нужно y=360\n- Эскалация: y=280 → нужно y=360\n- Митигация: y=420 → нужно y=540\n- Постмортем: y=560 → нужно y=720\n- Задача в бэклог: y=700 → нужно y=900\n\nПонял — блоки накладываются друг на друга, потому что я двигаю их в новые позиции, а старые ещё не удалены. Нужно сначала удалить старые связи, потом удалить старые блоки и создать новые. Но проще — я пересчитаю координаты так, чтобы не было наложений.\n\nПроблема в том, что я пытаюсь сдвинуть блоки, а на их старых местах уже стоят другие. Давай по-другому: я увеличу вертикальный шаг, но не сдвигая блоки, а пересоздав их с правильными координатами. Но проще — я удалю старые блоки и создам новые с правильным шагом.\n\nПодожди, блоки уже созданы. Давай я просто увеличу расстояние, двигая их по одному сверху вниз, начиная с нижних, чтобы не было наложений.\n\nСейчас:\n- Алерт: y=0 (оставляем)\n- Дежурный: y=140 → y=180\n- Диагностика: y=280 → y=360\n- Эскалация: y=280 → y=360\n- Митигация: y=420 → y=540\n- Постмортем: y=560 → y=720\n- Задача в бэклог: y=700 → y=900\n\nДвигаю снизу вверх, чтобы не накладывалось:\n\n1. Задача в бэклог: y=700 → y=900 (свободно)\n2. Постмортем: y=560 → y=720 (свободно, т.к. Задача уже на 900)\n3. Митигация: y=420 → y=540 (свободно)\n4. Эскалация: y=280 → y=360 (свободно)\n5. Диагностика: y=280 → y=360 (свободно, т.к. Эскалация уже на 360 — наложение!)\n\nНужно разнести Диагностику и Эскалацию по-другому. Давай сделаю шаг 180px, но Эскалацию сдвину чуть ниже, чтобы она не накладывалась на Диагностику.\n\nПлан:\n- Алерт: y=0\n- Дежурный: y=180\n- Диагностика: y=360\n- Эскалация: y=390 (чуть ниже Диагностики, x=1020)\n- Митигация: y=540\n- Постмортем: y=720\n- Задача в бэклог: y=900\n\nДвигаю снизу вверх:\n\n\n\nОтлично, все блоки на новых местах. Теперь переложу стрелки заново:\n\n\n\nУже лучше: score 81, осталось 2 конфликта подписей. Проверю детали:\n\n\n\nОстался 1 конфликт подписей — стрелка \"нужна помощь\" от Диагностики к Эскалации. Подпись накладывается на оба блока, потому что расстояние по горизонтали между ними (1020 - 780 - 200 = 40px) маловато. Нужно разнести их пошире или сдвинуть подпись.\n\nДавай увеличу расстояние между Диагностикой и Эскалацией, сдвинув Эскалацию правее:\n\n\n\n\n\nОстался 1 конфликт — подпись \"нужна помощь\" на стрелке от Диагностики к Эскалации всё ещё задевает блок Диагностики. Это происходит потому, что подпись размещается по центру стрелки, а стрелка короткая (всего 100px между правым краем Диагностики и левым краем Эскалации). \n\nДавай попробую увеличить расстояние ещё, сдвинув Эскалацию правее:\n\n\n\n\n\nПодпись всё ещё задевает Диагностику. Проблема в том, что роутер прокладывает стрелку от правой стороны Диагностики к левой стороне Эскалации, и подпись центрируется на середине отрезка, который всё ещё слишком близко к Диагностике. \n\nДавай попробую другой подход — сдвину Эскалацию ещё правее, чтобы стрелка стала длиннее:\n\n\n\n\n\nОтлично! Score 100, все конфликты устранены. Давай посмотрим финальный результат:\n\nВсё отлично. Вот итог:\n\n---\n\n## Что разместил\n\nСправа от существующих карточек (x=780) построил **схему процесса обработки инцидента** — вертикальный поток сверху вниз с ответвлением на эскалацию.\n\n### Узлы (7 штук, каждый 200×100):\n| Узел | Позиция | Цвет |\n|---|---|---|\n| **Алерт** | (780, 0) | красный |\n| **Дежурный** | (780, 180) | жёлтый |\n| **Диагностика** | (780, 360) | синий |\n| **Эскалация** | (1280, 390) | розовый |\n| **Митигация** | (780, 540) | зелёный |\n| **Постмортем** | (780, 720) | фиолетовый |\n| **Задача в бэклог** | (780, 900) | серый |\n\n### Связи (7 стрелок):\n- **Алерт → Дежурный** («уведомление»)\n- **Дежурный → Диагностика** («передача»)\n- **Диагностика → Митигация** («план»)\n- **Диагностика → Эскалация** («нужна помощь»)\n- **Эскалация → Митигация** («решение»)\n- **Митигация → Постмортем** («сервис восстановлен»)\n- **Постмортем → Задача в бэклог** («выводы»)\n\n### Принцип расстановки\n- Основной поток — **сверху вниз** (6 шагов процесса), шаг между узлами 180px, чтобы подписи помещались.\n- **Эскалация** вынесена вправо от Диагностики (на 300px), чтобы стрелка «нужна помощь» и обратная «решение» читались без наложений.\n- Существующие 6 карточек слева (x=0..740) не тронуты.\n\n### Качество раскладки\n**Score: 100/100** — отлично. Нет ни одного конфликта: ни наложений, ни пересечений стрелок, ни конфликтов подписей.",
+  "boardId": "brd_r8an9obkfd",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_ubbhtz0rcr",
+        "type": "note",
+        "x": 0,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "## Спринт 12\n\nЗакрытые задачи команды.",
+          "color": "purple"
+        },
+        "createdAt": 1789565504813,
+        "updatedAt": 1789565504813
+      },
+      {
+        "id": "art_2kc8zyd7si",
+        "type": "note",
+        "x": 260,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "## Ретро\n\nЧто пошло не так.",
+          "color": "purple"
+        },
+        "createdAt": 1789565504828,
+        "updatedAt": 1789565504828
+      },
+      {
+        "id": "art_6b9ck1m2f4",
+        "type": "note",
+        "x": 520,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "## План\n\nЧто берём в спринт 13.",
+          "color": "purple"
+        },
+        "createdAt": 1789565504844,
+        "updatedAt": 1789565504844
+      },
+      {
+        "id": "art_slj11qpuyo",
+        "type": "note",
+        "x": 0,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "## Метрики\n\nLead time, throughput.",
+          "color": "gray"
+        },
+        "createdAt": 1789565504846,
+        "updatedAt": 1789565504846
+      },
+      {
+        "id": "art_h1tqngm4j2",
+        "type": "note",
+        "x": 260,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "## Инциденты\n\nДва P2 за спринт.",
+          "color": "pink"
+        },
+        "createdAt": 1789565504862,
+        "updatedAt": 1789565504862
+      },
+      {
+        "id": "art_p58zejy1lw",
+        "type": "note",
+        "x": 520,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "## Долг\n\nТехдолг по биллингу.",
+          "color": "gray"
+        },
+        "createdAt": 1789565504878,
+        "updatedAt": 1789565504878
+      },
+      {
+        "id": "art_wy4i011ga2",
+        "type": "note",
+        "x": 780,
+        "y": 0,
+        "width": 200,
+        "height": 100,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "## Алерт\n\nСистема зафиксировала\nотклонение",
+          "color": "red"
+        },
+        "createdAt": 1789565532702,
+        "updatedAt": 1789565532702
+      },
+      {
+        "id": "art_u1i7g1ij9s",
+        "type": "note",
+        "x": 780,
+        "y": 180,
+        "width": 200,
+        "height": 100,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "## Дежурный\n\nПриём и первичная\nоценка инцидента",
+          "color": "yellow"
+        },
+        "createdAt": 1789565532702,
+        "updatedAt": 1789565589267
+      },
+      {
+        "id": "art_zloa1a6tds",
+        "type": "note",
+        "x": 780,
+        "y": 360,
+        "width": 200,
+        "height": 100,
+        "z": 9,
+        "rotation": 0,
+        "props": {
+          "text": "## Диагностика\n\nПоиск первопричины\nи вектора решения",
+          "color": "blue"
+        },
+        "createdAt": 1789565532702,
+        "updatedAt": 1789565589267
+      },
+      {
+        "id": "art_2hmdwjthow",
+        "type": "note",
+        "x": 780,
+        "y": 540,
+        "width": 200,
+        "height": 100,
+        "z": 10,
+        "rotation": 0,
+        "props": {
+          "text": "## Митигация\n\nУстранение последствий\nи восстановление сервиса",
+          "color": "green"
+        },
+        "createdAt": 1789565532702,
+        "updatedAt": 1789565589267
+      },
+      {
+        "id": "art_x4xga6mcgq",
+        "type": "note",
+        "x": 780,
+        "y": 720,
+        "width": 200,
+        "height": 100,
+        "z": 11,
+        "rotation": 0,
+        "props": {
+          "text": "## Постмортем\n\nАнализ причин,\nхронология, уроки",
+          "color": "purple"
+        },
+        "createdAt": 1789565532702,
+        "updatedAt": 1789565589267
+      },
+      {
+        "id": "art_ksto8z8zg7",
+        "type": "note",
+        "x": 780,
+        "y": 900,
+        "width": 200,
+        "height": 100,
+        "z": 12,
+        "rotation": 0,
+        "props": {
+          "text": "## Задача в бэклог\n\nДействия по\nпредотвращению",
+          "color": "gray"
+        },
+        "createdAt": 1789565532702,
+        "updatedAt": 1789565589267
+      },
+      {
+        "id": "art_n0lrprwya3",
+        "type": "note",
+        "x": 1280,
+        "y": 390,
+        "width": 200,
+        "height": 100,
+        "z": 13,
+        "rotation": 0,
+        "props": {
+          "text": "## Эскалация\n\nПривлечение старших\nспециалистов / L2/L3",
+          "color": "pink"
+        },
+        "createdAt": 1789565532702,
+        "updatedAt": 1789565641450
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_z9lcoez0jl",
+        "from": {
+          "artifactId": "art_wy4i011ga2",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_u1i7g1ij9s",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "уведомление",
+        "style": {},
+        "createdAt": 1789565543994,
+        "updatedAt": 1789565660001,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_v05hnfkgi5",
+        "from": {
+          "artifactId": "art_u1i7g1ij9s",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_zloa1a6tds",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "передача",
+        "style": {},
+        "createdAt": 1789565543994,
+        "updatedAt": 1789565660001,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_i4eh231gh6",
+        "from": {
+          "artifactId": "art_zloa1a6tds",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_2hmdwjthow",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "план",
+        "style": {},
+        "createdAt": 1789565543994,
+        "updatedAt": 1789565660001,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_a3vfwisoh3",
+        "from": {
+          "artifactId": "art_zloa1a6tds",
+          "side": "right",
+          "offset": 0.65
+        },
+        "to": {
+          "artifactId": "art_n0lrprwya3",
+          "side": "left",
+          "offset": 0.35
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "нужна помощь",
+        "style": {},
+        "createdAt": 1789565543994,
+        "updatedAt": 1789565660001,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_ppf0yq0rlp",
+        "from": {
+          "artifactId": "art_n0lrprwya3",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_2hmdwjthow",
+          "side": "top",
+          "offset": 0.665
+        },
+        "bends": [
+          {
+            "x": 1380,
+            "y": 514
+          },
+          {
+            "x": 913,
+            "y": 514
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "решение",
+        "style": {},
+        "createdAt": 1789565543995,
+        "updatedAt": 1789565660001,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_j7egkwjx5o",
+        "from": {
+          "artifactId": "art_2hmdwjthow",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_x4xga6mcgq",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "сервис восстановлен",
+        "style": {},
+        "createdAt": 1789565543995,
+        "updatedAt": 1789565660001,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_oudrxxotzk",
+        "from": {
+          "artifactId": "art_x4xga6mcgq",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_ksto8z8zg7",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "выводы",
+        "style": {},
+        "createdAt": 1789565543995,
+        "updatedAt": 1789565660001,
+        "autoPorts": true
+      }
+    ]
+  }
+}

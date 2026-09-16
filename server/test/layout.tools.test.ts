@@ -462,6 +462,65 @@ describe('arrow ports', () => {
 });
 
 describe('artifact overlap and placements', () => {
+  it('creates a whole set of blocks in one call, skipping only the one that clashes', async () => {
+    const env = makeEnv();
+    try {
+      const board = env.ctx.boards.create();
+      env.ctx.boards.mutate(board.id, (state) => {
+        createArtifact(state, { type: 'note', x: 1000, y: 0 });
+      });
+      const result = await new ToolRegistry().get('artifact_create')!.run(
+        {
+          items: [
+            { type: 'note', x: 0, y: 0, props: { text: 'один' } },
+            { type: 'note', x: 300, y: 0, props: { text: 'два' } },
+            // Straight on top of the block already parked at (1000, 0).
+            { type: 'note', x: 1000, y: 0, props: { text: 'три' } },
+          ],
+        },
+        toolContext(env, board.id),
+      );
+      const data = (result as { data: Record<string, unknown> }).data;
+      expect(data.created).toBe(2);
+      expect((data.blocked as unknown[]) ?? []).toHaveLength(1);
+      expect(env.ctx.boards.read(board.id, (s2) => s2.artifacts.length)).toBe(3);
+    } finally {
+      void env.dispose();
+    }
+  });
+
+  it('creates many arrows in one call, repairing each port as if it were alone', async () => {
+    const env = makeEnv();
+    try {
+      const board = env.ctx.boards.create();
+      const ids = env.ctx.boards.mutate(board.id, (state) => [
+        createArtifact(state, { type: 'note', x: 0, y: 0 }).id,
+        createArtifact(state, { type: 'note', x: 500, y: 0 }).id,
+        createArtifact(state, { type: 'note', x: 500, y: 400 }).id,
+      ]);
+      const result = await new ToolRegistry().get('arrow_create')!.run(
+        {
+          links: [
+            { fromId: ids[0], toId: ids[1], label: 'вправо' },
+            { fromId: ids[0], toId: ids[2], label: 'вниз' },
+            { fromId: ids[0], toId: 'art_missing' },
+          ],
+        },
+        toolContext(env, board.id),
+      );
+      const data = (result as { data: Record<string, unknown> }).data;
+      expect(data.created).toBe(2);
+      expect((data.blocked as unknown[]) ?? []).toHaveLength(1);
+      const arrows = env.ctx.boards.read(board.id, (s2) => s2.arrows);
+      expect(arrows).toHaveLength(2);
+      // Ports were chosen for each link, not left unset, exactly as a single
+      // call would have done.
+      expect(arrows.every((a) => a.from.artifactId === ids[0])).toBe(true);
+    } finally {
+      void env.dispose();
+    }
+  });
+
   it('moves a whole row in one call and still reports the one that clashed', async () => {
     // Building a row used to be one call per block, and every call is a model
     // iteration with the whole prompt behind it. A clash on one block must not
