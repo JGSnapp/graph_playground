@@ -236,7 +236,7 @@ export const defaultSettings = (): Settings => ({
     embeddingModel: process.env.TECA_EMBEDDING_MODEL ?? 'text-embedding-3-small',
   },
   agent: {
-    systemPrompt: DEFAULT_SYSTEM_PROMPT,
+    systemPrompt: CHOICE_SYSTEM_PROMPT,
     maxIterations: 12,
     unlimitedIterations: false,
     // Six attempts spread over about half a minute. Three, spent inside the

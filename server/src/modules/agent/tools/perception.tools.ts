@@ -1,5 +1,5 @@
 import type { Rect } from '@teca/shared';
-import { boardQuality, boundsOf, checkIntersections } from '@teca/shared';
+import { boardQuality, boundsOf, checkIntersections, suggestMoves } from '@teca/shared';
 import { queryRegion } from '../../boards/operations.js';
 import { renderAsciiSchema, renderSvgSchema } from '../render.js';
 import { bool, enumOf, num, objectSchema, type ToolContext, type ToolSpec } from './types.js';
@@ -128,11 +128,17 @@ export const boardCheckIntersections: ToolSpec = {
       minArtifactGap: typeof args.minArtifactGap === 'number' ? args.minArtifactGap : undefined,
     };
 
-    const { report, quality } = ctx.boards.read(ctx.boardId, (state) => {
+    const { report, quality, moves } = ctx.boards.read(ctx.boardId, (state) => {
       const found = checkIntersections(state.artifacts, state.arrows, options);
       return {
         report: found,
         quality: boardQuality(state.artifacts, state.arrows, { ...options, report: found }),
+        // Some crossings cannot be routed away: every attachment and every route
+        // meets the same corridor, and the port search exhausts itself finding
+        // nothing. What fixes those is moving one block, and the agent cannot
+        // find out which without spending a round trip per guess. The engine
+        // tries the moves itself and only speaks when one actually helps.
+        moves: suggestMoves(state.artifacts, state.arrows),
       };
     });
 
@@ -166,6 +172,9 @@ export const boardCheckIntersections: ToolSpec = {
         metrics: quality.metrics,
         hints: quality.hints,
         verdict,
+        // Only present when a move was actually found to help; an empty list
+        // would read as advice to move something.
+        ...(moves.length > 0 ? { suggestedMoves: moves } : {}),
         findings: report.findings.slice(0, MAX_FINDINGS),
         truncated: Math.max(0, report.findings.length - MAX_FINDINGS),
       },

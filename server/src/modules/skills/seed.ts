@@ -317,8 +317,14 @@ const GRAPH_LAYOUT_CHOICE = `# Построение графа
 - Не удалять связи, чтобы создать их заново: рёбра те же, результат тот же.
 - Не добавлять изгибы «для красоты».`;
 
-/** auto (default) | manual | choice — which half of the placement experiment runs. */
-const layoutMode = (): string => process.env.TECA_LAYOUT_MODE ?? 'auto';
+/**
+ * choice (default) | auto | manual.
+ *
+ * Measured over seven tasks: letting the model pick beat always arranging in
+ * occupied space (93.3 against 91) and matched it on an empty sheet at half the
+ * area. It costs about three times the tokens, which is the price of the choice.
+ */
+const layoutMode = (): string => process.env.TECA_LAYOUT_MODE ?? 'choice';
 
 export const SEED_SKILLS: SeedSkill[] = [
   {

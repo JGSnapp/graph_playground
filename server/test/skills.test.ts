@@ -27,11 +27,14 @@ describe('skills service', () => {
 
       const graph = env.ctx.skills.get('graph-layout');
       expect(graph.source).toBe('builtin');
-      // The skill must send the model to the layout tool, not to hand-picked coordinates.
+      // By default the skill is the one that leaves the choice to the model:
+      // place by hand on a small graph, call the layout on a tangled one, and
+      // check afterwards that the layout drew what was meant.
       expect(graph.body).toMatch(/board_arrange_graph/);
       expect(graph.body).toMatch(/board_route_arrows/);
       expect(graph.body).toMatch(/artifact_rank_placements/);
-      expect(graph.body).toMatch(/Не подбирать координаты узлов вручную/);
+      expect(graph.body).toMatch(/Выбери способ расстановки/);
+      expect(graph.body).toMatch(/Проверь, что вышло задуманное/);
       // The layout defaults must never read as a ban: an explicit user request wins.
       expect(graph.body).toMatch(/Просьба пользователя главнее/);
       expect(graph.body).toMatch(/exact=true/);
@@ -162,8 +165,9 @@ describe('system prompt', () => {
       expect(content).toMatch(/graph-layout/);
       expect(content).toMatch(/skill_get/);
       // The full instructions stay out of the prompt until the agent asks.
-      expect(env.ctx.skills.get('graph-layout').body).toMatch(/Шаг 4\. Один раз board_arrange_graph/);
-      expect(content).not.toMatch(/Шаг 4\. Один раз board_arrange_graph/);
+      const step = 'Шаг 4. Проверь, что вышло задуманное';
+      expect(env.ctx.skills.get('graph-layout').body).toContain(step);
+      expect(content).not.toContain(step);
     } finally {
       void env.dispose();
     }

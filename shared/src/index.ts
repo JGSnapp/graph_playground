@@ -12,3 +12,4 @@ export * from './settings.js';
 export * from './knowledge.js';
 export * from './skills.js';
 export * from './events.js';
+export * from './suggest.js';

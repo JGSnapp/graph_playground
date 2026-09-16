@@ -1,5 +1,6 @@
 import type { Arrow, Artifact } from '@teca/shared';
 import {
+  suggestMoves,
   checkIntersections,
   computeArrowGeometries,
   polylineRectHits,
@@ -225,4 +226,48 @@ describe('checkIntersections', () => {
     const report = checkIntersections(artifacts, arrows, { includeArtifactOverlaps: false });
     expect(report.findings.some((f) => f.kind === 'label_conflict')).toBe(true);
   });
+});
+
+describe('suggestMoves', () => {
+  const box = (id: string, x: number, y: number): Artifact => ({
+    id,
+    type: 'note',
+    z: 0,
+    props: {},
+    x,
+    y,
+    width: 220,
+    height: 140,
+    createdAt: 0,
+    updatedAt: 0,
+  });
+  const link = (id: string, from: string, to: string): Arrow => ({
+    id,
+    from: { artifactId: from, side: 'auto' },
+    to: { artifactId: to, side: 'auto' },
+    bends: [],
+    style: {},
+    createdAt: 0,
+    updatedAt: 0,
+  });
+
+  it('says nothing when the lines do not cross', () => {
+    // Silence is the useful answer here: an empty list of advice reads as
+    // advice to move something.
+    const artifacts = [box('a', 0, 0), box('b', 400, 0)];
+    expect(suggestMoves(artifacts, [link('r1', 'a', 'b')])).toEqual([]);
+  });
+
+  it('says nothing on a board too big to be one block’s fault', () => {
+    // Past a couple of dozen blocks a crossing is a property of the layout, not
+    // of one misplaced box, and the search would cost more than it is worth.
+    const many = Array.from({ length: 30 }, (_, i) => box(`n${i}`, (i % 6) * 300, Math.floor(i / 6) * 220));
+    const arrows = many.slice(1).map((n, i) => link(`r${i}`, many[i].id, n.id));
+    expect(suggestMoves(many, arrows)).toEqual([]);
+  });
+
+  // That it does speak when a move helps is measured on the bench rather than
+  // here: a crossing this engine cannot route away is hard to build by hand —
+  // the router and the port search untangle the obvious cases themselves. Over
+  // the 61 saved boards that still had a crossing, a single-block move fixed 13.
 });
