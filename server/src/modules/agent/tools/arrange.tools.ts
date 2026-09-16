@@ -15,7 +15,7 @@ export const boardArrangeGraph: ToolSpec = {
   // The manual half of the placement experiment does without it entirely: the
   // model is told the coordinates are its job, so the tool must not be sitting
   // there as a way out.
-  isEnabled: () => process.env.TECA_MANUAL_LAYOUT !== '1',
+  isEnabled: () => process.env.TECA_LAYOUT_MODE !== 'manual',
   description:
     // Why layering beats bending is the skill's argument, and `direction` and
     // `lockIds` explain themselves below. This schema rides in every request;

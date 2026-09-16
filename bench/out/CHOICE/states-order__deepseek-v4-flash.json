@@ -1,0 +1,635 @@
+{
+  "exp": "CHOICE",
+  "task": "states-order",
+  "repeat": 0,
+  "probes": "граф с циклами и обратными связями",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-16T18:08:54.167Z",
+  "ms": 327887,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 17,
+  "seededArtifacts": 0,
+  "seededArrows": 0,
+  "quality": {
+    "score": 99,
+    "cost": 0.3,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 8,
+      "arrows": 10,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 9,
+      "drawnTurns": 11,
+      "cornerPorts": 0,
+      "totalLength": 9330,
+      "detour": 1.01
+    },
+    "breakdown": [
+      {
+        "reason": "стрелки идут в обход",
+        "count": 1,
+        "cost": 0.34965600971266664
+      }
+    ]
+  },
+  "completeness": {
+    "isolatedNodes": 0,
+    "isolatedIds": [],
+    "missingGraph": false,
+    "brokenGraph": false,
+    "counts": true
+  },
+  "observations": {
+    "artifacts": 8,
+    "arrows": 10,
+    "width": 3335,
+    "height": 445,
+    "aspect": 7.49,
+    "density": 0.08,
+    "edgeLengthMedian": 464,
+    "edgeLengthMax": 2716,
+    "edgeLengthSpread": 5.85,
+    "separation": 1.57,
+    "textOverflow": 0,
+    "alignedShare": 0.38,
+    "columnLanes": 8,
+    "rowLanes": 4,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 9330,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\n## Шаг 1. Опиши граф …"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e3f2fd\",\"stroke\":\"#1565c0\",\"label\":\"Создан\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#fff3e0\",\"stroke\":\"#e65100\",\"label\":\"Ожидает оплаты\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e8f5e9\",\"stroke\":\"#2e7d32\",\"label\":\"Оплачен\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e8f5e9\",\"stroke\":\"#2e7d32\",\"label\":\"Собирается\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":220,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e8f5e9\",\"stroke\":\"#2e7d32\",\"label\":\"Передан в доставку\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e8f5e9\",\"stroke\":\"#2e7d32\",\"label\":\"Доставлен\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#ffebee\",\"stroke\":\"#c62828\",\"label\":\"Отменён\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#f3e5f5\",\"stroke\":\"#6a1b9a\",\"label\":\"Возврат\",\"strokeWidth\":2}}]}",
+      "resultSummary": "{\"created\":1,\"artifacts\":[{\"id\":\"art_codx8iw273\",\"type\":\"shape\",\"x\":0,\"y\":0,\"width\":200,\"height\":70,\"z\":1,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#e3f2fd\",\"stroke\":\"#1565c0\",\"label\":\"Создан\",\"strokeWidth\":2},\"createdAt\":1789581881562,\"updatedAt\":1789581881562}],\"blocked\":[{\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_codx8iw273 («Создан»). Если так и задумано — вызо…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"shape\",\"x\":0,\"y\":100,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#fff3e0\",\"stroke\":\"#e65100\",\"label\":\"Ожидает оплаты\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":200,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e8f5e9\",\"stroke\":\"#2e7d32\",\"label\":\"Оплачен\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":300,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e8f5e9\",\"stroke\":\"#2e7d32\",\"label\":\"Собирается\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":400,\"width\":220,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e8f5e9\",\"stroke\":\"#2e7d32\",\"label\":\"Передан в доставку\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":0,\"y\":500,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#e8f5e9\",\"stroke\":\"#2e7d32\",\"label\":\"Доставлен\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":300,\"y\":100,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#ffebee\",\"stroke\":\"#c62828\",\"label\":\"Отменён\",\"strokeWidth\":2}},{\"type\":\"shape\",\"x\":300,\"y\":500,\"width\":200,\"height\":70,\"props\":{\"shape\":\"rect\",\"fill\":\"#f3e5f5\",\"stroke\":\"#6a1b9a\",\"label\":\"Возврат\",\"strokeWidth\":2}}]}",
+      "resultSummary": "{\"created\":7,\"artifacts\":[{\"id\":\"art_j7rfgywn1q\",\"type\":\"shape\",\"x\":0,\"y\":100,\"width\":200,\"height\":70,\"z\":2,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#fff3e0\",\"stroke\":\"#e65100\",\"label\":\"Ожидает оплаты\",\"strokeWidth\":2},\"createdAt\":1789581904149,\"updatedAt\":1789581904149},{\"id\":\"art_biyr06r7n2\",\"type\":\"shape\",\"x\":0,\"y\":200,\"width\":200,\"height\":70,\"z\":3,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"links\":[{\"fromId\":\"art_codx8iw273\",\"toId\":\"art_j7rfgywn1q\",\"label\":\"Создан\"},{\"fromId\":\"art_j7rfgywn1q\",\"toId\":\"art_biyr06r7n2\",\"label\":\"Оплата прошла\"},{\"fromId\":\"art_j7rfgywn1q\",\"toId\":\"art_ebsniaifdx\",\"label\":\"Таймаут\"},{\"fromId\":\"art_biyr06r7n2\",\"toId\":\"art_dgopfjbzef\",\"label\":\"Оплачен\"},{\"fromId\":\"art_biyr06r7n2\",\"toId\":\"art_ebsniaifdx\",\"label\":\"Отмена клиентом\"},{\"fromId\":\"art_dgopfjbzef\",\"toId\":\"art_dr6peoow9z\",\"label\":\"Собирается\"},{\"fromId\":\"art_dgopfjbzef\",\"toId\":\"art_ebsniaifdx\",\"label\":\"Нет товара\"},{\"fromId\":\"art_dr6peoow9z\",\"toId\":\"art_g79pe6jdh3\",\"label\":\"Передан\"},{\"fromId\":\"art_g79pe6jdh3\",\"toId\":\"art_r9gpt8hemd\",\"label\":\"Клиент вернул\"},{\"fromId\":\"art_r9gpt8hemd\",\"toId\":\"art_ebsniaifdx\",\"label\":\"Возврат\"}]}",
+      "resultSummary": "{\"created\":10,\"arrows\":[{\"id\":\"arr_ma0dmk4von\",\"from\":{\"artifactId\":\"art_codx8iw273\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_j7rfgywn1q\",\"side\":\"auto\"},\"bends\":[],\"label\":\"Создан\",\"style\":{},\"createdAt\":1789581949387,\"updatedAt\":1789581949387},{\"id\":\"arr_bef97noxlq\",\"from\":{\"artifactId\":\"art_j7rfgywn1q\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_biyr06r7n2\",\"side\":\"auto\"},\"bends\":[],\"label\":\"Оплата про…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"auto\",\"nodeSpacing\":100,\"layerSpacing\":240}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":0.7,\"layers\":8,\"layerSizes\":[1,1,2,3,4,4,4,1],\"crossings\":0,\"crossingsBefore\":3,\"reversedEdges\":0,\"moved\":8,\"bounds\":{\"x\":0,\"y\":0,\"width\":502,\"height\":1736},\"qualityBefore\":{\"score\":18,\"cost\":110.6,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":80,\"cost\":6.4,\"grade\":\"хорошо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":0.7,\"crossings\":0,\"quality\":{\"score\":75,\"cost\":8.…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-120,\"width\":742,\"height\":1976},\"schema\":\"region: x=-120 y=-120 w=742 h=1976 (1 char ≈ 11x66 px)\\n\\n\\n                                       +-----------------+\\n                                       +s:codx-----------+\\n                                                ·\\n                                       +-----------------+\\n     ·····················…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":3,\"quality\":{\"score\":80,\"cost\":6.4,\"grade\":\"хорошо\",\"previousCost\":6.4,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":10,\"edgeNodeHits\":0,\"crossings\":0,\"shallowC…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeSpacing\":120,\"layerSpacing\":260}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":0.7,\"layers\":8,\"layerSizes\":[1,1,2,3,4,4,4,1],\"crossings\":0,\"crossingsBefore\":3,\"reversedEdges\":0,\"moved\":8,\"bounds\":{\"x\":0,\"y\":0,\"width\":2894,\"height\":326},\"qualityBefore\":{\"score\":80,\"cost\":6.4,\"grade\":\"хорошо\"},\"qualityAfter\":{\"score\":88,\"cost\":3.4,\"grade\":\"хорошо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":0.7,\"crossings\":0,\"quality\":{\"score\":88,\"cost\":3.4…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-120,\"width\":3134,\"height\":566},\"schema\":\"region: x=-120 y=-120 w=3134 h=566 (1 char ≈ 46x19 px)\\n\\n\\n\\n                     ···········································\\n                     ·                                         ·\\n                     ·                                         ·\\n                     ·              +----+  +----+   +---…"
+    },
+    {
+      "name": "board_clean_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"cleaned\":[{\"arrowId\":\"arr_bef97noxlq\",\"before\":1,\"after\":1,\"changed\":false},{\"arrowId\":\"arr_mp3osvrthl\",\"before\":1,\"after\":1,\"changed\":false},{\"arrowId\":\"arr_0v36tgvdvh\",\"before\":1,\"after\":1,\"changed\":false},{\"arrowId\":\"arr_omfta77xck\",\"before\":2,\"after\":1,\"changed\":true},{\"arrowId\":\"arr_ku81zychr6\",\"before\":1,\"after\":1,\"changed\":false},{\"arrowId\":\"arr_cgcqo1g34a\",\"before\":1,\"after\":1,\"changed\":…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":3,\"quality\":{\"score\":88,\"cost\":3.4,\"grade\":\"хорошо\",\"previousCost\":3.4,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":10,\"edgeNodeHits\":0,\"crossings\":0,\"shallowC…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeSpacing\":160,\"layerSpacing\":300}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":0.7,\"layers\":8,\"layerSizes\":[1,1,2,3,4,4,4,1],\"crossings\":0,\"crossingsBefore\":3,\"reversedEdges\":0,\"moved\":8,\"bounds\":{\"x\":0,\"y\":0,\"width\":3090,\"height\":386},\"qualityBefore\":{\"score\":88,\"cost\":3.4,\"grade\":\"хорошо\"},\"qualityAfter\":{\"score\":88,\"cost\":3.4,\"grade\":\"хорошо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":0.7,\"crossings\":0,\"quality\":{\"score\":88,\"cost\":3.4…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":3,\"quality\":{\"score\":88,\"cost\":3.4,\"grade\":\"хорошо\",\"previousCost\":3.4,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":10,\"edgeNodeHits\":0,\"crossings\":0,\"shallowC…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\",\"nodeSpacing\":200,\"layerSpacing\":350}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":0.7,\"layers\":8,\"layerSizes\":[1,1,2,3,4,4,4,1],\"crossings\":0,\"crossingsBefore\":3,\"reversedEdges\":0,\"moved\":8,\"bounds\":{\"x\":0,\"y\":0,\"width\":3335,\"height\":445},\"qualityBefore\":{\"score\":88,\"cost\":3.4,\"grade\":\"хорошо\"},\"qualityAfter\":{\"score\":99,\"cost\":0.3,\"grade\":\"отлично\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":0.7,\"crossings\":0,\"quality\":{\"score\":99,\"cost\":0.…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":3,\"quality\":{\"score\":99,\"cost\":0.3,\"grade\":\"отлично\",\"previousCost\":0.3,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":10,\"edgeNodeHits\":0,\"crossings\":0,\"shallow…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-120,\"width\":3575,\"height\":685},\"schema\":\"region: x=-120 y=-120 w=3575 h=685 (1 char ≈ 53x23 px)\\n\\n\\n                     ············································\\n                     ·                                          ·\\n                     ·                                          ·\\n                     ·              +---+    +---+   +--…"
+    }
+  ],
+  "toolHistogram": {
+    "skill_get": 1,
+    "artifact_create": 2,
+    "arrow_create": 1,
+    "board_arrange_graph": 4,
+    "board_get_schema": 3,
+    "board_check_intersections": 4,
+    "board_clean_arrows": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 293028,
+    "completionTokens": 3594,
+    "totalTokens": 296622,
+    "calls": 17,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 236032
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nОтличная задача! Это граф с состояниями и переходами, так что буду использовать скилл graph-layout. Давай сначала прочитаю его инструкцию.\n\nОтлично, скилл прочитан. Теперь давай спланируем.\n\n**Анализ графа:**\n- Узлов: 8 (Создан, Ожидает оплаты, Оплачен, Собирается, Передан в доставку, Доставлен, Отменён, Возврат)\n- Связей: 10\n- Структура: поток с ветвлениями (отмена/возврат). Несколько узлов могут переходить в \"Отменён\" — это обратные/боковые связи.\n- Узлов 8, связей 10 — уже на грани ручной расстановки. Плюс есть множественные переходы в \"Отменён\" из разных мест. Использую **board_arrange_graph** — она сама разложит по слоям и разведёт пересечения.\n\nНачну: создам все узлы и стрелки.\n\nПервый создался, остальные наложились. Нужно разнести их по координатам, чтобы не накладывались. Создам их с правильными отступами — разложу сеткой вручную, а потом позову раскладку.\n\nВсе 8 узлов созданы. Теперь создаю все стрелки с подписями.\n\nВсе узлы и стрелки созданы. Теперь вызываю раскладку графа — она сама разложит по слоям и проложит линии.\n\n\n\nОтлично! Раскладка выбрала направление TB (сверху вниз), 8 слоёв, 0 пересечений. Оценка 80/100. Давай посмотрим, что получилось на доске.\n\nХорошо видно! Раскладка выстроила основной поток по вертикали (TB), а \"Отменён\" уехал вниз. Но есть нюанс: \"Отменён\" оказался в самом низу, а \"Возврат\" — над ним. По смыслу \"Отменён\" — конечное состояние, а \"Возврат\" ведёт в \"Отменён\". \n\nДавай посмотрим на качество и пересечения.\n\n\n\n\n\nПересечений нет, наложений нет, качество 80/100 — хорошо. Но раскладка поставила \"Отменён\" в самый низ, хотя логически он — конечное состояние, куда ведут несколько путей. Давай попробуем улучшить: зададим направление LR (слева направо) с бóльшим spacing, чтобы подписи влезали. Судя по кандидатам, LR со spacingScale=1 даёт 98/100!\n\n\n\n88/100, 0 пересечений. Давай посмотрим, как выглядит LR-раскладка.\n\n\n\nОтлично! LR-раскладка дала очень читаемую схему:\n\n- **Слева направо** идёт основной поток: Создан → Ожидает оплаты → Оплачен → Собирается → Передан в доставку → Доставлен → Возврат → Отменён\n- **\"Отменён\"** — конечный узел справа, к нему ведут 4 стрелки из разных точек\n- 0 пересечений, 0 наложений\n\nДавай почищу лишние изгибы и проверю финальное качество.\n\n\n\n\n\nЕсть небольшой конфликт подписи \"Клиент вернул\" на стрелке между \"Доставлен\" и \"Возврат\" — она накладывается на блок \"Доставлен\". Давай попробуем увеличить spacing, чтобы дать подписям больше места. Использую spacingScale=1 (сейчас 0.7).\n\n\n\nКонфликт подписи остаётся. Давай попробуем spacingScale=1 (через nodeSpacing/layerSpacing больше).\n\n\n\n99/100! Давай проверим финальное состояние.\n\n\n\n\n\nОтлично! 0 конфликтов, 0 пересечений, 0 наложений. Давай посмотрим финальную схему.\n\n\n\n\n\nВсё отлично! Вот итог:\n\n---\n\n## Диаграмма состояний заказа — готова ✅\n\n**Что разместил:** 8 узлов-состояний и 10 переходов между ними с подписями.\n\n**Способ расстановки:** автоматическая раскладка графа (`board_arrange_graph`) с направлением **LR (слева направо)**. Выбрал раскладку, потому что узлов 8, связей 10, есть множественные переходы в одно состояние (\"Отменён\") из разных точек — руками такую схему развести без пересечений сложно.\n\n**Структура:**\n- **Основной поток** (слева направо): Создан → Ожидает оплаты → Оплачен → Собирается → Передан в доставку → Доставлен → Возврат → Отменён\n- **Боковые переходы в \"Отменён\"** (4 шт.):\n  - Ожидает оплаты → Отменён (таймаут)\n  - Оплачен → Отменён (отмена клиентом)\n  - Собирается → Отменён (нет товара)\n  - Возврат → Отменён\n\n**Качество раскладки: 99/100 (отлично)**\n- Пересечений стрелок: **0**\n- Наложений артефактов: **0**\n- Конфликтов подписей: **0**\n- Все подписи читаемы, все стрелки проложены в обход блоков",
+  "boardId": "brd_8ux6l887kj",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_codx8iw273",
+        "type": "shape",
+        "x": 0,
+        "y": 375,
+        "width": 200,
+        "height": 70,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#e3f2fd",
+          "stroke": "#1565c0",
+          "label": "Создан",
+          "strokeWidth": 2
+        },
+        "createdAt": 1789581881562,
+        "updatedAt": 1789582082689
+      },
+      {
+        "id": "art_j7rfgywn1q",
+        "type": "shape",
+        "x": 445,
+        "y": 375,
+        "width": 200,
+        "height": 70,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#fff3e0",
+          "stroke": "#e65100",
+          "label": "Ожидает оплаты",
+          "strokeWidth": 2
+        },
+        "createdAt": 1789581904149,
+        "updatedAt": 1789582082689
+      },
+      {
+        "id": "art_biyr06r7n2",
+        "type": "shape",
+        "x": 890,
+        "y": 226,
+        "width": 200,
+        "height": 70,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#e8f5e9",
+          "stroke": "#2e7d32",
+          "label": "Оплачен",
+          "strokeWidth": 2
+        },
+        "createdAt": 1789581904150,
+        "updatedAt": 1789582082689
+      },
+      {
+        "id": "art_dgopfjbzef",
+        "type": "shape",
+        "x": 1335,
+        "y": 95,
+        "width": 200,
+        "height": 70,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#e8f5e9",
+          "stroke": "#2e7d32",
+          "label": "Собирается",
+          "strokeWidth": 2
+        },
+        "createdAt": 1789581904150,
+        "updatedAt": 1789582082689
+      },
+      {
+        "id": "art_dr6peoow9z",
+        "type": "shape",
+        "x": 1780,
+        "y": 0,
+        "width": 220,
+        "height": 70,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#e8f5e9",
+          "stroke": "#2e7d32",
+          "label": "Передан в доставку",
+          "strokeWidth": 2
+        },
+        "createdAt": 1789581904150,
+        "updatedAt": 1789582082689
+      },
+      {
+        "id": "art_g79pe6jdh3",
+        "type": "shape",
+        "x": 2245,
+        "y": 0,
+        "width": 200,
+        "height": 70,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#e8f5e9",
+          "stroke": "#2e7d32",
+          "label": "Доставлен",
+          "strokeWidth": 2
+        },
+        "createdAt": 1789581904150,
+        "updatedAt": 1789582082689
+      },
+      {
+        "id": "art_ebsniaifdx",
+        "type": "shape",
+        "x": 3135,
+        "y": 0,
+        "width": 200,
+        "height": 70,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#ffebee",
+          "stroke": "#c62828",
+          "label": "Отменён",
+          "strokeWidth": 2
+        },
+        "createdAt": 1789581904150,
+        "updatedAt": 1789582082689
+      },
+      {
+        "id": "art_r9gpt8hemd",
+        "type": "shape",
+        "x": 2690,
+        "y": 0,
+        "width": 200,
+        "height": 70,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#f3e5f5",
+          "stroke": "#6a1b9a",
+          "label": "Возврат",
+          "strokeWidth": 2
+        },
+        "createdAt": 1789581904150,
+        "updatedAt": 1789582082689
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_ma0dmk4von",
+        "from": {
+          "artifactId": "art_codx8iw273",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_j7rfgywn1q",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "Создан",
+        "style": {},
+        "createdAt": 1789581949387,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_bef97noxlq",
+        "from": {
+          "artifactId": "art_j7rfgywn1q",
+          "side": "right",
+          "offset": 0.4
+        },
+        "to": {
+          "artifactId": "art_biyr06r7n2",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 717,
+            "y": 403
+          },
+          {
+            "x": 717,
+            "y": 261
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "Оплата прошла",
+        "style": {},
+        "createdAt": 1789581949387,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_mp3osvrthl",
+        "from": {
+          "artifactId": "art_j7rfgywn1q",
+          "side": "right",
+          "offset": 0.6
+        },
+        "to": {
+          "artifactId": "art_ebsniaifdx",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 3235,
+            "y": 417
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "Таймаут",
+        "style": {},
+        "createdAt": 1789581949387,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_0v36tgvdvh",
+        "from": {
+          "artifactId": "art_biyr06r7n2",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_dgopfjbzef",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1162,
+            "y": 261
+          },
+          {
+            "x": 1162,
+            "y": 130
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "Оплачен",
+        "style": {},
+        "createdAt": 1789581949388,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_omfta77xck",
+        "from": {
+          "artifactId": "art_biyr06r7n2",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_ebsniaifdx",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 990,
+            "y": -72
+          },
+          {
+            "x": 3235,
+            "y": -72
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "Отмена клиентом",
+        "style": {},
+        "createdAt": 1789581949388,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_ku81zychr6",
+        "from": {
+          "artifactId": "art_dgopfjbzef",
+          "side": "right",
+          "offset": 0.4
+        },
+        "to": {
+          "artifactId": "art_dr6peoow9z",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 1607,
+            "y": 35
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "Собирается",
+        "style": {},
+        "createdAt": 1789581949388,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_cgcqo1g34a",
+        "from": {
+          "artifactId": "art_dgopfjbzef",
+          "side": "right",
+          "offset": 0.6
+        },
+        "to": {
+          "artifactId": "art_ebsniaifdx",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 3063,
+            "y": 137
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "Нет товара",
+        "style": {},
+        "createdAt": 1789581949388,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_587x1k44g3",
+        "from": {
+          "artifactId": "art_dr6peoow9z",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_g79pe6jdh3",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "Передан",
+        "style": {},
+        "createdAt": 1789581949388,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_rskpdzc1ty",
+        "from": {
+          "artifactId": "art_g79pe6jdh3",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_r9gpt8hemd",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "Клиент вернул",
+        "style": {},
+        "createdAt": 1789581949388,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_fl0oldt6hz",
+        "from": {
+          "artifactId": "art_r9gpt8hemd",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_ebsniaifdx",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "Возврат",
+        "style": {},
+        "createdAt": 1789581949388,
+        "updatedAt": 1789582082689,
+        "autoPorts": true
+      }
+    ]
+  }
+}

@@ -8,9 +8,9 @@ const list = () =>
     .map((d) => d.function.name)
     .sort();
 
-delete process.env.TECA_MANUAL_LAYOUT;
+delete process.env.TECA_LAYOUT_MODE;
 const auto = list();
-process.env.TECA_MANUAL_LAYOUT = '1';
+process.env.TECA_LAYOUT_MODE = 'manual';
 const manual = list();
 
 console.log(`автоматический режим: ${auto.length} инструментов`);

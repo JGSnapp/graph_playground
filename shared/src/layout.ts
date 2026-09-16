@@ -39,8 +39,16 @@ export interface LayoutSpacing {
 // router has no room and emits short jogs, so the floor sits above that.
 export const MIN_SPACING: LayoutSpacing = { node: 44, layer: 130, group: 120 };
 
-/** Gap as a fraction of the node extent it separates. */
-const SPACING_RATIO = { node: 0.55, layer: 1.15, group: 1.1 };
+/**
+ * Gap as a fraction of the node extent it separates. Exported so the bench can
+ * sweep it: how much air a graph needs is a measured question, not a constant.
+ *
+ * A layer gap of 1.15 put more than a block width between columns of blocks,
+ * which is what made the compositions read as scattered. Swept against the one
+ * thing the metric cannot see — the area the drawing eats — 0.7 came out 22%
+ * tighter with fewer crossings than before.
+ */
+export const SPACING_RATIO = { node: 0.4, layer: 0.7, group: 0.8 };
 
 /** Kept for callers that want the old absolute numbers. */
 export const DEFAULT_SPACING: LayoutSpacing = { node: 80, layer: 220, group: 170 };
@@ -874,7 +882,12 @@ export const arrangeGraph = (
       : [options.direction as LayoutDirection];
   // The derived spacing is a floor, not an answer: how much air a particular
   // graph needs is decided by scoring, not by a constant.
-  const scales = options.spacingSteps ?? [1, 1.4, 1.9];
+  // The steps used to run 1 to 1.9: the search could only inflate, never
+  // squeeze, and since `boardQuality` has no notion of compactness, air was
+  // free — it only ever removed penalties. Measured over 45 boards, letting it
+  // squeeze as well took the area down 22% and the crossings from 16 to 13,
+  // for two tenths of a penalty point.
+  const scales = options.spacingSteps ?? [0.7, 0.85, 1, 1.3];
   const participating = new Set(
     options.nodeIds && options.nodeIds.length > 0 ? options.nodeIds : artifacts.map((a) => a.id),
   );

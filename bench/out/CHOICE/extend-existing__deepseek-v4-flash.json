@@ -1,0 +1,728 @@
+{
+  "exp": "CHOICE",
+  "task": "extend-existing",
+  "repeat": 0,
+  "probes": "дополнение готового графа новыми узлами без ломки старого",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-16T18:15:31.196Z",
+  "ms": 395800,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 33,
+  "seededArtifacts": 4,
+  "seededArrows": 3,
+  "quality": {
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 8,
+      "arrows": 9,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 5,
+      "drawnTurns": 6,
+      "cornerPorts": 0,
+      "totalLength": 1616,
+      "detour": 1
+    },
+    "breakdown": []
+  },
+  "completeness": {
+    "isolatedNodes": 0,
+    "isolatedIds": [],
+    "missingGraph": false,
+    "brokenGraph": false,
+    "counts": true
+  },
+  "observations": {
+    "artifacts": 8,
+    "arrows": 9,
+    "width": 1300,
+    "height": 500,
+    "aspect": 2.6,
+    "density": 0.38,
+    "edgeLengthMedian": 400,
+    "edgeLengthMax": 439,
+    "edgeLengthSpread": 1.1,
+    "separation": 1.53,
+    "textOverflow": 0,
+    "alignedShare": 0.75,
+    "columnLanes": 5,
+    "rowLanes": 3,
+    "isolatedNodes": 0
+  },
+  "drawnLength": 1616,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-300,\"width\":1260,\"height\":560},\"artifacts\":[{\"id\":\"art_c8p49knkrb\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## API Gateway\\n\\nВходная точка, маршрутизация и rate limit.\",\"color\":\"blue\"},\"createdAt\":1789582135286,\"updatedAt\":1789582135286},{\"id\":\"art_nttd4c6xr4\",\"type\":\"note\",\"x\":400,\"y\":-180,\"width\":220,\"height\":140,\"z\":2,\"rota…"
+    },
+    {
+      "name": "skill_list",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"skills\":[{\"slug\":\"artifact-set\",\"name\":\"Раскладка набора артефактов\",\"when\":\"Нужно просто показать материал: список, подборка, карточки, заметки, картинки, куски кода. Связей нет или две-три.\"},{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\"}]}"
+    },
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\n## Шаг 1. Опиши граф …"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-300,\"width\":1260,\"height\":560},\"schema\":\"region: x=-120 y=-300 w=1260 h=560 (1 char ≈ 19x19 px)\\n\\n\\n\\n\\n\\n\\n                            +-----------+\\n                            |n:nttd     |\\n                            |           |\\n                            |           |\\n                        ····|           |\\n                        ·   |     …"
+    },
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"height\":600,\"width\":1400,\"x\":-120,\"y\":-300}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-300,\"width\":1400,\"height\":600},\"artifacts\":[{\"id\":\"art_c8p49knkrb\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## API Gateway\\n\\nВходная точка, маршрутизация и rate limit.\",\"color\":\"blue\"},\"createdAt\":1789582135286,\"updatedAt\":1789582135286},{\"id\":\"art_nttd4c6xr4\",\"type\":\"note\",\"x\":400,\"y\":-180,\"width\":220,\"height\":140,\"z\":2,\"rota…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"note\",\"x\":400,\"y\":160,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Payments Service\\n\\nОбработка платежей по заказам.\",\"color\":\"green\"}},{\"type\":\"note\",\"x\":120,\"y\":-90,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\",\"color\":\"pink\"}},{\"type\":\"note\",\"x\":800,\"y\":160,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Kafka\\n\\nШина событий.\",\"color\":\"purple\"}},{\"type\":\"note\",\"x\":1080,\"y\":160,\"width\":220,\"height\":140,\"props\":{\"text\":\"## Notification Service\\n\\nЧитает события, шлёт письма.\",\"color\":\"green\"}}]}",
+      "resultSummary": "{\"created\":3,\"artifacts\":[{\"id\":\"art_qqewjj9c8j\",\"type\":\"note\",\"x\":400,\"y\":160,\"width\":220,\"height\":140,\"z\":5,\"rotation\":0,\"props\":{\"text\":\"## Payments Service\\n\\nОбработка платежей по заказам.\",\"color\":\"green\"},\"createdAt\":1789582193032,\"updatedAt\":1789582193032},{\"id\":\"art_4vq5yxs85t\",\"type\":\"note\",\"x\":800,\"y\":160,\"width\":220,\"height\":140,\"z\":6,\"rotation\":0,\"props\":{\"text\":\"## Kafka\\n\\nШина собы…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "refused",
+      "refused": true,
+      "ms": 0,
+      "args": "{\"items\":[{\"props\":{\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\",\"color\":\"pink\"},\"height\":140,\"type\":\"note\",\"width\":220,\"x\":240,\"y\":-90}]}",
+      "resultSummary": "{\"created\":false,\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_nttd4c6xr4 («Auth Service»), art_4v35kgifc1 («Orders Service»). Если так и задумано — вызови тул снова с acceptOverlap=true (наложение останется на твоей ответственности). Ближайшее свободное место: x=156, y=-16.\",\"freeSpot\":{\"x\":156,\"y\":-16},\"overlapping\":[{\"id\":\"art_nttd4c6xr4\",\"caption\":\"Auth Service\",\"x\":4…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "refused",
+      "refused": true,
+      "ms": 0,
+      "args": "{\"items\":[{\"height\":140,\"props\":{\"color\":\"pink\",\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\"},\"width\":220,\"type\":\"note\",\"x\":640,\"y\":-130}]}",
+      "resultSummary": "{\"created\":false,\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_2ki60bbwme («PostgreSQL»). Если так и задумано — вызови тул снова с acceptOverlap=true (наложение останется на твоей ответственности). Ближайшее свободное место: x=640, y=-164.\",\"freeSpot\":{\"x\":640,\"y\":-164},\"overlapping\":[{\"id\":\"art_2ki60bbwme\",\"caption\":\"PostgreSQL\",\"x\":800,\"y\":0}],\"blocked\":[{\"refused\":true…"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"height\":140,\"props\":{\"color\":\"pink\",\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\"},\"width\":220,\"type\":\"note\",\"x\":640,\"y\":-164}]}",
+      "resultSummary": "{\"id\":\"art_glis68yqfs\",\"type\":\"note\",\"x\":640,\"y\":-164,\"width\":220,\"height\":140,\"z\":8,\"rotation\":0,\"props\":{\"text\":\"## Redis\\n\\nКэш для Auth и Orders.\",\"color\":\"pink\"},\"createdAt\":1789582256827,\"updatedAt\":1789582256827}"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"links\":[{\"fromId\":\"art_4v35kgifc1\",\"toId\":\"art_qqewjj9c8j\",\"label\":\"вызов\"},{\"fromId\":\"art_nttd4c6xr4\",\"toId\":\"art_glis68yqfs\",\"label\":\"кэш\"},{\"fromId\":\"art_4v35kgifc1\",\"toId\":\"art_glis68yqfs\",\"label\":\"кэш\"},{\"fromId\":\"art_4v35kgifc1\",\"toId\":\"art_4vq5yxs85t\",\"label\":\"публикует события\"},{\"fromId\":\"art_4vq5yxs85t\",\"toId\":\"art_qqewjj9c8j\",\"label\":\"читает события\"},{\"fromId\":\"art_4vq5yxs85t\",\"toId\":\"art_pwqbuj24gi\",\"label\":\"читает события\"}]}",
+      "resultSummary": "{\"created\":6,\"arrows\":[{\"id\":\"arr_d1uwn5le47\",\"from\":{\"artifactId\":\"art_4v35kgifc1\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_qqewjj9c8j\",\"side\":\"auto\"},\"bends\":[],\"label\":\"вызов\",\"style\":{},\"createdAt\":1789582269963,\"updatedAt\":1789582269963},{\"id\":\"arr_dd1i8xrv3o\",\"from\":{\"artifactId\":\"art_nttd4c6xr4\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_glis68yqfs\",\"side\":\"auto\"},\"bends\":[],\"label\":\"кэш\",\"style\"…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3acw3v8agt\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_n5suqpoe7d\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_0uadjw56jz\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1uwn5le47\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-300,\"width\":1540,\"height\":720},\"schema\":\"region: x=-120 y=-300 w=1540 h=720 (1 char ≈ 23x24 px)\\n\\n\\n\\n\\n\\n                       +---------+\\n                       |n:nttd   |+--------+\\n                       |         ||n:glis  |\\n                  ·····|         ||        |\\n                  ·    |         ||        |\\n                  ·    |       …"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":4,\"labelConflict\":5,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":54,\"cost\":21,\"grade\":\"терпимо\",\"previousCost\":21,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCro…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"moves\":[{\"id\":\"art_qqewjj9c8j\",\"x\":400,\"y\":180},{\"id\":\"art_4vq5yxs85t\",\"x\":800,\"y\":180},{\"id\":\"art_glis68yqfs\",\"x\":660,\"y\":-164}]}",
+      "resultSummary": "{\"moved\":3,\"artifacts\":[{\"id\":\"art_qqewjj9c8j\",\"x\":400,\"y\":180},{\"id\":\"art_4vq5yxs85t\",\"x\":800,\"y\":180},{\"id\":\"art_glis68yqfs\",\"x\":660,\"y\":-164}],\"arrowsReset\":6,\"note\":\"Изгибы 6 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3acw3v8agt\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_n5suqpoe7d\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_0uadjw56jz\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1uwn5le47\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":1,\"labelConflict\":3,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":68,\"cost\":11.5,\"grade\":\"терпимо\",\"previousCost\":11.5,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":0,\"shallo…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_glis68yqfs\",\"x\":660,\"y\":-180}",
+      "resultSummary": "{\"moved\":1,\"artifacts\":[{\"id\":\"art_glis68yqfs\",\"x\":660,\"y\":-180}],\"arrowsReset\":2,\"note\":\"Изгибы 2 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3acw3v8agt\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_n5suqpoe7d\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_0uadjw56jz\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1uwn5le47\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-300,\"width\":1540,\"height\":740},\"schema\":\"region: x=-120 y=-300 w=1540 h=740 (1 char ≈ 23x25 px)\\n\\n\\n\\n\\n\\n                       +---------++---------+\\n                       |n:nttd   ||n:glis   |\\n                       |         ||         |\\n                  ·····|         ||         |\\n                  ·    |         ||         |\\n                …"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_d1uwn5le47\",\"label\":\"\"}",
+      "resultSummary": "{\"id\":\"arr_d1uwn5le47\",\"from\":{\"artifactId\":\"art_4v35kgifc1\",\"side\":\"bottom\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_qqewjj9c8j\",\"side\":\"top\",\"offset\":0.5},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"\",\"style\":{},\"createdAt\":1789582269963,\"updatedAt\":1789582392920,\"autoPorts\":true}"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_dd1i8xrv3o\",\"label\":\"\"}",
+      "resultSummary": "{\"id\":\"arr_dd1i8xrv3o\",\"from\":{\"artifactId\":\"art_nttd4c6xr4\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_glis68yqfs\",\"side\":\"left\",\"offset\":0.5},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"\",\"style\":{},\"createdAt\":1789582269964,\"updatedAt\":1789582392924,\"autoPorts\":true}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3acw3v8agt\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_n5suqpoe7d\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_0uadjw56jz\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1uwn5le47\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":86,\"cost\":4,\"grade\":\"хорошо\",\"previousCost\":4,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCrossi…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pwqbuj24gi\",\"x\":1080,\"y\":180}",
+      "resultSummary": "{\"moved\":1,\"artifacts\":[{\"id\":\"art_pwqbuj24gi\",\"x\":1080,\"y\":180}],\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3acw3v8agt\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_n5suqpoe7d\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_0uadjw56jz\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1uwn5le47\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_pwqbuj24gi\",\"x\":1080,\"y\":160}",
+      "resultSummary": "{\"moved\":1,\"artifacts\":[{\"id\":\"art_pwqbuj24gi\",\"x\":1080,\"y\":160}],\"arrowsReset\":1,\"note\":\"Изгибы 1 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3acw3v8agt\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_n5suqpoe7d\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_0uadjw56jz\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1uwn5le47\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":86,\"cost\":4,\"grade\":\"хорошо\",\"previousCost\":4,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCrossi…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_pzq6ij8ben\",\"label\":\"\"}",
+      "resultSummary": "{\"id\":\"arr_pzq6ij8ben\",\"from\":{\"artifactId\":\"art_4vq5yxs85t\",\"side\":\"right\",\"offset\":0.42857142857142855},\"to\":{\"artifactId\":\"art_pwqbuj24gi\",\"side\":\"left\",\"offset\":0.5714285714285714},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"\",\"style\":{},\"createdAt\":1789582269965,\"updatedAt\":1789582461563,\"autoPorts\":true}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3acw3v8agt\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_n5suqpoe7d\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_0uadjw56jz\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1uwn5le47\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":89,\"cost\":3,\"grade\":\"хорошо\",\"previousCost\":3,\"improvedBy\":0},\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCrossi…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_vkzjrneci0\",\"label\":\"\"}",
+      "resultSummary": "{\"id\":\"arr_vkzjrneci0\",\"from\":{\"artifactId\":\"art_4vq5yxs85t\",\"side\":\"left\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_qqewjj9c8j\",\"side\":\"right\",\"offset\":0.5},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"\",\"style\":{},\"createdAt\":1789582269964,\"updatedAt\":1789582491880,\"autoPorts\":true}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3acw3v8agt\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_n5suqpoe7d\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_0uadjw56jz\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_d1uwn5le47\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\"}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-300,\"width\":1540,\"height\":740},\"schema\":\"region: x=-120 y=-300 w=1540 h=740 (1 char ≈ 23x25 px)\\n\\n\\n\\n\\n\\n                       +---------++---------+\\n                       |n:nttd   ||n:glis   |\\n                       |         ||         |\\n                  ·····|         ||         |\\n                  ·    |         ||         |\\n                …"
+    },
+    {
+      "name": "board_quality",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"score\":100,\"cost\":0,\"grade\":\"отлично\",\"previousCost\":0,\"improvedBy\":0,\"metrics\":{\"artifacts\":8,\"arrows\":9,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCrossings\":0,\"mergedArrows\":0,\"clearanceHits\":0,\"overlaps\":0,\"tightPairs\":0,\"labelConflicts\":0,\"bends\":5,\"drawnTurns\":6,\"cornerPorts\":0,\"totalLength\":1616,\"detour\":1},\"breakdown\":[],\"hints\":[]}"
+    }
+  ],
+  "toolHistogram": {
+    "board_get_region": 2,
+    "skill_list": 1,
+    "skill_get": 1,
+    "board_get_schema": 4,
+    "artifact_create": 4,
+    "arrow_create": 1,
+    "board_route_arrows": 8,
+    "board_check_intersections": 5,
+    "artifact_move": 4,
+    "arrow_update": 4,
+    "board_quality": 1
+  },
+  "refusals": [
+    {
+      "name": "artifact_create",
+      "why": "{\"created\":false,\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_nttd4c6xr4 («Auth Service»), art_4v35kgifc1 («Orders Service»). Если так и задумано — вызови тул снова с acceptOverlap=true (наложение останется на твоей ответственности). Ближайшее свободное место: x=156, y=-16.\",\"freeSpot\":{\"x\":156,\"y\":-16},\"overlapping\":[{\"id\":\"art_nttd4c6xr4\",\"caption\":\"Auth Service\",\"x\":4…"
+    },
+    {
+      "name": "artifact_create",
+      "why": "{\"created\":false,\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_2ki60bbwme («PostgreSQL»). Если так и задумано — вызови тул снова с acceptOverlap=true (наложение останется на твоей ответственности). Ближайшее свободное место: x=640, y=-164.\",\"freeSpot\":{\"x\":640,\"y\":-164},\"overlapping\":[{\"id\":\"art_2ki60bbwme\",\"caption\":\"PostgreSQL\",\"x\":800,\"y\":0}],\"blocked\":[{\"refused\":true…"
+    }
+  ],
+  "errors": [],
+  "usage": {
+    "promptTokens": 716007,
+    "completionTokens": 6507,
+    "totalTokens": 722514,
+    "calls": 33,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 636416
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nДавайте сначала посмотрим на текущее состояние доски и выберем подходящий скилл.\n\nОтлично! У нас есть схема с 4 блоками и 3 стрелками. Нужно добавить новые сервисы со связями. Это графовая структура — прочитаю скилл graph-layout.\n\nТеперь у меня полная картина. Давайте спланируем.\n\n**Текущая схема:**\n```\nAPI Gateway ──→ Auth Service\nAPI Gateway ──→ Orders Service ──→ PostgreSQL\n```\n\n**Что нужно добавить:**\n1. **Payments Service** — вызывается из Orders\n2. **Redis** — кэш для Auth и для Orders\n3. **Kafka** — Orders публикует события, Payments их читает\n4. **Notification Service** — читает из Kafka и шлёт письма\n\n**Связи:**\n- Orders → Payments\n- Auth → Redis (кэш)\n- Orders → Redis (кэш)\n- Orders → Kafka (публикует события)\n- Kafka → Payments (читает события)\n- Kafka → Notification Service (читает события)\n\nУзлов станет 8, связей 9. Это уже не маленькая схема. Но существующие блоки уже стоят на своих местах, и их не надо ломать. Я расставлю новые блоки вручную, расширяя схему вправо и вниз, чтобы сохранить поток.\n\nДавайте посмотрим схему, чтобы прикинуть расположение.\n\nОтлично, вижу расположение. Теперь спланирую расстановку новых блоков.\n\n**План расположения (руками, т.к. существующие блоки фиксированы и нужно вписаться):**\n\nСуществующие блоки не трогаем. Новые блоки расположу так:\n\n- **Payments Service** — под Orders (Orders → Payments), x=400, y=+160\n- **Redis** — слева от Auth и Orders, чтобы обе стрелки были короткими, x=120, y=-90 (между Auth и Orders по высоте)\n- **Kafka** — правее Orders, под PostgreSQL, x=800, y=+160\n- **Notification Service** — правее Kafka, x=1080, y=+160\n\nДавайте проверим, не накладывается ли что-то.\n\nПроверю координаты для новых блоков:\n\n- **Payments Service**: x=400, y=160 (под Orders, 220x140) — отступ от Orders 20px, норм\n- **Redis**: x=120, y=-90 (между Auth и Orders по высоте, слева) — 220x140. Auth: y=-180, Orders: y=0. Середина = -90. От левого края API Gateway (x=220) до Redis (x=120) — 100px зазор, норм.\n- **Kafka**: x=800, y=160 (под PostgreSQL, 220x140) — отступ от PostgreSQL 20px\n- **Notification Service**: x=1080, y=160 (правее Kafka, 220x140) — отступ от Kafka 60px\n\nДавайте создадим все 4 блока и все связи одним вызовом.\n\nRedis не создался — накладывается на API Gateway. Ближайшее свободное место: x=120, y=-164. Давайте подвинем Redis чуть выше, чтобы он был между Auth и Orders, но не налезал на API Gateway.\n\nAPI Gateway: x=0..220, y=0..140. Redis: 220x140. Если x=120, то левый край 120, правый 340 — накладывается на API Gateway (0..220). Нужно x >= 220. Поставлю x=220, y=-90.\n\nНо тогда Redis будет вплотную к API Gateway справа. Давайте x=240, y=-90 — зазор 20px от API Gateway.\n\nRedis при x=240, y=-90 накладывается на Auth (400..620, -180..-40) и Orders (400..620, 0..140). Нужно поставить Redis левее Auth и Orders, но правее API Gateway.\n\nAPI Gateway: x=0..220, y=0..140\nAuth: x=400..620, y=-180..-40\nOrders: x=400..620, y=0..140\n\nСвободное место: x между 220 и 400. Поставлю Redis: x=240, y=-130 (над Auth, между API Gateway и Auth).\n\nAuth: y=-180..-40. Redis: 220x140, если y=-130, то y2=10. Orders: y=0..140. Redis будет y=-130..10 — почти не задевает Orders (y=0), но зазор 10px маловат. Поставлю y=-140: Redis y=-140..0 — вплотную к Orders, но не накладывается.\n\nПроверю: x=240..460, y=-140..0. Auth: x=400..620, y=-180..-40. Пересечение по x: 400..460, по y: -140..-40 — накладывается на Auth!\n\nНужно x < 400. x=240..460, но пересечение с Auth по x с 400. Поставлю x=240, y=-140 — пересекается с Auth по y (-140..-40) и x (400..460). Не подходит.\n\nПоставлю Redis слева от Auth, но выше Orders: x=240, y=-90. Тогда Redis: 240..460, -90..50. Auth: 400..620, -180..-40. Пересечение: x 400..460, y -90..-40 — накладывается на Auth.\n\nНужно x <= 400-220 = 180. Поставлю x=180, y=-130. Redis: 180..400, -130..10. Auth: 400..620, -180..-40 — не пересекается (x=400 граничит). Orders: 400..620, 0..140 — не пересекается (x=400 граничит, y=10..0 зазор 10px). API Gateway: 0..220, 0..140 — не пересекается (x=180..220, y=-130..10 vs 0..220, 0..140 — пересечение по x 180..220, по y -130..10 vs 0..140 — нет пересечения, т.к. y=-130..10 и y=0..140 пересекаются по y 0..10!).\n\nЧёрт. API Gateway y=0..140, Redis y=-130..10 — пересечение y 0..10. Нужно y <= -140 или y >= 140.\n\nПоставлю Redis: x=180, y=-170. Redis: 180..400, -170..-30. Auth: 400..620, -180..-40. Пересечение: x 400 (граница), y -170..-40 — накладывается на Auth по y!\n\nx=180, y=-200. Redis: 180..400, -200..-60. Auth: 400..620, -180..-40. Пересечение: x 400 (граница), y -180..-60 — накладывается!\n\nНужно x < 400-220=180, т.е. x <= 179. Поставлю x=160, y=-200. Redis: 160..380, -200..-60. API Gateway: 0..220, 0..140 — не пересекается (y). Auth: 400..620, -180..-40 — не пересекается (x=380 < 400). Orders: 400..620, 0..140 — не пересекается. Отлично!\n\nНо Redis далеко от Auth и Orders. Давайте подумаем иначе.\n\nМожет, поставить Redis справа от Auth? x=640, y=-130. Redis: 640..860, -130..10. Auth: 400..620, -180..-40 — не пересекается. Orders: 400..620, 0..140 — не пересекается. PostgreSQL: 800..1020, 0..140 — пересечение x 800..860, y -130..10 vs 0..140 — нет пересечения. Kafka: 800..1020, 160..300 — не пересекается. Отлично!\n\n\n\nRedis: 640..860, -130..10. PostgreSQL: 800..1020, 0..140. Пересечение по x 800..860, y -130..10 vs 0..140 — пересечение y 0..10. \n\nПоставлю y=-164 (как предлагает тул): Redis: 640..860, -164..-24. PostgreSQL: 800..1020, 0..140 — не пересекается. Auth: 400..620, -180..-40 — не пересекается (x=640 > 620). Orders: 400..620, 0..140 — не пересекается. Отлично!\n\n\n\nОтлично! Все 4 блока созданы. Теперь создадим все связи.\n\nСвязи:\n1. Orders → Payments (вызов)\n2. Auth → Redis (кэш)\n3. Orders → Redis (кэш)\n4. Orders → Kafka (публикует события)\n5. Kafka → Payments (читает события)\n6. Kafka → Notification Service (читает события)\n\nID блоков:\n- art_c8p49knkrb — API Gateway\n- art_nttd4c6xr4 — Auth Service\n- art_4v35kgifc1 — Orders Service\n- art_2ki60bbwme — PostgreSQL\n- art_qqewjj9c8j — Payments Service\n- art_4vq5yxs85t — Kafka\n- art_pwqbuj24gi — Notification Service\n- art_glis68yqfs — Redis\n\n\n\nВсе 6 стрелок созданы. Теперь проложим маршруты.\n\nНеплохо, 54/100 — терпимо. Есть 4 тесноты и 5 конфликтов подписей. Давайте посмотрим схему и проверим, что можно улучшить.\n\n\n\nВижу проблему: стрелка \"читает события\" (Kafka → Payments) идёт налево, хотя Kafka справа от Payments. Это крюк. Давайте поправим: Payments (400,160) и Kafka (800,160) — Kafka правее, а стрелка идёт влево. Нужно поменять направление: Payments → Kafka? Нет, по заданию Kafka читает события от Orders, а Payments читает из Kafka. Так что Kafka → Payments — это справа налево. \n\nДавайте проверим качество и посмотрим, что можно улучшить.\n\n\n\nПроблемы:\n1. **Теснота**: между Orders и Payments 20px (нужно 40), между PostgreSQL и Kafka 20px, между Auth и Redis 20px по горизонтали, между PostgreSQL и Redis 24px.\n2. **Подписи накладываются** на блоки — нужно раздвинуть.\n\nДавайте раздвинем:\n- Payments сдвинем вниз: y=180 (было 160) — зазор 40px от Orders\n- Kafka сдвинем вниз: y=180 (было 160) — зазор 40px от PostgreSQL\n- Redis сдвинем левее: x=620 (было 640) — зазор 20px от Auth, нужно 40. Auth: x=400..620, Redis: если x=580, то 580..800 — зазор 0. Нужно x <= 580. Поставлю x=580, y=-164. Redis: 580..800, -164..-24. Auth: 400..620, -180..-40. Пересечение x 580..620, y -164..-40 — накладывается!\n\nПоставлю Redis: x=560, y=-164. Redis: 560..780, -164..-24. Auth: 400..620, -180..-40. Пересечение x 560..620, y -164..-40 — накладывается!\n\nНужно x <= 400-220 = 180 или x >= 620+40 = 660. Поставлю x=660, y=-164. Redis: 660..880, -164..-24. Auth: 400..620 — не пересекается. PostgreSQL: 800..1020, 0..140 — пересечение x 800..880, y -164..-24 vs 0..140 — нет пересечения. Отлично! И зазор от Auth: 660-620=40px — идеально.\n\nДавайте применим правки.\n\n\n\nСтрелки сброшены. Нужно снова проложить маршруты.\n\n\n\n68/100 — уже лучше. Осталась 1 теснота и 3 конфликта подписей. Давайте проверим, что осталось.\n\n\n\n\n\nОсталось:\n1. **Теснота**: PostgreSQL (800,0) и Redis (660,-164) — зазор 24px по вертикали. Redis: y=-164..-24, PostgreSQL: y=0..140. Зазор 24px. Нужно 40. Можно сдвинуть Redis ещё выше: y=-180. Redis: -180..-40. PostgreSQL: 0..140 — зазор 40px. Auth: -180..-40 — Redis будет на той же высоте, что Auth. Не накладывается, т.к. x=660, а Auth x=400..620.\n\n2. **Подпись \"вызов\"** на стрелке Orders→Payments накладывается на Orders. Подпись короткая, можно убрать или переименовать.\n\n3. **Подпись \"кэш\"** на Auth→Redis накладывается на Auth.\n\n4. **Подпись \"читает события\"** на Kafka→Notification накладывается на Kafka.\n\nДавайте попробуем исправить тесноту и посмотреть, не поправятся ли подписи сами.\n\n\n\n\n\nТеснота ушла, но конфликтов подписей стало 4. Давайте посмотрим схему.\n\n\n\n\n\nВижу, что стрелка Kafka→Payments (\"читает события\") идёт влево — это крюк, т.к. Kafka (800,180) правее Payments (400,180). По заданию Payments читает из Kafka, так что направление правильное, но линия длинная. Это нормально для такой схемы.\n\nПодписи накладываются из-за тесноты. Давайте попробуем убрать подписи, которые слишком короткие и очевидные, или переименовать их.\n\nПроблемные подписи:\n1. \"вызов\" на Orders→Payments — накладывается на Orders. Можно убрать подпись (очевидно, что это вызов).\n2. \"кэш\" на Auth→Redis — накладывается на Auth. Можно убрать.\n3. \"читает события\" на Kafka→Notification — накладывается на Kafka. \n4. \"читает события\" на Kafka→Payments — тоже может накладываться.\n\nДавайте уберём короткие подписи \"вызов\" и \"кэш\" (они очевидны), а \"читает события\" оставим только на одной стрелке.\n\n\n\n\n\n86/100 — хорошо! Остался 1 конфликт подписи. Давайте проверим какой.\n\n\n\n\n\nОстался конфликт: подпись \"читает события\" на стрелке Kafka→Notification накладывается на Kafka. Это потому что Kafka (800,180) и Notification (1080,160) — стрелка идёт из правой стороны Kafka, подпись оказывается над Kafka.\n\nДавайте попробуем выровнять Notification по высоте с Kafka (y=180) или сдвинуть подпись.\n\n\n\n\n\nСтало хуже. Вернём Notification на y=160.\n\n\n\n\n\nВернулись к 86/100 с 1 конфликтом подписи. Давайте посмотрим, что это за конфликт.\n\n\n\n\n\nПодпись \"читает события\" на Kafka→Notification накладывается на Kafka. Стрелка идёт из правой стороны Kafka (800,180) в левую сторону Notification (1080,160). Подпись оказывается над Kafka.\n\nМожно попробовать убрать подпись \"читает события\" на этой стрелке — контекст и так понятен. Или сократить до \"события\".\n\nДавайте попробуем убрать подпись — это самый простой способ, и смысл остаётся ясным.\n\n\n\n\n\nХм, всё ещё 1 конфликт. Давайте проверим.\n\n\n\n\n\n\n\nТеперь конфликт на стрелке Kafka→Payments (\"читает события\"). Подпись накладывается на Kafka. Стрелка идёт из левой стороны Kafka в правую сторону Payments — это длинная линия справа налево.\n\nДавайте уберём и эту подпись — Kafka как шина событий, и так понятно, что Payments читает из неё.\n\n\n\n\n\n\n\n100/100 — отлично! Давайте проверим финальную схему.\n\n\n\n\n\n\n\nВсё отлично! Вот итоговая схема:\n\n## Результат\n\n**Что сделано:** Дополнил существующую схему сервиса четырьмя новыми узлами и шестью связями.\n\n**Новые блоки:**\n- **Payments Service** (x=400, y=180) — под Orders, вызывается из него\n- **Redis** (x=660, y=-180) — справа от Auth, кэш для Auth и Orders\n- **Kafka** (x=800, y=180) — под PostgreSQL, шина событий\n- **Notification Service** (x=1080, y=160) — правее Kafka, читает события\n\n**Новые связи:**\n- Orders → Payments (вертикально, bottom→top)\n- Auth → Redis (горизонтально, right→left)\n- Orders → Redis (через верх, с подписью \"кэш\")\n- Orders → Kafka (через правую сторону, с подписью \"публикует события\")\n- Kafka → Payments (влево, длинная)\n- Kafka → Notification (вправо)\n\n**Способ расстановки:** ручной — существующие блоки уже стояли на своих местах, нужно было аккуратно вписать новые, не сдвигая старые. Всего 8 узлов, структура понятная: два слоя по вертикали (верхний: Auth, Orders, PostgreSQL, Redis; нижний: Payments, Kafka, Notification).\n\n**Качество раскладки:** **100/100** — отлично. Нет пересечений, наложений, тесноты или конфликтов подписей.",
+  "boardId": "brd_ffm65gueij",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_c8p49knkrb",
+        "type": "note",
+        "x": 0,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "## API Gateway\n\nВходная точка, маршрутизация и rate limit.",
+          "color": "blue"
+        },
+        "createdAt": 1789582135286,
+        "updatedAt": 1789582135286
+      },
+      {
+        "id": "art_nttd4c6xr4",
+        "type": "note",
+        "x": 400,
+        "y": -180,
+        "width": 220,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "## Auth Service\n\nВыдаёт и проверяет JWT.",
+          "color": "green"
+        },
+        "createdAt": 1789582135294,
+        "updatedAt": 1789582135294
+      },
+      {
+        "id": "art_4v35kgifc1",
+        "type": "note",
+        "x": 400,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "## Orders Service\n\nСоздание и статусы заказов.",
+          "color": "green"
+        },
+        "createdAt": 1789582135298,
+        "updatedAt": 1789582135298
+      },
+      {
+        "id": "art_2ki60bbwme",
+        "type": "note",
+        "x": 800,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "## PostgreSQL\n\nОсновное хранилище заказов.",
+          "color": "gray"
+        },
+        "createdAt": 1789582135314,
+        "updatedAt": 1789582135314
+      },
+      {
+        "id": "art_qqewjj9c8j",
+        "type": "note",
+        "x": 400,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "## Payments Service\n\nОбработка платежей по заказам.",
+          "color": "green"
+        },
+        "createdAt": 1789582193032,
+        "updatedAt": 1789582312229
+      },
+      {
+        "id": "art_4vq5yxs85t",
+        "type": "note",
+        "x": 800,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "## Kafka\n\nШина событий.",
+          "color": "purple"
+        },
+        "createdAt": 1789582193032,
+        "updatedAt": 1789582312229
+      },
+      {
+        "id": "art_pwqbuj24gi",
+        "type": "note",
+        "x": 1080,
+        "y": 160,
+        "width": 220,
+        "height": 140,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "text": "## Notification Service\n\nЧитает события, шлёт письма.",
+          "color": "green"
+        },
+        "createdAt": 1789582193032,
+        "updatedAt": 1789582427234
+      },
+      {
+        "id": "art_glis68yqfs",
+        "type": "note",
+        "x": 660,
+        "y": -180,
+        "width": 220,
+        "height": 140,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "text": "## Redis\n\nКэш для Auth и Orders.",
+          "color": "pink"
+        },
+        "createdAt": 1789582256827,
+        "updatedAt": 1789582352526
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_3acw3v8agt",
+        "from": {
+          "artifactId": "art_c8p49knkrb",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_nttd4c6xr4",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 292,
+            "y": 70
+          },
+          {
+            "x": 292,
+            "y": -110
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789582135331,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_n5suqpoe7d",
+        "from": {
+          "artifactId": "art_c8p49knkrb",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_4v35kgifc1",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789582135347,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_0uadjw56jz",
+        "from": {
+          "artifactId": "art_4v35kgifc1",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_2ki60bbwme",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789582135364,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_d1uwn5le47",
+        "from": {
+          "artifactId": "art_4v35kgifc1",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_qqewjj9c8j",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "",
+        "style": {},
+        "createdAt": 1789582269963,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_dd1i8xrv3o",
+        "from": {
+          "artifactId": "art_nttd4c6xr4",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_glis68yqfs",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "",
+        "style": {},
+        "createdAt": 1789582269964,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_k4gbm4r59a",
+        "from": {
+          "artifactId": "art_4v35kgifc1",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_glis68yqfs",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "bends": [
+          {
+            "x": 510,
+            "y": -32
+          },
+          {
+            "x": 770,
+            "y": -32
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "кэш",
+        "style": {},
+        "createdAt": 1789582269964,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_k5widcf3ai",
+        "from": {
+          "artifactId": "art_4v35kgifc1",
+          "side": "right",
+          "offset": 0.7214285714285714
+        },
+        "to": {
+          "artifactId": "art_4vq5yxs85t",
+          "side": "left",
+          "offset": 0.12142857142857143
+        },
+        "bends": [
+          {
+            "x": 692,
+            "y": 197
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "публикует события",
+        "style": {},
+        "createdAt": 1789582269964,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_vkzjrneci0",
+        "from": {
+          "artifactId": "art_4vq5yxs85t",
+          "side": "left",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_qqewjj9c8j",
+          "side": "right",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "",
+        "style": {},
+        "createdAt": 1789582269964,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_pzq6ij8ben",
+        "from": {
+          "artifactId": "art_4vq5yxs85t",
+          "side": "right",
+          "offset": 0.42857142857142855
+        },
+        "to": {
+          "artifactId": "art_pwqbuj24gi",
+          "side": "left",
+          "offset": 0.5714285714285714
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "",
+        "style": {},
+        "createdAt": 1789582269965,
+        "updatedAt": 1789582497421,
+        "autoPorts": true
+      }
+    ]
+  }
+}

@@ -4,17 +4,17 @@
   "repeat": 0,
   "probes": "починка готовой плохой схемы, а не постройка с нуля",
   "model": "deepseek-v4-flash",
-  "at": "2026-09-16T13:16:53.803Z",
-  "ms": 69412,
+  "at": "2026-09-16T17:55:58.105Z",
+  "ms": 91446,
   "aborted": false,
   "screenshotsServed": 0,
   "iterations": 8,
   "seededArtifacts": 7,
   "seededArrows": 8,
   "quality": {
-    "score": 88,
-    "cost": 3.5,
-    "grade": "хорошо",
+    "score": 100,
+    "cost": 0,
+    "grade": "отлично",
     "counts": {
       "arrowArtifact": 0,
       "arrowArrow": 0,
@@ -38,24 +38,13 @@
       "overlaps": 0,
       "tightPairs": 0,
       "labelConflicts": 0,
-      "bends": 5,
-      "drawnTurns": 5,
+      "bends": 3,
+      "drawnTurns": 4,
       "cornerPorts": 0,
-      "totalLength": 3259,
-      "detour": 1.02
+      "totalLength": 2446,
+      "detour": 1
     },
-    "breakdown": [
-      {
-        "reason": "поворот линии",
-        "count": 5,
-        "cost": 2.5
-      },
-      {
-        "reason": "стрелки идут в обход",
-        "count": 2,
-        "cost": 1.02007083825265
-      }
-    ]
+    "breakdown": []
   },
   "completeness": {
     "isolatedNodes": 0,
@@ -67,21 +56,21 @@
   "observations": {
     "artifacts": 7,
     "arrows": 8,
-    "width": 520,
-    "height": 1940,
-    "aspect": 0.27,
-    "density": 0.21,
-    "edgeLengthMedian": 366,
-    "edgeLengthMax": 748,
-    "edgeLengthSpread": 2.04,
+    "width": 2090,
+    "height": 336,
+    "aspect": 6.22,
+    "density": 0.31,
+    "edgeLengthMedian": 376,
+    "edgeLengthMax": 761,
+    "edgeLengthSpread": 2.02,
     "separation": 2.24,
     "textOverflow": 0,
     "alignedShare": 0.57,
-    "columnLanes": 3,
-    "rowLanes": 6,
+    "columnLanes": 6,
+    "rowLanes": 3,
     "isolatedNodes": 0
   },
-  "drawnLength": 3259,
+  "drawnLength": 2446,
   "ok": true,
   "findings": [],
   "toolCalls": [
@@ -91,7 +80,7 @@
       "refused": false,
       "ms": 0,
       "args": "{}",
-      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":1360,\"height\":740},\"artifacts\":[{\"id\":\"art_auab1mycl4\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Приём заявки\\n\\nКлиент оставляет заявку на сайте.\",\"color\":\"blue\"},\"createdAt\":1789564544212,\"updatedAt\":1789564544212},{\"id\":\"art_z0dbwjr0w3\",\"type\":\"note\",\"x\":0,\"y\":160,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0,\"pr…"
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":1360,\"height\":740},\"artifacts\":[{\"id\":\"art_6s7bjjsjms\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Приём заявки\\n\\nКлиент оставляет заявку на сайте.\",\"color\":\"blue\"},\"createdAt\":1789581266099,\"updatedAt\":1789581266099},{\"id\":\"art_1skyaxx3to\",\"type\":\"note\",\"x\":0,\"y\":160,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0,\"pr…"
     },
     {
       "name": "board_get_schema",
@@ -99,13 +88,13 @@
       "refused": false,
       "ms": 0,
       "args": "{\"format\":\"ascii\"}",
-      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-120,\"width\":1360,\"height\":740},\"schema\":\"region: x=-120 y=-120 w=1360 h=740 (1 char ≈ 20x25 px)\\n\\n\\n\\n\\n\\n      +----------+                                 +----------+\\n      |n:auab    |                                 |n:xbpt    |\\n      |          |                             ····|          |\\n  ····|··········|····                         ····|····…"
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-120,\"width\":1360,\"height\":740},\"schema\":\"region: x=-120 y=-120 w=1360 h=740 (1 char ≈ 20x25 px)\\n\\n\\n\\n\\n\\n      +----------+                                 +----------+\\n      |n:6s7b    |                                 |n:gh2n    |\\n      |          |                             ····|          |\\n  ····|··········|····                         ····|····…"
     },
     {
       "name": "skill_get",
       "status": "done",
       "refused": false,
-      "ms": 1,
+      "ms": 0,
       "args": "{\"slug\":\"graph-layout\"}",
       "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\nГлавное правило: **ра…"
     },
@@ -114,88 +103,24 @@
       "status": "done",
       "refused": false,
       "ms": 0,
-      "args": "{\"id\":\"art_978b37x3vp\",\"x\":320,\"y\":360}",
-      "resultSummary": "{\"moved\":1,\"artifacts\":[{\"id\":\"art_978b37x3vp\",\"x\":320,\"y\":360}]}"
-    },
-    {
-      "name": "arrow_delete",
-      "status": "done",
-      "refused": false,
-      "ms": 0,
-      "args": "{\"id\":\"arr_o8x64o66ox\"}",
-      "resultSummary": "{\"deleted\":\"arr_o8x64o66ox\"}"
-    },
-    {
-      "name": "arrow_delete",
-      "status": "done",
-      "refused": false,
-      "ms": 0,
-      "args": "{\"id\":\"arr_qgkyt33g39\"}",
-      "resultSummary": "{\"deleted\":\"arr_qgkyt33g39\"}"
-    },
-    {
-      "name": "arrow_delete",
-      "status": "done",
-      "refused": false,
-      "ms": 0,
-      "args": "{\"id\":\"arr_erli8nk3iv\"}",
-      "resultSummary": "{\"deleted\":\"arr_erli8nk3iv\"}"
-    },
-    {
-      "name": "arrow_delete",
-      "status": "done",
-      "refused": false,
-      "ms": 0,
-      "args": "{\"id\":\"arr_vrpzezizco\"}",
-      "resultSummary": "{\"deleted\":\"arr_vrpzezizco\"}"
-    },
-    {
-      "name": "arrow_delete",
-      "status": "done",
-      "refused": false,
-      "ms": 0,
-      "args": "{\"id\":\"arr_ssibi4qjgn\"}",
-      "resultSummary": "{\"deleted\":\"arr_ssibi4qjgn\"}"
-    },
-    {
-      "name": "arrow_delete",
-      "status": "done",
-      "refused": false,
-      "ms": 0,
-      "args": "{\"id\":\"arr_v7d0esxr1h\"}",
-      "resultSummary": "{\"deleted\":\"arr_v7d0esxr1h\"}"
-    },
-    {
-      "name": "arrow_delete",
-      "status": "done",
-      "refused": false,
-      "ms": 0,
-      "args": "{\"id\":\"arr_8d12cuop2i\"}",
-      "resultSummary": "{\"deleted\":\"arr_8d12cuop2i\"}"
-    },
-    {
-      "name": "arrow_delete",
-      "status": "done",
-      "refused": false,
-      "ms": 0,
-      "args": "{\"id\":\"arr_vojp3cgpdj\"}",
-      "resultSummary": "{\"deleted\":\"arr_vojp3cgpdj\"}"
-    },
-    {
-      "name": "arrow_create",
-      "status": "done",
-      "refused": false,
-      "ms": 1,
-      "args": "{\"links\":[{\"fromId\":\"art_auab1mycl4\",\"toId\":\"art_z0dbwjr0w3\",\"label\":\"передана\"},{\"fromId\":\"art_z0dbwjr0w3\",\"toId\":\"art_v1bdye93yk\",\"label\":\"прошла\"},{\"fromId\":\"art_v1bdye93yk\",\"toId\":\"art_978b37x3vp\",\"label\":\"спорная\"},{\"fromId\":\"art_v1bdye93yk\",\"toId\":\"art_xbptjlhf53\",\"label\":\"одобрена\"},{\"fromId\":\"art_v1bdye93yk\",\"toId\":\"art_42z1ynbhcb\",\"label\":\"отказ\"},{\"fromId\":\"art_978b37x3vp\",\"toId\":\"art_xbptjlhf53\",\"label\":\"одобрена\"},{\"fromId\":\"art_978b37x3vp\",\"toId\":\"art_42z1ynbhcb\",\"label\":\"отказ\"},{\"fromId\":\"art_xbptjlhf53\",\"toId\":\"art_drx5353n1m\",\"label\":\"выплата\"}]}",
-      "resultSummary": "{\"created\":8,\"arrows\":[{\"id\":\"arr_7wxn80vww4\",\"from\":{\"artifactId\":\"art_auab1mycl4\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_z0dbwjr0w3\",\"side\":\"auto\"},\"bends\":[],\"label\":\"передана\",\"style\":{},\"createdAt\":1789564580099,\"updatedAt\":1789564580099},{\"id\":\"arr_47knynoicv\",\"from\":{\"artifactId\":\"art_z0dbwjr0w3\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_v1bdye93yk\",\"side\":\"auto\"},\"bends\":[],\"label\":\"прошла\",\"…"
+      "args": "{\"id\":\"art_heco7fuxl1\",\"x\":320,\"y\":360}",
+      "resultSummary": "{\"moved\":1,\"artifacts\":[{\"id\":\"art_heco7fuxl1\",\"x\":320,\"y\":360}]}"
     },
     {
       "name": "board_arrange_graph",
       "status": "done",
       "refused": false,
       "ms": 0,
-      "args": "{\"direction\":\"auto\",\"nodeSpacing\":80,\"layerSpacing\":220}",
-      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":520,\"height\":1940},\"qualityBefore\":{\"score\":19,\"cost\":105.2,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":88,\"cost\":3.5,\"grade\":\"хорошо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":1,\"crossings\":0,\"quality\":{\"score\":100,\"cost\":0,\"grade\"…"
+      "args": "{\"direction\":\"auto\"}",
+      "resultSummary": "{\"direction\":\"TB\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":528,\"height\":1490},\"qualityBefore\":{\"score\":12,\"cost\":183,\"grade\":\"плохо\"},\"qualityAfter\":{\"score\":73,\"cost\":9.1,\"grade\":\"хорошо\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":0.7,\"crossings\":0,\"quality\":{\"score\":88,\"cost\":3.5,\"grade…"
+    },
+    {
+      "name": "board_arrange_graph",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"direction\":\"LR\"}",
+      "resultSummary": "{\"direction\":\"LR\",\"spacingScale\":1,\"layers\":6,\"layerSizes\":[1,1,1,3,2,1],\"crossings\":0,\"crossingsBefore\":1,\"reversedEdges\":0,\"moved\":7,\"bounds\":{\"x\":0,\"y\":0,\"width\":2090,\"height\":336},\"qualityBefore\":{\"score\":73,\"cost\":9.1,\"grade\":\"хорошо\"},\"qualityAfter\":{\"score\":100,\"cost\":0,\"grade\":\"отлично\"},\"candidates\":[{\"direction\":\"LR\",\"spacingScale\":0.7,\"crossings\":0,\"quality\":{\"score\":88,\"cost\":3.5,\"grad…"
     },
     {
       "name": "board_get_schema",
@@ -203,7 +128,7 @@
       "refused": false,
       "ms": 0,
       "args": "{\"format\":\"ascii\"}",
-      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-120,\"width\":760,\"height\":2180},\"schema\":\"region: x=-120 y=-120 w=760 h=2180 (1 char ≈ 11x73 px)\\n\\n\\n                             +-------------------+\\n                             |n:auab             |\\n                             +-------------------+\\n                                       ·\\n                                       ·\\n                 …"
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":-120,\"y\":-120,\"width\":2330,\"height\":576},\"schema\":\"region: x=-120 y=-120 w=2330 h=576 (1 char ≈ 34x19 px)\\n\\n\\n\\n\\n\\n\\n                                               +------+   +-----+\\n                                               |n:gh2n|   |n:j70a\\n                                               |      |   |     |\\n                             ··················|…"
     },
     {
       "name": "board_check_intersections",
@@ -211,48 +136,46 @@
       "refused": false,
       "ms": 0,
       "args": "{}",
-      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":88,\"cost\":3.5,\"grade\":\"хорошо\",\"previousCost\":3.5,\"improvedBy\":0},\"metrics\":{\"artifacts\":7,\"arrows\":8,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCr…"
+      "resultSummary": "{\"region\":null,\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":2,\"quality\":{\"score\":100,\"cost\":0,\"grade\":\"отлично\",\"previousCost\":0,\"improvedBy\":0},\"metrics\":{\"artifacts\":7,\"arrows\":8,\"edgeNodeHits\":0,\"crossings\":0,\"shallowCros…"
     },
     {
-      "name": "board_get_schema",
+      "name": "board_get_region",
       "status": "done",
       "refused": false,
       "ms": 0,
-      "args": "{\"format\":\"svg\"}",
-      "resultSummary": "{\"format\":\"svg\",\"region\":{\"x\":-120,\"y\":-120,\"width\":760,\"height\":2180},\"schema\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"357\\\" height=\\\"1024\\\" viewBox=\\\"-120 -120 760 2180\\\">\\n<rect x=\\\"-120\\\" y=\\\"-120\\\" width=\\\"760\\\" height=\\\"2180\\\" fill=\\\"#101216\\\"/>\\n<polyline points=\\\"314,140 314,212 314,288 314,360\\\" fill=\\\"none\\\" stroke=\\\"#7c8aa5\\\" stroke-width=\\\"2\\\"/><polygon points=\\\"314,360 308.…"
+      "args": "{\"x\":-50,\"y\":-50,\"width\":2200,\"height\":450}",
+      "resultSummary": "{\"region\":{\"x\":-50,\"y\":-50,\"width\":2200,\"height\":450},\"artifacts\":[{\"id\":\"art_6s7bjjsjms\",\"type\":\"note\",\"x\":0,\"y\":140,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Приём заявки\\n\\nКлиент оставляет заявку на сайте.\",\"color\":\"blue\"},\"createdAt\":1789581266099,\"updatedAt\":1789581336311},{\"id\":\"art_1skyaxx3to\",\"type\":\"note\",\"x\":374,\"y\":140,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0,\"…"
     }
   ],
   "toolHistogram": {
-    "board_get_region": 1,
-    "board_get_schema": 3,
+    "board_get_region": 2,
+    "board_get_schema": 2,
     "skill_get": 1,
     "artifact_move": 1,
-    "arrow_delete": 8,
-    "arrow_create": 1,
-    "board_arrange_graph": 1,
+    "board_arrange_graph": 2,
     "board_check_intersections": 1
   },
   "refusals": [],
   "errors": [],
   "usage": {
-    "promptTokens": 117126,
-    "completionTokens": 1815,
-    "totalTokens": 118941,
+    "promptTokens": 111644,
+    "completionTokens": 1237,
+    "totalTokens": 112881,
     "calls": 8,
     "callsWithoutUsage": 0,
-    "cachedTokens": 83968
+    "cachedTokens": 73984
   },
   "termination": "completed",
   "restoredCheckpoint": false,
-  "answer": "\n\nДавайте сначала посмотрю, что сейчас на доске, и выберу подходящий скилл.\n\nОтлично! Вижу картину:\n\n**Проблемы:**\n1. Блоки слева налезают друг на друга: `art_978b37x3vp` (Ручная проверка) наложена на `art_v1bdye93yk` (Скоринг) — они внахлёст\n2. Все стрелки идут с right на left, собираются в пучок посередине\n3. Качество 10/100 — очень плохо\n\n**Структура графа (пайплайн обработки заявки):**\n- Приём заявки → Проверка данных → Скоринг\n- Скоринг → Одобрено / Отказ / Ручная проверка\n- Ручная проверка → Одобрено / Отказ\n- Одобрено → Выдача\n\nСледуя скиллу graph-layout: сначала раздвину узлы, чтобы не налезали, потом создам все стрелки заново (те же связи), и вызову board_arrange_graph.\n\nДавайте сначала раздвину узлы, чтобы убрать наложения, и пересоздам стрелки.\n\nТеперь уберу старые стрелки и создам новые — с правильными связями, без указания сторон.\n\nТеперь создам все стрелки заново — те же связи, без указания сторон (auto), чтобы раскладка сама выбрала оптимальные порты.\n\nВсе стрелки созданы. Теперь вызову board_arrange_graph — он сам разложит узлы по слоям и проложит маршруты.\n\nОтлично! Раскладка выбрала направление TB (сверху вниз). Качество подскочило с 19 до 88/100. Но давайте посмотрим, как это выглядит, и проверим пересечения.\n\nОтлично! Всё чисто. Давайте посмотрим на итоговую раскладку визуально.\n\nВсё отлично! Вот что получилось.\n\n---\n\n## Результат\n\n**Схема обработки заявки** — пайплайн из 7 узлов и 8 связей, разложенный **сверху вниз (TB)** в 6 слоёв:\n\n```\nПриём заявки\n     ↓ передана\nПроверка данных\n     ↓ прошла\nСкоринг ──спорная──→ Ручная проверка\n  │ одобрена              │ одобрена\n  │ отказ                 │ отказ\n  ↓                       ↓\nОдобрено               Отказ\n  ↓ выплата\nВыдача\n```\n\n**Что исправлено:**\n- ✅ **Наложение блоков устранено** — «Ручная проверка» больше не налезает на «Скоринг»\n- ✅ **Стрелки не собираются в пучок** — раскладка сама выбрала стороны и порты, линии расходятся аккуратно\n- ✅ **0 пересечений** — ни одна стрелка не пересекает другую\n- ✅ **Подписи на стрелках** — «передана», «прошла», «спорная», «одобрена», «отказ», «выплата»\n\n**Качество раскладки: 88/100** (было 10/100) — штраф снижен с 222.6 до 3.5. Все проверки пройдены, жёстких конфликтов нет.",
-  "boardId": "brd_l7pjcpzjpc",
+  "answer": "\n\nДавайте разберёмся с текущим состоянием доски. Сначала получу полную информацию.\n\nВижу проблему. Это граф — схема обработки заявки. Узлы налезают друг на друга (art_386a6v2c0g и art_heco7fuxl1 пересекаются), стрелки все идут пучком. Нужно прочитать скилл graph-layout.\n\nОтлично. У меня уже есть все узлы и все стрелки. Проблема: блоки налезают друг на друга (art_386a6v2c0g и art_heco7fuxl1 пересекаются), стрелки в пучке. По скиллу — нужно вызвать board_arrange_graph, так как все узлы и связи уже созданы.\n\nДавайте сначала разложу их по сетке без наложений, чтобы раскладка могла нормально отработать.\n\nТекущая ситуация:\n- **Узлы (7 шт):** Приём заявки → Проверка данных → Скоринг → (Ручная проверка / Одобрено / Отказ) → Выдача\n- **Стрелки (8 шт):** основной поток + ветвления\n- **Проблема:** art_386a6v2c0g (Скоринг) @(0,320) и art_heco7fuxl1 (Ручная проверка) @(40,360) — наложение\n\nСначала раздвину налезающие блоки, чтобы раскладка могла их переставить.\n\nХорошо, теперь блоки не налезают. Теперь вызову board_arrange_graph, чтобы он разложил всё по слоям.\n\nОтлично! Раскладка сработала. Но я вижу, что направление TB дало score 73, а LR (слева направо) даёт 100! Давайте попробуем direction=LR, это будет гораздо читаемее для схемы обработки заявки.\n\n100/100, отлично! Давайте проверим, как это выглядит, и запустим проверку пересечений.\n\nВсё идеально. Давайте ещё посмотрю на визуальный результат.\n\nВсё отлично. Вот итог:\n\n---\n\n## Результат\n\n**Схема обработки заявки** переложена в читаемый вид. Все 7 узлов и 8 связей сохранены — ничего не удалено и не добавлено.\n\n### Что было\n- Блоки **Скоринг** и **Ручная проверка** налезали друг на друга (x=0,y=320 и x=40,y=360)\n- Все стрелки шли пучком, оценка качества **10/100** (плохо)\n\n### Что сделано\n1. **Раздвинул** налезающие блоки\n2. **Вызвал board_arrange_graph** с направлением **LR (слева направо)** — поток обработки заявки естественно читается слева направо\n\n### Как теперь выглядит\n```\nПриём заявки → Проверка данных → Скоринг → Ручная проверка → Одобрено → Выдача\n                                                              ↘ Отказ\n```\n- **6 слоёв**, поток слева направо\n- **0 пересечений** стрелок\n- **0 наложений** блоков\n- **Оценка качества: 100/100 (отлично)** — улучшение с 10 до 100",
+  "boardId": "brd_zen2utpqv6",
   "state": {
     "artifacts": [
       {
-        "id": "art_auab1mycl4",
+        "id": "art_6s7bjjsjms",
         "type": "note",
-        "x": 204,
-        "y": 0,
+        "x": 0,
+        "y": 140,
         "width": 220,
         "height": 140,
         "z": 1,
@@ -261,14 +184,14 @@
           "text": "## Приём заявки\n\nКлиент оставляет заявку на сайте.",
           "color": "blue"
         },
-        "createdAt": 1789564544212,
-        "updatedAt": 1789564592437
+        "createdAt": 1789581266099,
+        "updatedAt": 1789581336311
       },
       {
-        "id": "art_z0dbwjr0w3",
+        "id": "art_1skyaxx3to",
         "type": "note",
-        "x": 204,
-        "y": 360,
+        "x": 374,
+        "y": 140,
         "width": 220,
         "height": 140,
         "z": 2,
@@ -277,14 +200,14 @@
           "text": "## Проверка данных\n\nАвтоматическая валидация полей.",
           "color": "blue"
         },
-        "createdAt": 1789564544227,
-        "updatedAt": 1789564592437
+        "createdAt": 1789581266123,
+        "updatedAt": 1789581336311
       },
       {
-        "id": "art_v1bdye93yk",
+        "id": "art_386a6v2c0g",
         "type": "note",
-        "x": 204,
-        "y": 720,
+        "x": 748,
+        "y": 140,
         "width": 220,
         "height": 140,
         "z": 3,
@@ -293,14 +216,14 @@
           "text": "## Скоринг\n\nОценка риска по модели.",
           "color": "blue"
         },
-        "createdAt": 1789564544243,
-        "updatedAt": 1789564592437
+        "createdAt": 1789581266138,
+        "updatedAt": 1789581336311
       },
       {
-        "id": "art_978b37x3vp",
+        "id": "art_heco7fuxl1",
         "type": "note",
-        "x": 204,
-        "y": 1080,
+        "x": 1122,
+        "y": 140,
         "width": 220,
         "height": 140,
         "z": 4,
@@ -309,14 +232,14 @@
           "text": "## Ручная проверка\n\nАналитик смотрит спорные случаи.",
           "color": "pink"
         },
-        "createdAt": 1789564544258,
-        "updatedAt": 1789564592437
+        "createdAt": 1789581266154,
+        "updatedAt": 1789581336311
       },
       {
-        "id": "art_xbptjlhf53",
+        "id": "art_gh2nhytnh1",
         "type": "note",
-        "x": 0,
-        "y": 1440,
+        "x": 1496,
+        "y": 0,
         "width": 220,
         "height": 140,
         "z": 5,
@@ -325,14 +248,14 @@
           "text": "## Одобрено\n\nЗаявка уходит в выдачу.",
           "color": "green"
         },
-        "createdAt": 1789564544274,
-        "updatedAt": 1789564592437
+        "createdAt": 1789581266460,
+        "updatedAt": 1789581336311
       },
       {
-        "id": "art_42z1ynbhcb",
+        "id": "art_vxijqrjxfb",
         "type": "note",
-        "x": 300,
-        "y": 1440,
+        "x": 1496,
+        "y": 196,
         "width": 220,
         "height": 140,
         "z": 6,
@@ -341,14 +264,14 @@
           "text": "## Отказ\n\nКлиент получает уведомление.",
           "color": "gray"
         },
-        "createdAt": 1789564544281,
-        "updatedAt": 1789564592437
+        "createdAt": 1789581266531,
+        "updatedAt": 1789581336311
       },
       {
-        "id": "art_drx5353n1m",
+        "id": "art_j70aliy9cm",
         "type": "note",
-        "x": 0,
-        "y": 1800,
+        "x": 1870,
+        "y": 0,
         "width": 220,
         "height": 140,
         "z": 7,
@@ -357,192 +280,176 @@
           "text": "## Выдача\n\nПеревод средств клиенту.",
           "color": "green"
         },
-        "createdAt": 1789564544285,
-        "updatedAt": 1789564592437
+        "createdAt": 1789581266547,
+        "updatedAt": 1789581336311
       }
     ],
     "arrows": [
       {
-        "id": "arr_7wxn80vww4",
+        "id": "arr_6vejryp715",
         "from": {
-          "artifactId": "art_auab1mycl4",
-          "side": "bottom",
+          "artifactId": "art_6s7bjjsjms",
+          "side": "right",
           "offset": 0.5
         },
         "to": {
-          "artifactId": "art_z0dbwjr0w3",
-          "side": "top",
-          "offset": 0.5
-        },
-        "bends": [],
-        "routing": "orthogonal",
-        "label": "передана",
-        "style": {},
-        "createdAt": 1789564580099,
-        "updatedAt": 1789564592437,
-        "autoPorts": true
-      },
-      {
-        "id": "arr_47knynoicv",
-        "from": {
-          "artifactId": "art_z0dbwjr0w3",
-          "side": "bottom",
-          "offset": 0.5
-        },
-        "to": {
-          "artifactId": "art_v1bdye93yk",
-          "side": "top",
-          "offset": 0.5
-        },
-        "bends": [],
-        "routing": "orthogonal",
-        "label": "прошла",
-        "style": {},
-        "createdAt": 1789564580099,
-        "updatedAt": 1789564592437,
-        "autoPorts": true
-      },
-      {
-        "id": "arr_5prcvuen8l",
-        "from": {
-          "artifactId": "art_v1bdye93yk",
-          "side": "bottom",
-          "offset": 0.5
-        },
-        "to": {
-          "artifactId": "art_978b37x3vp",
-          "side": "top",
-          "offset": 0.5
-        },
-        "bends": [],
-        "routing": "orthogonal",
-        "label": "спорная",
-        "style": {},
-        "createdAt": 1789564580099,
-        "updatedAt": 1789564592437,
-        "autoPorts": true
-      },
-      {
-        "id": "arr_vaf53cc3ye",
-        "from": {
-          "artifactId": "art_v1bdye93yk",
+          "artifactId": "art_1skyaxx3to",
           "side": "left",
           "offset": 0.5
         },
-        "to": {
-          "artifactId": "art_xbptjlhf53",
-          "side": "top",
-          "offset": 0.5
-        },
-        "bends": [
-          {
-            "x": 110,
-            "y": 790
-          }
-        ],
+        "bends": [],
         "routing": "orthogonal",
-        "label": "одобрена",
         "style": {},
-        "createdAt": 1789564580099,
-        "updatedAt": 1789564592437,
+        "createdAt": 1789581266556,
+        "updatedAt": 1789581336311,
         "autoPorts": true
       },
       {
-        "id": "arr_obx7roj2ff",
+        "id": "arr_uqbo3rw74n",
         "from": {
-          "artifactId": "art_v1bdye93yk",
+          "artifactId": "art_1skyaxx3to",
           "side": "right",
           "offset": 0.5
         },
         "to": {
-          "artifactId": "art_42z1ynbhcb",
+          "artifactId": "art_386a6v2c0g",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789581266567,
+        "updatedAt": 1789581336311,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_ayiskp4svk",
+        "from": {
+          "artifactId": "art_386a6v2c0g",
           "side": "right",
-          "offset": 0.7214285714285714
-        },
-        "bends": [
-          {
-            "x": 592,
-            "y": 790
-          },
-          {
-            "x": 592,
-            "y": 1541
-          }
-        ],
-        "routing": "orthogonal",
-        "label": "отказ",
-        "style": {},
-        "createdAt": 1789564580099,
-        "updatedAt": 1789564592437,
-        "autoPorts": true
-      },
-      {
-        "id": "arr_xayy25c9i5",
-        "from": {
-          "artifactId": "art_978b37x3vp",
-          "side": "bottom",
           "offset": 0.5
         },
         "to": {
-          "artifactId": "art_xbptjlhf53",
-          "side": "top",
-          "offset": 0.5
-        },
-        "bends": [
-          {
-            "x": 314,
-            "y": 1368
-          },
-          {
-            "x": 110,
-            "y": 1368
-          }
-        ],
-        "routing": "orthogonal",
-        "label": "одобрена",
-        "style": {},
-        "createdAt": 1789564580099,
-        "updatedAt": 1789564592437,
-        "autoPorts": true
-      },
-      {
-        "id": "arr_glqskyjz6o",
-        "from": {
-          "artifactId": "art_978b37x3vp",
-          "side": "bottom",
-          "offset": 0.7181818181818181
-        },
-        "to": {
-          "artifactId": "art_42z1ynbhcb",
-          "side": "top",
-          "offset": 0.2818181818181818
-        },
-        "bends": [],
-        "routing": "orthogonal",
-        "label": "отказ",
-        "style": {},
-        "createdAt": 1789564580099,
-        "updatedAt": 1789564592437,
-        "autoPorts": true
-      },
-      {
-        "id": "arr_4iovpoqqz8",
-        "from": {
-          "artifactId": "art_xbptjlhf53",
-          "side": "bottom",
-          "offset": 0.5
-        },
-        "to": {
-          "artifactId": "art_drx5353n1m",
-          "side": "top",
+          "artifactId": "art_heco7fuxl1",
+          "side": "left",
           "offset": 0.5
         },
         "bends": [],
         "routing": "orthogonal",
-        "label": "выплата",
         "style": {},
-        "createdAt": 1789564580099,
-        "updatedAt": 1789564592437,
+        "createdAt": 1789581266570,
+        "updatedAt": 1789581336311,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_ldn6ucl5f7",
+        "from": {
+          "artifactId": "art_386a6v2c0g",
+          "side": "top",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_gh2nhytnh1",
+          "side": "left",
+          "offset": 0.36428571428571427
+        },
+        "bends": [
+          {
+            "x": 858,
+            "y": 51
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789581266576,
+        "updatedAt": 1789581336311,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_ke0dods948",
+        "from": {
+          "artifactId": "art_heco7fuxl1",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_gh2nhytnh1",
+          "side": "left",
+          "offset": 0.6357142857142857
+        },
+        "bends": [
+          {
+            "x": 1414,
+            "y": 89
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789581266584,
+        "updatedAt": 1789581336311,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_pyjs3ci100",
+        "from": {
+          "artifactId": "art_heco7fuxl1",
+          "side": "right",
+          "offset": 0.7
+        },
+        "to": {
+          "artifactId": "art_vxijqrjxfb",
+          "side": "left",
+          "offset": 0.3
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789581266600,
+        "updatedAt": 1789581336311,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_0uqs5nc8gy",
+        "from": {
+          "artifactId": "art_386a6v2c0g",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_vxijqrjxfb",
+          "side": "left",
+          "offset": 0.8571428571428571
+        },
+        "bends": [
+          {
+            "x": 858,
+            "y": 316
+          }
+        ],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789581266608,
+        "updatedAt": 1789581336311,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_dez7xqsq4w",
+        "from": {
+          "artifactId": "art_gh2nhytnh1",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_j70aliy9cm",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "style": {},
+        "createdAt": 1789581266625,
+        "updatedAt": 1789581336311,
         "autoPorts": true
       }
     ]

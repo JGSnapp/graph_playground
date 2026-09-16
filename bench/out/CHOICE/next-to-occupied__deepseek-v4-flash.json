@@ -1,0 +1,724 @@
+{
+  "exp": "CHOICE",
+  "task": "next-to-occupied",
+  "repeat": 0,
+  "probes": "новая композиция рядом с занятой зоной, без наложений",
+  "model": "deepseek-v4-flash",
+  "at": "2026-09-16T18:16:28.117Z",
+  "ms": 297784,
+  "aborted": false,
+  "screenshotsServed": 0,
+  "iterations": 23,
+  "seededArtifacts": 6,
+  "seededArrows": 0,
+  "quality": {
+    "score": 94,
+    "cost": 1.5,
+    "grade": "отлично",
+    "counts": {
+      "arrowArtifact": 0,
+      "arrowArrow": 0,
+      "arrowOverlap": 0,
+      "arrowClearance": 0,
+      "artifactArtifact": 0,
+      "tightSpacing": 0,
+      "labelConflict": 0,
+      "arrowPortAngle": 0,
+      "arrowSharedPort": 0,
+      "arrowShortEdge": 0
+    },
+    "metrics": {
+      "artifacts": 13,
+      "arrows": 7,
+      "edgeNodeHits": 0,
+      "crossings": 0,
+      "shallowCrossings": 0,
+      "mergedArrows": 0,
+      "clearanceHits": 0,
+      "overlaps": 0,
+      "tightPairs": 0,
+      "labelConflicts": 0,
+      "bends": 3,
+      "drawnTurns": 3,
+      "cornerPorts": 0,
+      "totalLength": 1118,
+      "detour": 1
+    },
+    "breakdown": [
+      {
+        "reason": "поворот линии",
+        "count": 3,
+        "cost": 1.5
+      }
+    ]
+  },
+  "completeness": {
+    "isolatedNodes": 6,
+    "isolatedIds": [
+      "art_d6ovn36ljg",
+      "art_byvb8ny6b4",
+      "art_7y29vupq1k",
+      "art_0k1t2qczuz",
+      "art_hk0njyk7x3",
+      "art_wtw6x61l18"
+    ],
+    "missingGraph": false,
+    "brokenGraph": false,
+    "counts": true
+  },
+  "observations": {
+    "artifacts": 13,
+    "arrows": 7,
+    "width": 2720,
+    "height": 320,
+    "aspect": 8.5,
+    "density": 0.37,
+    "edgeLengthMedian": 360,
+    "edgeLengthMax": 371,
+    "edgeLengthSpread": 1.03,
+    "separation": 3.64,
+    "textOverflow": 0,
+    "alignedShare": 0.81,
+    "columnLanes": 9,
+    "rowLanes": 3,
+    "isolatedNodes": 6
+  },
+  "drawnLength": 1118,
+  "ok": true,
+  "findings": [],
+  "toolCalls": [
+    {
+      "name": "board_get_region",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"region\":{\"x\":-120,\"y\":-120,\"width\":980,\"height\":560},\"artifacts\":[{\"id\":\"art_d6ovn36ljg\",\"type\":\"note\",\"x\":0,\"y\":0,\"width\":220,\"height\":140,\"z\":1,\"rotation\":0,\"props\":{\"text\":\"## Спринт 12\\n\\nЗакрытые задачи команды.\",\"color\":\"purple\"},\"createdAt\":1789582290247,\"updatedAt\":1789582290247},{\"id\":\"art_byvb8ny6b4\",\"type\":\"note\",\"x\":260,\"y\":0,\"width\":220,\"height\":140,\"z\":2,\"rotation\":0,\"props\":{\"text…"
+    },
+    {
+      "name": "skill_list",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"skills\":[{\"slug\":\"artifact-set\",\"name\":\"Раскладка набора артефактов\",\"when\":\"Нужно просто показать материал: список, подборка, карточки, заметки, картинки, куски кода. Связей нет или две-три.\"},{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\"}]}"
+    },
+    {
+      "name": "skill_get",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"slug\":\"graph-layout\"}",
+      "resultSummary": "{\"slug\":\"graph-layout\",\"name\":\"Построение графа\",\"when\":\"Нужна связная структура, где смысл в связях: схема, алгоритм, пайплайн, дерево, вики, карта зависимостей, диаграмма состояний, модель данных.\",\"body\":\"# Построение графа\\n\\nЗадача: связная структура, где смысл в связях — схема, алгоритм, пайплайн, дерево,\\nвики, карта зависимостей, диаграмма состояний, модель данных.\\n\\n## Шаг 1. Опиши граф …"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"shape\",\"x\":800,\"y\":0,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#FFF3CD\",\"stroke\":\"#FFC107\",\"label\":\"Алерт\"}},{\"type\":\"shape\",\"x\":1060,\"y\":0,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#CCE5FF\",\"stroke\":\"#007BFF\",\"label\":\"Дежурный\"}},{\"type\":\"shape\",\"x\":1320,\"y\":0,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#D4EDDA\",\"stroke\":\"#28A745\",\"label\":\"Диагностика\"}},{\"type\":\"shape\",\"x\":1320,\"y\":180,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#F8D7DA\",\"stroke\":\"#DC3545\",\"label\":\"Эскалация\"}},{\"type\":\"shape\",\"x\":1580,\"y\":90,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#D6D8DB\",\"stroke\":\"#6C757D\",\"label\":\"Митигация\"}},{\"type\":\"shape\",\"x\":1840,\"y\":90,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#E2D5F1\",\"stroke\":\"#6F42C1\",\"label\":\"Постмортем\"}},{\"type\":\"shape\",\"x\":2100,\"y\":90,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#FFF3CD\",\"stroke\":\"#FFC107\",\"label\":\"Задача в бэклог\"}}]}",
+      "resultSummary": "{\"created\":7,\"artifacts\":[{\"id\":\"art_f8fc0r3k7x\",\"type\":\"shape\",\"x\":800,\"y\":0,\"width\":200,\"height\":100,\"z\":7,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#FFF3CD\",\"stroke\":\"#FFC107\",\"label\":\"Алерт\"},\"createdAt\":1789582339567,\"updatedAt\":1789582339567},{\"id\":\"art_w7l79in93u\",\"type\":\"shape\",\"x\":1060,\"y\":0,\"width\":200,\"height\":100,\"z\":8,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#CCE5FF\",\"stroke\":\"…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"links\":[{\"fromId\":\"art_f8fc0r3k7x\",\"toId\":\"art_w7l79in93u\",\"label\":\"пришёл\"},{\"fromId\":\"art_w7l79in93u\",\"toId\":\"art_wegweej48v\",\"label\":\"передаёт\"},{\"fromId\":\"art_wegweej48v\",\"toId\":\"art_5xyqgh06y8\",\"label\":\"найден фикс\"},{\"fromId\":\"art_wegweej48v\",\"toId\":\"art_4rijs097mr\",\"label\":\"нужна помощь\"},{\"fromId\":\"art_4rijs097mr\",\"toId\":\"art_5xyqgh06y8\",\"label\":\"подключилась\"},{\"fromId\":\"art_5xyqgh06y8\",\"toId\":\"art_hslbmd6we5\",\"label\":\"инцидент закрыт\"},{\"fromId\":\"art_hslbmd6we5\",\"toId\":\"art_prmjzzhwcg\",\"label\":\"заведена\"}]}",
+      "resultSummary": "{\"created\":7,\"arrows\":[{\"id\":\"arr_3nhidwkfyw\",\"from\":{\"artifactId\":\"art_f8fc0r3k7x\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_w7l79in93u\",\"side\":\"auto\"},\"bends\":[],\"label\":\"пришёл\",\"style\":{},\"createdAt\":1789582350628,\"updatedAt\":1789582350628},{\"id\":\"arr_5m4x5gdo1s\",\"from\":{\"artifactId\":\"art_w7l79in93u\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_wegweej48v\",\"side\":\"auto\"},\"bends\":[],\"label\":\"передаёт\",\"…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_3nhidwkfyw\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_5m4x5gdo1s\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_x9ssvddcne\",\"bends\":2,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_i2sc5dr91y\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\",\"x\":780,\"y\":-20,\"width\":1540,\"height\":340}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":780,\"y\":-20,\"width\":1540,\"height\":340},\"schema\":\"region: x=780 y=-20 w=1540 h=340 (1 char ≈ 23x11 px)\\n\\n\\n +--------+ +--------+  +--------+\\n |s:f8fc  | |s:w7l7  |  |s:wegw  |\\n |        | |        |  |        |·\\n |        | |        |  |        |·\\n |        |·|        |··|        |·\\n |        | |        |  |        |·\\n |        | |        |  |        |·\\n |  …"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"x\":780,\"y\":-20,\"width\":1540,\"height\":340}",
+      "resultSummary": "{\"region\":{\"x\":780,\"y\":-20,\"width\":1540,\"height\":340},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":4,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":63,\"cost\":15,\"grade\":\"терпимо\",\"previousCost\":15,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"e…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"moves\":[{\"id\":\"art_w7l79in93u\",\"x\":1100,\"y\":0},{\"id\":\"art_wegweej48v\",\"x\":1400,\"y\":0},{\"id\":\"art_4rijs097mr\",\"x\":1400,\"y\":180},{\"id\":\"art_5xyqgh06y8\",\"x\":1700,\"y\":90},{\"id\":\"art_hslbmd6we5\",\"x\":2000,\"y\":90},{\"id\":\"art_prmjzzhwcg\",\"x\":2300,\"y\":90}]}",
+      "resultSummary": "{\"moved\":2,\"artifacts\":[{\"id\":\"art_w7l79in93u\",\"x\":1100,\"y\":0},{\"id\":\"art_prmjzzhwcg\",\"x\":2300,\"y\":90}],\"blocked\":[{\"id\":\"art_wegweej48v\",\"refused\":true,\"needsConfirmation\":true,\"reason\":\"Блок наложится на art_5xyqgh06y8 («Митигация»). Если так и задумано — вызови тул снова с acceptOverlap=true (наложение останется на твоей ответственности). Ближайшее свободное место: x=1400, y=-34.\",\"freeSpot\":{\"…"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_w7l79in93u\"}",
+      "resultSummary": "{\"deleted\":\"art_w7l79in93u\",\"arrowsRemoved\":2}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_wegweej48v\"}",
+      "resultSummary": "{\"deleted\":\"art_wegweej48v\",\"arrowsRemoved\":2}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_4rijs097mr\"}",
+      "resultSummary": "{\"deleted\":\"art_4rijs097mr\",\"arrowsRemoved\":1}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_5xyqgh06y8\"}",
+      "resultSummary": "{\"deleted\":\"art_5xyqgh06y8\",\"arrowsRemoved\":1}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_hslbmd6we5\"}",
+      "resultSummary": "{\"deleted\":\"art_hslbmd6we5\",\"arrowsRemoved\":1}"
+    },
+    {
+      "name": "artifact_delete",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"art_prmjzzhwcg\"}",
+      "resultSummary": "{\"deleted\":\"art_prmjzzhwcg\",\"arrowsRemoved\":0}"
+    },
+    {
+      "name": "artifact_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"items\":[{\"type\":\"shape\",\"x\":1120,\"y\":0,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#CCE5FF\",\"stroke\":\"#007BFF\",\"label\":\"Дежурный\"}},{\"type\":\"shape\",\"x\":1440,\"y\":0,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#D4EDDA\",\"stroke\":\"#28A745\",\"label\":\"Диагностика\"}},{\"type\":\"shape\",\"x\":1440,\"y\":180,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#F8D7DA\",\"stroke\":\"#DC3545\",\"label\":\"Эскалация\"}},{\"type\":\"shape\",\"x\":1760,\"y\":90,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#D6D8DB\",\"stroke\":\"#6C757D\",\"label\":\"Митигация\"}},{\"type\":\"shape\",\"x\":2080,\"y\":90,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#E2D5F1\",\"stroke\":\"#6F42C1\",\"label\":\"Постмортем\"}},{\"type\":\"shape\",\"x\":2400,\"y\":90,\"width\":200,\"height\":100,\"props\":{\"shape\":\"rect\",\"fill\":\"#FFF3CD\",\"stroke\":\"#FFC107\",\"label\":\"Задача в бэклог\"}}]}",
+      "resultSummary": "{\"created\":6,\"artifacts\":[{\"id\":\"art_od1w940228\",\"type\":\"shape\",\"x\":1120,\"y\":0,\"width\":200,\"height\":100,\"z\":8,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#CCE5FF\",\"stroke\":\"#007BFF\",\"label\":\"Дежурный\"},\"createdAt\":1789582420260,\"updatedAt\":1789582420260},{\"id\":\"art_pxba4lqcjr\",\"type\":\"shape\",\"x\":1440,\"y\":0,\"width\":200,\"height\":100,\"z\":9,\"rotation\":0,\"props\":{\"shape\":\"rect\",\"fill\":\"#D4EDDA\",\"strok…"
+    },
+    {
+      "name": "arrow_create",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"links\":[{\"fromId\":\"art_f8fc0r3k7x\",\"toId\":\"art_od1w940228\",\"label\":\"пришёл\"},{\"fromId\":\"art_od1w940228\",\"toId\":\"art_pxba4lqcjr\",\"label\":\"передаёт\"},{\"fromId\":\"art_pxba4lqcjr\",\"toId\":\"art_onximeeoxc\",\"label\":\"найден фикс\"},{\"fromId\":\"art_pxba4lqcjr\",\"toId\":\"art_dqc1b61rq0\",\"label\":\"нужна помощь\"},{\"fromId\":\"art_dqc1b61rq0\",\"toId\":\"art_onximeeoxc\",\"label\":\"подключилась\"},{\"fromId\":\"art_onximeeoxc\",\"toId\":\"art_bhe2vic78k\",\"label\":\"инцидент закрыт\"},{\"fromId\":\"art_bhe2vic78k\",\"toId\":\"art_dujh8otk5q\",\"label\":\"заведена\"}]}",
+      "resultSummary": "{\"created\":7,\"arrows\":[{\"id\":\"arr_fd6ldqa7n2\",\"from\":{\"artifactId\":\"art_f8fc0r3k7x\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_od1w940228\",\"side\":\"auto\"},\"bends\":[],\"label\":\"пришёл\",\"style\":{},\"createdAt\":1789582433368,\"updatedAt\":1789582433368},{\"id\":\"arr_s6a5stls78\",\"from\":{\"artifactId\":\"art_od1w940228\",\"side\":\"auto\"},\"to\":{\"artifactId\":\"art_pxba4lqcjr\",\"side\":\"auto\"},\"bends\":[],\"label\":\"передаёт\",\"…"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_fd6ldqa7n2\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_s6a5stls78\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_4qd6kq7eh3\",\"bends\":1,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_u8cza9v0im\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"x\":780,\"y\":-20,\"width\":1840,\"height\":340}",
+      "resultSummary": "{\"region\":{\"x\":780,\"y\":-20,\"width\":1840,\"height\":340},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":83,\"cost\":5,\"grade\":\"хорошо\",\"previousCost\":5,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"edge…"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"moves\":[{\"id\":\"art_onximeeoxc\",\"x\":1780,\"y\":90},{\"id\":\"art_bhe2vic78k\",\"x\":2120,\"y\":90},{\"id\":\"art_dujh8otk5q\",\"x\":2460,\"y\":90}]}",
+      "resultSummary": "{\"moved\":3,\"artifacts\":[{\"id\":\"art_onximeeoxc\",\"x\":1780,\"y\":90},{\"id\":\"art_bhe2vic78k\",\"x\":2120,\"y\":90},{\"id\":\"art_dujh8otk5q\",\"x\":2460,\"y\":90}],\"arrowsReset\":4,\"note\":\"Изгибы 4 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_fd6ldqa7n2\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_s6a5stls78\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_4qd6kq7eh3\",\"bends\":1,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_u8cza9v0im\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\",\"x\":780,\"y\":-20,\"width\":1900,\"height\":340}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":780,\"y\":-20,\"width\":1900,\"height\":340},\"schema\":\"region: x=780 y=-20 w=1900 h=340 (1 char ≈ 28x11 px)\\n\\n\\n +------+   +------+    +------+\\n |s:f8fc|   |s:od1w|    |s:pxba|··\\n |      |   |      |    |      | ·\\n |      |   |      |    |      | ·\\n |      |···|      |····|      | ·\\n |      |   |      |    |      | ·\\n |      |   |      |    |      | ·\\n |      |  …"
+    },
+    {
+      "name": "artifact_move",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"moves\":[{\"id\":\"art_onximeeoxc\",\"x\":1800,\"y\":90},{\"id\":\"art_bhe2vic78k\",\"x\":2160,\"y\":90},{\"id\":\"art_dujh8otk5q\",\"x\":2520,\"y\":90}]}",
+      "resultSummary": "{\"moved\":3,\"artifacts\":[{\"id\":\"art_onximeeoxc\",\"x\":1800,\"y\":90},{\"id\":\"art_bhe2vic78k\",\"x\":2160,\"y\":90},{\"id\":\"art_dujh8otk5q\",\"x\":2520,\"y\":90}],\"arrowsReset\":4,\"note\":\"Изгибы 4 автоматически проложенных стрелок сброшены: они были рассчитаны для прежнего положения. Не вызывай роутер после каждого сдвига — закончи расстановку узлов и сторон, затем один раз board_route_arrows.\"}"
+    },
+    {
+      "name": "board_route_arrows",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{}",
+      "resultSummary": "{\"routed\":[{\"arrowId\":\"arr_fd6ldqa7n2\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_s6a5stls78\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_4qd6kq7eh3\",\"bends\":1,\"fallback\":false,\"crowded\":false,\"hook\":false,\"detourRatio\":1},{\"arrowId\":\"arr_u8cza9v0im\",\"bends\":0,\"fallback\":false,\"crowded\":false,\"hook\":false,\"d…"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"x\":780,\"y\":-20,\"width\":1900,\"height\":340}",
+      "resultSummary": "{\"region\":{\"x\":780,\"y\":-20,\"width\":1900,\"height\":340},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":1,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":85,\"cost\":4.5,\"grade\":\"хорошо\",\"previousCost\":4.5,\"improvedBy\":0},\"metrics\":{\"artifacts\":13,\"arrows\":7,\"…"
+    },
+    {
+      "name": "arrow_update",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"id\":\"arr_042p2dmtuq\",\"label\":\"закрыт\"}",
+      "resultSummary": "{\"id\":\"arr_042p2dmtuq\",\"from\":{\"artifactId\":\"art_onximeeoxc\",\"side\":\"right\",\"offset\":0.5},\"to\":{\"artifactId\":\"art_bhe2vic78k\",\"side\":\"left\",\"offset\":0.5},\"bends\":[],\"routing\":\"orthogonal\",\"label\":\"закрыт\",\"style\":{},\"createdAt\":1789582433368,\"updatedAt\":1789582546318,\"autoPorts\":true}"
+    },
+    {
+      "name": "board_check_intersections",
+      "status": "done",
+      "refused": false,
+      "ms": 1,
+      "args": "{\"x\":780,\"y\":-20,\"width\":1900,\"height\":340}",
+      "resultSummary": "{\"region\":{\"x\":780,\"y\":-20,\"width\":1900,\"height\":340},\"ok\":true,\"counts\":{\"arrowArtifact\":0,\"arrowArrow\":0,\"arrowOverlap\":0,\"arrowClearance\":0,\"artifactArtifact\":0,\"tightSpacing\":0,\"labelConflict\":0,\"arrowPortAngle\":0,\"arrowSharedPort\":0,\"arrowShortEdge\":0},\"crossingBudget\":1,\"quality\":{\"score\":94,\"cost\":1.5,\"grade\":\"отлично\",\"previousCost\":4.5,\"improvedBy\":3},\"metrics\":{\"artifacts\":13,\"arrows\":7,…"
+    },
+    {
+      "name": "board_get_schema",
+      "status": "done",
+      "refused": false,
+      "ms": 0,
+      "args": "{\"format\":\"ascii\",\"x\":780,\"y\":-20,\"width\":1900,\"height\":340}",
+      "resultSummary": "{\"format\":\"ascii\",\"region\":{\"x\":780,\"y\":-20,\"width\":1900,\"height\":340},\"schema\":\"region: x=780 y=-20 w=1900 h=340 (1 char ≈ 28x11 px)\\n\\n\\n +------+   +------+    +------+\\n |s:f8fc|   |s:od1w|    |s:pxba|\\n |      |   |      |    |      |\\n |      |   |      |    |      |\\n |      |···|      |····|      |··\\n |      |   |      |    |      | ·\\n |      |   |      |    |      | ·\\n |      |   |    …"
+    }
+  ],
+  "toolHistogram": {
+    "board_get_region": 1,
+    "skill_list": 1,
+    "skill_get": 1,
+    "artifact_create": 2,
+    "arrow_create": 2,
+    "board_route_arrows": 4,
+    "board_get_schema": 3,
+    "board_check_intersections": 4,
+    "artifact_move": 3,
+    "artifact_delete": 6,
+    "arrow_update": 1
+  },
+  "refusals": [],
+  "errors": [],
+  "usage": {
+    "promptTokens": 423976,
+    "completionTokens": 5446,
+    "totalTokens": 429422,
+    "calls": 23,
+    "callsWithoutUsage": 0,
+    "cachedTokens": 400640
+  },
+  "termination": "completed",
+  "restoredCheckpoint": false,
+  "answer": "\n\nДавайте сначала посмотрим на текущее состояние доски и выберем подходящий скилл.\n\nУ нас есть 6 заметок в зоне 0..740 x 0..320. Нужна схема процесса — это граф. Прочитаю скилл.\n\nОтлично. У нас простая схема — 7 узлов, 7 связей, цепочка с одним ответвлением. Это можно расставить руками, компактно и аккуратно, рядом с существующей зоной.\n\nСуществующая занятая область: x=0..740, y=0..320. Размещу новую схему справа, начиная с x=800.\n\nСхема процесса:\n- **Слой 0**: Алерт\n- **Слой 1**: Дежурный\n- **Слой 2**: Диагностика (от неё ветка на Эскалацию)\n- **Слой 3**: Митигация (к ней приходит и от Диагностики, и от Эскалации)\n- **Слой 4**: Постмортем\n- **Слой 5**: Задача в бэклог\n\nСвязи:\n1. Алерт → Дежурный\n2. Дежурный → Диагностика\n3. Диагностика → Митигация\n4. Диагностика → Эскалация\n5. Эскалация → Митигация\n6. Митигация → Постмортем\n7. Постмортем → Задача в бэклог\n\nСделаю узлы размером 200x100. Расстояние между слоями 260px, между узлами внутри слоя — 80px.\n\nСхема расположения (слои по горизонтали):\n- Слой 0: Алерт @ (800, 0)\n- Слой 1: Дежурный @ (1060, 0)\n- Слой 2: Диагностика @ (1320, 0), Эскалация @ (1320, 180) — под Диагностикой\n- Слой 3: Митигация @ (1580, 90) — по центру между Диагностикой и Эскалацией\n- Слой 4: Постмортем @ (1840, 90)\n- Слой 5: Задача в бэклог @ (2100, 90)\n\nДавайте создадим все узлы и стрелки.\n\nВсе узлы созданы. Теперь создаю стрелки:\n\nВсе стрелки созданы. Теперь проложу маршруты:\n\nScore 63, grade \"терпимо\". labelConflict: 4 — это подписи на стрелках могут накладываться на блоки или друг на друга. Давайте посмотрим схему и проверим пересечения.\n\n\n\nСхема выглядит хорошо. Давайте проверим пересечения подробнее:\n\n\n\n\n\nЕсть 4 конфликта подписей — подписи накладываются на блоки, потому что расстояние между узлами 260px, а подписи не помещаются. Нужно увеличить зазор между узлами, чтобы подписи влезали. Раздвину слои с 260 до 320px.\n\nДавайте поправим: увеличу расстояние между слоями, сдвинув блоки правее.\n\nПонял — блоки накладываются, потому что я сдвигаю их все сразу, а они перекрывают друг друга. Нужно удалить старые и создать заново с правильными координатами, либо двигать последовательно. Проще удалить и пересоздать с правильным шагом.\n\nДавайте удалим старые блоки (кроме Алерта, он на месте) и создадим заново с шагом 320px между слоями.\n\n\n\nТеперь создам заново с шагом 320px между слоями. Алерт уже стоит на (800, 0).\n\nНовые координаты:\n- Алерт: (800, 0) — уже есть\n- Дежурный: (1120, 0) — 800+200+120=1120 (воздух 120px)\n- Диагностика: (1440, 0)\n- Эскалация: (1440, 180)\n- Митигация: (1760, 90)\n- Постмортем: (2080, 90)\n- Задача в бэклог: (2400, 90)\n\n\n\nТеперь создаю стрелки заново:\n\n\n\nТеперь прокладываю маршруты:\n\n\n\n\n\nУже 83 балла, grade \"хорошо\". Остался 1 labelConflict. Давайте проверим, что это:\n\n\n\n\n\nОстался один конфликт подписи \"инцидент закрыт\" на стрелке от Митигации к Постмортему — подпись 97.5px не влезает в 120px зазора (200px ширина блока + 120px воздух = 320px между центрами, но подпись начинается у края Митигации). \n\nДавайте чуть раздвинем последние три блока — увеличу шаг до 340px между слоями начиная с Митигации.\n\n\n\n\n\nВсё ещё 1 labelConflict. Давайте посмотрим схему и поймём, что с подписью \"инцидент закрыт\":\n\n\n\n\n\nСмотрю: стрелка arr_042p2dmtuq от Митигации (1780,90) к Постмортему (2120,90) — расстояние между блоками 140px (2120 - 1780 - 200 = 140). Подпись \"инцидент закрыт\" — 97.5px, она должна поместиться в 140px. Но конфликт в том, что подпись накладывается на блок Митигации — то есть она смещена влево.\n\nПроблема в том, что подпись центрируется на середине стрелки, а середина — это (1780+200+70) = 2050, то есть подпись от 1939 до 2037 — и её левый край (1939) заходит на блок Митигации (1780..1980). Нужно либо ещё раздвинуть, либо убрать подпись, либо сделать её короче.\n\nДавайте раздвинем ещё на 20px:\n\n\n\n\n\nПодпись всё ещё заходит на блок Митигации. Расстояние между блоками сейчас 2160 - 1800 - 200 = 160px. Подпись 97.5px — должна помещаться, но она центрируется на середине стрелки (1980), а левый край подписи 1987.25 — это уже за краем блока (1800+200=2000). Так, 1987.25 < 2000 — то есть подпись начинается внутри блока Митигации.\n\nПроблема в том, что стрелка от Митигации к Постмортему идёт с изгибом? Нет, bends=0. Середина стрелки — x=2080. Подпись центрируется на середине: 2080 - 97.5/2 = 2031.25. Но finding говорит box.x=1987.25 — это странно.\n\nДавайте просто уберём эту подпись — она избыточна, и так понятно, что после митигации идёт постмортем. Или сделаем короче.\n\n\n\n\n\nОтлично! Score 94, grade \"отлично\", все конфликты устранены. Давайте посмотрим финальную схему:\n\n\n\n\n\nВсё отлично. Вот итог:\n\n---\n\n## Результат\n\n**Что построил:** Схему процесса обработки инцидента из 7 узлов и 7 связей, расположенную справа от существующих заметок (начиная с x=800).\n\n**Структура (слева направо):**\n- **Слой 0:** Алерт (жёлтый)\n- **Слой 1:** Дежурный (синий)\n- **Слой 2:** Диагностика (зелёный) — от неё ответвление вниз на Эскалацию\n- **Слой 2 (ветка):** Эскалация (красный) — под Диагностикой\n- **Слой 3:** Митигация (серый) — принимает связи и от Диагностики, и от Эскалации\n- **Слой 4:** Постмортем (фиолетовый)\n- **Слой 5:** Задача в бэклог (жёлтый)\n\n**Связи с подписями:**\n- Алерт → Дежурный: «пришёл»\n- Дежурный → Диагностика: «передаёт»\n- Диагностика → Митигация: «найден фикс»\n- Диагностика → Эскалация: «нужна помощь»\n- Эскалация → Митигация: «подключилась»\n- Митигация → Постмортем: «закрыт»\n- Постмортем → Задача в бэклог: «заведена»\n\n**Способ расстановки:** Ручной — схема простая (цепочка с одним ответвлением, 7 узлов), поэтому рассчитал координаты сам, компактно и с контролем над расположением.\n\n**Качество раскладки:** **Score 94 / 100 — «отлично»**. Нет ни одного наложения, пересечения или конфликта подписей. Стрелки проложены ортогонально с минимальными изгибами. Существующие заметки не затронуты.",
+  "boardId": "brd_czw00kr5pm",
+  "state": {
+    "artifacts": [
+      {
+        "id": "art_d6ovn36ljg",
+        "type": "note",
+        "x": 0,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 1,
+        "rotation": 0,
+        "props": {
+          "text": "## Спринт 12\n\nЗакрытые задачи команды.",
+          "color": "purple"
+        },
+        "createdAt": 1789582290247,
+        "updatedAt": 1789582290247
+      },
+      {
+        "id": "art_byvb8ny6b4",
+        "type": "note",
+        "x": 260,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 2,
+        "rotation": 0,
+        "props": {
+          "text": "## Ретро\n\nЧто пошло не так.",
+          "color": "purple"
+        },
+        "createdAt": 1789582290260,
+        "updatedAt": 1789582290260
+      },
+      {
+        "id": "art_7y29vupq1k",
+        "type": "note",
+        "x": 520,
+        "y": 0,
+        "width": 220,
+        "height": 140,
+        "z": 3,
+        "rotation": 0,
+        "props": {
+          "text": "## План\n\nЧто берём в спринт 13.",
+          "color": "purple"
+        },
+        "createdAt": 1789582290269,
+        "updatedAt": 1789582290269
+      },
+      {
+        "id": "art_0k1t2qczuz",
+        "type": "note",
+        "x": 0,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 4,
+        "rotation": 0,
+        "props": {
+          "text": "## Метрики\n\nLead time, throughput.",
+          "color": "gray"
+        },
+        "createdAt": 1789582290282,
+        "updatedAt": 1789582290282
+      },
+      {
+        "id": "art_hk0njyk7x3",
+        "type": "note",
+        "x": 260,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 5,
+        "rotation": 0,
+        "props": {
+          "text": "## Инциденты\n\nДва P2 за спринт.",
+          "color": "pink"
+        },
+        "createdAt": 1789582290297,
+        "updatedAt": 1789582290297
+      },
+      {
+        "id": "art_wtw6x61l18",
+        "type": "note",
+        "x": 520,
+        "y": 180,
+        "width": 220,
+        "height": 140,
+        "z": 6,
+        "rotation": 0,
+        "props": {
+          "text": "## Долг\n\nТехдолг по биллингу.",
+          "color": "gray"
+        },
+        "createdAt": 1789582290305,
+        "updatedAt": 1789582290305
+      },
+      {
+        "id": "art_f8fc0r3k7x",
+        "type": "shape",
+        "x": 800,
+        "y": 0,
+        "width": 200,
+        "height": 100,
+        "z": 7,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#FFF3CD",
+          "stroke": "#FFC107",
+          "label": "Алерт"
+        },
+        "createdAt": 1789582339567,
+        "updatedAt": 1789582339567
+      },
+      {
+        "id": "art_od1w940228",
+        "type": "shape",
+        "x": 1120,
+        "y": 0,
+        "width": 200,
+        "height": 100,
+        "z": 8,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#CCE5FF",
+          "stroke": "#007BFF",
+          "label": "Дежурный"
+        },
+        "createdAt": 1789582420260,
+        "updatedAt": 1789582420260
+      },
+      {
+        "id": "art_pxba4lqcjr",
+        "type": "shape",
+        "x": 1440,
+        "y": 0,
+        "width": 200,
+        "height": 100,
+        "z": 9,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#D4EDDA",
+          "stroke": "#28A745",
+          "label": "Диагностика"
+        },
+        "createdAt": 1789582420260,
+        "updatedAt": 1789582420260
+      },
+      {
+        "id": "art_dqc1b61rq0",
+        "type": "shape",
+        "x": 1440,
+        "y": 180,
+        "width": 200,
+        "height": 100,
+        "z": 10,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#F8D7DA",
+          "stroke": "#DC3545",
+          "label": "Эскалация"
+        },
+        "createdAt": 1789582420260,
+        "updatedAt": 1789582420260
+      },
+      {
+        "id": "art_onximeeoxc",
+        "type": "shape",
+        "x": 1800,
+        "y": 90,
+        "width": 200,
+        "height": 100,
+        "z": 11,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#D6D8DB",
+          "stroke": "#6C757D",
+          "label": "Митигация"
+        },
+        "createdAt": 1789582420260,
+        "updatedAt": 1789582496062
+      },
+      {
+        "id": "art_bhe2vic78k",
+        "type": "shape",
+        "x": 2160,
+        "y": 90,
+        "width": 200,
+        "height": 100,
+        "z": 12,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#E2D5F1",
+          "stroke": "#6F42C1",
+          "label": "Постмортем"
+        },
+        "createdAt": 1789582420260,
+        "updatedAt": 1789582496062
+      },
+      {
+        "id": "art_dujh8otk5q",
+        "type": "shape",
+        "x": 2520,
+        "y": 90,
+        "width": 200,
+        "height": 100,
+        "z": 13,
+        "rotation": 0,
+        "props": {
+          "shape": "rect",
+          "fill": "#FFF3CD",
+          "stroke": "#FFC107",
+          "label": "Задача в бэклог"
+        },
+        "createdAt": 1789582420260,
+        "updatedAt": 1789582496062
+      }
+    ],
+    "arrows": [
+      {
+        "id": "arr_fd6ldqa7n2",
+        "from": {
+          "artifactId": "art_f8fc0r3k7x",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_od1w940228",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "пришёл",
+        "style": {},
+        "createdAt": 1789582433368,
+        "updatedAt": 1789582508459,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_s6a5stls78",
+        "from": {
+          "artifactId": "art_od1w940228",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_pxba4lqcjr",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "передаёт",
+        "style": {},
+        "createdAt": 1789582433368,
+        "updatedAt": 1789582508459,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_4qd6kq7eh3",
+        "from": {
+          "artifactId": "art_pxba4lqcjr",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_onximeeoxc",
+          "side": "left",
+          "offset": 0.38
+        },
+        "bends": [
+          {
+            "x": 1712,
+            "y": 128
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "найден фикс",
+        "style": {},
+        "createdAt": 1789582433368,
+        "updatedAt": 1789582508459,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_u8cza9v0im",
+        "from": {
+          "artifactId": "art_pxba4lqcjr",
+          "side": "bottom",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_dqc1b61rq0",
+          "side": "top",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "нужна помощь",
+        "style": {},
+        "createdAt": 1789582433368,
+        "updatedAt": 1789582508459,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_gvanqjo2e2",
+        "from": {
+          "artifactId": "art_dqc1b61rq0",
+          "side": "top",
+          "offset": 0.74
+        },
+        "to": {
+          "artifactId": "art_onximeeoxc",
+          "side": "left",
+          "offset": 0.62
+        },
+        "bends": [
+          {
+            "x": 1588,
+            "y": 152
+          },
+          {
+            "x": 1692,
+            "y": 152
+          }
+        ],
+        "routing": "orthogonal",
+        "label": "подключилась",
+        "style": {},
+        "createdAt": 1789582433368,
+        "updatedAt": 1789582508459,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_042p2dmtuq",
+        "from": {
+          "artifactId": "art_onximeeoxc",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_bhe2vic78k",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "закрыт",
+        "style": {},
+        "createdAt": 1789582433368,
+        "updatedAt": 1789582546318,
+        "autoPorts": true
+      },
+      {
+        "id": "arr_3592gmd21e",
+        "from": {
+          "artifactId": "art_bhe2vic78k",
+          "side": "right",
+          "offset": 0.5
+        },
+        "to": {
+          "artifactId": "art_dujh8otk5q",
+          "side": "left",
+          "offset": 0.5
+        },
+        "bends": [],
+        "routing": "orthogonal",
+        "label": "заведена",
+        "style": {},
+        "createdAt": 1789582433368,
+        "updatedAt": 1789582508459,
+        "autoPorts": true
+      }
+    ]
+  }
+}
