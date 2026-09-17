@@ -38,6 +38,13 @@ export interface RouteOptions {
   overlapPenalty?: number;
   /** Cost of crossing an already routed arrow. */
   crossPenalty?: number;
+  /**
+   * Give every port a point of its own, instead of letting two arrows that
+   * leave the same side share one. Off by default — see `freePortOffset`, where
+   * the measurement is. Worth switching on when a single arrow is being re-laid
+   * and the stub it shares with a neighbour is what is being paid for.
+   */
+  spreadPorts?: boolean;
   /** Route only these arrows; default is every arrow on the board. */
   arrowIds?: string[];
   /**
@@ -681,6 +688,7 @@ export const routeArrows = (
   const turnPenalty = options.turnPenalty ?? DEFAULTS.turnPenalty;
   const overlapPenalty = options.overlapPenalty ?? DEFAULTS.overlapPenalty;
   const crossPenalty = options.crossPenalty ?? DEFAULTS.crossPenalty;
+  const spreadPorts = options.spreadPorts === true;
   const jogLength = options.jogLength ?? DEFAULTS.jogLength;
   const jogPenalty = options.jogPenalty ?? DEFAULTS.jogPenalty;
 
@@ -930,6 +938,7 @@ export const routeArrows = (
       'from',
       occupied,
       offsetFromPoint(from, fromSide, start),
+      spreadPorts,
     );
     const toOffset = freePortOffset(
       to,
@@ -937,6 +946,7 @@ export const routeArrows = (
       'to',
       occupied,
       offsetFromPoint(to, toSide, goal),
+      spreadPorts,
     );
     if (fromOffset == null || toOffset == null) {
       return { skip: 'вход и выход слишком близко на одной стороне — нужна другая сторона' };
@@ -1016,8 +1026,8 @@ export const routeArrows = (
         };
       });
       const ports = collectIntendedPorts(artifacts, painted, current.arrowId);
-      const nextFrom = freePortOffset(from, current.fromSide, 'from', ports, current.fromOffset);
-      const nextTo = freePortOffset(to, current.toSide, 'to', ports, current.toOffset);
+      const nextFrom = freePortOffset(from, current.fromSide, 'from', ports, current.fromOffset, spreadPorts);
+      const nextTo = freePortOffset(to, current.toSide, 'to', ports, current.toOffset, spreadPorts);
       if (nextFrom == null || nextTo == null) {
         dropped.push(current.arrowId);
         continue;

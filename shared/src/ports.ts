@@ -22,6 +22,7 @@ import {
   insetOffset,
   type FixedSide,
 } from './geometry.js';
+import { checkIntersections } from './intersections.js';
 import { boardQuality } from './quality.js';
 import { routeArrows, tooTightToRoute } from './routing.js';
 
@@ -51,6 +52,13 @@ export interface PortSearchOptions {
    * children read as deliberate. Switch off to see what the search alone does.
    */
   evenSpacing?: boolean;
+  /**
+   * Release both ports of an arrow that is in a crossing and try every pair of
+   * sides afresh. Two changes at once, which is the only way out of the local
+   * minimum where each change alone makes the board worse. On by default;
+   * switch off to see what the one-at-a-time moves reach on their own.
+   */
+  detour?: boolean;
   /**
    * Draws the given arrows for the current attachment. Defaults to our own
    * router; a caller can plug in another one — the search cares only that the
@@ -293,22 +301,28 @@ const withSwappedPorts = (arrows: Arrow[], artifact: Artifact, a: End, b: End): 
     return arrow;
   });
 
-const defaultRelay = (artifacts: Artifact[], arrows: Arrow[], arrowIds: string[]): Arrow[] | null => {
-  if (!tooTightToRoute(artifacts, arrows, arrowIds).ready) return null;
-  const outcome = routeArrows(artifacts, arrows, { arrowIds });
-  if (outcome.refused) return null;
-  return arrows.map((arrow) => {
-    const routed = outcome.routed.find((item) => item.arrowId === arrow.id);
-    if (!routed) return arrow;
-    return {
-      ...arrow,
-      bends: routed.bends,
-      routing: 'orthogonal' as const,
-      from: { ...arrow.from, side: routed.fromSide, offset: routed.fromOffset },
-      to: { ...arrow.to, side: routed.toSide, offset: routed.toOffset },
-    };
-  });
-};
+const relayWith =
+  (spreadPorts: boolean) =>
+  (artifacts: Artifact[], arrows: Arrow[], arrowIds: string[]): Arrow[] | null => {
+    if (!tooTightToRoute(artifacts, arrows, arrowIds).ready) return null;
+    const outcome = routeArrows(artifacts, arrows, { arrowIds, spreadPorts });
+    if (outcome.refused) return null;
+    return arrows.map((arrow) => {
+      const routed = outcome.routed.find((item) => item.arrowId === arrow.id);
+      if (!routed) return arrow;
+      return {
+        ...arrow,
+        bends: routed.bends,
+        routing: 'orthogonal' as const,
+        from: { ...arrow.from, side: routed.fromSide, offset: routed.fromOffset },
+        to: { ...arrow.to, side: routed.toSide, offset: routed.toOffset },
+      };
+    });
+  };
+
+const defaultRelay = relayWith(false);
+/** Same router, told to give the arrow a port of its own. */
+const spreadRelay = relayWith(true);
 
 /**
  * Hill climbing over port swaps. Only two arrows are re-laid per candidate, so
@@ -329,6 +343,10 @@ export const searchPorts = (
   const passes = options.passes ?? 4;
   const locked = new Set(options.lockedArrowIds ?? []);
   const relay = options.relay ?? defaultRelay;
+  // The detour tries the same sides twice: once letting the arrow take whatever
+  // port the router likes, once insisting it gets one of its own. A caller with
+  // its own router only gets the first — we cannot ask it for the second.
+  const detourRelays = options.relay ? [relay] : [relay, spreadRelay];
 
   const costBefore = boardQuality(artifacts, arrows).cost;
   let current = arrows;
@@ -436,6 +454,67 @@ export const searchPorts = (
             swaps += 1;
             improvedThisPass = true;
             break;
+          }
+        }
+      }
+    }
+
+    // Fourth move type: the detour.
+    //
+    // The three above change one thing at a time and keep the change only if
+    // the board improves right away. That cannot reach a route a person draws
+    // without thinking: "move the arrow left and take it round the bottom" is
+    // two changes, and on a real board each one *alone* makes things worse.
+    // Measured on `fix-broken`: sending the far end to the bottom side scores
+    // 83 against 86, so the side pass refuses it — yet the same side move with
+    // the near end also slid over scores 96, better than anything else on that
+    // board and better than the route drawn by hand.
+    //
+    // So for an arrow that is actually in a crossing, release both of its ports
+    // at once — sides and offsets — and let the router lay it afresh against
+    // each pair of sides, twice: once taking whatever port it likes, once made
+    // to take one of its own. Thirty-two short routing calls per tangled arrow,
+    // and only for arrows that cross something — an untangled board pays
+    // nothing, and a seven-node board costs a fifth of a second.
+    const tangled =
+      options.detour === false ? [] : checkIntersections(artifacts, current).findings;
+    const crossing = new Set<string>();
+    for (const finding of tangled) {
+      if (finding.kind !== 'arrow_arrow') continue;
+      crossing.add(finding.arrowAId);
+      crossing.add(finding.arrowBId);
+    }
+    for (const arrowId of crossing) {
+      if (locked.has(arrowId)) continue;
+      if (swaps + moves + nudges >= maxSwaps || tried >= maxTried) break;
+      for (const fromSide of FIXED_SIDES) {
+        for (const toSide of FIXED_SIDES) {
+          for (const lay of detourRelays) {
+            tried += 1;
+            const freed = current.map((arrow) =>
+              arrow.id === arrowId
+                ? {
+                    ...arrow,
+                    bends: [],
+                    // Sides held, offsets left open: the router may choose
+                    // where on each side the line attaches, which is the half
+                    // of the move the search cannot see on its own.
+                    autoPorts: false,
+                    from: { ...arrow.from, side: fromSide, offset: undefined },
+                    to: { ...arrow.to, side: toSide, offset: undefined },
+                  }
+                : arrow,
+            );
+            if (!tooTightToRoute(artifacts, freed, [arrowId]).ready) continue;
+            const relaid = lay(artifacts, freed, [arrowId]);
+            if (!relaid) continue;
+            const cost = boardQuality(artifacts, relaid).cost;
+            if (cost < currentCost - 1e-6) {
+              current = relaid;
+              currentCost = cost;
+              moves += 1;
+              improvedThisPass = true;
+            }
           }
         }
       }

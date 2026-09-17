@@ -47,6 +47,32 @@ export const boardRouteArrows: ToolSpec = {
     }
 
     const outcome = ctx.boards.mutate(ctx.boardId, (state) => {
+      // Which side and which point of a node an arrow takes is decided once per
+      // arrow. Trying other attachment orders for the arrows that meet at one
+      // node removes about a third of the crossings the search leaves behind.
+      const withPorts = (arrows: typeof state.arrows, detour: boolean) =>
+        searchPorts(state.artifacts, arrows, {
+          detour,
+          lockedArrowIds: arrows.filter((arrow) => !arrow.autoPorts).map((arrow) => arrow.id),
+        });
+
+      // Four candidates, two questions.
+      //
+      // Re-lay or keep: a re-route is a proposal, not always an improvement. It
+      // discards the attachments the agent chose, and the port search then has
+      // to climb out of whatever basin the fresh routing landed in. On
+      // `fix-broken` that costs nine points — the untouched board finds the
+      // route round the bottom (96) where the re-laid one loops over the top.
+      //
+      // Detour or not: the detour pass reaches routes the one-at-a-time moves
+      // cannot, but an early detour can block a better swap later. Measured
+      // over 30 boards it wins on 6 and loses on 4 — all four losses under a
+      // point, but there is no reason to take them when both answers are a few
+      // seconds apart. Running the four and keeping the best cannot lose.
+      const snapshot = state.arrows.map((arrow) => ({ ...arrow }));
+      const candidates = [withPorts(snapshot, true)];
+      if (before.quality.counts.arrowArrow > 0) candidates.push(withPorts(snapshot, false));
+
       const result = routeArrows(state.artifacts, state.arrows, {
         arrowIds: ids,
         margin: typeof args.margin === 'number' ? args.margin : undefined,
@@ -58,14 +84,22 @@ export const boardRouteArrows: ToolSpec = {
       });
       for (const routed of result.routed) applyRoute(state, routed.arrowId, routed);
 
-      // Which side and which point of a node an arrow takes is decided once per
-      // arrow. Trying other attachment orders for the arrows that meet at one
-      // node removes about a third of the crossings the search leaves behind.
-      const searched = searchPorts(state.artifacts, state.arrows, {
-        lockedArrowIds: state.arrows.filter((arrow) => !arrow.autoPorts).map((arrow) => arrow.id),
-      });
-      if (searched.costAfter < searched.costBefore) {
-        for (const arrow of searched.arrows) {
+      const relaid = state.arrows.map((arrow) => ({ ...arrow }));
+      const relaidQuality = boardQuality(state.artifacts, relaid);
+      candidates.push(withPorts(relaid, true));
+      if (relaidQuality.counts.arrowArrow > 0) candidates.push(withPorts(relaid, false));
+
+      // The freshly routed board is itself in the running: if no search beats
+      // it, it stays as the router drew it.
+      let winner: (typeof candidates)[number] | null = null;
+      let winningCost = relaidQuality.cost;
+      for (const candidate of candidates) {
+        if (candidate.costAfter >= winningCost) continue;
+        winner = candidate;
+        winningCost = candidate.costAfter;
+      }
+      if (winner) {
+        for (const arrow of winner.arrows) {
           const target = state.arrows.find((item) => item.id === arrow.id);
           if (!target) continue;
           target.bends = arrow.bends;
@@ -75,7 +109,7 @@ export const boardRouteArrows: ToolSpec = {
           target.updatedAt = Date.now();
         }
       }
-      return { ...result, portSwaps: searched.swaps };
+      return { ...result, portSwaps: winner?.swaps ?? 0 };
     });
 
     const after = ctx.boards.read(ctx.boardId, (state) =>

@@ -1,0 +1,166 @@
+<!doctype html><meta charset="utf-8"><title>Обход снизу</title>
+<style>
+ body{font:15px/1.5 system-ui,sans-serif;margin:0;padding:32px;background:#f6f7f9;color:#14161a}
+ h1{font-size:22px;margin:0 0 4px} p.lead{margin:0 0 28px;color:#555;max-width:70ch}
+ section{background:#fff;border:1px solid #e3e5e9;border-radius:12px;padding:18px 20px;margin:0 0 22px}
+ h2{font-size:16px;margin:0 0 14px;font-family:ui-monospace,monospace}
+ .row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+ figure{margin:0} img{width:100%;border:1px solid #e3e5e9;border-radius:8px;background:#fff}
+ figcaption{font-size:13px;color:#555;margin-top:6px}
+ @media(max-width:900px){.row{grid-template-columns:1fr}}
+</style>
+<h1>Обход снизу: два хода вместо одного</h1>
+<p class="lead">Слева — доска, как её оставил агент. В середине — что из неё делал роутер раньше. Справа — что он делает теперь, когда стрелке, попавшей в пересечение, разрешено сменить сторону <i>и</i> сдвинуть точку крепления одним ходом.</p>
+<section><h2>brd_zkuvpvwpm3(Доска 4)</h2><div class="row">
+
+    <figure>
+      <img src="brd_zkuvpvwpm3_4___was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>15/100</b>, пересечений 8</figcaption>
+    </figure>
+
+    <figure>
+      <img src="brd_zkuvpvwpm3_4___before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>32/100</b>, пересечений 4</figcaption>
+    </figure>
+
+    <figure>
+      <img src="brd_zkuvpvwpm3_4___after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>35/100</b>, пересечений 4</figcaption>
+    </figure>
+</div></section>
+<section><h2>brd_vl1t4dbj48(Доска 8)</h2><div class="row">
+
+    <figure>
+      <img src="brd_vl1t4dbj48_8___was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>28/100</b>, пересечений 12</figcaption>
+    </figure>
+
+    <figure>
+      <img src="brd_vl1t4dbj48_8___before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>41/100</b>, пересечений 4</figcaption>
+    </figure>
+
+    <figure>
+      <img src="brd_vl1t4dbj48_8___after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>47/100</b>, пересечений 1</figcaption>
+    </figure>
+</div></section>
+<section><h2>AUTO/dense-arch__deepseek-v4-flash</h2><div class="row">
+
+    <figure>
+      <img src="AUTO_dense-arch__deepseek-v4-flash__was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>56/100</b>, пересечений 3</figcaption>
+    </figure>
+
+    <figure>
+      <img src="AUTO_dense-arch__deepseek-v4-flash__before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>43/100</b>, пересечений 7</figcaption>
+    </figure>
+
+    <figure>
+      <img src="AUTO_dense-arch__deepseek-v4-flash__after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>59/100</b>, пересечений 3</figcaption>
+    </figure>
+</div></section>
+<section><h2>AUTO/states-order__deepseek-v4-flash</h2><div class="row">
+
+    <figure>
+      <img src="AUTO_states-order__deepseek-v4-flash__was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>88/100</b>, пересечений 0</figcaption>
+    </figure>
+
+    <figure>
+      <img src="AUTO_states-order__deepseek-v4-flash__before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>86/100</b>, пересечений 0</figcaption>
+    </figure>
+
+    <figure>
+      <img src="AUTO_states-order__deepseek-v4-flash__after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>88/100</b>, пересечений 0</figcaption>
+    </figure>
+</div></section>
+<section><h2>AUTO/wiki-anime__deepseek-v4-flash</h2><div class="row">
+
+    <figure>
+      <img src="AUTO_wiki-anime__deepseek-v4-flash__was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>84/100</b>, пересечений 1</figcaption>
+    </figure>
+
+    <figure>
+      <img src="AUTO_wiki-anime__deepseek-v4-flash__before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>71/100</b>, пересечений 2</figcaption>
+    </figure>
+
+    <figure>
+      <img src="AUTO_wiki-anime__deepseek-v4-flash__after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>84/100</b>, пересечений 1</figcaption>
+    </figure>
+</div></section>
+<section><h2>CHOICE/dense-arch__deepseek-v4-flash</h2><div class="row">
+
+    <figure>
+      <img src="CHOICE_dense-arch__deepseek-v4-flash__was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>47/100</b>, пересечений 5</figcaption>
+    </figure>
+
+    <figure>
+      <img src="CHOICE_dense-arch__deepseek-v4-flash__before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>50/100</b>, пересечений 5</figcaption>
+    </figure>
+
+    <figure>
+      <img src="CHOICE_dense-arch__deepseek-v4-flash__after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>59/100</b>, пересечений 3</figcaption>
+    </figure>
+</div></section>
+<section><h2>CHOICE/fix-broken__deepseek-v4-flash</h2><div class="row">
+
+    <figure>
+      <img src="CHOICE_fix-broken__deepseek-v4-flash__was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>86/100</b>, пересечений 1</figcaption>
+    </figure>
+
+    <figure>
+      <img src="CHOICE_fix-broken__deepseek-v4-flash__before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>86/100</b>, пересечений 1</figcaption>
+    </figure>
+
+    <figure>
+      <img src="CHOICE_fix-broken__deepseek-v4-flash__after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>96/100</b>, пересечений 0</figcaption>
+    </figure>
+</div></section>
+<section><h2>CHOICE/wiki-anime__deepseek-v4-flash</h2><div class="row">
+
+    <figure>
+      <img src="CHOICE_wiki-anime__deepseek-v4-flash__was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>78/100</b>, пересечений 1</figcaption>
+    </figure>
+
+    <figure>
+      <img src="CHOICE_wiki-anime__deepseek-v4-flash__before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>64/100</b>, пересечений 3</figcaption>
+    </figure>
+
+    <figure>
+      <img src="CHOICE_wiki-anime__deepseek-v4-flash__after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>84/100</b>, пересечений 1</figcaption>
+    </figure>
+</div></section>
+<section><h2>E02/dense-arch__deepseek-v4-flash</h2><div class="row">
+
+    <figure>
+      <img src="E02_dense-arch__deepseek-v4-flash__was.png" alt="как оставил агент">
+      <figcaption>как оставил агент — <b>35/100</b>, пересечений 9</figcaption>
+    </figure>
+
+    <figure>
+      <img src="E02_dense-arch__deepseek-v4-flash__before.png" alt="роутер раньше">
+      <figcaption>роутер раньше — <b>51/100</b>, пересечений 5</figcaption>
+    </figure>
+
+    <figure>
+      <img src="E02_dense-arch__deepseek-v4-flash__after.png" alt="роутер сейчас">
+      <figcaption>роутер сейчас — <b>56/100</b>, пересечений 4</figcaption>
+    </figure>
+</div></section>

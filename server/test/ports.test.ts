@@ -4,6 +4,8 @@ import {
   routeArrows,
   type Arrow,
   type Artifact,
+  type FixedSide,
+  type Vec2,
 } from '@teca/shared';
 import { describe, expect, it } from 'vitest';
 
@@ -100,6 +102,79 @@ describe('переезд конца на другую сторону', () => {
 
     expect(result.costAfter).toBeLessThanOrEqual(result.costBefore);
     expect(result.tried).toBeGreaterThan(0);
+  });
+
+  it('уводит стрелку низом, когда каждый ход по отдельности хуже', () => {
+    // Доска fix-broken, как её оставил агент. Одно пересечение, и снять его
+    // можно только двумя ходами сразу: перенести дальний конец на нижнюю
+    // сторону «Отказа» И сдвинуть ближний конец по низу «Скоринга». Порознь
+    // первый ход даёт 83 против 86, поэтому переборы по одному его отвергают.
+    const wide = (id: string, x: number, y: number): Artifact => ({
+      ...node(id, x, y),
+      width: 220,
+      height: 140,
+    });
+    const artifacts = [
+      wide('приём', 0, 0), wide('проверка', 260, 0), wide('скоринг', 520, 0),
+      wide('ручная', 780, 200), wide('одобрено', 780, 0),
+      wide('отказ', 1040, 200), wide('выдача', 1040, 0),
+    ];
+    const link = (
+      id: string,
+      from: string,
+      fromSide: FixedSide,
+      to: string,
+      toSide: FixedSide,
+      bends: Vec2[] = [],
+      fromOffset = 0.5,
+    ): Arrow => ({
+      ...edge(id, from, to),
+      from: { artifactId: from, side: fromSide, offset: fromOffset },
+      to: { artifactId: to, side: toSide, offset: 0.5 },
+      bends,
+    });
+    const arrows = [
+      link('a1', 'приём', 'right', 'проверка', 'left'),
+      link('a2', 'проверка', 'right', 'скоринг', 'left'),
+      link('a3', 'скоринг', 'bottom', 'ручная', 'left', [{ x: 630, y: 270 }]),
+      link('a4', 'скоринг', 'right', 'одобрено', 'left'),
+      link('a5', 'ручная', 'top', 'одобрено', 'bottom'),
+      link('a6', 'ручная', 'right', 'отказ', 'left'),
+      link('a7', 'скоринг', 'bottom', 'отказ', 'top', [{ x: 667, y: 148 }, { x: 1098, y: 148 }], 0.668),
+      link('a8', 'одобрено', 'right', 'выдача', 'left'),
+    ];
+
+    expect(boardQuality(artifacts, arrows).metrics.crossings).toBe(1);
+
+    const withoutDetour = searchPorts(artifacts, arrows, { detour: false });
+    expect(boardQuality(artifacts, withoutDetour.arrows).metrics.crossings).toBe(1);
+
+    const withDetour = searchPorts(artifacts, arrows);
+    const after = boardQuality(artifacts, withDetour.arrows);
+    expect(after.metrics.crossings).toBe(0);
+    expect(after.score).toBeGreaterThanOrEqual(95);
+
+    // Низом, а не поверху: линия уходит под «Ручную проверку» и входит в
+    // «Отказ» снизу — тот же маршрут, который нарисовал бы человек.
+    const detoured = withDetour.arrows.find((arrow) => arrow.id === 'a7')!;
+    expect(detoured.to.side).toBe('bottom');
+  });
+
+  it('spreadPorts даёт каждой стрелке свою точку на стороне', () => {
+    const artifacts = [node('src', 0, 0), node('left', -300, 400), node('right', 300, 400)];
+    const arrows = [edge('e1', 'src', 'left'), edge('e2', 'src', 'right')];
+    const pointsOf = (spread: boolean) => {
+      const out = routeArrows(artifacts, arrows, { spreadPorts: spread });
+      return out.routed
+        .filter((r) => r.fromSide === 'bottom')
+        .map((r) => Math.round(r.fromOffset * 1000) / 1000);
+    };
+    const shared = pointsOf(false);
+    const apart = pointsOf(true);
+    if (shared.length === 2) {
+      expect(shared[0]).toBe(shared[1]);
+      expect(apart[0]).not.toBe(apart[1]);
+    }
   });
 
   it('считает обмены и переезды по отдельности', () => {
